@@ -53,7 +53,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
                     .HasName("PK__Departme__014881AE40981412");
 
                 entity.ToTable("Department");
+
                 entity.Property(e => e.DeptId).ValueGeneratedNever();
+
                 entity.Property(e => e.DepartementName)
                     .HasMaxLength(30)
                     .IsUnicode(false);
