@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Models
 {
-    public partial class Department
-    {
+public partial class Department
+{
         public Department()
         {
             Employees = new HashSet<Employee>();
