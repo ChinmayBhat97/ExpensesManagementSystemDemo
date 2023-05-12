@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.UI", "DRS.ExpenseManagementSystem.UI\DRS.ExpenseManagementSystem.UI.csproj", "{29C6577C-3842-42E8-B69C-6498F3DC1C49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.WebAPI", "DRS.ExpenseManagementSystem.WebAPI\DRS.ExpenseManagementSystem.WebAPI.csproj", "{ADC49EAE-34B1-46BB-9BB8-A0DC1715351A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.Repository", "DRS.ExpenseManagementSystem.Repository\DRS.ExpenseManagementSystem.Repository.csproj", "{E854A90F-FCA2-4B8D-84E6-92AB7BE00A88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.Abstraction", "DRS.ExpenseManagementSystem.Abstraction\DRS.ExpenseManagementSystem.Abstraction.csproj", "{2B0FBE11-0B16-4074-894B-008B67A6C596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRS.ExpenseManagementSystem.Business", "DRS.ExpenseManagementSystem.Business\DRS.ExpenseManagementSystem.Business.csproj", "{04AC9408-1426-4178-A292-6DC7CA91334F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29C6577C-3842-42E8-B69C-6498F3DC1C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C6577C-3842-42E8-B69C-6498F3DC1C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C6577C-3842-42E8-B69C-6498F3DC1C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C6577C-3842-42E8-B69C-6498F3DC1C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADC49EAE-34B1-46BB-9BB8-A0DC1715351A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC49EAE-34B1-46BB-9BB8-A0DC1715351A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC49EAE-34B1-46BB-9BB8-A0DC1715351A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC49EAE-34B1-46BB-9BB8-A0DC1715351A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E854A90F-FCA2-4B8D-84E6-92AB7BE00A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E854A90F-FCA2-4B8D-84E6-92AB7BE00A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E854A90F-FCA2-4B8D-84E6-92AB7BE00A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E854A90F-FCA2-4B8D-84E6-92AB7BE00A88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B0FBE11-0B16-4074-894B-008B67A6C596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0FBE11-0B16-4074-894B-008B67A6C596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0FBE11-0B16-4074-894B-008B67A6C596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0FBE11-0B16-4074-894B-008B67A6C596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AC9408-1426-4178-A292-6DC7CA91334F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AC9408-1426-4178-A292-6DC7CA91334F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AC9408-1426-4178-A292-6DC7CA91334F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AC9408-1426-4178-A292-6DC7CA91334F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B22D5EA5-C61D-44E2-9AE1-446C6E63AC15}
+	EndGlobalSection
+EndGlobal
