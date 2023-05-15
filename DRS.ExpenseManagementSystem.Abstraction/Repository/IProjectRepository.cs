@@ -9,7 +9,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IProjectRepository:IBaseRepository<Project>
     {
-        public Task<Project> GetByEmpId(int empId);
+        public Task<List<Project>> GetByEmpIdAsync(int empId);
 
     }
 }
