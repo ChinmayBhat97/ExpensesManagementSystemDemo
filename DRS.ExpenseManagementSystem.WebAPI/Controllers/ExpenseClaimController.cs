@@ -47,11 +47,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // POST api/<AssetController>
-        [HttpPost]
-        public async Task Post(ExpensesClaim expensesClaim)
-        {
-            await expensesClaimServices.AddNewClaim(expensesClaim);
-        }
+        //[HttpPost]
+        //public async Task Post(ExpensesClaim expensesClaim)
+        //{
+        //    await expensesClaimServices.AddNewClaim(expensesClaim);
+        //}
 
         
     }

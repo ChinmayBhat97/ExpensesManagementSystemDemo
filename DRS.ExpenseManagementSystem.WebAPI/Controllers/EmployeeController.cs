@@ -31,7 +31,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         //GET api/<AssetController>/2
         [HttpGet]
-        public async Task<Employee> Get2(string firstName)
+        public async Task<List<Employee>> Get2(string firstName)
         {
             return await employeeService.GetByEmpFirstName(firstName);
         }
