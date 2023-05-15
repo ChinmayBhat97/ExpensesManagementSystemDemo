@@ -12,13 +12,13 @@ namespace DRS.ExpenseManagementSystem.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
-        private ExpenseManagementSystemContext databaseContext;
-        public EmployeeRepository(ExpenseManagementSystemContext databaseContext) : base(databaseContext)
+        private ExpenseManagementSystemContext _dbContext;
+        public EmployeeRepository(ExpenseManagementSystemContext dbContext) : base(dbContext)
         {
-            this.databaseContext = databaseContext;
+            _dbContext = dbContext;
         }
 
-        public Task<List<Employee>> GetByDept(string dept)
+        public async Task<List<Employee>> GetByDeptId(int deptId)
         {
             throw new NotImplementedException();
         }
@@ -32,5 +32,6 @@ namespace DRS.ExpenseManagementSystem.Repository
         {
             throw new NotImplementedException();
         }
+    }
     }
 }

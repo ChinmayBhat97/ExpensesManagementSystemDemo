@@ -17,9 +17,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             this.employeeRepository = repository;
         }
 
-        public async Task<List<Employee>> GetByDept(string dept)
+        public async Task<List<Employee>> GetByDeptId(int deptid)
         {
-            return await employeeRepository.GetByDept(dept);
+            return await employeeRepository.GetByDeptId(deptid);
         }
 
         public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
