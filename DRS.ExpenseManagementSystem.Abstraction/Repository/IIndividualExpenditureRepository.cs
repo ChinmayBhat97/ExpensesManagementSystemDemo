@@ -9,5 +9,11 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IIndividualExpenditureRepository : IBaseRepository<IndividualExpenditure>
     {
+        public Task<IndividualExpenditure> GetByBillingDate(DateTime billingDate);
+
+        public Task<IndividualExpenditure> GetByCategory(string category);
+
+        public Task<IndividualExpenditure> GetByExpenseCategory(int Id);
+
     }
 }
