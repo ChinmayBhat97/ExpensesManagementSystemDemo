@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/<ExpenseClaimController>/5
         [HttpGet("{id}")]
-        public async Task<ExpensesClaim> GetByEmpID(int id)
+        public async Task<ExpensesClaim> GetByEmployeeID(int id)
         {
             return await expensesClaimServices.GetByEmpId(id); 
         }
@@ -25,7 +25,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/<ExpenseClaimController>/5
         [HttpGet("{id}")]
-        public async Task<List<ExpensesClaim>> GetByClaimState(int id)
+        public async Task<List<ExpensesClaim>> GetByStatus(int id)
         {
             return await expensesClaimServices.GetByClaimState(id);
         }
@@ -33,26 +33,31 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/<ExpenseClaimController>/
         [HttpGet("{dateStart,dateEnd}")]
-        public async Task<List<ExpensesClaim>> GetByClaimPeriods(DateTime dateStart, DateTime dateEnd)
+        public async Task<List<ExpensesClaim>> GetByPeriod(DateTime dateStart, DateTime dateEnd)
         {
             return await expensesClaimServices.GetByClaimPeriods(dateStart,dateEnd);
         }
 
         // GET api/<ExpenseClaimController>/
         [HttpGet("{dateStart,dateEnd}")]
-        public async Task<List<ExpensesClaim>> GetByClaimedDate(DateTime date)
+        public async Task<List<ExpensesClaim>> GetByDate(DateTime date)
         {
             return await expensesClaimServices.GetByClaimedDate(date);
         }
 
 
         // POST api/<AssetController>
-        //[HttpPost]
-        //public async Task Post(ExpensesClaim expensesClaim)
-        //{
-        //    await expensesClaimServices.AddNewClaim(expensesClaim);
-        //}
+        [HttpPost]
+        public async Task Post(ExpensesClaim expensesClaim)
+        {
+            await expensesClaimServices.AddAsync(expensesClaim);
+        }
 
-        
+        // PUT api/<ImageController>/5
+        [HttpPut("{id}")]
+        public async Task Put(ExpensesClaim expensesClaim)
+        {
+            await expensesClaimServices.UpdateAsync(expensesClaim);
+        }
     }
 }
