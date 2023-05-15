@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             _dbContext = dbContext;
         }
 
-        public Task<List<Project>> GetByEmpIdAsync(int empId)
+        public async Task<List<Project>> GetByEmpIdAsync(int empId)
         {
             throw new NotImplementedException();
         }
