@@ -12,10 +12,11 @@ namespace DRS.ExpenseManagementSystem.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
-        private ExpenseManagementSystemContext databaseContext;
-        public EmployeeRepository(ExpenseManagementSystemContext databaseContext) : base(databaseContext)
+        private ExpenseManagementSystemContext _dbContext;
+
+        public EmployeeRepository(ExpenseManagementSystemContext dbcontext) : base(dbcontext)
         {
-            this.databaseContext = databaseContext;
+            this._dbContext = dbcontext;
         }
 
         public Task<List<Employee>> GetByDept(string dept)
