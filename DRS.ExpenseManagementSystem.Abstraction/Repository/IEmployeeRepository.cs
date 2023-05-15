@@ -9,9 +9,9 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IEmployeeRepository: IBaseRepository<Employee>
     {
-        public Task<List<Employee>> GetByDept(string dept);
+        public Task<List<Employee>> GetByDeptId(int deptId);
         public Task<Employee> GetByEmpId(int empid);
         public Task<List<Employee>> GetByEmpFirstName(string empFirstName);
-
+        
     }
 }
