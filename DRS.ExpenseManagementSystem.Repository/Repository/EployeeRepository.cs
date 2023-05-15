@@ -20,7 +20,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public Task<List<Employee>> GetByDept(string dept)
         {
-            return databaseContext.Employees.AsQueryable().Where(x => x.Dept = dept).ToList();
+            throw new NotImplementedException();
         }
 
         public Task<List<Employee>> GetByEmpFirstName(string empFirstName)
