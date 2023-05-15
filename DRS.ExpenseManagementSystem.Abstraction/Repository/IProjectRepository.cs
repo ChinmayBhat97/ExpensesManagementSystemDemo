@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
-    internal interface IProjectRepository
+    public interface IProjectRepository
     {
+
     }
 }
