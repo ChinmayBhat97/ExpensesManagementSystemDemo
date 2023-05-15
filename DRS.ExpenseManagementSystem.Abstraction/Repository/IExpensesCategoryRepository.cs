@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
-    public interface IExpensesCategory : IBaseRepository<ExpensesCategory>
+    public interface IExpensesCategoryRepository : IBaseRepository<ExpensesCategory>
     {
 
     }
