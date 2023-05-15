@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
         Task AddAsync(T entity);
 
         Task<int> SaveChangesAsync();
-        Task DeleteAsync<T>(T? entity);
-        Task<Task<List<Employee>>> GetByDept(string dept);
+        Task DeleteAsync(T entity);
+        
     }
 }
