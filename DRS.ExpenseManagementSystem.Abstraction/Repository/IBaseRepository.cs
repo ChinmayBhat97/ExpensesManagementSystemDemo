@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
-    internal interface IBaseRepository<T>
+    public interface IBaseRepository<T>
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
