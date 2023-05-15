@@ -9,8 +9,8 @@
   <ItemGroup>
     <Folder Include="Errors\" />
     <Folder Include="Helpers\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,11 +9,11 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IExpensesClaimRepository:IBaseRepository<ExpensesClaim>
     {
-        public Task<List<ExpensesClaim>> GetByEmpId(int empId);
-        public Task<ClaimStatus> GetByClaimState(int claimState);
+        public Task<ExpensesClaim> GetByEmpId(int empId);
+        public Task<List<ExpensesClaim>> GetByClaimState(int claimState);
 
-        public Task<ClaimStatus> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
+        public Task<List<ExpensesClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
 
-        public Task<ClaimStatus> GetByClaimedDate(DateTime claimedDate);
+        public Task<List<ExpensesClaim>> GetByClaimedDate(DateTime claimedDate);
     }
 }
