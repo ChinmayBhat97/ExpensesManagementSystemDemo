@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
-    public interface IDepartmentService:IBaseService<Department>
+    public interface IProjectService:IBaseService<Project>
     {
+        public Task<List<Project>> GetByEmpIdAsync(int empId);
     }
 }
