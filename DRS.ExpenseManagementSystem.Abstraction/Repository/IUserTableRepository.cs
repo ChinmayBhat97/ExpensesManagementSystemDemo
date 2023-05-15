@@ -9,6 +9,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IUserTableRepository : IBaseRepository<UserTable>
     {
-
+        public Task<UserTable> GetByIsAccountLocked (bool isAccountLocked);
+        public Task<UserTable> GetByIsActived(bool isActive);
     }
 }

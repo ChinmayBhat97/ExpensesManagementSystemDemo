@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IDepartmentRepository : IBaseRepository<Department>
-    {
-       
+    {  
     }
 }
