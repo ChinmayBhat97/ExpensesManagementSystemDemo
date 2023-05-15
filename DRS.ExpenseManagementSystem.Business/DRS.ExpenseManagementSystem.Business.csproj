@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Abstraction\DRS.ExpenseManagementSystem.Abstraction.csproj" />
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Repository\DRS.ExpenseManagementSystem.Repository.csproj" />
   </ItemGroup>
