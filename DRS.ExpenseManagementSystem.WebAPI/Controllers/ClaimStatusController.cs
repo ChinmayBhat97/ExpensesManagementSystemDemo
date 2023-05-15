@@ -18,7 +18,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             this.claimStatusService = _claimStatusService;
         }
 
-        // GET api/<ImageController>/5
+        // GET api/<Claim status Controller>/5
         [HttpGet]
         public async Task<List<ClaimStatus>> Get()
         {
