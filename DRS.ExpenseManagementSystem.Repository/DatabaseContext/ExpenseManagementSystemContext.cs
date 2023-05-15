@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DRS.ExpenseManagementSystem.Abstraction.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DRS.ExpenseManagementSystem.WebAPI.Models
+namespace DRS.ExpenseManagementSystem.Repository.DatabaseContext
 {
     public partial class ExpenseManagementSystemContext : DbContext
     {

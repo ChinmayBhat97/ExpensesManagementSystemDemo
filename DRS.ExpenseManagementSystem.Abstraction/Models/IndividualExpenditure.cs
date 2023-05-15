@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DRS.ExpenseManagementSystem.WebAPI.Models
+namespace DRS.ExpenseManagementSystem.Abstraction.Models
 {
     public partial class IndividualExpenditure
     {

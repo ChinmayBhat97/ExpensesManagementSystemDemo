@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DRS.ExpenseManagementSystem.WebAPI.Models
+namespace DRS.ExpenseManagementSystem.UI.Models
 {
     public partial class ExpensesClaim
     {
