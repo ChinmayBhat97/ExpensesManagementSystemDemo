@@ -11,7 +11,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
     {
         public Task<Employee> GetByDept(int dept);
         public Task<Employee> GetByEmpId(int empid);
-
+        public Task<Employee> GetByEmpFirstName(int empFirstName);
 
     }
 }
