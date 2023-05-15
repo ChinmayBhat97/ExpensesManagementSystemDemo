@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 
         Task<int> SaveChangesAsync();
         Task DeleteAsync<T>(T? entity);
+        Task<Task<List<Employee>>> GetByDept(string dept);
     }
 }

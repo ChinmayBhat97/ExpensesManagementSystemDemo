@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
-    public interface IUserTable:IBaseService<IUserTable>
+    public interface IUserTableService:IBaseService<IUserTableService>
     {
 
     }
