@@ -2,6 +2,8 @@
 using DRS.ExpenseManagementSystem.Abstraction.Services;
 using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using NuGet.ContentModel;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
@@ -22,18 +24,32 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await employeeService.GetByIdAsync(id);
         }
 
-        // GET api/<AssetController>/1
+        // GET api/<EmployeeController>/1
         [HttpGet]
-        public async Task<Employee> Get1(int id)
+        public async Task<List<Employee>> Get1(int id)
         {
-            return await employeeService.GetByEmpId(id);
+            return await employeeService.GetByDeptId(id);
         }
 
-        //GET api/<AssetController>/2
+        //GET api/<EmployeeController>/2
         [HttpGet]
         public async Task<List<Employee>> Get2(string firstName)
         {
             return await employeeService.GetByEmpFirstName(firstName);
+        }
+
+        //POST api/<EmployeeController>
+        [HttpPost]
+        public async Task Post(Employee employee)
+        {
+            await employeeService.AddAsync(employee);
+        }
+
+        // PUT api/<AssetController>/5
+        [HttpPut("{id}")]
+        public async Task Put(int id, Employee employeeToUpdate)
+        {
+            await employeeService.UpdateAsync(employeeToUpdate);
         }
     }
 
