@@ -20,7 +20,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
         public async Task<List<Project>> GetByEmpIdAsync(int empId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Projects.AsQueryable().Where(s =>s.EmpId == empId).ToListAsync();
         }
     }
 }

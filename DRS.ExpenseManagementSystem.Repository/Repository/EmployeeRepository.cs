@@ -2,6 +2,7 @@
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
 using DRS.ExpenseManagementSystem.Repository.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +20,21 @@ namespace DRS.ExpenseManagementSystem.Repository
             this._dbContext = dbcontext;
         }
 
-        public Task<List<Employee>> GetByDept(string dept)
+       
+
+        public async Task<List<Employee>> GetByDeptId(int deptId)
         {
-            throw new NotImplementedException();
+          return await _dbContext.Employees.AsQueryable().Where(q =>q.DeptId == deptId).ToListAsync();
         }
 
-        public Task<List<Employee>> GetByEmpFirstName(string empFirstName)
+        public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
         {
-            throw new NotImplementedException();
+           return await _dbContext.Employees.AsQueryable().Where(t =>t.EmpFirstName== empFirstName).ToListAsync();
         }
 
-        public Task<Employee> GetByEmpId(int empid)
+        public async Task<Employee> GetByEmpId(int empid)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Employees.AsQueryable().Where(u =>u.EmpId==empid).FirstOrDefaultAsync<Employee>();
         }
     }
 }
