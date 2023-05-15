@@ -45,19 +45,19 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await expensesClaimServices.GetByClaimedDate(date);
         }
 
-
-        // POST api/<AssetController>
+        // POST api/<ExpenseClaimController>
         [HttpPost]
         public async Task Post(ExpensesClaim expensesClaim)
         {
             await expensesClaimServices.AddAsync(expensesClaim);
         }
 
-        // PUT api/<ImageController>/5
+        // PUT api/<ExpenseClaimController>/5
         [HttpPut("{id}")]
         public async Task Put(ExpensesClaim expensesClaim)
         {
             await expensesClaimServices.UpdateAsync(expensesClaim);
         }
+
     }
 }
