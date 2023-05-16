@@ -1,3 +1,8 @@
+using DRS.ExpenseManagementSystem.WebAPI.Extensions;
+using DRS.ExpenseManagementSystem.WebAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +13,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =>
+//           options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+
+builder.Services.RegisterRepositories();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
