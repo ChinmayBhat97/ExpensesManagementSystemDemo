@@ -15,7 +15,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index()
         {
             return View();
         }
