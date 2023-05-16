@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Abstraction\DRS.ExpenseManagementSystem.Abstraction.csproj" />
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Business\DRS.ExpenseManagementSystem.Business.csproj" />
   </ItemGroup>
