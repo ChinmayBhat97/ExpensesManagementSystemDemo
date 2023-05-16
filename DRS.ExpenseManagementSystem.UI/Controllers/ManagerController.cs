@@ -27,7 +27,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-        [HttpGet("FinanceManager/Edit")]
+        [HttpGet("Manager/Edit")]
         public async Task<IActionResult> EditByManager()
         {
             HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
@@ -35,7 +35,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         }
 
-        [HttpPost("FinanceManager/Edit")]
+        [HttpPost("Manager/Edit")]
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
