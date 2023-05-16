@@ -36,7 +36,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
         [HttpPost("FinanceManager/Edit")]
-        public async Task<IActionResult> EditByClaimant(ExpenseClaimViewModel expenseClaimViewModel)
+        public async Task<IActionResult> EditByFinanceManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
             {
