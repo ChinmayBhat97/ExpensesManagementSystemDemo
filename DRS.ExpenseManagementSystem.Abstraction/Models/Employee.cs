@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Models
 {
-public partial class Employee
-{
+    public partial class Employee
+    {
         public Employee()
         {
             ExpensesClaims = new HashSet<ExpensesClaim>();
@@ -12,7 +12,7 @@ public partial class Employee
         }
 
         public int EmpId { get; set; }
-    public int? UserId { get; set; }
+        public int? UserId { get; set; }
         public string? EmpFirstName { get; set; }
         public string? EmpLastName { get; set; }
         public string? EmpEmailId { get; set; }
@@ -24,11 +24,11 @@ public partial class Employee
         public string? EmpIfsc { get; set; }
         public string? EmpBankName { get; set; }
         public DateTime? DateofJoining { get; set; }
-    public int? DeptId { get; set; }
+        public int? DeptId { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-    public virtual Department? Dept { get; set; }
+        public virtual Department? Dept { get; set; }
         public virtual UserTable? User { get; set; }
         public virtual ICollection<ExpensesClaim> ExpensesClaims { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
