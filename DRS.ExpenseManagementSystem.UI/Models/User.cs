@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace DRS.ExpenseManagementSystem.Abstraction.Models
+namespace DRS.ExpenseManagementSystem.UI.Models
 {
     public partial class User
     {
