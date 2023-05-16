@@ -7,29 +7,30 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
     {
         public Employee()
         {
-            ExpensesClaims = new HashSet<ExpensesClaim>();
+            ExpenseClaims = new HashSet<ExpenseClaim>();
             Projects = new HashSet<Project>();
         }
 
-        public int EmpId { get; set; }
-        public int? UserId { get; set; }
-        public string? EmpFirstName { get; set; }
-        public string? EmpLastName { get; set; }
-        public string? EmpEmailId { get; set; }
-        public string? EmpPhoneNumber { get; set; }
-        public int? EmpGender { get; set; }
-        public string? EmpDesignation { get; set; }
-        public string? EmpPanNumber { get; set; }
-        public string? EmpAccountNumber { get; set; }
-        public string? EmpIfsc { get; set; }
-        public string? EmpBankName { get; set; }
-        public DateTime? DateofJoining { get; set; }
+        public int Id { get; set; }
+        public int? EmpId { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? City { get; set; }
+        public int? Gender { get; set; }
+        public string? Designation { get; set; }
+        public string? PanNumber { get; set; }
+        public string? AccountNumber { get; set; }
+        public string? Ifsc { get; set; }
+        public string? BankName { get; set; }
+        public DateTime? DateOfJoining { get; set; }
         public int? DeptId { get; set; }
         public DateTime? CreatedAt { get; set; }
 
         public virtual Department? Dept { get; set; }
-        public virtual UserTable? User { get; set; }
-        public virtual ICollection<ExpensesClaim> ExpensesClaims { get; set; }
+        public virtual User? Emp { get; set; }
+        public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
     }
 }

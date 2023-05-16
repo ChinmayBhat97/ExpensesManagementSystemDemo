@@ -8,9 +8,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
     [ApiController]
     public class ExpenseClaimController : ControllerBase
     {
-        private IExpensesClaimServices expensesClaimServices;
+        private IExpenseClaimServices expensesClaimServices;
 
-        public ExpenseClaimController(IExpensesClaimServices _expensesClaimServices)
+        public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices)
         {
             this.expensesClaimServices = _expensesClaimServices;
         }

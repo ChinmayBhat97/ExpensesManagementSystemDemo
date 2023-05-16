@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
-using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
+
+using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 {
     public class ProjectRepository : BaseRepository<Project>, IProjectRepository
     {
-        private ExpenseManagementSystemContext _dbContext;
-        public ProjectRepository(ExpenseManagementSystemContext dbContext) : base(dbContext)
+        private ExpensesManagementSystem_UpdatedContext _dbContext;
+        public ProjectRepository(ExpensesManagementSystem_UpdatedContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
@@ -25,13 +26,13 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
         public async Task<List<Project>> GetByTitleAsync(string projectTitle)
         {
-            return await _dbContext.Projects.AsQueryable().Where(p =>p.ProjectName == projectTitle).ToListAsync();
+            return await _dbContext.Projects.AsQueryable().Where(p =>p.Title == projectTitle).ToListAsync();
         }
 
 
         public async Task<List<Project>> GetByClientInfo(string clientInfo)
         {
-            return await _dbContext.Projects.AsQueryable().Where(p => p.ClientName == clientInfo).ToListAsync();
+            return await _dbContext.Projects.AsQueryable().Where(p => p.Client == clientInfo).ToListAsync();
         }
     }
 }

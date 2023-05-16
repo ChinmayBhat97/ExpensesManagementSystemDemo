@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
-using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
+
+using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly ExpenseManagementSystemContext dbContext;
+        private readonly ExpensesManagementSystem_UpdatedContext dbContext;
         private DbSet<T> table;
-        public BaseRepository(ExpenseManagementSystemContext databaseContext)
+        public BaseRepository(ExpensesManagementSystem_UpdatedContext databaseContext)
         {
             this.dbContext = databaseContext;
             this.dbContext.Database.SetCommandTimeout(360);

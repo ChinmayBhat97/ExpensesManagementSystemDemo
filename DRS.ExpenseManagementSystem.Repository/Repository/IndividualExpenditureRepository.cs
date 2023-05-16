@@ -1,6 +1,6 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
-using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
+using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,15 +12,15 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 {
     public class IndividualExpenditureRepository : BaseRepository<IndividualExpenditure>, IIndividualExpenditureRepository
     {
-        private ExpenseManagementSystemContext _dbContext;
-        public IndividualExpenditureRepository(ExpenseManagementSystemContext dbcontext) : base (dbcontext) 
+        private ExpensesManagementSystem_UpdatedContext _dbContext;
+        public IndividualExpenditureRepository(ExpensesManagementSystem_UpdatedContext dbcontext) : base (dbcontext) 
         {
             this._dbContext = dbcontext;
         }
 
         public async Task<List<IndividualExpenditure>> GetByBillingDate(DateTime billingDate)
         {
-            return await _dbContext.IndividualExpenditures.AsQueryable().Where(a => a.BillingDate==billingDate).ToListAsync();
+            return await _dbContext.IndividualExpenditures.AsQueryable().Where(a => a.ExpenditureDate==billingDate).ToListAsync();
         }
 
         public async Task<List<IndividualExpenditure>> GetByCategory(string category)

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
-    public interface IExpensesClaimServices : IBaseService<ExpensesClaim>
+    public interface IExpenseClaimServices : IBaseService<ExpenseClaim>
     {
-        public Task<ExpensesClaim> GetByEmpId(int empId);
-        public Task<List<ExpensesClaim>> GetByClaimState(int claimState);
+        public Task<ExpenseClaim> GetByEmpId(int empId);
+        public Task<List<ExpenseClaim>> GetByClaimState(int claimState);
 
-        public Task<List<ExpensesClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
+        public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
 
-        public Task<List<ExpensesClaim>> GetByClaimedDate(DateTime claimedDate);
+        public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
 
         //public Task<ExpensesClaim> AddNewClaim(ExpensesClaim expensesClaim);
 

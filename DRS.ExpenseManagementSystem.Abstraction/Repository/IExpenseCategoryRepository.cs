@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DRS.ExpenseManagementSystem.Abstraction.Services
+namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
-    public interface IExpensesCategoryServices : IBaseService<ExpensesCategory>
+    public interface IExpenseCategoryRepository : IBaseRepository<ExpenseCategory>
     {
 
     }

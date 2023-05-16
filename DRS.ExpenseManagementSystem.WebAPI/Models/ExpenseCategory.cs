@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DRS.ExpenseManagementSystem.Abstraction.Models
+namespace DRS.ExpenseManagementSystem.WebAPI.Models
 {
-    public partial class ExpensesCategory
+    public partial class ExpenseCategory
     {
-        public ExpensesCategory()
+        public ExpenseCategory()
         {
             IndividualExpenditures = new HashSet<IndividualExpenditure>();
         }
 
         public int Id { get; set; }
-        public string? CategoryName { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<IndividualExpenditure> IndividualExpenditures { get; set; }
     }

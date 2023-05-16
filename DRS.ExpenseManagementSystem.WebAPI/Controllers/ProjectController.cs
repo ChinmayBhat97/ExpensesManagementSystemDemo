@@ -35,8 +35,6 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await projectRepository.GetByTitleAsync(title);
         }
 
-        
-
         // POST api/<Project Controller>
         [HttpPost]
         public async Task Post(Project project)

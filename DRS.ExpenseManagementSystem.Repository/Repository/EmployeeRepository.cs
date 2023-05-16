@@ -1,7 +1,8 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
-using DRS.ExpenseManagementSystem.Repository.DatabaseContext;
+
 using DRS.ExpenseManagementSystem.Repository.Repository;
+using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace DRS.ExpenseManagementSystem.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
-        private ExpenseManagementSystemContext _dbContext;
+        private ExpensesManagementSystem_UpdatedContext _dbContext;
 
-        public EmployeeRepository(ExpenseManagementSystemContext dbcontext) : base(dbcontext)
+        public EmployeeRepository(ExpensesManagementSystem_UpdatedContext dbcontext) : base(dbcontext)
         {
             this._dbContext = dbcontext;
         }
@@ -26,7 +27,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
         {
-           return await _dbContext.Employees.AsQueryable().Where(t =>t.EmpFirstName== empFirstName).ToListAsync();
+           return await _dbContext.Employees.AsQueryable().Where(t =>t.FirstName== empFirstName).ToListAsync();
         }
 
         public async Task<Employee> GetByEmpId(int empid)

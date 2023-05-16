@@ -9,9 +9,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
     [ApiController]
     public class ExpensesCategoryController : ControllerBase
     {
-        private IExpensesCategoryServices expensesCategoryServices;
+        private IExpenseCategoryServices expensesCategoryServices;
 
-        public ExpensesCategoryController(IExpensesCategoryServices _expensesCategoryServices)
+        public ExpensesCategoryController(IExpenseCategoryServices _expensesCategoryServices)
         {
             this.expensesCategoryServices= _expensesCategoryServices;
         }

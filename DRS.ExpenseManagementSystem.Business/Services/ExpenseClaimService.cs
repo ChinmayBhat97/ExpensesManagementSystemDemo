@@ -9,31 +9,31 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Business.Services
 {
-    public class ExpensesClaimService : BaseService<ExpensesClaim>, IExpensesClaimServices
+    public class ExpenseClaimService : BaseService<ExpenseClaim>, IExpenseClaimServices
     {
-        private IExpensesClaimRepository repository;
+        private IExpenseClaimRepository repository;
 
-        public ExpensesClaimService(IExpensesClaimRepository repository) : base(repository) 
+        public ExpenseClaimService(IExpenseClaimRepository repository) : base(repository) 
         {
             this.repository = repository;
         }
 
-        public async Task<ExpensesClaim> GetByEmpId(int empId)
+        public async Task<ExpenseClaim> GetByEmpId(int empId)
         {
             return await repository.GetByEmpId(empId);
         }
 
-        public async Task<List<ExpensesClaim>> GetByClaimState(int claimState)
+        public async Task<List<ExpenseClaim>> GetByClaimState(int claimState)
         {
             return await repository.GetByClaimState(claimState);
         }
 
-        public async Task<List<ExpensesClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate)
+        public async Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate)
         {
             return await repository.GetByClaimPeriods(periodStartDate, periodEndDate);
         }
 
-        public async Task<List<ExpensesClaim>> GetByClaimedDate(DateTime claimedDate)
+        public async Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate)
         {
             return await repository.GetByClaimedDate(claimedDate);
         }

@@ -7,8 +7,8 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
     public class UserTableController : ControllerBase
     {
-        private IUserTableService userTableService;
-        public UserTableController(IUserTableService _userTableService)
+        private IUserService userTableService;
+        public UserTableController(IUserService _userTableService)
         {
             this.userTableService = _userTableService;
         }

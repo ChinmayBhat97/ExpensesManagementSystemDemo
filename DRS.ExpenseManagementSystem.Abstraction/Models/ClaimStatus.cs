@@ -7,12 +7,12 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
     {
         public ClaimStatus()
         {
-            ExpensesClaims = new HashSet<ExpensesClaim>();
+            ExpenseClaims = new HashSet<ExpenseClaim>();
         }
 
         public int Id { get; set; }
-        public string? ClaimState { get; set; }
+        public string? Name { get; set; }
 
-        public virtual ICollection<ExpensesClaim> ExpensesClaims { get; set; }
+        public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
     }
 }

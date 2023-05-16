@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Business.Services
 {
-    public class ExpensesCategoryService : BaseService<ExpensesCategory> , IExpensesCategoryServices
+    public class ExpenseCategoryService : BaseService<ExpenseCategory> , IExpenseCategoryServices
     {
-        private IExpensesCategoryRepository expensesCategoryRepository;
+        private IExpenseCategoryRepository expensesCategoryRepository;
 
-        public ExpensesCategoryService(IExpensesCategoryRepository repository) : base (repository) 
+        public ExpenseCategoryService(IExpenseCategoryRepository repository) : base (repository) 
         {
                 this.expensesCategoryRepository = repository;
         }
