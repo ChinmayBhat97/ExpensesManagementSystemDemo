@@ -16,8 +16,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
 
         public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
 
-        //public Task<ExpensesClaim> AddNewClaim(ExpensesClaim expensesClaim);
+       
 
-        //public Task<ExpensesClaim> EditExistingClaim(ExpensesClaim expensesClaim);
     }
 }

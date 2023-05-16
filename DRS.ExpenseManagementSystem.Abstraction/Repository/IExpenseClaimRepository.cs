@@ -15,5 +15,9 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
         public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
 
         public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
+
+      
+
+        
     }
 }

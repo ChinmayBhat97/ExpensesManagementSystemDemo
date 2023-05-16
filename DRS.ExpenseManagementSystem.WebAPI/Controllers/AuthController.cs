@@ -11,17 +11,17 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public class AuthenticateController : ControllerBase
         {
 
-            private IUserService userTableService;
+            private IUserService userService;
 
-            public AuthenticateController(IUserService _userTableService)
+            public AuthenticateController(IUserService _userService)
             {
-                userTableService = _userTableService;
+                userService = _userService;
             }
 
             [HttpPost]
             public AuthenticationViewModel Authenticate(string userName,string password)
             {
-                return userTableService.Authenticate(userName, password);
+                return userService.Authenticate(userName, password);
             }
         }
     }
