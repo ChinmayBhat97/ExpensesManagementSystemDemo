@@ -11,9 +11,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public class AuthenticateController : ControllerBase
         {
 
-            private IUserTableService userTableService;
+            private IUserService userTableService;
 
-            public AuthenticateController(IUserTableService _userTableService)
+            public AuthenticateController(IUserService _userTableService)
             {
                 userTableService = _userTableService;
             }

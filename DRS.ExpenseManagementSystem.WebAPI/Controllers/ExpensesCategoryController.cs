@@ -18,7 +18,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/<ExpensesCategory Controller>/5
         [HttpGet]
-        public async Task<List<ExpensesCategory>> Get()
+        public async Task<List<ExpenseCategory>> Get()
         {
             return await expensesCategoryServices.GetAllAsync();
         }
@@ -26,14 +26,14 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // POST api/<ExpensesCategory Controller>
         [HttpPost]
-        public async Task Post(ExpensesCategory expensesCategory)
+        public async Task Post(ExpenseCategory expensesCategory)
         {
             await expensesCategoryServices.AddAsync(expensesCategory);
         }
 
         // PUT api/<ExpensesCategory Controller>/5
         [HttpPut("{id}")]
-        public async Task Put(ExpensesCategory expensesCategory)
+        public async Task Put(ExpenseCategory expensesCategory)
         {
             await expensesCategoryServices.UpdateAsync(expensesCategory);
         }

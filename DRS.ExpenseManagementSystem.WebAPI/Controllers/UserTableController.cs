@@ -14,21 +14,21 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
         // GET: api/<UserTableController>
         [HttpGet("{id}")]
-        public async Task<UserTable> Get(int id)
+        public async Task<User> Get(int id)
         {
             return await userTableService.GetByIdAsync(id);
         }
 
         //POST api/<EmployeeController>
         [HttpPost]
-        public async Task Post(UserTable userTable)
+        public async Task Post(User userTable)
         {
             await userTableService.AddAsync(userTable);
         }
 
         // PUT api/<AssetController>/5
         [HttpPut("{id}")]
-        public async Task Put(int id, UserTable userTableToUpdate)
+        public async Task Put(int id, User userTableToUpdate)
         {
             await userTableService.UpdateAsync(userTableToUpdate);
         }

@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
-    public interface IUserTableService:IBaseService<UserTable>
+    public interface IUserService:IBaseService<User>
     {
-
+        AuthenticationViewModel Authenticate(string userName, string password);
     }
 }
