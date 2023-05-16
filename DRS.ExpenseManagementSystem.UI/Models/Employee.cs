@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DRS.ExpenseManagementSystem.UI.Models
@@ -29,7 +30,7 @@ public partial class Employee
     public DateTime? CreatedAt { get; set; }
 
     public virtual Department? Dept { get; set; }
-        public virtual UserTable? User { get; set; }
+        public virtual User? User { get; set; }
         public virtual ICollection<ExpensesClaim> ExpensesClaims { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
     }
