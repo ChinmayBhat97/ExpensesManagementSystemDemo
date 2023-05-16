@@ -6,6 +6,19 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
     public class LoginController : Controller
     {
+        readonly IConfiguration configuration;
+        readonly HttpClient client;
+
+        public LoginController(IConfiguration _configuration)
+        {
+
+            this.configuration = _configuration;
+            this.client = new HttpClient
+            {
+                BaseAddress = new Uri(configuration["BaseUrl"]),
+                Timeout = TimeSpan.FromMinutes(5)
+            };
+        }
         private readonly SignInManager<IdentityUser> signInManager;
 
         public LoginController(SignInManager<IdentityUser> signInManager)

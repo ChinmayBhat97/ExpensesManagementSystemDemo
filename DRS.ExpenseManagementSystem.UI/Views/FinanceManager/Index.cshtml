@@ -1,0 +1,47 @@
+﻿@model List<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel>
+@*@model IEnumerable<ExpenseClaimViewModel>*@
+@{
+    ViewData["Title"] = "Expense Lists";
+}
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Employee Id</th>
+            <th>Department Id</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Amount</th>
+            <th>Project Id</th>
+            <th>Claim Request Date</th>
+            <th>Status</th>
+            <th>Manager Remarks</th>
+            <th>Finance Manager Remarks</th>
+            <th>Manager Approved On</th>
+            <th>Finance Manager Approved On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.EmpId</td>
+                <td>@item.DeptId</td>
+                <td>@item.StartDate</td>
+                <td>@item.EndDate</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.ProjectId</td>
+                <td>@item.ClaimRequestDate</td>
+                <td>@item.Status</td>
+                <td>@item.ManagerRemarks</td>
+                <td>@item.FinanceManagerRemarks</td>
+                <td>@item.ManagerApprovedOn</td>
+                <td>@item.FinanceManagerApprovedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
