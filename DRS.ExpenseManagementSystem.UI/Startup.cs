@@ -7,10 +7,10 @@ namespace DRS.ExpenseManagementSystem.UI
 {
     public class Startup
     {
-        public IConfiguration _configuration1 { get; }
+        public IConfiguration _configuration { get; }
         public Startup(IConfiguration configuration)
         {
-            _configuration1= configuration;
+            _configuration= configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
