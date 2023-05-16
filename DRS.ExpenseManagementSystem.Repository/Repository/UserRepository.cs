@@ -25,7 +25,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
                 .Where(n => n.EmployeeCode == userName && n.Password == password).ToList()
                 .Select(x => new UserViewModel
                 {
-                    EmployeeId = x.EmployeeCode,
+                    EmployeeCode = x.EmployeeCode,
                     Password = x.Password
                 }).FirstOrDefault();
 
