@@ -1,27 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DRS.ExpenseManagementSystem.UI.Models.User
+
 @{
+    ViewData["Title"] = "Login";
 }
-<div class="container mx-auto">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-            <h1 class="col-3 mb-3 h3">
-                Login
-            </h1>
-            <form method="post">
-                <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    <input type="text" id="username" class="form-control" />
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control"  />
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-dark">Login</button>
+<div class="page-wrapper pt-0">
+    <div class="top-bar"></div>
+    <div class="login-wrapper">
+        <div class="container-fluid">
+            <form method="post" asp-action="Login">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="logo"><img src="~/img/scaffold.png" class="img-fluid" alt="Logo" /></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-fields mb-3">
+                            <input type="text" class="form-control f-15 fw-500" id="user-name" asp-for="EmployeeCode" placeholder="User Name" />
+                            <span asp-validation-for="EmployeeCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-fields mb-3">
+                            <input type="password" class="form-control f-15 fw-500" id="password" asp-for="Password" placeholder="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="link mb-4 text-right f-15 fw-500">
+                            <a>Forgot Password ?</a>
+                        </div>
+                        <div class="form-fields">
+                            <a><input id="Submit" type="submit" class="btn upload-btn btn-purple btn-block f-15 fw-500" value="Login" /></a>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
