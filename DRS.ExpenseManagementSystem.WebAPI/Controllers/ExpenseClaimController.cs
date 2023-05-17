@@ -24,7 +24,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("{employeeId}")]
+        [HttpGet("employee/{employeeId}")]
         public async Task<List<ExpenseClaim>> GetByEmployeeID(int employeeId)
         {
             return await expensesClaimServices.GetByEmpId(employeeId); 
@@ -32,7 +32,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("{statusId}")]
+        [HttpGet("{status/statusId}")]
         public async Task<List<ExpenseClaim>> GetByStatus(int statusId)
         {
             return await expensesClaimServices.GetByClaimState(statusId);
