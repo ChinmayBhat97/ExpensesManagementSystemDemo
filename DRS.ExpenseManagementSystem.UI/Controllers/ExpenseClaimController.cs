@@ -44,8 +44,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
-            {
-               
+            { 
                 expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
                 expenseClaimViewModel.Status = 1;
                 var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);

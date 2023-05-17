@@ -9,8 +9,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
     public class ManagerController : Controller
     {
-        readonly IConfiguration configuration;
-        readonly HttpClient client;
+       private readonly IConfiguration configuration;
+       private readonly HttpClient client;
 
         public ManagerController(IConfiguration _configuration)
         {
@@ -33,7 +33,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("Manager/Edit")]
         public async Task<IActionResult> EditByManager()
         {
-            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
             return View();
 
         }
@@ -48,10 +48,34 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
+                HttpResponseMessage responseManager = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
                 return RedirectToAction("Index");
             }
             return View(expenseClaimViewModel);
+        }
+
+        public async Task<IActionResult> GetByClaimId(int ID)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{ID}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByEmployeeId(int EmpId)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByPeriod(DateTime startDate, DateTime endDate)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{startDate},{endDate}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByClaimRequestDate(DateTime requestDate)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{requestDate}");
+            return View();
         }
     }
 }
