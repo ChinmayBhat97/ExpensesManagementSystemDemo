@@ -7,11 +7,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExpensesCategoryController : ControllerBase
+    public class ExpenseCategoryController : ControllerBase
     {
         private IExpenseCategoryServices expensesCategoryServices;
 
-        public ExpensesCategoryController(IExpenseCategoryServices _expensesCategoryServices)
+        public ExpenseCategoryController(IExpenseCategoryServices _expensesCategoryServices)
         {
             this.expensesCategoryServices= _expensesCategoryServices;
         }

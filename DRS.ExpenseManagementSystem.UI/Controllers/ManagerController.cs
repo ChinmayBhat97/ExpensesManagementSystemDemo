@@ -1,7 +1,9 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
+using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using ExpenseClaimViewModel = DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -12,7 +14,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         public ManagerController(IConfiguration _configuration)
         {
-
             this.configuration = _configuration;
             this.client = new HttpClient
             {
@@ -23,7 +24,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+            ExpenseClaim expenseClaim = new ExpenseClaim();
+            expenseClaim.Status = 1;
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Status}");
             return View();
         }
 
