@@ -1,38 +1,33 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DRS.ExpenseManagementSystem.UI.Models
 {
-    public class ExpenseClaimViewModel
+    public partial class ExpenseClaim
     {
+        public ExpenseClaim()
+        {
+            IndividualExpenditures = new HashSet<IndividualExpenditure>();
+        }
+
         public int Id { get; set; }
         public int? EmpId { get; set; }
         public int? DeptId { get; set; }
-
-        [Display(Name = "Start Date")]
         public DateTime? StartDate { get; set; }
-
-        [Display(Name = "End Date")]
         public DateTime? EndDate { get; set; }
-
-        [Display(Name = "Total Amount")]
         public decimal? TotalAmount { get; set; }
         public int? ProjectId { get; set; }
-
-        [Display(Name = "Date")]
         public DateTime? ClaimRequestDate { get; set; }
         public int? Status { get; set; }
-
-        [Display(Name = "Remarks by Manager")]
         public string? ManagerRemarks { get; set; }
-
-        [Display(Name = "Remarks by Finance Manager")]
         public string? FinanceManagerRemarks { get; set; }
-
-        [Display(Name = "Approved by Manager")]
         public DateTime? ManagerApprovedOn { get; set; }
-
-        [Display(Name = "Approved by Finance Manager")]
         public DateTime? FinanceManagerApprovedOn { get; set; }
+
+        public virtual Department? Dept { get; set; }
+        public virtual Employee? Emp { get; set; }
+        public virtual Project? Project { get; set; }
+        public virtual ClaimStatus? StatusNavigation { get; set; }
+        public virtual ICollection<IndividualExpenditure> IndividualExpenditures { get; set; }
     }
 }

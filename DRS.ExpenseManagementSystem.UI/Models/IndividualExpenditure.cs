@@ -7,16 +7,18 @@ namespace DRS.ExpenseManagementSystem.UI.Models
     {
         public int Id { get; set; }
         public int? ClaimId { get; set; }
-        public DateTime? BillingDate { get; set; }
+        public DateTime? ExpenditureDate { get; set; }
         public string? Description { get; set; }
         public string? Category { get; set; }
         public int? ExpenseCategoryId { get; set; }
         public decimal? Amount { get; set; }
-        public string? PurposeofClaim { get; set; }
+        public string? Comments { get; set; }
         public string? ReceiptNumber { get; set; }
-        public string? InvoiceDocument { get; set; }
+        public string? AttachmentPath { get; set; }
+        public bool? IsApproved { get; set; }
+        public string? FinanceManagerRemarks { get; set; }
 
-        public virtual ExpensesClaim? Claim { get; set; }
-        public virtual ExpensesCategory? ExpenseCategory { get; set; }
+        public virtual ExpenseClaim? Claim { get; set; }
+        public virtual ExpenseCategory? ExpenseCategory { get; set; }
     }
 }

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace DRS.ExpenseManagementSystem.UI.Models
 {
-public partial class Department
-{
+    public partial class Department
+    {
         public Department()
         {
             Employees = new HashSet<Employee>();
-            ExpensesClaims = new HashSet<ExpensesClaim>();
+            ExpenseClaims = new HashSet<ExpenseClaim>();
         }
 
-        public int DeptId { get; set; }
-        public string? DepartementName { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<ExpensesClaim> ExpensesClaims { get; set; }
+        public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
     }
 }
