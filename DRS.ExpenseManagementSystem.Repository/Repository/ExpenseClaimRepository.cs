@@ -39,10 +39,10 @@ namespace DRS.ExpenseManagementSystem.Repository
             return await _dbContext.ExpenseClaims.AsQueryable().Where(k =>k.Status== claimState).ToListAsync();
         }
 
-        public async Task<ExpenseClaim> GetByEmpId(int empId)
+        public async Task<List<ExpenseClaim>> GetByEmpId(int empId)
         {
            
-            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.EmpId == empId).SingleAsync();
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.EmpId == empId).ToListAsync();
 
         }
 
