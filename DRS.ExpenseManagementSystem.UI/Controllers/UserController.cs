@@ -4,7 +4,7 @@ using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-
+using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -79,55 +79,55 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
-        //[HttpGet("User/CreateProject")]
-        //public async Task<IActionResult> CreateProjectAsync()
-        //{
-        //    HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
-        //    return View();
-        //}
+        [HttpGet("User/CreateProject")]
+        public async Task<IActionResult> CreateProjectAsync()
+        {
+            HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
+            return View();
+        }
 
-        //[HttpPost("User/CreateProject")]
-        //public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var myContent = JsonConvert.SerializeObject(projectViewModel);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+        [HttpPost("User/CreateProject")]
+        public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(projectViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
 
-        //        return RedirectToAction("Index");
-        //    }
+                return RedirectToAction("Index");
+            }
 
-        //    return View(projectViewModel);
-        //}
+            return View(projectViewModel);
+        }
 
-        //[HttpGet("User/EditProject/{id}")]
-        //public async Task<IActionResult> EditProject(int id)
-        //{
-        //    HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project");
-        //    return View();
-        //}
+        [HttpGet("User/EditProject/{id}")]
+        public async Task<IActionResult> EditProject(int id)
+        {
+            HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project");
+            return View();
+        }
 
-        //[HttpPost("User/EditProject/{id}")]
-        //public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var myContent = JsonConvert.SerializeObject(projectViewModel);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
+        [HttpPost("User/EditProject/{id}")]
+        public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(projectViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
 
-        //    return View(projectViewModel);
-        //}
+            return View(projectViewModel);
+        }
 
 
         [HttpGet("User/CreateDepartment")]
