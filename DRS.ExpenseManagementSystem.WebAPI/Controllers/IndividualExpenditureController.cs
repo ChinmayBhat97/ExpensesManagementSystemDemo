@@ -1,11 +1,80 @@
-﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+﻿//using DRS.ExpenseManagementSystem.Abstraction.Models;
+//using DRS.ExpenseManagementSystem.Abstraction.Services;
+//using DRS.ExpenseManagementSystem.Business.Services;
+//using Microsoft.AspNetCore.Mvc;
+
+//namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
+//{
+//    public class IndividualExpenditureController : Controller
+//    {
+//        private IIndividualExpenditureServices individualExpenditureServices;
+
+//        public IndividualExpenditureController(IIndividualExpenditureServices _individualExpenditureServices)
+//        {
+//            this.individualExpenditureServices = _individualExpenditureServices;
+//        }
+
+//        // GET api/<ImageController>/5
+//        [HttpGet("{id}")]
+//        public async Task<IndividualExpenditure> GetById(int id)
+//        {
+//            return await individualExpenditureServices.GetByIdAsync(id);
+//        }
+
+//        // GET api/<ImageController>/5
+//        [HttpGet("{date}")]
+//        public async Task<List<IndividualExpenditure>> GetByPurchaseDate(DateTime date)
+//        {
+//            return await individualExpenditureServices.GetByBillingDate(date);
+//        }
+
+//        // GET api/<ImageController>/5
+//        [HttpGet("{category}")]
+//        public async Task<List<IndividualExpenditure>> GetByCategoryType(string category)
+//        {
+//            return await individualExpenditureServices.GetByCategory(category);
+//        }
+
+//        // GET api/<ImageController>/5
+//        [HttpGet("{category}")]
+//        public async Task<List<IndividualExpenditure>> GetByCategoryExpense(int id)
+//        {
+//            return await individualExpenditureServices.GetByExpenseCategory(id);
+//        }
+
+
+//        // POST api/<Individual Expenditure Controller>
+//        [HttpPost]
+//        public async Task Post(IndividualExpenditure individualExpenditure)
+//        {
+//             await individualExpenditureServices.AddAsync(individualExpenditure);
+//        }
+
+//        // PUT api/<Individual Expenditure Controller>/5
+//        [HttpPut("{id}")]
+//        public async Task Put(IndividualExpenditure individualExpenditure)
+//        {
+//            await individualExpenditureServices.UpdateAsync(individualExpenditure);
+//        }
+
+
+
+//    }
+
+//}
+
+using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
-using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
-    public class IndividualExpenditureController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class IndividualExpenditureController : ControllerBase
     {
         private IIndividualExpenditureServices individualExpenditureServices;
 
@@ -14,51 +83,63 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             this.individualExpenditureServices = _individualExpenditureServices;
         }
 
-        // GET api/<ImageController>/5
+        // GET api/individualexpenditure/5
         [HttpGet("{id}")]
-        public async Task<IndividualExpenditure> GetById(int id)
+        public async Task<ActionResult<IndividualExpenditure>> GetById(int id)
         {
-            return await individualExpenditureServices.GetByIdAsync(id);
+            var expenditure = await individualExpenditureServices.GetByIdAsync(id);
+            if (expenditure == null)
+            {
+                return NotFound();
+            }
+            return expenditure;
         }
 
-        // GET api/<ImageController>/5
-        [HttpGet("{date}")]
-        public async Task<List<IndividualExpenditure>> GetByPurchaseDate(DateTime date)
+        // GET api/individualexpenditure/purchasedate?date=2023-05-17
+        [HttpGet("purchasedate")]
+        public async Task<ActionResult<List<IndividualExpenditure>>> GetByPurchaseDate(DateTime date)
         {
-            return await individualExpenditureServices.GetByBillingDate(date);
+            var expenditures = await individualExpenditureServices.GetByBillingDate(date);
+            return expenditures;
         }
 
-        // GET api/<ImageController>/5
-        [HttpGet("{category}")]
-        public async Task<List<IndividualExpenditure>> GetByCategoryType(string category)
+        // GET api/individualexpenditure/category?type=categoryName
+        [HttpGet("category")]
+        public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryType(string type)
         {
-            return await individualExpenditureServices.GetByCategory(category);
+            var expenditures = await individualExpenditureServices.GetByCategory(type);
+            return expenditures;
         }
 
-        // GET api/<ImageController>/5
-        [HttpGet("{category}")]
-        public async Task<List<IndividualExpenditure>> GetByCategoryExpense(int id)
+        // GET api/individualexpenditure/expensecategory?id=5
+        [HttpGet("expensecategory")]
+        public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryExpense(int id)
         {
-            return await individualExpenditureServices.GetByExpenseCategory(id);
+            var expenditures = await individualExpenditureServices.GetByExpenseCategory(id);
+            return expenditures;
         }
 
-
-        // POST api/<Individual Expenditure Controller>
+        // POST api/individualexpenditure
         [HttpPost]
-        public async Task Post(IndividualExpenditure individualExpenditure)
+        public async Task<ActionResult> Post(IndividualExpenditure individualExpenditure)
         {
-             await individualExpenditureServices.AddAsync(individualExpenditure);
+            await individualExpenditureServices.AddAsync(individualExpenditure);
+            return CreatedAtAction(nameof(GetById), new { id = individualExpenditure.Id }, individualExpenditure);
         }
 
-        // PUT api/<Individual Expenditure Controller>/5
+        // PUT api/individualexpenditure/5
         [HttpPut("{id}")]
-        public async Task Put(IndividualExpenditure individualExpenditure)
+        public async Task<ActionResult> Put(int id, IndividualExpenditure individualExpenditure)
         {
+            if (id != individualExpenditure.Id)
+            {
+                return BadRequest();
+            }
+
             await individualExpenditureServices.UpdateAsync(individualExpenditure);
+
+            return NoContent();
         }
-
-
-
     }
-
 }
+

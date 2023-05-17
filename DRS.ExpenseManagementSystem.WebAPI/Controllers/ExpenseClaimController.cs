@@ -32,7 +32,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("{status/statusId}")]
+        [HttpGet("status/{statusId}")]
         public async Task<List<ExpenseClaim>> GetByStatus(int statusId)
         {
             return await expensesClaimServices.GetByClaimState(statusId);

@@ -12,12 +12,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =>
+           options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+builder.Services.RegisterRepositories();
+
+
 var app = builder.Build();
 
-//builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =>
-//           options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
-builder.Services.RegisterRepositories();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
