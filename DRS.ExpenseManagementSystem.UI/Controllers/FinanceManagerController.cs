@@ -1,4 +1,5 @@
-﻿using DRS.ExpenseManagementSystem.UI.Models;
+﻿
+using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -23,7 +24,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+           ExpenseClaim expenseClaim = new ExpenseClaim();
+            expenseClaim.Status=5;
+            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Status}");
             return View();
         }
 

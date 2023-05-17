@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
 using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
-using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
+
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
