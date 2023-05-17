@@ -180,5 +180,55 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(departmentViewModel);
         }
 
+        [HttpGet("User/CreateEmployee")]
+        public async Task<IActionResult> CreateEmployeeAsync()
+        {
+            HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+            return View();
+        }
+
+        [HttpPost("User/CreateEmployee")]
+        public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(employeeViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(employeeViewModel);
+        }
+
+        [HttpGet("User/EditEmployee/{id}")]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+            return View();
+        }
+
+        [HttpPost("User/EditEmployee/{id}")]
+        public async Task<IActionResult> EditDepartment(int id, EmployeeViewModel employeeViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(employeeViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{employeeViewModel.Id}", byteContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(employeeViewModel);
+        }
+
     }
 }

@@ -32,7 +32,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-        [HttpGet]
+        
         [HttpGet("Manager/Edit")]
         public async Task<IActionResult> EditByManager()
         {
@@ -42,7 +42,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-        [HttpGet]
+        
         [HttpPost("Manager/Edit")]
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {

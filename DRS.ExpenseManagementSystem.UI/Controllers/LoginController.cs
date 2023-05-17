@@ -1,30 +1,29 @@
 ﻿using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
     public class LoginController : Controller
     {
-        readonly IConfiguration configuration;
-        readonly HttpClient client;
+        private readonly IConfiguration configuration;
+        private readonly HttpClient client;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public LoginController(IConfiguration _configuration)
+        public LoginController(IConfiguration configuration, SignInManager<IdentityUser> signInManager)
         {
+            this.configuration = configuration;
+            this.signInManager = signInManager;
 
-            this.configuration = _configuration;
             this.client = new HttpClient
             {
                 BaseAddress = new Uri(configuration["BaseUrl"]),
                 Timeout = TimeSpan.FromMinutes(5)
             };
-        }
-        private readonly SignInManager<IdentityUser> signInManager;
-
-        public LoginController(SignInManager<IdentityUser> signInManager)
-        {
-
-            this.signInManager = signInManager;
         }
 
         [HttpGet]
@@ -39,14 +38,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var signInResult = await signInManager.PasswordSignInAsync(user.EmployeeCode,
                 user.Password, false, false);
 
-            if (signInResult != null && signInResult.Succeeded)
+            if (signInResult.Succeeded)
             {
                 return RedirectToAction("Index", "Dashboard");
             }
+
             return View();
         }
-
-
 
         [HttpGet]
         public async Task<IActionResult> Logout()
@@ -56,3 +54,4 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
     }
 }
+
