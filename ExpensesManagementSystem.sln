@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.Abstraction", "DRS.ExpenseManagementSystem.Abstraction\DRS.ExpenseManagementSystem.Abstraction.csproj", "{2B0FBE11-0B16-4074-894B-008B67A6C596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRS.ExpenseManagementSystem.Business", "DRS.ExpenseManagementSystem.Business\DRS.ExpenseManagementSystem.Business.csproj", "{04AC9408-1426-4178-A292-6DC7CA91334F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRS.ExpenseManagementSystem.Business", "DRS.ExpenseManagementSystem.Business\DRS.ExpenseManagementSystem.Business.csproj", "{04AC9408-1426-4178-A292-6DC7CA91334F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
