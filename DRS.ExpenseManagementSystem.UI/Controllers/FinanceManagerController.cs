@@ -53,5 +53,32 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(expenseClaimViewModel);
         }
+
+        public async Task<IActionResult> GetByClaimId(int ID)
+        {
+            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{ID}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByEmployeeId(int EmpId)
+        {
+            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByPeriod(DateTime startDate, DateTime endDate)
+        {
+            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{startDate},{endDate}");
+            return View();
+        }
+
+        public async Task<IActionResult> GetByClaimRequestDate(DateTime requestDate)
+        {
+            HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{requestDate}");
+            return View();
+        }
+
+       
+
     }
 }

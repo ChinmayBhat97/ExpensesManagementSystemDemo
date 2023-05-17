@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
-    public class UserTableController : ControllerBase
+    public class UserController : ControllerBase
     {
         private IUserService userTableService;
-        public UserTableController(IUserService _userTableService)
+        public UserController(IUserService _userTableService)
         {
             this.userTableService = _userTableService;
         }
