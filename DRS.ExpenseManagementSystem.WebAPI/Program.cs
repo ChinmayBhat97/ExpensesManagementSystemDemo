@@ -1,6 +1,7 @@
 using DRS.ExpenseManagementSystem.WebAPI.Extensions;
 using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 builder.Services.RegisterRepositories();
-
+// Configure Swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "DRS.ExpenseManagementSystem.WebAPI", Version = "v1" });
+});
 
 var app = builder.Build();
 
@@ -26,7 +31,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "DRS.ExpenseManagementSystem.WebAPI");
+    });
 }
 
 app.UseHttpsRedirection();

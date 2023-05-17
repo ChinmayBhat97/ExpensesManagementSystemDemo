@@ -25,15 +25,15 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/<EmployeeController>/1
-        [HttpGet]
-        public async Task<List<Employee>> Get1(int id)
+        [HttpGet("{deptId}")]
+        public async Task<List<Employee>> GetByDepartment(int deptId)
         {
-            return await employeeService.GetByDeptId(id);
+            return await employeeService.GetByDeptId(deptId);
         }
 
         //GET api/<EmployeeController>/2
-        [HttpGet]
-        public async Task<List<Employee>> Get2(string firstName)
+        [HttpGet("{firstName}")]
+        public async Task<List<Employee>> GetByFirstname(string firstName)
         {
             return await employeeService.GetByEmpFirstName(firstName);
         }
