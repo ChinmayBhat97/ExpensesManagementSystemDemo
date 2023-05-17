@@ -1,4 +1,5 @@
 ﻿
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -25,7 +26,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage responseUser = await client.GetAsync(client.BaseAddress + $"User");
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
             return View();
         }
 
@@ -43,8 +44,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 var myContent = JsonConvert.SerializeObject(userViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -56,10 +55,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
-        [HttpGet("ExpenseClaim/Edit")]
+        [HttpGet("User/Edit")]
         public async Task<IActionResult> EditByAdmin()
         {
-            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+            HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"User");
             return View();
 
         }
@@ -79,5 +78,107 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(userViewModel);
         }
+
+        //[HttpGet("User/CreateProject")]
+        //public async Task<IActionResult> CreateProjectAsync()
+        //{
+        //    HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
+        //    return View();
+        //}
+
+        //[HttpPost("User/CreateProject")]
+        //public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var myContent = JsonConvert.SerializeObject(projectViewModel);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(projectViewModel);
+        //}
+
+        //[HttpGet("User/EditProject/{id}")]
+        //public async Task<IActionResult> EditProject(int id)
+        //{
+        //    HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project");
+        //    return View();
+        //}
+
+        //[HttpPost("User/EditProject/{id}")]
+        //public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var myContent = JsonConvert.SerializeObject(projectViewModel);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+
+        //    return View(projectViewModel);
+        //}
+
+
+        [HttpGet("User/CreateDepartment")]
+        public async Task<IActionResult> CreateDepartmentAsync()
+        {
+            HttpResponseMessage responseCreateDepartment = await client.GetAsync(client.BaseAddress + $"Department");
+            return View();
+        }
+
+        [HttpPost("User/CreateDepartment")]
+        public async Task<IActionResult> CreateDepartment(DepartmentViewModel departmentViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(departmentViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(departmentViewModel);
+        }
+
+        [HttpGet("User/EditDepartment/{id}")]
+        public async Task<IActionResult> EditDepartment(int id)
+        {
+            HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department");
+            return View();
+        }
+
+        [HttpPost("User/EditDepartment/{id}")]
+        public async Task<IActionResult> EditDepartment(int id, DepartmentViewModel departmentViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var myContent = JsonConvert.SerializeObject(departmentViewModel);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{departmentViewModel.Id}", byteContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(departmentViewModel);
+        }
+
     }
 }
