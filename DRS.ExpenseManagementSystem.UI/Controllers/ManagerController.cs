@@ -22,6 +22,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             ExpenseClaim expenseClaim = new ExpenseClaim();
@@ -30,6 +31,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+
+        [HttpGet]
         [HttpGet("Manager/Edit")]
         public async Task<IActionResult> EditByManager()
         {
@@ -38,6 +41,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         }
 
+
+        [HttpGet]
         [HttpPost("Manager/Edit")]
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
@@ -54,24 +59,31 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> GetByClaimId(int ID)
         {
             HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{ID}");
             return View();
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> GetByEmployeeId(int EmpId)
         {
             HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}");
             return View();
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> GetByPeriod(DateTime startDate, DateTime endDate)
         {
             HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{startDate},{endDate}");
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetByClaimRequestDate(DateTime requestDate)
         {
             HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{requestDate}");
