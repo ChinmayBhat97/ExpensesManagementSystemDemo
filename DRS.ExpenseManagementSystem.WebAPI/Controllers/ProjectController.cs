@@ -34,9 +34,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/<Project Controller>/5
         [HttpGet("ID/{id}")]
-        public async Task<List<Project>> GetByEmployeeId(int Id)
+        public async Task<List<Project>> GetByEmployeeId(int id)
         {
-            return await projectService.GetByEmpIdAsync(Id);
+            return await projectService.GetByEmpIdAsync(id);
         }
 
         // GET api/<Project Controller>/5
