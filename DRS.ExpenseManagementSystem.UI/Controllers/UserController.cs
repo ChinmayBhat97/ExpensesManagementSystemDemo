@@ -79,6 +79,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
+        public async Task<IActionResult> IndexProject()
+        {
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Project");
+            return View();
+        }
+
         [HttpGet("User/CreateProject")]
         public async Task<IActionResult> CreateProjectAsync()
         {

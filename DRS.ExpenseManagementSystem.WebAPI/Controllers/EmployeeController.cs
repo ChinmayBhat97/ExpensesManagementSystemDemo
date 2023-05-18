@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             this.employeeService = _employeeService;
         }
 
-        // GET: api/<AssetController>
+        // GET: api/<EmployeeController>
         [HttpGet("empId/{empID}")]
         public async Task<Employee> Get(int id)
         {
@@ -45,7 +45,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             await employeeService.AddAsync(employee);
         }
 
-        // PUT api/<AssetController>/5
+        // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
         public async Task Put(int id, Employee employeeToUpdate)
         {

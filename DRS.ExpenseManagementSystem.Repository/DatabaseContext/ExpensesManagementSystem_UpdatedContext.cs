@@ -41,9 +41,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
             {
                 entity.ToTable("ClaimStatus");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
@@ -52,9 +52,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<Department>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.ToTable("Department");
+
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
@@ -63,9 +65,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.AccountNumber)
                     .HasMaxLength(15)
@@ -127,9 +129,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
             {
                 entity.ToTable("ExpenseCategory");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
@@ -138,9 +140,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<ExpenseClaim>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.ClaimRequestDate).HasColumnType("datetime");
 
@@ -191,9 +193,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<IndividualExpenditure>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.Amount).HasColumnType("decimal(18, 2)");
 
@@ -242,9 +244,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<Project>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.Client)
                     .HasMaxLength(50)
@@ -272,9 +274,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                //entity.Property(e => e.Id)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("ID");
 
                 entity.Property(e => e.EmployeeCode)
                     .HasMaxLength(6)

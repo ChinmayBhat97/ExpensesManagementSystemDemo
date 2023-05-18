@@ -1,52 +1,63 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
+using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Business.Services;
 using DRS.ExpenseManagementSystem.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
-    public class ProjectController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProjectController : ControllerBase
     {
-        private IProjectRepository projectRepository;
+        private IProjectService projectService;
 
-        public ProjectController(IProjectRepository _projectRepository)
+        public ProjectController(IProjectService _projectService)
         {
-            this.projectRepository = _projectRepository;
+            this.projectService = _projectService;
         }
+
+        // GET api/<Department Controller>/5
+        //[HttpGet]
+        //public async Task<List<Department>> Get()
+        //{
+        //    return await departmentService.GetAllAsync();
+        //}
 
         // GET api/<Project Controller>/5
         [HttpGet]
         public async Task<List<Project>> Get()
         {
-            return await projectRepository.GetAllAsync();
+            return await projectService.GetAllAsync();
         }
 
         // GET api/<Project Controller>/5
-        [HttpGet]
+        [HttpGet("ID/{id}")]
         public async Task<List<Project>> GetByEmployeeId(int Id)
         {
-            return await projectRepository.GetByEmpIdAsync(Id);
+            return await projectService.GetByEmpIdAsync(Id);
         }
 
         // GET api/<Project Controller>/5
-        [HttpGet]
+        [HttpGet("Title/{title}")]
         public async Task<List<Project>> GetByProjectName(string title)
         {
-            return await projectRepository.GetByTitleAsync(title);
+            return await projectService.GetByTitleAsync(title);
         }
 
         // POST api/<Project Controller>
         [HttpPost]
         public async Task Post(Project project)
         {
-            await projectRepository.AddAsync(project);
+           await projectService.AddAsync(project);
         }
 
         // PUT api/<Project Controller>/5
         [HttpPut("{id}")]
         public async Task Put(Project project)
         {
-            await projectRepository.UpdateAsync(project);
+            await projectService.UpdateAsync(project);
         }
 
 

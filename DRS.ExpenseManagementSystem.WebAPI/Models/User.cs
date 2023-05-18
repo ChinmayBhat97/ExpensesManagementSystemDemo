@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Models
 {
@@ -9,7 +11,8 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Models
         {
             Employees = new HashSet<Employee>();
         }
-
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? EmployeeCode { get; set; }
         public string? Password { get; set; }
