@@ -1,3 +1,5 @@
+using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Business.Services;
 using DRS.ExpenseManagementSystem.WebAPI.Extensions;
 using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +23,14 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DRS.ExpenseManagementSystem.WebAPI", Version = "v1" });
 });
-
+builder.Services.AddScoped<IClaimStatusService, ClaimStatusService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IExpenseClaimServices, ExpenseClaimService>();
+builder.Services.AddScoped<IExpenseCategoryServices, ExpenseCategoryService>();
+builder.Services.AddScoped<IIndividualExpenditureServices,IndividualExpenditureService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 

@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("{id}")]
+        [HttpGet("Id/{id}")]
         public async Task<ExpenseClaim> Get(int id)
         {
             return await expensesClaimServices.GetByIdAsync(id);
@@ -40,14 +40,14 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/
-        [HttpGet("{startDate,dateEnd}")]
+        [HttpGet("dateStart,dateEnd/{startDate,dateEnd}")]
         public async Task<List<ExpenseClaim>> GetByPeriod(DateTime dateStart, DateTime dateEnd)
         {
             return await expensesClaimServices.GetByClaimPeriods(dateStart,dateEnd);
         }
 
         // GET api/<ExpenseClaimController>/
-        [HttpGet("{requestDate}")]
+        [HttpGet("dateRequest/{requestDate}")]
         public async Task<List<ExpenseClaim>> GetByDate(DateTime date)
         {
             return await expensesClaimServices.GetByClaimedDate(date);

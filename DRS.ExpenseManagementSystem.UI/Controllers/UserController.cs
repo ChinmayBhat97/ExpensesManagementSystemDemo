@@ -230,5 +230,25 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(employeeViewModel);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetByEmployeeId(int empID)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{empID}");
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetByDeptId(int deptID)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{deptID}");
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetByFirstName(string fName)
+        {
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{fName}");
+            return View();
+        }
     }
 }
