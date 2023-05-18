@@ -42,9 +42,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             else
             {
-                // Handle the case where the HTTP request fails
-                // Return an appropriate response or redirect
-                // For now, let's return a default view with no data
+                
                 return View();
             }
         }
@@ -98,10 +96,27 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
+        //public async Task<IActionResult> IndexProject()
+        //{
+        //    HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Project");
+        //    return View();
+        //}
+
+        [HttpGet]
         public async Task<IActionResult> IndexProject()
         {
-            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Project");
-            return View();
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Project");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
+                return View(model);
+            }
+            else
+            {
+
+                return View();
+            }
         }
 
         [HttpGet("User/CreateProject")]
