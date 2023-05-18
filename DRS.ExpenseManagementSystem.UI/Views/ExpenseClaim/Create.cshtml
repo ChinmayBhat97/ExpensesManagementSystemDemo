@@ -1,7 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
 @{
+    ViewData["Title"] = "Create";
 }
 
+<h1>Create</h1>
 
+<h4>Expense</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClaimRequestDate" class="control-label"></label>
+                <input asp-for="ClaimRequestDate" class="form-control" />
+                <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerRemarks" class="control-label"></label>
+                <input asp-for="ManagerRemarks" class="form-control" />
+                <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerApprovedOn" class="control-label"></label>
+                <input asp-for="ManagerApprovedOn" class="form-control" />
+                <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinanceManagerRemarks" class="control-label"></label>
+                <input asp-for="FinanceManagerRemarks" class="form-control" />
+                <span asp-validation-for="FinanceManagerRemarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinanceManagerApprovedOn" class="control-label"></label>
+                <input asp-for="FinanceManagerApprovedOn" class="form-control" />
+                <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{
+        await Html.RenderPartialAsync("");
+    }
+}*@

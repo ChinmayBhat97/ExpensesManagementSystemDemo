@@ -1,8 +1,10 @@
-﻿using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
+﻿using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Text.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -23,13 +25,30 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> Index()
+        //{
+        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+        //    return View();
+        //}
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
-            return View();
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+                return View(model);
+            }
+            else
+            {
+                // Handle the case where the HTTP request fails
+                // Return an appropriate response or redirect
+                // For now, let's return a default view with no data
+                return View();
+            }
         }
-
 
         [HttpGet("ExpenseClaim/Create")]
         public async Task<IActionResult> Create()
