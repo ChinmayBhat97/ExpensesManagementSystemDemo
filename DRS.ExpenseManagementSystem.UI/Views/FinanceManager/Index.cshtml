@@ -1,47 +1,99 @@
-﻿@model List<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel>
-@*@model IEnumerable<ExpenseClaimViewModel>*@
+﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel>
+
+
 @{
-    ViewData["Title"] = "Expense Lists";
+    ViewData["Title"] = "Index";
 }
 
+<h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Employee Id</th>
-            <th>Department Id</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Total Amount</th>
-            <th>Project Id</th>
-            <th>Claim Request Date</th>
-            <th>Status</th>
-            <th>Manager Remarks</th>
-            <th>Finance Manager Remarks</th>
-            <th>Manager Approved On</th>
-            <th>Finance Manager Approved On</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Id</td>
-                <td>@item.EmpId</td>
-                <td>@item.DeptId</td>
-                <td>@item.StartDate</td>
-                <td>@item.EndDate</td>
-                <td>@item.TotalAmount</td>
-                <td>@item.ProjectId</td>
-                <td>@item.ClaimRequestDate</td>
-                <td>@item.Status</td>
-                <td>@item.ManagerRemarks</td>
-                <td>@item.FinanceManagerRemarks</td>
-                <td>@item.ManagerApprovedOn</td>
-                <td>@item.FinanceManagerApprovedOn</td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmpId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeptId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClaimRequestDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManagerRemarks)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManagerApprovedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinanceManagerApprovedOn)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in   Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmpId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeptId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClaimRequestDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManagerRemarks)
+                    </td
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManagerApprovedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinanceManagerApprovedOn)
+                    </td>
+                    <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                </td>
+                
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
