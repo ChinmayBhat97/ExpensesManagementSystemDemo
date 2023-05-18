@@ -1,5 +1,6 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.ContentModel;
 
@@ -15,6 +16,14 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             this.expensesClaimServices = _expensesClaimServices;
         }
+
+        // GET: api/<ExpenseClaimController>
+        [HttpGet]
+        public async Task<List<ExpenseClaim>> GetAll()
+        {
+            return await expensesClaimServices.GetAllAsync();
+        }
+
 
         // GET api/<ExpenseClaimController>/5
         [HttpGet("Id/{id}")]
