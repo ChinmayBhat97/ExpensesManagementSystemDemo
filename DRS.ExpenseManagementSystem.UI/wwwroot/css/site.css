@@ -16,3 +16,40 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 5px;
+    width: 235px;
+    background-color: #ccffff;
+    position: fixed;
+    height: 200%;
+    overflow: hidden;
+    font-weight: 700;
+}
+
+    /* Sidebar links */
+    .sidebar a {
+        display: block;
+        color: black;
+        padding: 20px;
+        text-decoration: none;
+    }
+
+        /* Active/current link */
+        .sidebar a.active {
+            background-color: black;
+            color: white;
+        }
+
+        /* Links on mouse-over */
+        .sidebar a:hover:not(.active) {
+            background-color: #102578;
+            color: #ffff33;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+            /#102578/
+        }
