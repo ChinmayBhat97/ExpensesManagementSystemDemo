@@ -85,14 +85,10 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/individualexpenditure/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<IndividualExpenditure>> GetById(int id)
+        public async Task<List<IndividualExpenditure>> GetById(int id)
         {
-            var expenditure = await individualExpenditureServices.GetByIdAsync(id);
-            if (expenditure == null)
-            {
-                return NotFound();
-            }
-            return expenditure;
+            return await individualExpenditureServices.GetByClaimID(id);
+            
         }
 
         // GET api/individualexpenditure/purchasedate?date=2023-05-17
