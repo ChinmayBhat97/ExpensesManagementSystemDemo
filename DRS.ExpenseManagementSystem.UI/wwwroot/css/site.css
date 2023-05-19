@@ -63,7 +63,7 @@ li.has-subnav:hover ul {
 }
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-}
+
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
 .fa-2x {
@@ -87,13 +87,13 @@ nav.main-menu.expanded {
 }
 
 .main-menu {
-    background: #0083A2;
+    background-color: #0000b3;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     position: absolute;
-    top: 170px;
+    top: 55px;
     bottom: 0;
     height: 80%;
     left: 0;

@@ -104,7 +104,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [Route("Logout")]
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
+           // HttpContext.Session.Clear();
             TempData.Clear();
             return RedirectToAction("Index");
         }
