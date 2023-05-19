@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -12,12 +14,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
     {
         private readonly IConfiguration configuration;
         private readonly HttpClient client;
-        private readonly SignInManager<IdentityUser> signInManager;
 
-        public LoginController(IConfiguration configuration, SignInManager<IdentityUser> signInManager)
+
+        public LoginController(IConfiguration configuration)
         {
             this.configuration = configuration;
-            this.signInManager = signInManager;
+            
 
             this.client = new HttpClient
             {
@@ -32,25 +34,41 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(User user)
-        {
-            var signInResult = await signInManager.PasswordSignInAsync(user.EmployeeCode,
-                user.Password, false, false);
 
-            if (signInResult.Succeeded)
+
+        [HttpPost]
+        public async Task<IActionResult> Login(User data)
+        {
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Dashboard");
+                HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"Authenticate?userName={HttpUtility.UrlEncode(data.EmployeeCode)}&password={HttpUtility.UrlEncode(data.Password)}", null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var authResponse = JsonConvert.DeserializeObject<Auth>(await response.Content.ReadAsStringAsync());
+                    if (authResponse.isAuthenticated)
+                    {
+                        HttpContext.Session.SetString("UserRole", authResponse.employeeDetails.Designation);
+                        HttpContext.Session.SetInt32("UserId", authResponse.userDetails.Id);
+                        HttpContext.Session.SetString("UserName", authResponse.employeeDetails.FirstName + " " + authResponse.employeeDetails.LastName);
+                        HttpContext.Session.SetString("UserFullName", authResponse.employeeDetails.FirstName + " " + authResponse.employeeDetails.LastName);
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                ModelState.AddModelError(string.Empty, "Incorrect Username or Password");
             }
 
-            return View();
+            return View("Index", data);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Logout()
+        [Route("Logout")]
+        public IActionResult Logout()
         {
-            await signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            HttpContext.Session.Clear();
+            TempData.Clear();
+            return RedirectToAction("Index");
         }
     }
 }

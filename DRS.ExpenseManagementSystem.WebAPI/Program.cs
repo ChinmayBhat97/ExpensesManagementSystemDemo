@@ -5,6 +5,9 @@ using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
