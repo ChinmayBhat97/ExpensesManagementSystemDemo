@@ -8,6 +8,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
 {
     public class AuthenticationViewModel
     {
+        public UserViewModel userDetails { get; set; }
         public bool IsAuthenticated { get; set; }
         public string ErrorMessage { get; set; }
     }
