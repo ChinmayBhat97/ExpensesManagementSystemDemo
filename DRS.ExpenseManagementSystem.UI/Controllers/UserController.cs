@@ -4,6 +4,7 @@ using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using EmployeeViewModel = DRS.ExpenseManagementSystem.UI.Models.EmployeeViewModel;
 using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
@@ -169,6 +170,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> IndexDepartment()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Department");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<DepartmentViewModel>>(responseContent);
+                return View(model);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
 
         [HttpGet("User/CreateDepartment")]
         public async Task<IActionResult> CreateDepartmentAsync()
@@ -218,6 +236,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             return View(departmentViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IndexEmployee()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
+                return View(model);
+            }
+            else
+            {
+
+                return View();
+            }
         }
 
         [HttpGet("User/CreateEmployee")]
