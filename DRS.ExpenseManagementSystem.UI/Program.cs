@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+{
+    option.LoginPath="/Login/Index";
+    option.ExpireTimeSpan= TimeSpan.FromMinutes(5);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,7 +30,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllerRoute(
