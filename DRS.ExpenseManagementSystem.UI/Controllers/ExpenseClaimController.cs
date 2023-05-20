@@ -63,20 +63,28 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
-            { 
+            {
+                int EmpID = Convert.ToInt32(TempData["logged_empID"]);
+
+                expenseClaimViewModel.EmpId=EmpID;
+                expenseClaimViewModel.DeptId=2;
+                expenseClaimViewModel.ProjectId=2;
+                var 
+                expenseClaimViewModel.TotalAmount= 0;
                 expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
                 expenseClaimViewModel.Status = 1;
+                expenseClaimViewModel.ManagerRemarks="Yet to be made by Manager";
+                expenseClaimViewModel.ManagerApprovedOn= Convert.ToDateTime("01/01/0001");
+                expenseClaimViewModel.FinanceManagerRemarks= "Yet to be made by Finance Manager";
+                expenseClaimViewModel.FinanceManagerApprovedOn=Convert.ToDateTime("01/01/0001");
                 var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim",byteContent);
-
                 return RedirectToAction("Index");
             }
-           
             return View(expenseClaimViewModel);
-
         }
 
         [HttpGet("ExpenseClaim/Edit")]
@@ -104,5 +112,31 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
+
+        [HttpGet("IndividualExepnditure/Create")]
+        public async Task<IActionResult> AddExpenditures(int Id)
+        {
+            ViewBag.ClaimId=Id;
+            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure");
+            return View();
+
+        }
+
+        [HttpPost("IndividualExepnditure/Create")]
+        public async Task<IActionResult> AddExpenditures(IndividualExpenditure individualExpenditure)
+        {
+           
+                int EmpID = Convert.ToInt32(TempData["logged_empID"]);
+
+               
+                var myContent = JsonConvert.SerializeObject(individualExpenditure);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"IndividualExpenditure", byteContent);
+                return RedirectToAction("Index");
+            
+           // return View(individualExpenditure);
+        }
     }
 }

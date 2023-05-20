@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Client { get; set; }
-
+       
         public virtual Employee? Emp { get; set; }
         public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
     }

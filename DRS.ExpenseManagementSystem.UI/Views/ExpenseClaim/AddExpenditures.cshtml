@@ -1,0 +1,88 @@
+﻿
+
+
+@model DRS.ExpenseManagementSystem.UI.Models.IndividualExpenditure
+@{
+    ViewData["Title"] = "AddExpenditures";
+   
+}
+
+<h4>AddExpenditures</h4>
+<hr />
+<div class="row" style="padding-left:100px;">
+    <div class="col-md-4">
+        <form method="post" asp-action="AddExpenditures">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+            <div class="form-group">
+            
+                <input asp-for="ClaimId" type="hidden" value="@ViewBag.ClaimId" />
+              
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenditureDate" class="control-label"></label>
+                <input asp-for="ExpenditureDate"  class="form-control" />
+                <span asp-validation-for="ExpenditureDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+            <label asp-for="Category" class="control-label"></label>
+            <input asp-for="Category" class="form-control" />
+            <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+            <label asp-for="ExpenseCategoryId" class="control-label"></label>
+            <input asp-for="ExpenseCategoryId" class="form-control" />
+            <span asp-validation-for="ExpenseCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="Amount" class="control-label"></label>
+            <input asp-for="Amount" class="form-control" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="Comments" class="control-label"></label>
+            <input asp-for="Comments" class="form-control" />
+            <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="ReceiptNumber" class="control-label"></label>
+            <input asp-for="ReceiptNumber" class="form-control" />
+            <span asp-validation-for="ReceiptNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="AttachmentPath" class="control-label"></label>
+            <input asp-for="AttachmentPath" class="form-control" />
+            <span asp-validation-for="AttachmentPath" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="" class="control-label"></label>
+            <input asp-for="FinanceManagerApprovedOn" class="form-control" />
+            <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinanceManagerApprovedOn" class="control-label"></label>
+                <input asp-for="FinanceManagerApprovedOn" class="form-control" />
+                <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{
+        await Html.RenderPartialAsync("");
+    }
+}*@

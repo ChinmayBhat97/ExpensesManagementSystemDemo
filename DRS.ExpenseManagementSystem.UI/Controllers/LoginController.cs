@@ -67,9 +67,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             if ((checkUser && checkPswd)==true)
             {
                 var empID = expensesManagementSystem_UpdatedContext.Users.Where(v => v.EmployeeCode==EmployeeCode).Select(k => k.Id).SingleOrDefault();
-
+                var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Id).SingleOrDefault();
                 var designation = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Designation).SingleOrDefault();
-
+                TempData["logged_empID"] = ID_Employee;
                 List<Claim> user1 = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier, EmployeeCode),

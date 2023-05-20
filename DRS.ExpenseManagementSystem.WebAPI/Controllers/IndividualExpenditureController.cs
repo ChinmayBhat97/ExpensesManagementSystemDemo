@@ -65,6 +65,7 @@
 
 using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -111,31 +112,46 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         [HttpGet("expensecategory")]
         public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryExpense(int id)
         {
-            var expenditures = await individualExpenditureServices.GetByExpenseCategory(id);
-            return expenditures;
+            return await individualExpenditureServices.GetByExpenseCategory(id);
+            
         }
 
-        // POST api/individualexpenditure
+        //// POST api/individualexpenditure
+        //[HttpPost]
+        //public async Task<ActionResult> Post(IndividualExpenditure individualExpenditure)
+        //{
+        //  return  await individualExpenditureServices.AddAsync(individualExpenditure);
+        //    //return CreatedAtAction(nameof(GetById), new { id = individualExpenditure.Id }, individualExpenditure);
+        //}
+
+        // POST api/<ExpenseClaimController>
         [HttpPost]
-        public async Task<ActionResult> Post(IndividualExpenditure individualExpenditure)
+        public async Task Post(IndividualExpenditure individualExpenditure)
         {
             await individualExpenditureServices.AddAsync(individualExpenditure);
-            return CreatedAtAction(nameof(GetById), new { id = individualExpenditure.Id }, individualExpenditure);
         }
 
-        // PUT api/individualexpenditure/5
+
+        // PUT api/<ExpenseClaimController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, IndividualExpenditure individualExpenditure)
+        public async Task Put(IndividualExpenditure individualExpenditure)
         {
-            if (id != individualExpenditure.Id)
-            {
-                return BadRequest();
-            }
-
             await individualExpenditureServices.UpdateAsync(individualExpenditure);
-
-            return NoContent();
         }
+
+        //// PUT api/individualexpenditure/5
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult> Put(int id, IndividualExpenditure individualExpenditure)
+        //{
+        //    if (id != individualExpenditure.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    await individualExpenditureServices.UpdateAsync(individualExpenditure);
+
+        //    return NoContent();
+        //}
     }
 }
 

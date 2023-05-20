@@ -11,10 +11,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
     public class ExpenseClaimController : ControllerBase
     {
         private IExpenseClaimServices expensesClaimServices;
+        private IIndividualExpenditureServices individualExpenditureServices;
 
-        public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices)
+        public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices, IIndividualExpenditureServices _individualExpenditureServices)
         {
             this.expensesClaimServices = _expensesClaimServices;
+            this.individualExpenditureServices=_individualExpenditureServices;
         }
 
         // GET: api/<ExpenseClaimController>
@@ -77,7 +79,6 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             await expensesClaimServices.UpdateAsync(expensesClaim);
         }
-
 
        
 

@@ -15,5 +15,8 @@
         public string? FinanceManagerRemarks { get; set; }
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
+
+
+       
     }
 }

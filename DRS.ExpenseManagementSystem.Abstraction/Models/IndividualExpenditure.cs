@@ -20,5 +20,10 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
 
         public virtual ExpenseClaim? Claim { get; set; }
         public virtual ExpenseCategory? ExpenseCategory { get; set; }
+
+        public Task AddAsync(IndividualExpenditure individualExpenditure)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
