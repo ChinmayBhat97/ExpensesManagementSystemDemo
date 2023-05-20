@@ -39,13 +39,16 @@
                         
                     </ul>
                 </li>
-                <li>
+                <li class="has-subnav">
                     <a href="#">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span class="nav-text">
-                            Admin
-                        </span>
+                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
+                        <span class="nav-text">Admin</span>
                     </a>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Index">Manager Approvals</a></li>
+                        <li><a asp-area="" asp-controller="FinanceManager" asp-action="Index">Finance Manager Approvals</a></li>
+
+                    </ul>
                 </li>
                 @*<li class="has-subnav">
                     <a href="#">

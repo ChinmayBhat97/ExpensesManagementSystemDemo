@@ -79,10 +79,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         }
 
-        [HttpGet("ExpenseClaim/Edit")]
-        public async Task<IActionResult> EditByClaimant()
+        [HttpGet("ExpenseClaim/Edit/{id}")]
+        public async Task<IActionResult> EditByClaimant(int id)
         {
-            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             return View();
 
         }
