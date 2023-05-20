@@ -5,7 +5,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
 {
     public partial class User
     {
-        public User()
+        public User(string role, string v)
         {
             Employees = new HashSet<Employee>();
         }

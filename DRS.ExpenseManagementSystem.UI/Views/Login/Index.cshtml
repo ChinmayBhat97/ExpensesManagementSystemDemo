@@ -25,6 +25,8 @@
    
     <div class="login-wrapper">
         <div class="container-fluid">
+            
+
             <form method="post" asp-action="Login">
                 <div class="row" style="padding-top:50px" >
                     <div class="col-lg-5">
@@ -41,6 +43,10 @@
                         <div class="form-fields" style="padding-left:235px;">
                                 <a><input id="Submit" type="submit" class="btn btn-outline-primary" value="Login" /><i class="fa fa-sign-in" aria-hidden="true"></i> </a>
                         </div>
+                            @if (ViewData["Validate message"]!=null)
+                            {
+                                <label>@ViewData["Validate message"]</label>
+                            }
                     </div>
                 </div>
             </form>
