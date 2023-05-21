@@ -34,7 +34,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-           
+            int empID = Convert.ToInt32(TempData["logged_empID"]);
+            int EmpID = empID;
+           // HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{EmpID}");
             HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
             if (responseHomePage.IsSuccessStatusCode)
             {
@@ -78,9 +80,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
                 expenseClaimViewModel.Status = 1;
                 expenseClaimViewModel.ManagerRemarks="Yet to be made by Manager";
-                expenseClaimViewModel.ManagerApprovedOn= Convert.ToDateTime("01/01/0001");
+                // expenseClaimViewModel.ManagerApprovedOn= Convert.ToDateTime("01/01/0001");
+                expenseClaimViewModel.ManagerApprovedOn=DateTime.Now;
                 expenseClaimViewModel.FinanceManagerRemarks= "Yet to be made by Finance Manager";
-                expenseClaimViewModel.FinanceManagerApprovedOn=Convert.ToDateTime("01/01/0001");
+                expenseClaimViewModel.FinanceManagerApprovedOn=DateTime.Now;
+                //  expenseClaimViewModel.FinanceManagerApprovedOn=Convert.ToDateTime("01/01/0001");
                 var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);

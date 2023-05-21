@@ -1,4 +1,6 @@
-﻿namespace DRS.ExpenseManagementSystem.UI.Models
+﻿using DRS.ExpenseManagementSystem.UI.Models;
+
+namespace DRS.ExpenseManagementSystem.UI.Models
 {
     public class ExpenseClaimViewModel
     {
@@ -15,8 +17,15 @@
         public string? FinanceManagerRemarks { get; set; }
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
+        public ExpenseClaim expenseClaim { get; set; }
+        public IndividualExpenditure IndividualExpenditure { get; set; }
+
+        //public ClaimStatus ClaimStatus { get ; set; }
 
 
-       
+        //public IEnumerable<ClaimStatus> claimStatuses { get; set; }
+        //public IEnumerable<Department> Departments { get; set; }
+      
+
     }
 }

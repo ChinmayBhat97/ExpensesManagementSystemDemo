@@ -23,7 +23,6 @@ namespace DRS.ExpenseManagementSystem.Repository
         }
 
        
-
         public async Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate)
         {
            return await _dbContext.ExpenseClaims.AsQueryable().Where(m =>m.ClaimRequestDate == claimedDate).ToListAsync();
@@ -51,5 +50,7 @@ namespace DRS.ExpenseManagementSystem.Repository
             return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == Id).SingleOrDefaultAsync();
 
         }
+
+        
     }
 }

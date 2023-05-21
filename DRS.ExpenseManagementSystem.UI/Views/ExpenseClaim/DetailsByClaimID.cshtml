@@ -12,40 +12,34 @@
             <h4>PersonalClaim</h4>
            
             <dl class="row">
-                <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.Id)
-                </dt>
-                <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.Id)
-                </dd>
-                <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.EmpId)
-                </dt>
-                <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.DeptId)
-                </dd>
-                <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </dt>
-                <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.StartDate)
-                </dd>
-                <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </dt>
-                <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.EndDate)
-                </dd>
-               @* <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>*@
                
-               @* <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.ImageFile)
-                </dd>*@
+                <dd class = "col-sm-10">
+                  Claim ID :  @Html.DisplayFor(model => model.Id)
+                </dd>
+               
+                <dd class = "col-sm-10">
+                  EMP ID :  @Html.DisplayFor(model => model.DeptId)
+                </dd>
+               
+                <dd class = "col-sm-10">
+                  Start Date :  @Html.DisplayFor(model => model.StartDate)
+                </dd>
+               
+                <dd class = "col-sm-10">
+                  End Date :  @Html.DisplayFor(model => model.EndDate)
+                </dd>
+
+                    <dd class="col-sm-10">
+                        Project Title :  @Html.DisplayFor(model => model.EndDate)
+                    </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+               
+             
             </dl>
-        </div>
-        <div>
+
+       
        @* <a asp-action="DetailsByClaimID" asp-route-id="@Model?.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
         <a asp-action="Index">Back to List</a>
             

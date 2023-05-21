@@ -38,6 +38,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ExpenseClaim> Get(int id)
         {
+
             return await expensesClaimServices.GetById(id);
         }
 
@@ -76,7 +77,6 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public async Task Post(ExpenseClaim expensesClaim)
         {
             await expensesClaimServices.AddAsync(expensesClaim);
-            
         }
 
         // PUT api/<ExpenseClaimController>/5

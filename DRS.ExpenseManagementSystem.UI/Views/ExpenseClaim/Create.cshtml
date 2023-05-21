@@ -3,68 +3,75 @@
     ViewData["Title"] = "Create";
 }
 
+<body >
+    <h5 style="padding-left:250px;"> <u><b>Create New Claim </b> </u></h5>
+    <div class="row">
+        <div class="col-md-5"  style="padding-left:250px;">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label> Start Date</label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label> End Date</label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-           
-           @* <div class="form-group">
+                <div class="form-group">
+                   <label>Project </label>
+                    <input asp-for="ProjectId" class="form-control" />
+                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                </div>
+
+                @* <div class="form-group">
                 <label asp-for="TotalAmount" class="control-label"></label>
                 <input asp-for="TotalAmount" class="form-control" />
                 <span asp-validation-for="TotalAmount" class="text-danger"></span>
-            </div>*@
-           @* <div class="form-group">
+                </div>*@
+                @* <div class="form-group">
                 <label asp-for="ClaimRequestDate" class="control-label"></label>
                 <input asp-for="ClaimRequestDate" class="form-control" />
                 <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                 <label asp-for="ManagerRemarks" class="control-label"></label>
                 <input asp-for="ManagerRemarks" class="form-control" />
                 <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                 <label asp-for="ManagerApprovedOn" class="control-label"></label>
                 <input asp-for="ManagerApprovedOn" class="form-control" />
                 <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                 <label asp-for="FinanceManagerRemarks" class="control-label"></label>
                 <input asp-for="FinanceManagerRemarks" class="form-control" />
                 <span asp-validation-for="FinanceManagerRemarks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                 <label asp-for="FinanceManagerApprovedOn" class="control-label"></label>
                 <input asp-for="FinanceManagerApprovedOn" class="form-control" />
                 <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                </div>*@
+                <div class="form-group" style="padding-left:600px;">
+                    <input type="submit" value="Create"  class="btn btn-info" />
+                    <a asp-action="Index" class="btn btn-info">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+  
+</body>
+
 
 @*@section Scripts {
     @{
