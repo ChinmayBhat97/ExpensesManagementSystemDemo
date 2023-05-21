@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
@@ -16,22 +17,28 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             this.departmentService = _departmentService;
         }
 
-        // GET api/<Department Controller>/5
+        // GET api/<DepartmentController>/5
         [HttpGet]
         public async Task<List<Department>> Get()
         {
             return await departmentService.GetAllAsync();
         }
 
+        // GET api/<Project Controller>/5
+        [HttpGet("{id}")]
+        public async Task<Department> GetByDeptId(int id)
+        {
+            return await departmentService.GetByIdAsync(id);
+        }
 
-        // POST api/<Department Controller>
+        // POST api/<DepartmentController>
         [HttpPost]
         public async Task Post(Department department)
         {
             await departmentService.AddAsync(department);
         }
 
-        // PUT api/<Department Controller>/5
+        // PUT api/<DepartmentController>/5
         [HttpPut("{id}")]
         public async Task Put(Department department)
         {

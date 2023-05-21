@@ -52,11 +52,21 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+        <script>
+            document.getElementById('saveButton').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Additional logic or AJAX request can be added here
+
+                // Submit the form programmatically if needed
+                // document.getElementById('yourFormId').submit();
+            });
+        </script>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="IndexProject">Back to List</a>
 </div>
 
 @section Scripts {

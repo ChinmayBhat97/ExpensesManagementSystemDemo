@@ -73,29 +73,57 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
-        [HttpGet("User/Edit")]
-        public async Task<IActionResult> EditByAdmin()
-        {
-            HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"User");
-            return View();
+        //[HttpGet("User/Edit")]
+        //public async Task<IActionResult> EditByAdmin()
+        //{
+        //    HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"User");
+        //    return View();
 
+        //}
+
+        //[HttpPost("User/Edit")]
+        //public async Task<IActionResult> EditByAdmin(UserViewModel userViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        var myContent = JsonConvert.SerializeObject(userViewModel);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"User/{userViewModel.Id}", byteContent);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(userViewModel);
+        //}
+
+        [HttpGet("User/EditUser/{id}")]
+        public async Task<IActionResult> EditUser(int id)
+        {
+            HttpResponseMessage responseEditUser = await client.GetAsync(client.BaseAddress + $"User/{id}");
+            var EditUser = JsonConvert.DeserializeObject<UserViewModel>(await responseEditUser.Content.ReadAsStringAsync());
+            return View(EditUser);
         }
 
-        [HttpPost("User/Edit")]
-        public async Task<IActionResult> EditByAdmin(UserViewModel userViewModel)
+        [HttpPost("User/EditUser/{id}")]
+        public async Task<IActionResult> EditUser(int id, UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
-                
                 var myContent = JsonConvert.SerializeObject(userViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"User/{userViewModel.Id}", byteContent);
-                return RedirectToAction("Index");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
             return View(userViewModel);
         }
+
 
         //public async Task<IActionResult> IndexProject()
         //{
@@ -138,7 +166,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexProject");
             }
 
             return View(projectViewModel);
@@ -149,8 +177,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditProject(int id)
         {
             HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            var EditClaim = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
-            return View(EditClaim);
+            var EditProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
+            return View(EditProject);
         }
 
         [HttpPost("User/EditProject/{id}")]
@@ -165,7 +193,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexProject");
                 }
             }
 
@@ -214,11 +242,20 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(departmentViewModel);
         }
 
+        //[HttpGet("User/EditDepartment/{id}")]
+        //public async Task<IActionResult> EditDepartment(int id)
+        //{
+        //    HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department");
+        //    return View();
+        //}
+
+        // Edited by Chinmay
         [HttpGet("User/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id)
         {
-            HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department");
-            return View();
+            HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
+            var EditDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseEditDepartment.Content.ReadAsStringAsync());
+            return View(EditDepartment);
         }
 
         [HttpPost("User/EditDepartment/{id}")]
@@ -233,7 +270,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{departmentViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexDepartment");
                 }
             }
 
@@ -281,15 +318,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(employeeViewModel);
         }
 
+        //[HttpGet("User/EditEmployee/{id}")]
+        //public async Task<IActionResult> EditEmployee(int id)
+        //{
+        //    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+        //    return View();
+        //}
+
         [HttpGet("User/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id)
         {
             HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            return View();
+            var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
+            return View(EditEmployee);
         }
 
         [HttpPost("User/EditEmployee/{id}")]
-        public async Task<IActionResult> EditDepartment(int id, EmployeeViewModel employeeViewModel)
+        public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -297,10 +342,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{employeeViewModel.Id}", byteContent);
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexEmployee");
                 }
             }
 
