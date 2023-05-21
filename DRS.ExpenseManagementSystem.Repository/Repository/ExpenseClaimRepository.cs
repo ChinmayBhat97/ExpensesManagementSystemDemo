@@ -46,6 +46,10 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         }
 
-       
+        public async Task<ExpenseClaim> GetById(int Id)
+        {
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == Id).SingleOrDefaultAsync();
+
+        }
     }
 }

@@ -11,12 +11,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
     public class ExpenseClaimController : ControllerBase
     {
         private IExpenseClaimServices expensesClaimServices;
-        private IIndividualExpenditureServices individualExpenditureServices;
+      
 
-        public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices, IIndividualExpenditureServices _individualExpenditureServices)
+        public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices)
         {
             this.expensesClaimServices = _expensesClaimServices;
-            this.individualExpenditureServices=_individualExpenditureServices;
+           
         }
 
         // GET: api/<ExpenseClaimController>
@@ -28,10 +28,10 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("Id/{id}")]
+        [HttpGet("{id}")]
         public async Task<ExpenseClaim> Get(int id)
         {
-            return await expensesClaimServices.GetByIdAsync(id);
+            return await expensesClaimServices.GetById(id);
         }
 
         // GET api/<ExpenseClaimController>/5
@@ -64,13 +64,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await expensesClaimServices.GetByClaimedDate(date);
         }
 
-       
-
         // POST api/<ExpenseClaimController>
         [HttpPost]
         public async Task Post(ExpenseClaim expensesClaim)
         {
             await expensesClaimServices.AddAsync(expensesClaim);
+            
         }
 
         // PUT api/<ExpenseClaimController>/5

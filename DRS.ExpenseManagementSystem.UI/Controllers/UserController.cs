@@ -144,11 +144,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
+        // Edited by Chinmay
         [HttpGet("User/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id)
         {
-            HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project");
-            return View();
+            HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
+            var EditClaim = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
+            return View(EditClaim);
         }
 
         [HttpPost("User/EditProject/{id}")]
@@ -282,7 +284,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("User/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id)
         {
-            HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+            HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
             return View();
         }
 

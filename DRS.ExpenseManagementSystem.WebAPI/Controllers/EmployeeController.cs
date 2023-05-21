@@ -25,7 +25,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET: api/<EmployeeController>/5
-        [HttpGet("empId/{empID}")]
+        [HttpGet("Id/{id}")]
         public async Task<Employee> Get(int id)
         {
             return await employeeService.GetByIdAsync(id);

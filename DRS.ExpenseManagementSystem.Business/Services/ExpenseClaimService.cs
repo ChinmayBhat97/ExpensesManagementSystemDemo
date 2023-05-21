@@ -38,6 +38,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await repository.GetByClaimedDate(claimedDate);
         }
 
-      
+        public Task<ExpenseClaim> GetById(int Id)
+        {
+           return repository.GetById(Id);
+        }
     }
 }

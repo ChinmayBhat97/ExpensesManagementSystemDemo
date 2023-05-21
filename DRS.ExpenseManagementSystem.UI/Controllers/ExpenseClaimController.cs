@@ -69,7 +69,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 expenseClaimViewModel.EmpId=EmpID;
                 expenseClaimViewModel.DeptId=2;
                 expenseClaimViewModel.ProjectId=2;
-                var 
+                
                 expenseClaimViewModel.TotalAmount= 0;
                 expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
                 expenseClaimViewModel.Status = 1;
@@ -87,12 +87,24 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
+        //[HttpGet("ExpenseClaim/Edit/{id}")]
+        //public async Task<IActionResult> EditByClaimant(int id)
+        //{
+        //    HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+        //    var detials = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
+        //    return View(detials);
+        //}
+
+
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> EditByClaimant(int id)
         {
-            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            return View();
-
+            HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+            
+           
+                var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
+                return View(EditClaim);
+           
         }
 
         [HttpPost("ExpenseClaim/Edit")]
