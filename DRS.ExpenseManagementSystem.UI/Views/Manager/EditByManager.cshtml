@@ -1,0 +1,49 @@
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Department</h1>
+
+<h4></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route="/User/EditDepartment/@Model.Id">
+            <div class="form-group">
+                <label asp-for="EmpId" class="control-label"></label>
+                <input asp-for="EmpId" class="form-control" />
+                <span asp-validation-for="EmpId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerRemarks" class="control-label"></label>
+                <input asp-for="ManagerRemarks" class="form-control" />
+                <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerApprovedOn" class="control-label"></label>
+                <input asp-for="ManagerApprovedOn" class="form-control" />
+                <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

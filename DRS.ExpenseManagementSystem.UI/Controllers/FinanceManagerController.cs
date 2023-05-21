@@ -39,7 +39,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
                 return View(filteredModel);
             }
             else
@@ -57,14 +57,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsClaim);
         }
 
-
-
-        [HttpGet("FinanceManager/Edit/{id}")]
+        [HttpGet("User/Edit/{id}")]
         public async Task<IActionResult> EditByFinanceManager(int id)
         {
             HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            return View("Edit");
-
+            var EditByFinanceManager = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseFinanceManager.Content.ReadAsStringAsync());
+            return View(EditByFinanceManager);
         }
 
         [HttpPost("FinanceManager/Edit")]

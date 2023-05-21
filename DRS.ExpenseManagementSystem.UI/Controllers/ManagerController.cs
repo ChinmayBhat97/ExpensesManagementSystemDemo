@@ -52,18 +52,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
 
-        [HttpGet("Manager/Edit")]
-        public async Task<IActionResult> EditByManager()
+        [HttpGet("User/EditByManager/{id}")]
+        public async Task<IActionResult> EditByManager(int id)
         {
-            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
-            return View();
-
+            HttpResponseMessage responseEditUser = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+            var EditByManager = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditUser.Content.ReadAsStringAsync());
+            return View(EditByManager);
         }
 
-
-        
-        [HttpPost("Manager/Edit")]
-        public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
+        [HttpPost("User/EditByManager/{id}")]
+        public async Task<IActionResult> EditUser(int id, ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -72,10 +70,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage responseManager = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
-                return RedirectToAction("Index");
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
             return View(expenseClaimViewModel);
+        }
+
+        [HttpGet("User/DetailsManager/{id}")]
+        public async Task<IActionResult> DetailsByManager(int id)
+        {
+            HttpResponseMessage responseDetailsManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+            var detailsManager = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsManager.Content.ReadAsStringAsync());
+            return View(detailsManager);
         }
 
 
