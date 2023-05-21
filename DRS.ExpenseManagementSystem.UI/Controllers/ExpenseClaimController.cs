@@ -115,5 +115,31 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
             return View(detailsClaim);
         }
+
+        [HttpGet("IndividualExepnditure/Create")]
+        public async Task<IActionResult> AddExpenditures(int Id)
+        {
+            ViewBag.ClaimId = Id;
+            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure");
+            return View();
+
+        }
+
+        [HttpPost("IndividualExepnditure/Create")]
+        public async Task<IActionResult> AddExpenditures(IndividualExpenditure individualExpenditure)
+        {
+
+            int EmpID = Convert.ToInt32(TempData["logged_empID"]);
+
+
+            var myContent = JsonConvert.SerializeObject(individualExpenditure);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"IndividualExpenditure", byteContent);
+            return RedirectToAction("Index");
+
+            // return View(individualExpenditure);
+        }
     }
 }
