@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-route="/User/EditProject/@Model.Id">
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
@@ -50,18 +50,9 @@
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"></a>
             </div>
         </form>
-        <script>
-            document.getElementById('saveButton').addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                // Additional logic or AJAX request can be added here
-
-                // Submit the form programmatically if needed
-                // document.getElementById('yourFormId').submit();
-            });
-        </script>
     </div>
 </div>
 
