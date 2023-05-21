@@ -28,6 +28,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/5
+        [HttpGet("ClaimId/{claimId}")]
+        public async Task<ExpenseClaim> Details(int claimId)
+        {
+            return await expensesClaimServices.GetByIdAsync(claimId);
+        }
+
+        // GET api/<ExpenseClaimController>/5
         [HttpGet("{id}")]
         public async Task<ExpenseClaim> Get(int id)
         {

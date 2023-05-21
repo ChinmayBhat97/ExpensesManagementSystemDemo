@@ -59,6 +59,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
+
+        
+
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
@@ -87,24 +90,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
-        //[HttpGet("ExpenseClaim/Edit/{id}")]
-        //public async Task<IActionResult> EditByClaimant(int id)
-        //{
-        //    HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-        //    var detials = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
-        //    return View(detials);
-        //}
-
+       
 
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> EditByClaimant(int id)
         {
             HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            
-           
-                var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
-                return View(EditClaim);
-           
+            var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
+            return View(EditClaim);
         }
 
         [HttpPost("ExpenseClaim/Edit")]
@@ -123,6 +116,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(expenseClaimViewModel);
         }
+
+        [HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]
+        public async Task<IActionResult> DetailsByClaimID(int claimId)
+        {
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
+           var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
+            return View(detailsClaim);
+        }
+
 
 
         [HttpGet("IndividualExepnditure/Create")]
