@@ -1,8 +1,7 @@
-﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel>
-
-
+﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaim>
+1
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
 <h1>Index</h1>
@@ -79,7 +78,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ManagerRemarks)
-                    </td
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ManagerApprovedOn)
                     </td>
@@ -87,8 +86,8 @@
                         @Html.DisplayFor(modelItem => item.FinanceManagerApprovedOn)
                     </td>
                     <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
                 
                 </tr>

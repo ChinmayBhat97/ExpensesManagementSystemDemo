@@ -30,24 +30,38 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View(model);
         //}
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+        [HttpGet("FinanceManager/Index/{statusId}")]
+        public async Task<IActionResult> Index(int statusId)
         {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
-            if (responseHomePage.IsSuccessStatusCode)
-            {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
-                return View(model);
-            }
-            else
-            {
-                // Handle the case where the HTTP request fails
-                // Return an appropriate response or redirect
-                // For now, let's return a default view with no data
-                return View();
-            }
+           // HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{statusId}");
+            //if (responseHomePage.IsSuccessStatusCode)
+            //{
+            //    var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+            //    var model = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseContent.Content.ReadAsStringAsync());
+            //    return View(model);
+
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{statusId}");
+                var EditClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseHomePage.Content.ReadAsStringAsync());
+                return View(EditClaim);
+            //}
+            //else
+            //{
+            //    // Handle the case where the HTTP request fails
+            //    // Return an appropriate response or redirect
+            //    // For now, let's return a default view with no data
+            //    return View();
+            //}
         }
+
+        [HttpGet("FinanceManager/DetailsByClaimID/{claimId}")]
+        public async Task<IActionResult> DetailsByClaimID(int claimId)
+        {
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
+            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
+            return View(detailsClaim);
+        }
+
+
 
         [HttpGet("FinanceManager/Edit/{id}")]
         public async Task<IActionResult> EditByFinanceManager(int id)

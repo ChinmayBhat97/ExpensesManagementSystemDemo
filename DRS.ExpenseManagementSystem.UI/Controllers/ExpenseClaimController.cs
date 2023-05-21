@@ -34,6 +34,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+           
             HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
             if (responseHomePage.IsSuccessStatusCode)
             {

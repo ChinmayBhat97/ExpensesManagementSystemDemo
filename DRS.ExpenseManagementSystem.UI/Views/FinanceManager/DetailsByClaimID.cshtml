@@ -1,0 +1,53 @@
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaim
+@{
+    ViewData["Title"] = "DetailsByClaimID";
+}
+
+<h1>DetailsByClaimID</h1>
+
+<div style="padding-left:250px">
+    <h3>Details</h3>
+
+    <div style="padding-left:250px">
+        <h4>PersonalClaim</h4>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EmpId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DeptId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+            </dt>*@
+
+            @* <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageFile)
+            </dd>*@
+        </dl>
+    </div>
+    <div>
+        @* <a asp-action="DetailsByClaimID" asp-route-id="@Model?.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
+        <a asp-action="Index">Back to List</a>
+
+    </div>
+</div>

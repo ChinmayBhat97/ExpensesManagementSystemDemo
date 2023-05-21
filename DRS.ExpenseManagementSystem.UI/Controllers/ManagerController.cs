@@ -22,12 +22,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+        [HttpGet("Manager/Index/{statusId}")]
+        public async Task<IActionResult> Index(int statusId)
         {
-            ExpenseClaim expenseClaim = new ExpenseClaim();
-            expenseClaim.Status = 1;
-            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Status}");
+            //ExpenseClaim expenseClaim = new ExpenseClaim();
+            //expenseClaim.Status = 1;
+            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{statusId}");
             return View();
         }
 
