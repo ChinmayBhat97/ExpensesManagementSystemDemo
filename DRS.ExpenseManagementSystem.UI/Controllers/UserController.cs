@@ -124,6 +124,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(userViewModel);
         }
 
+        [HttpGet("User/DetailsUser/{id}")]
+        public async Task<IActionResult> DetailsByUserID(int id)
+        {
+            HttpResponseMessage responseDetailsUser = await client.GetAsync(client.BaseAddress + $"User/{id}");
+            var detailsUser = JsonConvert.DeserializeObject<User>(await responseDetailsUser.Content.ReadAsStringAsync());
+            return View(detailsUser);
+        }
+
 
         //public async Task<IActionResult> IndexProject()
         //{
@@ -198,6 +206,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             return View(projectViewModel);
+        }
+
+        [HttpGet("User/DetailsProject/{id}")]
+        public async Task<IActionResult> DetailsByProjectID(int id)
+        {
+            HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
+            var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsProject.Content.ReadAsStringAsync());
+            return View(detailsProject);
         }
 
         [HttpGet]
@@ -277,6 +293,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(departmentViewModel);
         }
 
+        [HttpGet("User/DetailsDepartment/{id}")]
+        public async Task<IActionResult> DetailsByDepartmentID(int id)
+        {
+            HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
+            var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
+            return View(detailsDepartment);
+        }
+
         [HttpGet]
         public async Task<IActionResult> IndexEmployee()
         {
@@ -350,6 +374,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             return View(employeeViewModel);
+        }
+
+        [HttpGet("User/DetailsEmployee/{id}")]
+        public async Task<IActionResult> DetailsByEmployeeID(int id)
+        {
+            HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+            var detailsEmployee = JsonConvert.DeserializeObject<Employee>(await responseDetailsEmployee.Content.ReadAsStringAsync());
+            return View(detailsEmployee);
         }
 
         [HttpGet]

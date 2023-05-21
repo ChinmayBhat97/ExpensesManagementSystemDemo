@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-route="/User/EditUser/@Model.Id">
             <div class="form-group">
                 <label asp-for="EmployeeCode" class="control-label"></label>
                 <input asp-for="EmployeeCode" class="form-control" />
