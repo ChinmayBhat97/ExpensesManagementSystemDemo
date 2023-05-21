@@ -25,18 +25,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Index()
-        //{
-        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
-        //    return View();
-        //}
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             int empID = Convert.ToInt32(TempData["logged_empID"]);
             int EmpID = empID;
-           // HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{EmpID}");
+           
             HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
             if (responseHomePage.IsSuccessStatusCode)
             {
@@ -46,9 +40,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             else
             {
-                // Handle the case where the HTTP request fails
-                // Return an appropriate response or redirect
-                // For now, let's return a default view with no data
+                
                 return View();
             }
         }
@@ -60,10 +52,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
 
         }
-
-
-
-        
 
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
@@ -80,11 +68,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
                 expenseClaimViewModel.Status = 1;
                 expenseClaimViewModel.ManagerRemarks="Yet to be made by Manager";
-                // expenseClaimViewModel.ManagerApprovedOn= Convert.ToDateTime("01/01/0001");
+               
                 expenseClaimViewModel.ManagerApprovedOn=DateTime.Now;
                 expenseClaimViewModel.FinanceManagerRemarks= "Yet to be made by Finance Manager";
                 expenseClaimViewModel.FinanceManagerApprovedOn=DateTime.Now;
-                //  expenseClaimViewModel.FinanceManagerApprovedOn=Convert.ToDateTime("01/01/0001");
+                
                 var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -94,8 +82,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(expenseClaimViewModel);
         }
-
-       
 
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> EditByClaimant(int id)
@@ -128,34 +114,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
             return View(detailsClaim);
-        }
-
-
-
-        [HttpGet("IndividualExepnditure/Create")]
-        public async Task<IActionResult> AddExpenditures(int Id)
-        {
-            ViewBag.ClaimId=Id;
-            HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure");
-            return View();
-
-        }
-
-        [HttpPost("IndividualExepnditure/Create")]
-        public async Task<IActionResult> AddExpenditures(IndividualExpenditure individualExpenditure)
-        {
-           
-                int EmpID = Convert.ToInt32(TempData["logged_empID"]);
-
-               
-                var myContent = JsonConvert.SerializeObject(individualExpenditure);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"IndividualExpenditure", byteContent);
-                return RedirectToAction("Index");
-            
-           // return View(individualExpenditure);
         }
     }
 }
