@@ -25,7 +25,10 @@ namespace DRS.ExpenseManagementSystem.Repository
           return await _dbContext.Employees.AsQueryable().Where(q =>q.DeptId == deptId).ToListAsync();
         }
 
-       
+        public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
+        {
+           return await _dbContext.Employees.AsQueryable().Where(t =>t.FirstName== empFirstName).ToListAsync();
+        }
 
         public async Task<Employee> GetByEmpId(int empid)
         {

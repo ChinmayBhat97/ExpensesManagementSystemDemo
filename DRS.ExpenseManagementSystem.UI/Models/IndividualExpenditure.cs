@@ -14,7 +14,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public decimal? Amount { get; set; }
         public string? Comments { get; set; }
         public string? ReceiptNumber { get; set; }
-        public IFormFile AttachmentPath { get; set; }
+        public string? AttachmentPath { get; set; }
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
 
