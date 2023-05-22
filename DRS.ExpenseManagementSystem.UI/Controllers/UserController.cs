@@ -273,88 +273,88 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsDepartment);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> IndexEmployee()
-        {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
-            if (responseHomePage.IsSuccessStatusCode)
-            {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
-                return View(model);
-            }
-            else
-            {
+        //[HttpGet]
+        //public async Task<IActionResult> IndexEmployee()
+        //{
+        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
+        //    if (responseHomePage.IsSuccessStatusCode)
+        //    {
+        //        var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+        //        var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
+        //        return View(model);
+        //    }
+        //    else
+        //    {
 
-                return View();
-            }
-        }
+        //        return View();
+        //    }
+        //}
 
-        [HttpGet("User/CreateEmployee")]
-        public async Task<IActionResult> CreateEmployeeAsync()
-        {
-            HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
-            return View();
-        }
+        //[HttpGet("User/CreateEmployee")]
+        //public async Task<IActionResult> CreateEmployeeAsync()
+        //{
+        //    HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+        //    return View();
+        //}
 
-        [HttpPost("User/CreateEmployee")]
-        public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(employeeViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+        //[HttpPost("User/CreateEmployee")]
+        //public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
-                return RedirectToAction("IndexEmployee");
-            }
+        //        return RedirectToAction("IndexEmployee");
+        //    }
 
-            return View(employeeViewModel);
-        }
+        //    return View(employeeViewModel);
+        //}
+
+        ////[HttpGet("User/EditEmployee/{id}")]
+        ////public async Task<IActionResult> EditEmployee(int id)
+        ////{
+        ////    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+        ////    return View();
+        ////}
 
         //[HttpGet("User/EditEmployee/{id}")]
         //public async Task<IActionResult> EditEmployee(int id)
         //{
         //    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-        //    return View();
+        //    var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
+        //    return View(EditEmployee);
         //}
 
-        [HttpGet("User/EditEmployee/{id}")]
-        public async Task<IActionResult> EditEmployee(int id)
-        {
-            HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
-            return View(EditEmployee);
-        }
+        //[HttpPost("User/EditEmployee/{id}")]
+        //public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("IndexEmployee");
+        //        }
+        //    }
 
-        [HttpPost("User/EditEmployee/{id}")]
-        public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(employeeViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("IndexEmployee");
-                }
-            }
+        //    return View(employeeViewModel);
+        //}
 
-            return View(employeeViewModel);
-        }
-
-        [HttpGet("User/DetailsEmployee/{id}")]
-        public async Task<IActionResult> DetailsByEmployeeID(int id)
-        {
-            HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            var detailsEmployee = JsonConvert.DeserializeObject<Employee>(await responseDetailsEmployee.Content.ReadAsStringAsync());
-            return View(detailsEmployee);
-        }
+        //[HttpGet("User/DetailsEmployee/{id}")]
+        //public async Task<IActionResult> DetailsByEmployeeID(int id)
+        //{
+        //    HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+        //    var detailsEmployee = JsonConvert.DeserializeObject<Employee>(await responseDetailsEmployee.Content.ReadAsStringAsync());
+        //    return View(detailsEmployee);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetByEmployeeId(int empID)
