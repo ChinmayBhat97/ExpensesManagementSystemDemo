@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text.Json;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Hosting;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -131,6 +133,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             int EmpID = Convert.ToInt32(TempData["logged_empID"]);
 
+            //string wwwRootPath = _hostEnvironment.WebRootPath;
+            //string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            //imageModel.ImageName=fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            //using (var fileStream = new FileStream(path, FileMode.Create))
+            //{
+            //    await imageModel.ImageFile.CopyToAsync(fileStream);
+            //}
 
             var myContent = JsonConvert.SerializeObject(individualExpenditure);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
