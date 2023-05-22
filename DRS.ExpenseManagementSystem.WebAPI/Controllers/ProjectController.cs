@@ -41,12 +41,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await projectService.GetByIdAsync(id);
         }
 
-        // GET api/<Project Controller>/5
-        [HttpGet("Title/{title}")]
-        public async Task<List<Project>> GetByProjectName(string title)
-        {
-            return await projectService.GetByTitleAsync(title);
-        }
+       
 
         // POST api/<Project Controller>
         [HttpPost]

@@ -24,15 +24,6 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             return await _dbContext.Projects.AsQueryable().Where(s =>s.EmpId == empId).ToListAsync();
         }
 
-        public async Task<List<Project>> GetByTitleAsync(string projectTitle)
-        {
-            return await _dbContext.Projects.AsQueryable().Where(p =>p.Title == projectTitle).ToListAsync();
-        }
-
-
-        public async Task<List<Project>> GetByClientInfo(string clientInfo)
-        {
-            return await _dbContext.Projects.AsQueryable().Where(p => p.Client == clientInfo).ToListAsync();
-        }
+      
     }
 }
