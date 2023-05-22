@@ -25,11 +25,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
-        //    return View();
-        //}
+        
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -72,30 +68,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(userViewModel);
         }
-
-        //[HttpGet("User/Edit")]
-        //public async Task<IActionResult> EditByAdmin()
-        //{
-        //    HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"User");
-        //    return View();
-
-        //}
-
-        //[HttpPost("User/Edit")]
-        //public async Task<IActionResult> EditByAdmin(UserViewModel userViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        var myContent = JsonConvert.SerializeObject(userViewModel);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"User/{userViewModel.Id}", byteContent);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(userViewModel);
-        //}
 
         [HttpGet("User/EditUser/{id}")]
         public async Task<IActionResult> EditUser(int id)
@@ -175,6 +147,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
 
                 return RedirectToAction("IndexProject");
+                //var myContent = JsonConvert.SerializeObject(departmentViewModel);
+                //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                //var byteContent = new ByteArrayContent(buffer);
+                //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                //HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
+
+                //return RedirectToAction("IndexDepartment");
             }
 
             return View(projectViewModel);
@@ -250,22 +229,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexDepartment");
             }
 
             return View(departmentViewModel);
         }
 
-        //[HttpGet("User/EditDepartment/{id}")]
-        //public async Task<IActionResult> EditDepartment(int id)
-        //{
-        //    HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department");
-        //    return View();
-        //}
-
-        // Edited by Chinmay
+        
         [HttpGet("User/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id)
         {
@@ -334,9 +306,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+                HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexEmployee");
             }
 
             return View(employeeViewModel);

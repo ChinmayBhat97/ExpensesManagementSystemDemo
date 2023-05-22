@@ -26,11 +26,18 @@
                 <input asp-for="FinanceManagerApprovedOn" class="form-control" />
                 <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="3">Aprove</option>
+                    <option value="4">Reject</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

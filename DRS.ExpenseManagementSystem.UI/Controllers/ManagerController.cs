@@ -40,7 +40,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
                 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2).ToList() : new() ;
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new() ;
                 return View(filteredModel);
             }
             else
@@ -52,7 +52,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
 
-        [HttpGet("User/EditByManager/{id}")]
+        [HttpGet("Manager/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(int id)
         {
             HttpResponseMessage responseEditUser = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
@@ -60,8 +60,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditByManager);
         }
 
-        [HttpPost("User/EditByManager/{id}")]
-        public async Task<IActionResult> EditUser(int id, ExpenseClaimViewModel expenseClaimViewModel)
+        [HttpPost("Manager/EditByManager/{id}")]
+        public async Task<IActionResult> EditByManager(int id, ExpenseClaimViewModel expenseClaimViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
-        [HttpGet("User/DetailsManager/{id}")]
+        [HttpGet("Manager/DetailsManager/{id}")]
         public async Task<IActionResult> DetailsByManager(int id)
         {
             HttpResponseMessage responseDetailsManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");

@@ -24,7 +24,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await departmentService.GetAllAsync();
         }
 
-        // GET api/<Project Controller>/5
+        // GET api/<DepartmentController>/5
         [HttpGet("{id}")]
         public async Task<Department> GetByDeptId(int id)
         {
