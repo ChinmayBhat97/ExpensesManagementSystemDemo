@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-route="/User/EditProject/@Model.Id">
+        <form asp-route="/Project/EditProject/@Model.Id">
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
@@ -46,7 +46,7 @@
                 <input asp-for="Client" class="form-control" />
                 <span asp-validation-for="Client" class="text-danger"></span>
             </div>
-            
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -57,7 +57,7 @@
 </div>
 
 <div>
-    <a asp-action="IndexProject">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

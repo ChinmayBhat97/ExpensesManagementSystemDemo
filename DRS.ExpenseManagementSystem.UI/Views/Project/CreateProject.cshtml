@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-route="/User/CreateProject">
+        <form asp-route="/Project/CreateProject">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EmpId" class="control-label"></label>
@@ -49,7 +49,7 @@
 </div>
 
 <div>
-    <a asp-action="IndexProject">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

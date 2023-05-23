@@ -10,7 +10,7 @@
     <h4>Project</h4>
     <hr />
     <dl class="row">
-        <form asp-route="/User/DetailsProject/@Model.Id">
+        <form asp-route="/Project/DetailsProject/@Model.Id">
         <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Id)
         </dt>
@@ -57,5 +57,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="IndexProject">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>

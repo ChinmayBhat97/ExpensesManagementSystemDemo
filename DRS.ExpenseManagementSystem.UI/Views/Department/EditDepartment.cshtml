@@ -1,16 +1,16 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.DepartmentViewModel
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create New Department</h1>
+<h1>Edit Department</h1>
 
-<h4>Department</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-route="/User/CreateDepartment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-route="/Department/EditDepartment/@Model.Id">
             @*<div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
@@ -23,14 +23,13 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="IndexDepartment"></a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="IndexDepartment">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

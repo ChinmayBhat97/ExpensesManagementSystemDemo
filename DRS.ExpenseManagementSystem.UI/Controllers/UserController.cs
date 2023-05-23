@@ -4,7 +4,6 @@ using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using EmployeeViewModel = DRS.ExpenseManagementSystem.UI.Models.EmployeeViewModel;
 using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
@@ -111,270 +110,270 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View();
         //}
 
-        [HttpGet]
-        public async Task<IActionResult> IndexProject()
-        {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Project");
-            if (responseHomePage.IsSuccessStatusCode)
-            {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
-                return View(model);
-            }
-            else
-            {
+//        [HttpGet]
+//        public async Task<IActionResult> IndexProject()
+//        {
+//            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Project");
+//            if (responseHomePage.IsSuccessStatusCode)
+//            {
+//                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+//                var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
+//                return View(model);
+//            }
+//            else
+//            {
 
-                return View();
-            }
-        }
+//                return View();
+//            }
+//        }
 
-        [HttpGet("User/CreateProject")]
-        public async Task<IActionResult> CreateProjectAsync()
-        {
-            HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
-            return View();
-        }
+//        [HttpGet("User/CreateProject")]
+//        public async Task<IActionResult> CreateProjectAsync()
+//        {
+//            HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
+//            return View();
+//        }
 
-        [HttpPost("User/CreateProject")]
-        public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(projectViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+//        [HttpPost("User/CreateProject")]
+//        public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var myContent = JsonConvert.SerializeObject(projectViewModel);
+//                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//                var byteContent = new ByteArrayContent(buffer);
+//                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//                HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
 
-                return RedirectToAction("IndexProject");
-                //var myContent = JsonConvert.SerializeObject(departmentViewModel);
-                //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                //var byteContent = new ByteArrayContent(buffer);
-                //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                //HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
+//                return RedirectToAction("IndexProject");
+//                //var myContent = JsonConvert.SerializeObject(departmentViewModel);
+//                //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//                //var byteContent = new ByteArrayContent(buffer);
+//                //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//                //HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
 
-                //return RedirectToAction("IndexDepartment");
-            }
+//                //return RedirectToAction("IndexDepartment");
+//            }
 
-            return View(projectViewModel);
-        }
+//            return View(projectViewModel);
+//        }
 
-        // Edited by Chinmay
-        [HttpGet("User/EditProject/{id}")]
-        public async Task<IActionResult> EditProject(int id)
-        {
-            HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            var EditProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
-            return View(EditProject);
-        }
+//        // Edited by Chinmay
+//        [HttpGet("User/EditProject/{id}")]
+//        public async Task<IActionResult> EditProject(int id)
+//        {
+//            HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
+//            var EditProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
+//            return View(EditProject);
+//        }
 
-        [HttpPost("User/EditProject/{id}")]
-        public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(projectViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("IndexProject");
-                }
-            }
+//        [HttpPost("User/EditProject/{id}")]
+//        public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var myContent = JsonConvert.SerializeObject(projectViewModel);
+//                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//                var byteContent = new ByteArrayContent(buffer);
+//                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Project/{projectViewModel.Id}", byteContent);
+//                if (response.IsSuccessStatusCode)
+//                {
+//                    return RedirectToAction("IndexProject");
+//                }
+//            }
 
-            return View(projectViewModel);
-        }
+//            return View(projectViewModel);
+//        }
 
-        [HttpGet("User/DetailsProject/{id}")]
-        public async Task<IActionResult> DetailsByProjectID(int id)
-        {
-            HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsProject.Content.ReadAsStringAsync());
-            return View(detailsProject);
-        }
+//        [HttpGet("User/DetailsProject/{id}")]
+//        public async Task<IActionResult> DetailsByProjectID(int id)
+//        {
+//            HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
+//            var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsProject.Content.ReadAsStringAsync());
+//            return View(detailsProject);
+//        }
 
-        [HttpGet]
-        public async Task<IActionResult> IndexDepartment()
-        {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Department");
-            if (responseHomePage.IsSuccessStatusCode)
-            {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<DepartmentViewModel>>(responseContent);
-                return View(model);
-            }
-            else
-            {
+//        [HttpGet]
+//        public async Task<IActionResult> IndexDepartment()
+//        {
+//            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Department");
+//            if (responseHomePage.IsSuccessStatusCode)
+//            {
+//                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+//                var model = JsonConvert.DeserializeObject<List<DepartmentViewModel>>(responseContent);
+//                return View(model);
+//            }
+//            else
+//            {
 
-                return View();
-            }
-        }
+//                return View();
+//            }
+//        }
 
 
-        [HttpGet("User/CreateDepartment")]
-        public async Task<IActionResult> CreateDepartmentAsync()
-        {
-            HttpResponseMessage responseCreateDepartment = await client.GetAsync(client.BaseAddress + $"Department");
-            return View();
-        }
+//        [HttpGet("User/CreateDepartment")]
+//        public async Task<IActionResult> CreateDepartmentAsync()
+//        {
+//            HttpResponseMessage responseCreateDepartment = await client.GetAsync(client.BaseAddress + $"Department");
+//            return View();
+//        }
 
-        [HttpPost("User/CreateDepartment")]
-        public async Task<IActionResult> CreateDepartment(DepartmentViewModel departmentViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(departmentViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
+//        [HttpPost("User/CreateDepartment")]
+//        public async Task<IActionResult> CreateDepartment(DepartmentViewModel departmentViewModel)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var myContent = JsonConvert.SerializeObject(departmentViewModel);
+//                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//                var byteContent = new ByteArrayContent(buffer);
+//                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
 
-                return RedirectToAction("IndexDepartment");
-            }
+//                return RedirectToAction("IndexDepartment");
+//            }
 
-            return View(departmentViewModel);
-        }
+//            return View(departmentViewModel);
+//        }
 
         
-        [HttpGet("User/EditDepartment/{id}")]
-        public async Task<IActionResult> EditDepartment(int id)
-        {
-            HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
-            var EditDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseEditDepartment.Content.ReadAsStringAsync());
-            return View(EditDepartment);
-        }
+//        [HttpGet("User/EditDepartment/{id}")]
+//        public async Task<IActionResult> EditDepartment(int id)
+//        {
+//            HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
+//            var EditDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseEditDepartment.Content.ReadAsStringAsync());
+//            return View(EditDepartment);
+//        }
 
-        [HttpPost("User/EditDepartment/{id}")]
-        public async Task<IActionResult> EditDepartment(int id, DepartmentViewModel departmentViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var myContent = JsonConvert.SerializeObject(departmentViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{departmentViewModel.Id}", byteContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("IndexDepartment");
-                }
-            }
+//        [HttpPost("User/EditDepartment/{id}")]
+//        public async Task<IActionResult> EditDepartment(int id, DepartmentViewModel departmentViewModel)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var myContent = JsonConvert.SerializeObject(departmentViewModel);
+//                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//                var byteContent = new ByteArrayContent(buffer);
+//                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Department/{departmentViewModel.Id}", byteContent);
+//                if (response.IsSuccessStatusCode)
+//                {
+//                    return RedirectToAction("IndexDepartment");
+//                }
+//            }
 
-            return View(departmentViewModel);
-        }
+//            return View(departmentViewModel);
+//        }
 
-        [HttpGet("User/DetailsDepartment/{id}")]
-        public async Task<IActionResult> DetailsByDepartmentID(int id)
-        {
-            HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
-            var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
-            return View(detailsDepartment);
-        }
+//        [HttpGet("User/DetailsDepartment/{id}")]
+//        public async Task<IActionResult> DetailsByDepartmentID(int id)
+//        {
+//            HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
+//            var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
+//            return View(detailsDepartment);
+//        }
 
-        //[HttpGet]
-        //public async Task<IActionResult> IndexEmployee()
-        //{
-        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
-        //    if (responseHomePage.IsSuccessStatusCode)
-        //    {
-        //        var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-        //        var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
-        //        return View(model);
-        //    }
-        //    else
-        //    {
+//        //[HttpGet]
+//        //public async Task<IActionResult> IndexEmployee()
+//        //{
+//        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
+//        //    if (responseHomePage.IsSuccessStatusCode)
+//        //    {
+//        //        var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+//        //        var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
+//        //        return View(model);
+//        //    }
+//        //    else
+//        //    {
 
-        //        return View();
-        //    }
-        //}
+//        //        return View();
+//        //    }
+//        //}
 
-        //[HttpGet("User/CreateEmployee")]
-        //public async Task<IActionResult> CreateEmployeeAsync()
-        //{
-        //    HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
-        //    return View();
-        //}
+//        //[HttpGet("User/CreateEmployee")]
+//        //public async Task<IActionResult> CreateEmployeeAsync()
+//        //{
+//        //    HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+//        //    return View();
+//        //}
 
-        //[HttpPost("User/CreateEmployee")]
-        //public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+//        //[HttpPost("User/CreateEmployee")]
+//        //public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
+//        //{
+//        //    if (ModelState.IsValid)
+//        //    {
+//        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
+//        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//        //        var byteContent = new ByteArrayContent(buffer);
+//        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//        //        HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
-        //        return RedirectToAction("IndexEmployee");
-        //    }
+//        //        return RedirectToAction("IndexEmployee");
+//        //    }
 
-        //    return View(employeeViewModel);
-        //}
+//        //    return View(employeeViewModel);
+//        //}
 
-        ////[HttpGet("User/EditEmployee/{id}")]
-        ////public async Task<IActionResult> EditEmployee(int id)
-        ////{
-        ////    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-        ////    return View();
-        ////}
+//        ////[HttpGet("User/EditEmployee/{id}")]
+//        ////public async Task<IActionResult> EditEmployee(int id)
+//        ////{
+//        ////    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+//        ////    return View();
+//        ////}
 
-        //[HttpGet("User/EditEmployee/{id}")]
-        //public async Task<IActionResult> EditEmployee(int id)
-        //{
-        //    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-        //    var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
-        //    return View(EditEmployee);
-        //}
+//        //[HttpGet("User/EditEmployee/{id}")]
+//        //public async Task<IActionResult> EditEmployee(int id)
+//        //{
+//        //    HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+//        //    var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
+//        //    return View(EditEmployee);
+//        //}
 
-        //[HttpPost("User/EditEmployee/{id}")]
-        //public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            return RedirectToAction("IndexEmployee");
-        //        }
-        //    }
+//        //[HttpPost("User/EditEmployee/{id}")]
+//        //public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
+//        //{
+//        //    if (ModelState.IsValid)
+//        //    {
+//        //        var myContent = JsonConvert.SerializeObject(employeeViewModel);
+//        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+//        //        var byteContent = new ByteArrayContent(buffer);
+//        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+//        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
+//        //        if (response.IsSuccessStatusCode)
+//        //        {
+//        //            return RedirectToAction("IndexEmployee");
+//        //        }
+//        //    }
 
-        //    return View(employeeViewModel);
-        //}
+//        //    return View(employeeViewModel);
+//        //}
 
-        //[HttpGet("User/DetailsEmployee/{id}")]
-        //public async Task<IActionResult> DetailsByEmployeeID(int id)
-        //{
-        //    HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-        //    var detailsEmployee = JsonConvert.DeserializeObject<Employee>(await responseDetailsEmployee.Content.ReadAsStringAsync());
-        //    return View(detailsEmployee);
-        //}
+//        //[HttpGet("User/DetailsEmployee/{id}")]
+//        //public async Task<IActionResult> DetailsByEmployeeID(int id)
+//        //{
+//        //    HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+//        //    var detailsEmployee = JsonConvert.DeserializeObject<Employee>(await responseDetailsEmployee.Content.ReadAsStringAsync());
+//        //    return View(detailsEmployee);
+//        //}
 
-        [HttpGet]
-        public async Task<IActionResult> GetByEmployeeId(int empID)
-        {
-            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{empID}");
-            return View();
-        }
+//        [HttpGet]
+//        public async Task<IActionResult> GetByEmployeeId(int empID)
+//        {
+//            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{empID}");
+//            return View();
+//        }
 
-        [HttpGet]
-        public async Task<IActionResult> GetByDeptId(int deptID)
-        {
-            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{deptID}");
-            return View();
-        }
+//        [HttpGet]
+//        public async Task<IActionResult> GetByDeptId(int deptID)
+//        {
+//            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{deptID}");
+//            return View();
+//        }
 
-        [HttpGet]
-        public async Task<IActionResult> GetByFirstName(string fName)
-        {
-            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{fName}");
-            return View();
-        }
-    }
+//        [HttpGet]
+//        public async Task<IActionResult> GetByFirstName(string fName)
+//        {
+//            HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{fName}");
+//            return View();
+//        }
+   }
 }

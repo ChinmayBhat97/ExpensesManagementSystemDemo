@@ -56,7 +56,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
-                return RedirectToAction("IndexEmployee");
+                return RedirectToAction("Index");
             }
 
             return View(employeeViewModel);
@@ -89,7 +89,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Employee/{employeeViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("IndexEmployee");
+                    return RedirectToAction("Index");
                 }
             }
 
