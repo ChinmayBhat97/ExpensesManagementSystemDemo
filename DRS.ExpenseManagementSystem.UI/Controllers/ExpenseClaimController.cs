@@ -61,20 +61,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             if (ModelState.IsValid)
             {
                 int EmpID = Convert.ToInt32(TempData["logged_empID"]);
-
-                expenseClaimViewModel.EmpId=EmpID;
-                expenseClaimViewModel.DeptId=2;
-                expenseClaimViewModel.ProjectId=2;
-                
-                expenseClaimViewModel.TotalAmount= 0;
-                expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
-                expenseClaimViewModel.Status = 1;
-                expenseClaimViewModel.ManagerRemarks="Yet to be made by Manager";
-               
-                expenseClaimViewModel.ManagerApprovedOn=DateTime.Now;
-                expenseClaimViewModel.FinanceManagerRemarks= "Yet to be made by Finance Manager";
-                expenseClaimViewModel.FinanceManagerApprovedOn=DateTime.Now;
-                
                 var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -132,7 +118,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
 
             int EmpID = Convert.ToInt32(TempData["logged_empID"]);
-
             //string wwwRootPath = _hostEnvironment.WebRootPath;
             //string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
             //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -142,7 +127,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             //{
             //    await imageModel.ImageFile.CopyToAsync(fileStream);
             //}
-
             var myContent = JsonConvert.SerializeObject(individualExpenditure);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);

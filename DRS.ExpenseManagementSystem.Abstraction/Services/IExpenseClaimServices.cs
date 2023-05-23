@@ -10,16 +10,19 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
     public interface IExpenseClaimServices : IBaseService<ExpenseClaim>
     {
         public Task<List<ExpenseClaim>> GetByEmpId(int empId);
-        public Task<List<ExpenseClaim>> GetByClaimState(int claimState);
+        public Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus);
 
-        public Task<ExpenseClaim> GetById(int Id);
+        public Task<ExpenseClaim> GetByClaimId(int claimId);
 
-        public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate);
+        public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate, int empId);
 
-        public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
+        //public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
 
+        //Manager
+        public Task<List<ExpenseClaim>> GetByClaimantEmpId(int empId);
+        public Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus);
+        public Task<List<ExpenseClaim> >GetByClaimIdManager(int Id);
 
-      
 
 
     }

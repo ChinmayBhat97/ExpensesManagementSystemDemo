@@ -18,24 +18,24 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             this.repository = repository; 
         }
 
-        public async Task<List<IndividualExpenditure>> GetByBillingDate(DateTime billingDate)
-        {
-            return await repository.GetByBillingDate(billingDate);
-        }
+        //public async Task<List<IndividualExpenditure>> GetByBillingDate(DateTime billingDate)
+        //{
+        //    return await repository.GetByBillingDate(billingDate);
+        //}
 
-        public async Task<List<IndividualExpenditure>> GetByCategory(string category)
-        {
-            return await repository.GetByCategory(category);
-        }
+        //public async Task<List<IndividualExpenditure>> GetByCategory(string category)
+        //{
+        //    return await repository.GetByCategory(category);
+        //}
 
-        public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
-        {
-            return await repository.GetByClaimID(Id);
-        }
+        //public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
+        //{
+        //    return await repository.GetByClaimID(Id);
+        //}
 
-        public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)
-        {
-            return repository.GetByExpenseCategory(Id);
+        //public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)
+        //{
+        //    return repository.GetByExpenseCategory(Id);
         }
     }
 }

@@ -23,19 +23,19 @@ namespace DRS.ExpenseManagementSystem.Repository
         }
 
        
-        public async Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate)
+        //public async Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate)
+        //{
+        //   return await _dbContext.ExpenseClaims.AsQueryable().Where(m =>m.ClaimRequestDate == claimedDate).ToListAsync();
+        //}
+
+        public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate,int empId)
         {
-           return await _dbContext.ExpenseClaims.AsQueryable().Where(m =>m.ClaimRequestDate == claimedDate).ToListAsync();
+            return  _dbContext.ExpenseClaims.AsQueryable().Where(n => n.StartDate == periodStartDate && n.EndDate ==periodEndDate && .EmpId == empId).ToListAsync();
         }
 
-        public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate)
+        public async Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus)
         {
-            return  _dbContext.ExpenseClaims.AsQueryable().Where(n => n.StartDate == periodStartDate && n.EndDate ==periodEndDate).ToListAsync();
-        }
-
-        public async Task<List<ExpenseClaim>> GetByClaimState(int claimState)
-        {
-            return await _dbContext.ExpenseClaims.AsQueryable().Where(k =>k.Status== claimState).ToListAsync();
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(k =>k.Status== claimStatus).ToListAsync();
         }
 
         public async Task<List<ExpenseClaim>> GetByEmpId(int empId)
@@ -45,12 +45,25 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         }
 
-        public async Task<ExpenseClaim> GetById(int Id)
+        public async Task<ExpenseClaim> GetByClaimId(int claimId)
         {
-            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == Id).SingleOrDefaultAsync();
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == claimId).SingleOrDefaultAsync();
 
         }
 
-        
+        public async Task<List<ExpenseClaim>> GetByClaimantEmpId(int empId)
+        {
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.EmpId == empId).ToListAsync();
+        }
+
+        public async Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus)
+        {
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Status == claimStatus).ToListAsync();
+        }
+
+        public async Task<List<ExpenseClaim>> GetByClaimIdManager(int claimId)
+        {
+            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == claimId).ToListAsync();
+        }
     }
 }
