@@ -69,6 +69,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var myContent = JsonConvert.SerializeObject(departmentViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
