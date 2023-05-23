@@ -3,29 +3,39 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create New Expense Category</h1>
-
-@*<h4>Department</h4>
-<hr />*@
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="/ExpenseCategory/CreateExpenseCategory">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<body>
+    <div style="padding-left:200px;">
+        <h3 style="color:#000099"> <u><b>Create New Expenses Category </b></u>   </h3>
+        <br />
+       <div class="row">
+            <div class="col-md-8">
+                <form asp-route="/ExpenseCategory/CreateExpenseCategory">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="col-md-7">
+                            <b>  <label asp-for="Name" class="control-label"></label><span style="color:red;">*</span></b> 
+                            <input asp-for="Name" class="form-control" required />
+                       
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group" style="padding-left:180px;">
+                        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                    <br />
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+  @*  <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+   
+</body>
+
 
 @section Scripts {
     @{
