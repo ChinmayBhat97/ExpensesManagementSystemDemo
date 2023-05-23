@@ -1,6 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
-using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
@@ -23,6 +22,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public async Task<List<ClaimStatus>> Get()
         {
             return await claimStatusService.GetAllAsync();
+        }
+
+        // GET api/<ClaimStatusController>/5
+        [HttpGet("{id}")]
+        public async Task<ClaimStatus> GetByClaimStatusId(int id)
+        {
+            return await claimStatusService.GetByIdAsync(id);
         }
 
 

@@ -12,7 +12,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
     {
         //public Task<UserTable> GetByIsAccountLocked (bool isAccountLocked);
         //public Task<UserTable> GetByIsActived(bool isActive);
+        public Task<List<User>> GetByRole(int role);
+        public UserViewModel GetByEmployeeCodeAndPassword(string employeeCode, string password);
 
-        public UserViewModel GetByUsernameAndPassword(string username, string password);
     }
 }

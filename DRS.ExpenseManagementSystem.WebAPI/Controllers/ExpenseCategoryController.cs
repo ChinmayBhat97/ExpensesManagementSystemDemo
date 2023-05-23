@@ -23,6 +23,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await expensesCategoryServices.GetAllAsync();
         }
 
+        // GET api/<ExpenseCategoryController>/5
+        [HttpGet("{id}")]
+        public async Task<ExpenseCategory> GetByExpenseCategoryId(int id)
+        {
+            return await expensesCategoryServices.GetByIdAsync(id);
+        }
+
 
         // POST api/<ExpensesCategory Controller>
         [HttpPost]
