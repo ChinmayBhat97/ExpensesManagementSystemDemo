@@ -14,7 +14,6 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         private IClaimStatusRepository claimStatusRepository;
         public ClaimStatusService(IClaimStatusRepository repository) : base(repository)
         {
-            this.claimStatusRepository = repository;
         }
 
         

@@ -113,7 +113,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> DetailsByDepartmentID(int id)
         {
             HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
-            var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
+            var detailsDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseDetailsDepartment.Content.ReadAsStringAsync());
             return View(detailsDepartment);
         }
     }
