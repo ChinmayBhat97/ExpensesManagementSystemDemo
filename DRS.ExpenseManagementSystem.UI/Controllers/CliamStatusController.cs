@@ -54,7 +54,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"ClaimStatus", byteContent);
+                HttpResponseMessage createClaimStatus = await client.PostAsync(client.BaseAddress + $"ClaimStatus", byteContent);
 
                 return RedirectToAction("Index");
             }
