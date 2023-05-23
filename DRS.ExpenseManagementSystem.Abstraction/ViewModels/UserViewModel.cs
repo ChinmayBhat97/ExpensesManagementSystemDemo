@@ -13,6 +13,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public string? Password { get; set; }
         public bool? IsAccountLocked { get; set; }
         public bool? IsActive { get; set; }
+        public int? Role { get; set; }
 
     }
 }

@@ -19,10 +19,10 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             _dbContext = dbContext;
         }
 
-        public UserViewModel GetByUsernameAndPassword(string userName, string password)
+        public UserViewModel GetByEmployeeCodeAndPassword(string employeeCode, string password)
         {
             var userTable = _dbContext.Users.Include("Employee")
-                .Where(n => n.EmployeeCode == userName && n.Password == password).ToList()
+                .Where(n => n.EmployeeCode == employeeCode && n.Password == password).ToList()
                 .Select(x => new UserViewModel
                 {
                     EmployeeCode = x.EmployeeCode,
@@ -31,5 +31,12 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
             return userTable;
         }
+
+        public Task<List<User>> GetByRole(int role)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
