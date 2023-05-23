@@ -85,36 +85,36 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/individualexpenditure/5
-        [HttpGet("{id}")]
-        public async Task<List<IndividualExpenditure>> GetById(int id)
-        {
-            return await individualExpenditureServices.GetByClaimID(id);
+        //[HttpGet("{id}")]
+        //public async Task<List<IndividualExpenditure>> GetByClaimId(int claimId)
+        //{
+        //    return await individualExpenditureServices.GetByClaimId(claimId);
             
-        }
+        //}
 
         // GET api/individualexpenditure/purchasedate?date=2023-05-17
-        [HttpGet("purchasedate")]
-        public async Task<ActionResult<List<IndividualExpenditure>>> GetByPurchaseDate(DateTime date)
-        {
-            var expenditures = await individualExpenditureServices.GetByBillingDate(date);
-            return expenditures;
-        }
+        //[HttpGet("purchasedate")]
+        //public async Task<ActionResult<List<IndividualExpenditure>>> GetByPurchaseDate(DateTime date)
+        //{
+        //    var expenditures = await individualExpenditureServices.GetByBillingDate(date);
+        //    return expenditures;
+        //}
 
         // GET api/individualexpenditure/category?type=categoryName
-        [HttpGet("category")]
-        public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryType(string type)
-        {
-            var expenditures = await individualExpenditureServices.GetByCategory(type);
-            return expenditures;
-        }
+        //[HttpGet("category")]
+        //public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryType(string type)
+        //{
+        //    var expenditures = await individualExpenditureServices.GetByCategory(type);
+        //    return expenditures;
+        //}
 
         // GET api/individualexpenditure/expensecategory?id=5
-        [HttpGet("expensecategory")]
-        public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryExpense(int id)
-        {
-            return await individualExpenditureServices.GetByExpenseCategory(id);
+        //[HttpGet("expensecategory")]
+        //public async Task<ActionResult<List<IndividualExpenditure>>> GetByCategoryExpense(int id)
+        //{
+        //    return await individualExpenditureServices.GetByExpenseCategory(id);
             
-        }
+        //}
 
         //// POST api/individualexpenditure
         //[HttpPost]

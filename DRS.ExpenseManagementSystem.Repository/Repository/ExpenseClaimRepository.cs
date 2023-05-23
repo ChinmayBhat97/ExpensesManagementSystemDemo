@@ -30,7 +30,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate,int empId)
         {
-            return  _dbContext.ExpenseClaims.AsQueryable().Where(n => n.StartDate == periodStartDate && n.EndDate ==periodEndDate && .EmpId == empId).ToListAsync();
+            return  _dbContext.ExpenseClaims.AsQueryable().Where(n => n.StartDate == periodStartDate && n.EndDate ==periodEndDate && n.EmpId == empId).ToListAsync();
         }
 
         public async Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus)
