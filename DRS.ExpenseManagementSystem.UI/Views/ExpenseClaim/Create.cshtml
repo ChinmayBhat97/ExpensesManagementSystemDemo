@@ -6,10 +6,10 @@
 <body >
     <h5 style="padding-left:250px;"> <u><b>Create New Claim </b> </u></h5>
     <div class="row">
-        <div class="col-md-5"  style="padding-left:250px;">
+        <div class="col-md-12"  style="padding-left:250px;">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
+               @* <div class="form-group">
                     <label> Employee Id</label>
                     <input asp-for="EmpId" class="form-control" required />
                     <span asp-validation-for="EmpId" class="text-danger"></span>
@@ -18,39 +18,48 @@
                     <label>Department</label>
                     <input asp-for="DeptId" class="form-control" required />
                     <span asp-validation-for="DeptId" class="text-danger"></span>
-                </div>
+                </div>*@
                 @*<div class="form-group">
                     <label>Project</label>
                     <input asp-for="ProjectId" class="form-control" />
                     <span asp-validation-for="ProjectId" class="text-danger"></span>
                 </div>*@
-                <div class="col-md-5  m-4">
+                <div class="col-md-8">
                     <label asp-for="ProjectId" class="form-label input-lable">Project</label>
                     <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
                         <option value="">-- Select --</option>
                     </select>
                 </div>
-                <div class="form-group">
+               @* <div class="form-group">
                     <label>Todays Date </label>
                     <input asp-for="ClaimRequestDate" class="form-control" required />
                     <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label> Start Date</label>
-                    <input asp-for="StartDate" class="form-control" required />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label> End Date</label>
-                    <input asp-for="EndDate" class="form-control" required />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
-                </div>
+                </div>*@
+                <div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> Start Date</label>
+                            <input asp-for="StartDate" class="form-control" required />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                    </div>
 
-                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> End Date</label>
+                            <input asp-for="EndDate" class="form-control" required />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+               
+                
+
+               @* <div class="form-group">
                    <label>Total Amount</label>
                     <input asp-for="TotalAmount" class="form-control" required />
                     <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                </div>
+                </div>*@
                 
                 
                 <div class="form-group" style="padding-left:600px;">
