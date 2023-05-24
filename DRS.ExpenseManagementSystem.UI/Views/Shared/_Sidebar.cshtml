@@ -1,5 +1,5 @@
 ﻿@{
-    List<Object> menuItems = new List<Object>();
+    List<object> menuItems = new List<object>();
 
     menuItems.Add(new
     {
@@ -7,17 +7,14 @@
         url = "/Home/Index"
     });
 
-    @if (User.IsInRole("User"))
+    if (User.IsInRole("1"))
     {
         menuItems.Add(new
         {
             text = "Expense Claim",
             url = "/ExpenseClaim/Index"
         });
-    }
 
-    @if (User.IsInRole("User"))
-    {
         menuItems.Add(new
         {
             text = "Create Expense Claim",
@@ -25,7 +22,7 @@
         });
     }
 
-    @if (User.IsInRole("Manager"))
+    if (User.IsInRole("2"))
     {
         menuItems.Add(new
         {
@@ -34,7 +31,7 @@
         });
     }
 
-    @if (User.IsInRole("FinanceManager"))
+    if (User.IsInRole("3"))
     {
         menuItems.Add(new
         {
@@ -43,168 +40,139 @@
         });
     }
 
-    @if (User.IsInRole("Admin"))
+    if (User.IsInRole("4"))
     {
         menuItems.Add(new
         {
             text = "Employee",
             url = "/Employee/Index"
         });
-    }
 
-    @if (User.IsInRole("Admin"))
-    {
         menuItems.Add(new
         {
             text = "User",
             url = "/User/Index"
         });
-    }
 
-    @if (User.IsInRole("Admin"))
-    {
         menuItems.Add(new
         {
             text = "Department",
             url = "/Department/Index"
         });
-    }
 
-    @if (User.IsInRole("Admin"))
-    {
         menuItems.Add(new
         {
             text = "Project",
             url = "/Project/Index"
         });
-    }
 
-    @if (User.IsInRole("Admin"))
-    {
         menuItems.Add(new
         {
             text = "Expense Category",
             url = "/ExpenseCategory/Index"
         });
     }
-
-
 }
+
 
 
 
 <!DOCTYPE html>
 <html>
 
-        <head>
+<head>
 
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        </head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-  <body>
+<body>
     <div class="area">
         <nav class="main-menu">
             <ul>
                 <li>
-                    <a  asp-area="" asp-controller="Home" asp-action="Index">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
                         <i class="fa fa-home "></i>
                         <span class="nav-text">
                             Home
                         </span>
                     </a>
                 </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Expenses</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a></li>
-                        <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a></li>
-                        
-                    </ul>
-                </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Admin</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="Manager" asp-action="Index" asp-route-id="2">Manager Approvals</a></li>
-                        <li><a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a></li>
-
-                    </ul>
-                </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Super Admin</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="Employee" asp-action="Index">Employee List</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">User List</a></li>
-                        <li><a asp-area="" asp-controller="Department" asp-action="Index">Department List</a></li>
-                        <li><a asp-area="" asp-controller="Project" asp-action="Index">Project List</a></li>
-                        <li><a asp-area="" asp-controller="ClaimStatus" asp-action="Index">Claim Status List</a></li>
-                        <li><a asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a></li>
-                    </ul>
-                </li>
-                <li>
-                    @*<a href="#">
-                    <i class="fa fa-folder fa-2x"></i>
-                    <span class="nav-text">
-                    Logout
-                    </span>
-                    </a>
-                    </li>*@
-                    @* <li>
-                    <a href="#">
-                    <i class="fa fa-cog fa-spin fa-2x fa-fw"></i>
-                    <span class="nav-text">
-                    Configurations
-                    </span>
-                    </a>
+                @if (User.IsInRole("1") || User.IsInRole("2") || User.IsInRole("3") || User.IsInRole("4"))
+                {
+                    <li class="has-subnav">
+                        <a href="#">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            <span class="nav-text">Expenses</span>
+                        </a>
+                        <ul>
+                            @if (User.IsInRole("1"))
+                            {
+                                <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a></li>
+                                <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a></li>
+                            }
+                        </ul>
                     </li>
-                    <li>
-                    <a href="#">
-                    <i class="fa fa-life-ring fa-2x"></i>
-                    <span class="nav-text">
-                    Aide et Support
-                    </span>
-                    </a>
+                }
+                @if (User.IsInRole("2") || User.IsInRole("3") || User.IsInRole("4"))
+                {
+                    <li class="has-subnav">
+                        <a href="#">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            <span class="nav-text">Admin</span>
+                        </a>
+                        <ul>
+                            @if (User.IsInRole("2"))
+                            {
+                                <li><a asp-area="" asp-controller="Manager" asp-action="Index" asp-route-id="2">Manager Approvals</a></li>
+                            }
+                            @if (User.IsInRole("3"))
+                            {
+                                <li><a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a></li>
+                            }
+                        </ul>
                     </li>
-                    <li>
-                    <a href="#">
-                    <i class="fa fa-info fa-2x"></i>
-                    <span class="nav-text">
-                    Documentation
-                    </span>
-                    </a>
-                    </li>*@
-            </ul>
-            <ul class="logout">
+                }
+                @if (User.IsInRole("4"))
+                {
+                    <li class="has-subnav">
+                        <a href="#">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            <span class="nav-text">Super Admin</span>
+                        </a>
+                        <ul>
+                            <li><a asp-area="" asp-controller="Employee" asp-action="Index">Employee List</a></li>
+                            <li><a asp-area="" asp-controller="User" asp-action="Index">User List</a></li>
+                            <li><a asp-area="" asp-controller="Department" asp-action="Index">Department List</a></li>
+                            <li><a asp-area="" asp-controller="Project" asp-action="Index">Project List</a></li>
+                            <li><a asp-area="" asp-controller="ClaimStatus" asp-action="Index">Claim Status List</a></li>
+                            <li><a asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a></li>
+                        </ul>
+                    </li>
+                }
                 <li>
-                    <a asp-area="" asp-controller="Login" asp-action="Logout">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        <span class="nav-text">
-                            Logout
-                        </span>
-                    </a>
+                    <ul class="logout">
+                        <li>
+                            <a asp-area="" asp-controller="Login" asp-action="Logout">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <span class="nav-text">
+                                    Logout
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
     </div>
-  </body>
-
-       
+</body>
 </html>

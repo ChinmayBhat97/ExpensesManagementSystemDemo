@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -22,6 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
+        [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -114,7 +116,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> DetailsByDepartmentID(int id)
         {
             HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
-            var detailsDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseDetailsDepartment.Content.ReadAsStringAsync());
+            var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
             return View(detailsDepartment);
         }
     }

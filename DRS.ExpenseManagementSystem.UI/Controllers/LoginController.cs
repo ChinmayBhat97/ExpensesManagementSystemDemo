@@ -47,63 +47,89 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-
-
-        // [HttpGet("EmployeeCode/{employeeCode},Password/{password}")]
         [HttpPost]
         public async Task<IActionResult> Login(string EmployeeCode, string Password)
         {
+            var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode == EmployeeCode && u.Password == Password);
 
-            var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode==EmployeeCode);
-            var checkPswd = expensesManagementSystem_UpdatedContext.Users.Any(u => u.Password==Password);
-
-           
-            //TempData["tagEmail-ID"] = emailID;
-            //TempData["userEmail-ID"] = emailID;
-
-            //TempData["userName"]=usrName;
-            //ViewBag.UserRole= role;
-
-            if ((checkUser && checkPswd)==true)
+            if (checkUser)
             {
-                var empID = expensesManagementSystem_UpdatedContext.Users.Where(v => v.EmployeeCode==EmployeeCode).Select(k => k.Id).SingleOrDefault();
-                var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Id).SingleOrDefault();
-                var designation = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Designation).SingleOrDefault();
+                var user = expensesManagementSystem_UpdatedContext.Users.Single(u => u.EmployeeCode == EmployeeCode);
+                var empID = user.Id;
+                var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Id;
+                var designation = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Designation;
+
                 TempData["logged_empID"] = ID_Employee;
-                List<Claim> user1 = new List<Claim>()
+
+                List<Claim> userClaims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier, EmployeeCode),
-                    new Claim(ClaimTypes.Role, designation)
-
+                    new Claim(ClaimTypes.Role, user.Role.ToString())
+                    
                 };
 
-                // ClaimsIdentity claimsIdentity = new ClaimsIdentity(user, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(user1, CookieAuthenticationDefaults.AuthenticationScheme);
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 AuthenticationProperties properties = new AuthenticationProperties()
                 {
-                   AllowRefresh= false,
-                   //IsPersistent =user.keepLoggedIn=false;
+                    AllowRefresh = false,
                 };
 
-                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                 new ClaimsPrincipal(claimsIdentity), properties);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), properties);
 
                 return RedirectToAction("Index", "Home");
-
-                
             }
-            ViewData["Validate message"]= "Incorrect user credentials!.Kindly check and enter again.";
+
+            ViewData["Validate message"] = "Incorrect user credentials! Please check and enter again.";
             return View("Index");
         }
-        //[Route("Logout")]
-        //public IActionResult Logout()
+
+
+
+
+        // [HttpGet("EmployeeCode/{employeeCode},Password/{password}")]
+        //[HttpPost]
+        //public async Task<IActionResult> Login(string EmployeeCode, string Password)
         //{
-        //   // HttpContext.Session.Clear();
-        //    TempData.Clear();
-        //    return RedirectToAction("Index");
+
+        //    var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode==EmployeeCode);
+        //    var checkPswd = expensesManagementSystem_UpdatedContext.Users.Any(u => u.Password==Password);
+
+        //    if ((checkUser && checkPswd)==true)
+        //    {
+        //        var empID = expensesManagementSystem_UpdatedContext.Users.Where(v => v.EmployeeCode==EmployeeCode).Select(k => k.Id).SingleOrDefault();
+        //        var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Id).SingleOrDefault();
+        //        var designation = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Designation).SingleOrDefault();
+        //        TempData["logged_empID"] = ID_Employee;
+        //        List<Claim> user1 = new List<Claim>()
+        //        {
+        //            new Claim(ClaimTypes.NameIdentifier, EmployeeCode),
+        //            new Claim(ClaimTypes.Role, designation)
+
+        //        };
+
+
+
+        //        ClaimsIdentity claimsIdentity = new ClaimsIdentity(user1, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        //        AuthenticationProperties properties = new AuthenticationProperties()
+        //        {
+        //           AllowRefresh= false,
+
+        //        };
+
+        //         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+        //         new ClaimsPrincipal(claimsIdentity), properties);
+
+        //        return RedirectToAction("Index", "Home");
+
+
+        //    }
+        //    ViewData["Validate message"]= "Incorrect user credentials!.Kindly check and enter again.";
+        //    return View("Index");
         //}
+
 
         public async Task<IActionResult> Logout()
         {

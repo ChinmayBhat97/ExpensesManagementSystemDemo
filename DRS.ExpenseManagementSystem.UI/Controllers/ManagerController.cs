@@ -1,5 +1,6 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -30,6 +31,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    HttpResponseMessage responseManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{statusId}");
         //    return View();
         //}
+
+        [Authorize(Roles = "2")]
 
         [HttpGet]
         public async Task<IActionResult> Index()

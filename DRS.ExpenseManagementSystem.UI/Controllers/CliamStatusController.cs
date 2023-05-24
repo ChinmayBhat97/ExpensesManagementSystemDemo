@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -20,6 +21,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 Timeout = TimeSpan.FromMinutes(5)
             };
         }
+        [Authorize(Roles = "4")]
 
         [HttpGet]
         public async Task<IActionResult> Index()
