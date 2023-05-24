@@ -1,4 +1,45 @@
-﻿<!DOCTYPE html>
+﻿@{
+    List<Object> menuItems = new List<Object>();
+
+    menuItems.Add(new
+    {
+        text = "Dashboard",
+        url = "/Dashboard/Index"
+    });
+
+    @if (User.IsInRole("User"))
+    {
+        menuItems.Add(new
+        {
+            text = "Expense Claim",
+            url = "/Expense/Index"
+        });
+    }
+
+    @if (User.IsInRole("Manager"))
+    {
+        menuItems.Add(new
+        {
+            text = "Manager",
+            url = "/ExpenseManager/Index"
+        });
+    }
+
+    @if (User.IsInRole("FinanceManager"))
+    {
+        menuItems.Add(new
+        {
+            text = "Finance Manager",
+            url = "/ExpenseFinance/Index"
+        });
+    }
+
+
+}
+
+
+
+<!DOCTYPE html>
 <html>
 
         <head>
@@ -50,50 +91,6 @@
 
                     </ul>
                 </li>
-                @*<li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Users</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="User" asp-action="Create">Create New User</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">User List</a></li>
-
-                    </ul>
-                </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Project</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="User" asp-action="CreateProject">Create New Project</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="IndexProject">Project List</a></li>
-
-                    </ul>
-                </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Department</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="User" asp-action="CreateDepartment">Create New Department</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="IndexDepartment">Department List</a></li>
-
-                    </ul>
-                </li>
-                <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-file-text" aria-hidden="true"></i></i>
-                        <span class="nav-text">Employee</span>
-                    </a>
-                    <ul>
-                        <li><a asp-area="" asp-controller="User" asp-action="CreateEmployee">Create New Employee</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="IndexEmployee">Employee List</a></li>
-
-                    </ul>
-                </li>*@
                 <li class="has-subnav">
                     <a href="#">
                         <i class="fa fa-file-text" aria-hidden="true"></i></i>
