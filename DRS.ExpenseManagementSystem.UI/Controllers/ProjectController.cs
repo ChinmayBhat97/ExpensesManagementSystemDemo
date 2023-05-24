@@ -54,7 +54,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + $"Project", byteContent);
+                HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + "Project", byteContent);
 
                 return RedirectToAction("Index");
             }
