@@ -13,12 +13,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
     public class ExpenseClaimController : Controller
     {
        private readonly IConfiguration configuration;
-
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly HttpClient client;
 
-        public ExpenseClaimController(IConfiguration _configuration)
+        public ExpenseClaimController(IConfiguration _configuration, IWebHostEnvironment hostEnvironment)
         {
-           
+            this._hostEnvironment = hostEnvironment;
             this.configuration = _configuration;
             this.client = new HttpClient
             {
@@ -115,6 +115,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
             return View(detailsClaim);
+
+
         }
 
         [HttpGet("IndividualExepnditure/Create")]
@@ -130,16 +132,27 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> AddExpenditures(IndividualExpenditure individualExpenditure)
         {
 
-            int EmpID = Convert.ToInt32(TempData["logged_empID"]);
             //string wwwRootPath = _hostEnvironment.WebRootPath;
-            //string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
-            //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
-            //imageModel.ImageName=fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            //string fileName = Path.GetFileNameWithoutExtension(individualExpenditure.ImageFile.FileName);
+            //string extension = Path.GetExtension(individualExpenditure.ImageFile.FileName);
+            //individualExpenditure.AttachmentPath=fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            //string path = Path.Combine(wwwRootPath + "/Image/", individualExpenditure.AttachmentPath);
             //using (var fileStream = new FileStream(path, FileMode.Create))
             //{
-            //    await imageModel.ImageFile.CopyToAsync(fileStream);
+            //    await individualExpenditure.ImageFile.CopyToAsync(fileStream);
             //}
+
+
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(individualExpenditure.ImageFile.FileName);
+            string extension = Path.GetExtension(individualExpenditure.ImageFile.FileName);
+            individualExpenditure.AttachmentPath=fileName = fileName + DateTime.Now.ToString("yymmddssff")+ extension;
+            string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await individualExpenditure.ImageFile.CopyToAsync(fileStream);
+            }
+
             var myContent = JsonConvert.SerializeObject(individualExpenditure);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
@@ -149,5 +162,25 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             // return View(individualExpenditure);
         }
+
+
+
+       
+        [HttpGet("IndividualExpenditure/IndexExpenditures/{id}")]
+        public async Task<IActionResult> IndexExpenditures(int id)
+        {
+            HttpResponseMessage responseExpenditure = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
+            var EditClaim = JsonConvert.DeserializeObject<List<IndividualExpenditure>>(await responseExpenditure.Content.ReadAsStringAsync());
+            return View(EditClaim);
+        }
     }
 }
+
+
+//[HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]
+//public async Task<IActionResult> DetailsByClaimID(int claimId)
+//{
+//    HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
+//    var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
+//    return View(detailsClaim);
+//}

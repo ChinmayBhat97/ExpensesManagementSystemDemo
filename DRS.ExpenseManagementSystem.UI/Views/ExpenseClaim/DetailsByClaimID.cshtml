@@ -3,7 +3,7 @@
     ViewData["Title"] = "DetailsByClaimID";
 }
 
-<h1>DetailsByClaimID</h1>
+
 
 <div style="padding-left:250px"> 
         <h3>Details</h3>
@@ -30,12 +30,12 @@
                 </dd>
 
                     <dd class="col-sm-10">
-                        Project Title :  @Html.DisplayFor(model => model.EndDate)
+                        Project Title :  @Html.DisplayFor(model => model.ProjectId)
                     </dd>
-                <dt class = "col-sm-2">
-                    @Html.DisplayNameFor(model => model.Status)
+                <dt class = "col-sm-10">
+                   Status: @Html.DisplayFor(model => model.Status)
                 </dt>
-            <dt class="col-sm-2">
+          @*  <dt class="col-sm-10">
                 @Html.DisplayNameFor(model => model.ManagerRemarks)
             </dt>
             <dd class="col-sm-10">
@@ -59,10 +59,18 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.FinanceManagerApprovedOn)
             </dd>
-            </dl>
+            </dl>*@
 
        
        @* <a asp-action="DetailsByClaimID" asp-route-id="@Model?.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
+
+
+            <a asp-action="AddExpenditures" asp-route-id="@Model.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a asp-action="IndexExpenditures" asp-route-id="@Model.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+
+
+
         <a asp-action="Index">Back to List</a>
             
         </div>
