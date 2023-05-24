@@ -124,6 +124,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             ViewBag.ClaimId = Id;
             HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure");
+            HttpResponseMessage responseExpenseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            if (responseCreateClaim.IsSuccessStatusCode && responseExpenseCategoryList.IsSuccessStatusCode)
+            {
+                var expenseCategoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseExpenseCategoryList.Content.ReadAsStringAsync());
+                var expenseCategorySelectList = new List<SelectListItem>();
+                foreach (var expenseCategory in expenseCategoryList)
+                {
+                    expenseCategorySelectList.Add(new SelectListItem(expenseCategory.Name, expenseCategory.Id.ToString()));
+                }
+                ViewBag.expenseCategoryList = expenseCategorySelectList;
+
+                var expenseClaimList = JsonConvert.DeserializeObject<List<ExpenseClaim>>(await responseCreateClaim.Content.ReadAsStringAsync());
+                expenseClaimList = expenseClaimList.OrderBy(x => x.Id).ToList();
+
+                return View();
+            }
             return View();
 
         }

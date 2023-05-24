@@ -48,9 +48,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
                 var departmentSelectList = new List<SelectListItem>();
-                foreach (var project in departmentList)
+                foreach (var department in departmentList)
                 {
-                    departmentSelectList.Add(new SelectListItem(project.Name, project.Id.ToString()));
+                    departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
                 }
                 ViewBag.departmentList = departmentSelectList;
 

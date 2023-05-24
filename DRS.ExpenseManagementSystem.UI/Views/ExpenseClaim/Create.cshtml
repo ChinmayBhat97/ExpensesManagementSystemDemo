@@ -11,12 +11,12 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label> Employee Id</label>
-                    <input asp-for="EmpId" class="form-control" />
+                    <input asp-for="EmpId" class="form-control" required />
                     <span asp-validation-for="EmpId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label>Department</label>
-                    <input asp-for="DeptId" class="form-control" />
+                    <input asp-for="DeptId" class="form-control" required />
                     <span asp-validation-for="DeptId" class="text-danger"></span>
                 </div>
                 @*<div class="form-group">
@@ -32,29 +32,29 @@
                 </div>
                 <div class="form-group">
                     <label>Todays Date </label>
-                    <input asp-for="ClaimRequestDate" class="form-control" />
+                    <input asp-for="ClaimRequestDate" class="form-control" required />
                     <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label> Start Date</label>
-                    <input asp-for="StartDate" class="form-control" />
+                    <input asp-for="StartDate" class="form-control" required />
                     <span asp-validation-for="StartDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label> End Date</label>
-                    <input asp-for="EndDate" class="form-control" />
+                    <input asp-for="EndDate" class="form-control" required />
                     <span asp-validation-for="EndDate" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                    <label>Total Amount</label>
-                    <input asp-for="TotalAmount" class="form-control" />
+                    <input asp-for="TotalAmount" class="form-control" required />
                     <span asp-validation-for="TotalAmount" class="text-danger"></span>
                 </div>
                 
                 
                 <div class="form-group" style="padding-left:600px;">
-                    <input type="submit" value="Create"  class="btn btn-info" />
+                    <input type="submit" value="Create" class="btn btn-info" required />
                     <a asp-action="Index" class="btn btn-info">Back to List</a>
                 </div>
             </form>
