@@ -61,23 +61,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
         [HttpPost("Manager/EditByManager/{id}")]
-        public async Task<IActionResult> EditByManager(int id, ExpenseClaimViewModel expenseClaimViewModel)
+        public async Task<IActionResult> EditByManager(int id, ExpenseClaim expenseClaim)
         {
             if (ModelState.IsValid)
             {
-                expenseClaimViewModel.FinanceManagerApprovedOn = DateTime.Now;
-                var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
+                
+                var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
             }
 
-            return View(expenseClaimViewModel);
+            return View(expenseClaim);
         }
 
         [HttpGet("Manager/DetailsManager/{id}")]

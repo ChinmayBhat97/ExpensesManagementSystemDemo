@@ -13,8 +13,38 @@
         <form asp-route="/Manager/EditByManager/@Model.Id">
             <div class="form-group">
                 <label asp-for="EmpId" class="control-label"></label>
-                <input asp-for="EmpId" class="form-control" />
+                <input asp-for="EmpId" class="form-control" readonly />
                 <span asp-validation-for="EmpId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeptId" class="control-label" ></label>
+                <input asp-for="DeptId" class="form-control" readonly />
+                <span asp-validation-for="DeptId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" readonly />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" readonly />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" readonly />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClaimRequestDate" class="control-label"></label>
+                <input asp-for="ClaimRequestDate" class="form-control" readonly />
+                <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" readonly />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ManagerRemarks" class="control-label"></label>
@@ -22,20 +52,16 @@
                 <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ManagerApprovedOn" class="control-label"></label>
+                <label asp-for="ManagerApprovedOn" class="control-label">Manager Approval Date</label>
                 <input asp-for="ManagerApprovedOn" class="form-control" />
                 <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select asp-for="Status" class="form-control">
-                    <option value="2">Aprove</option>
-                    <option value="4">Reject</option>
+                    <option value="">-- Select --</option>
+                    <option value="2">Approve</option>
+                    <option value="3">Reject</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
                 <div class="form-group">

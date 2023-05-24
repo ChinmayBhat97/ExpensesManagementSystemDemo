@@ -57,28 +57,28 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsClaim);
         }
 
-        [HttpGet("FinanceManager/Edit/{id}")]
+        [HttpGet("FinanceManager/EditByFinanceManager/{id}")]
         public async Task<IActionResult> EditByFinanceManager(int id)
         {
             HttpResponseMessage responseFinanceManager = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            var EditByFinanceManager = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseFinanceManager.Content.ReadAsStringAsync());
-            return View(EditByFinanceManager);
+            var editByFinanceManager = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseFinanceManager.Content.ReadAsStringAsync());
+            return View(editByFinanceManager);
         }
 
-        [HttpPost("FinanceManager/Edit")]
-        public async Task<IActionResult> EditByFinanceManager(ExpenseClaimViewModel expenseClaimViewModel)
+        [HttpPost("FinanceManager/EditByFinanceManager/{id}")]
+        public async Task<IActionResult> EditByFinanceManager(int id,ExpenseClaim expenseClaim)
         {
             if (ModelState.IsValid)
             {
-                expenseClaimViewModel.FinanceManagerApprovedOn = DateTime.Now;
-                var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
+                
+                var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
                 return RedirectToAction("Index");
             }
-            return View(expenseClaimViewModel);
+            return View(expenseClaim);
         }
         [HttpGet]
         public async Task<IActionResult> GetByClaimId(int ID)
