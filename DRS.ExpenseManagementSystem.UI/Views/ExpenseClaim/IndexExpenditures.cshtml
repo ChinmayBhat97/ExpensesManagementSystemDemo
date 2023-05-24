@@ -46,7 +46,7 @@
         <h3 style="color:#000099"><u> <b>Individual Expenditure List </b></u></h3>
 
         <div style="padding-left:400px;">
-            <a asp-action="CreateDepartment" class="btn btn-outline-success">Create New Department</a>
+            
             @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
         <br />
@@ -106,13 +106,18 @@
                             @Html.DisplayFor(modelItem => item.Amount)
                         </td>
                         <td style="padding-left:30px;">
-                            <a asp-action="EditDepartment" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                           @* <a asp-action="EditDepartment" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
                             <a asp-action="DetailsByDepartmentID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+        <div style="padding-left:700px;">
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+        </div>
+       
         <span id="val">
 
         </span> 

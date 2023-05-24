@@ -115,11 +115,11 @@
                             <span class="nav-text">Expenses</span>
                         </a>
                         <ul>
-                            @if (User.IsInRole("1"))
-                            {
+                           @* @if (User.IsInRole("1"))
+                            {*@
                                 <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a></li>
                                 <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a></li>
-                            }
+                          @*  }*@
                         </ul>
                     </li>
                 @*}*@

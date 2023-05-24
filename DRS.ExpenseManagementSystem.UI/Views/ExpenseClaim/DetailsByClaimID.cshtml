@@ -5,73 +5,52 @@
 
 
 
-<div style="padding-left:250px"> 
-        <h3>Details</h3>
-
-    <div style="padding-left:250px">
-            <h4>PersonalClaim</h4>
+<div style="padding-left:200px">
+   
+    <div >
+        <h4> <b><u>Expense Claim Details </u></b> </h4>
            
             <dl class="row">
                
-                <dd class = "col-sm-10">
+                <dt class = "col-sm-10">
                   Claim ID :  @Html.DisplayFor(model => model.Id)
-                </dd>
+                </dt>
                
-                <dd class = "col-sm-10">
-                  EMP ID :  @Html.DisplayFor(model => model.DeptId)
-                </dd>
-               
-                <dd class = "col-sm-10">
-                  Start Date :  @Html.DisplayFor(model => model.StartDate)
-                </dd>
-               
-                <dd class = "col-sm-10">
-                  End Date :  @Html.DisplayFor(model => model.EndDate)
-                </dd>
+                <dt class = "col-sm-10">
+                  EMP ID :  @Html.DisplayFor(model => model.EmpId)
+                </dt>
+          
 
-                    <dd class="col-sm-10">
+            <dt class = "col-sm-10">
+                  Start Date :  @Html.DisplayFor(model => model.StartDate)
+                </dt>
+               
+                <dt class = "col-sm-10">
+                  End Date :  @Html.DisplayFor(model => model.EndDate)
+                </dt>
+
+                    <dt class="col-sm-10">
                         Project Title :  @Html.DisplayFor(model => model.ProjectId)
-                    </dd>
+                    </dt>
                 <dt class = "col-sm-10">
                    Status: @Html.DisplayFor(model => model.Status)
                 </dt>
-          @*  <dt class="col-sm-10">
-                @Html.DisplayNameFor(model => model.ManagerRemarks)
+            <dt class="col-sm-10">
+                Total Amount: @Html.DisplayFor(model => model.TotalAmount)
             </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ManagerRemarks)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ManagerApprovedOn)
+            <dt class="col-sm-10">
+                Claim request Date: @Html.DisplayFor(model => model.ClaimRequestDate)
             </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ManagerApprovedOn)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.FinanceManagerRemarks)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FinanceManagerRemarks)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.FinanceManagerApprovedOn)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FinanceManagerApprovedOn)
-            </dd>
-            </dl>*@
+        </dl>
+         
 
-       
-       @* <a asp-action="DetailsByClaimID" asp-route-id="@Model?.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
+       <br />
+      
 
 
-            <a asp-action="AddExpenditures" asp-route-id="@Model.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            <a asp-action="IndexExpenditures" asp-route-id="@Model.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
-
-
-
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="AddExpenditures" asp-route-id="@Model.Id" class="btn btn-success"> Add Individual Expenditures</a>
+        <a asp-action="IndexExpenditures" asp-route-id="@Model.Id" class="btn btn-primary"> View Individual Expenditures</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             
         </div>
 </div>

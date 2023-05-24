@@ -50,7 +50,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpGet("ExpenseClaim/Create")]
         public async Task<IActionResult> Create()
         {
@@ -78,6 +78,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             if (ModelState.IsValid)
             {
                 expenseClaim.Status = 1;
+                expenseClaim.ClaimRequestDate = DateTime.Now;
+                expenseClaim.FinanceManagerApprovedOn = DateTime.Now;
+                expenseClaim.ManagerApprovedOn=DateTime.Now;
+                expenseClaim.TotalAmount= 0;
+                expenseClaim.ManagerRemarks="Yet to be made";
+                expenseClaim.FinanceManagerRemarks="Yet to be made";
+
                 int EmpID = Convert.ToInt32(TempData["logged_empID"]);
                 var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
