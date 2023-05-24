@@ -3,8 +3,8 @@
 
     menuItems.Add(new
     {
-        text = "Dashboard",
-        url = "/Dashboard/Index"
+        text = "Home",
+        url = "/Home/Index"
     });
 
     @if (User.IsInRole("User"))
@@ -12,7 +12,16 @@
         menuItems.Add(new
         {
             text = "Expense Claim",
-            url = "/Expense/Index"
+            url = "/ExpenseClaim/Index"
+        });
+    }
+
+    @if (User.IsInRole("User"))
+    {
+        menuItems.Add(new
+        {
+            text = "Create Expense Claim",
+            url = "/ExpenseClaim/Create"
         });
     }
 
@@ -20,8 +29,8 @@
     {
         menuItems.Add(new
         {
-            text = "Manager",
-            url = "/ExpenseManager/Index"
+            text = "Manager Approvals",
+            url = "/Manager/Index"
         });
     }
 
@@ -29,8 +38,53 @@
     {
         menuItems.Add(new
         {
-            text = "Finance Manager",
-            url = "/ExpenseFinance/Index"
+            text = "Finance Manager Approvals",
+            url = "/FinanceManager/Index"
+        });
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        menuItems.Add(new
+        {
+            text = "Employee",
+            url = "/Employee/Index"
+        });
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        menuItems.Add(new
+        {
+            text = "User",
+            url = "/User/Index"
+        });
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        menuItems.Add(new
+        {
+            text = "Department",
+            url = "/Department/Index"
+        });
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        menuItems.Add(new
+        {
+            text = "Project",
+            url = "/Project/Index"
+        });
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        menuItems.Add(new
+        {
+            text = "Expense Category",
+            url = "/ExpenseCategory/Index"
         });
     }
 
