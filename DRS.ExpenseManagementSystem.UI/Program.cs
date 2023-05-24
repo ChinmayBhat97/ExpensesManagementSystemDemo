@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<ExpensesManagementSystem_UpdatedContext>(options =
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {
     option.LoginPath="/Login/Index";
+    option.AccessDeniedPath = "/Account/AccessDenied";
     option.ExpireTimeSpan= TimeSpan.FromMinutes(5);
 });
 
@@ -30,7 +32,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthorization();
+app.UseAuthentication();
+//app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllerRoute(

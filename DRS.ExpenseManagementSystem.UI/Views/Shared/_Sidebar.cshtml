@@ -107,8 +107,8 @@
                         </span>
                     </a>
                 </li>
-                @if (User.IsInRole("1"))
-                {
+                @*@if (User.IsInRole("1"))
+                {*@
                     <li class="has-subnav">
                         <a href="#">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
@@ -122,28 +122,28 @@
                             }
                         </ul>
                     </li>
-                }
-                @if (User.IsInRole("2") || User.IsInRole("3"))
-                {
+                @*}*@
+                @*@if (User.IsInRole("2") || User.IsInRole("3"))
+                {*@
                     <li class="has-subnav">
                         <a href="#">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
                             <span class="nav-text">Admin</span>
                         </a>
                         <ul>
-                            @if (User.IsInRole("2"))
-                            {
+                            @*@if (User.IsInRole("2"))
+                            {*@
                                 <li><a asp-area="" asp-controller="Manager" asp-action="Index" asp-route-id="2">Manager Approvals</a></li>
-                            }
-                            @if (User.IsInRole("3"))
-                            {
+                            @*}*@
+                            @*@if (User.IsInRole("3"))
+                            {*@
                                 <li><a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a></li>
-                            }
+                            @*}*@
                         </ul>
                     </li>
-                }
+                @*}
                 @if (User.IsInRole("4"))
-                {
+                {*@
                     <li class="has-subnav">
                         <a href="#">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
@@ -158,7 +158,7 @@
                             <li><a asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a></li>
                         </ul>
                     </li>
-                }
+               @* }*@
                 <li>
                     <ul class="logout">
                         <li>
