@@ -71,13 +71,21 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
-        [HttpGet("ExpenseClaim/Edit/{id}")]
+        [HttpGet("ExpenseClaim/EditByClaimant/{id}")]
         public async Task<IActionResult> EditByClaimant(int id)
         {
             HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
             return View(EditClaim);
         }
+
+        //[HttpGet("Department/EditDepartment/{id}")]
+        //public async Task<IActionResult> EditDepartment(int id)
+        //{
+        //    HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
+        //    var EditDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseEditDepartment.Content.ReadAsStringAsync());
+        //    return View(EditDepartment);
+        //}
 
         [HttpPost("ExpenseClaim/Edit")]
         public async Task<IActionResult> EditByClaimant(ExpenseClaimViewModel expenseClaimViewModel)

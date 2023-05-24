@@ -133,7 +133,7 @@
                 @Html.DisplayFor(modelItem => item.FinanceManagerApprovedOn)
                 </td>*@
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a asp-action="EditByClaimant" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </td>
