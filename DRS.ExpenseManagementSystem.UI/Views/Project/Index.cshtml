@@ -88,12 +88,13 @@
                             @Html.DisplayFor(modelItem => item.Client)
                         </td>
                         <td style="padding-left:10px;">
-                            <a asp-action="EditProject" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
-                            <a asp-action="DetailsByProjectID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a> |
+                            <a asp-action="EditProject" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+                            <a asp-action="DetailsByProjectID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a> 
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
 </body>
 
