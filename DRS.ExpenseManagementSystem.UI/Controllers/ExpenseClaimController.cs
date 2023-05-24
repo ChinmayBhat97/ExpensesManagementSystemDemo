@@ -56,19 +56,19 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
         [HttpPost("ExpenseClaim/Create")]
-        public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
+        public async Task<IActionResult> Create(ExpenseClaim expenseClaim)
         {
             if (ModelState.IsValid)
             {
                 int EmpID = Convert.ToInt32(TempData["logged_empID"]);
-                var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
+                var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim",byteContent);
                 return RedirectToAction("Index");
             }
-            return View(expenseClaimViewModel);
+            return View(expenseClaim);
         }
 
         [HttpGet("ExpenseClaim/EditByClaimant/{id}")]

@@ -20,12 +20,14 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public ExpenseClaim expenseClaim { get; set; }
         public IndividualExpenditure IndividualExpenditure { get; set; }
 
+        public IEnumerable<Department> Departments { get; set; }
+
         //public ClaimStatus ClaimStatus { get ; set; }
 
 
         //public IEnumerable<ClaimStatus> claimStatuses { get; set; }
-        //public IEnumerable<Department> Departments { get; set; }
-      
+        
+
 
     }
 }
