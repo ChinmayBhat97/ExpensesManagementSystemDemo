@@ -39,11 +39,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         //GET api/<EmployeeController>/2
-        [HttpGet("fname/{firstName}")]
-        public async Task<List<Employee>> GetByFirstname(string firstName)
-        {
-            return await employeeService.GetByEmpFirstName(firstName);
-        }
+        //[HttpGet("fname/{firstName}")]
+        //public async Task<List<Employee>> GetByFirstname(string firstName)
+        //{
+        //    return await employeeService.GetByEmpFirstName(firstName);
+        //}
 
         //POST api/<EmployeeController>
         [HttpPost]

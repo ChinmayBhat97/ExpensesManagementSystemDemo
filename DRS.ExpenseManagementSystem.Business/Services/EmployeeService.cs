@@ -22,10 +22,10 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await employeeRepository.GetByDeptId(deptid);
         }
 
-        public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
-        {
-            return await employeeRepository.GetByEmpFirstName(empFirstName);
-        }
+        //public async Task<List<Employee>> GetByEmpFirstName(string empFirstName)
+        //{
+        //    return await employeeRepository.GetByEmpFirstName(empFirstName);
+        //}
 
         public async Task<Employee> GetByEmpId(int empid)
         {

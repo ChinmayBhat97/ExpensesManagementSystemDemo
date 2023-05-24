@@ -1,92 +1,125 @@
 ﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.EmployeeViewModel>
+<head>
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Employee List</h1>
-
-<p>
-    <a asp-action="CreateEmployee">Create New Employee</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EmpId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Designation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfJoining)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmpId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Designation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfJoining)
-                </td>
-                <td>
-                    <a asp-action="EditEmployee" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id">Details</a> |
-                </td>
-            </tr>
+    <style>
+        td {
+            border: 1px solid #000033;
+            text-align: left;
+            padding: 2px;
+            padding-left: 30px;
         }
-    </tbody>
-</table>
+
+        th {
+            border: 1px solid #000033;
+            text-align: center;
+            padding: 2px;
+            color: whitesmoke;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e6f2ff;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div style="padding-left:20px;">
+        <h3 style="color:#000099"><u> <b>Employee List </b></u></h3>
+
+        <div style="padding-left:925px;">
+            <a asp-action="CreateEmployee" class="btn btn-outline-success">Add New Employee</a>
+            
+        </div>
+        <br />
+
+        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:10px;">
+        <thead>
+            <tr>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.EmpId)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                    @*<th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>*@
+                    <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.Designation)
+                </th>
+                   @* <th style="background-color: #0000b3;">
+                    @Html.DisplayNameFor(model => model.DateOfJoining)
+                </th>*@
+                    <th style="background-color: #0000b3;">Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.EmpId)
+                    </td>
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                        <td style ="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                        <td style="padding-left:10px;" >
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                        @*<td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>*@
+                        <td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                        @*<td style="padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.DateOfJoining)
+                    </td>*@
+                        <td style="padding-left:10px;">
+                            <a asp-action="EditEmployee" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                       @* <a asp-action="EditEmployee" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id">Details</a> |*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</body>
+
 
 

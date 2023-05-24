@@ -23,26 +23,35 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await repository.GetByEmpId(empId);
         }
 
-        public async Task<List<ExpenseClaim>> GetByClaimState(int claimState)
+        public async Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus)
         {
-            return await repository.GetByClaimState(claimState);
+            return await repository.GetByClaimStatus(claimStatus);
         }
 
-        public async Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate)
+        public async Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate,int empId)
         {
-            return await repository.GetByClaimPeriods(periodStartDate, periodEndDate);
+            return await repository.GetByClaimPeriods(periodStartDate, periodEndDate, empId);
         }
 
-        public async Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate)
+        public async Task<ExpenseClaim> GetByClaimId(int Id)
         {
-            return await repository.GetByClaimedDate(claimedDate);
+           return await repository.GetByClaimId(Id);
         }
 
-        public Task<ExpenseClaim> GetById(int Id)
+        //  Manager
+        public async Task<List<ExpenseClaim>> GetByClaimantEmpId(int empId)
         {
-           return repository.GetById(Id);
+            return await repository.GetByClaimantEmpId(empId);
         }
 
-       
+        public async Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus)
+        {
+            return await repository.GetByClaimStatusManager(claimStatus);
+        }
+
+        public async Task<List<ExpenseClaim>> GetByClaimIdManager(int claimId)
+        {
+            return await repository.GetByClaimIdManager(claimId);
+        }
     }
 }

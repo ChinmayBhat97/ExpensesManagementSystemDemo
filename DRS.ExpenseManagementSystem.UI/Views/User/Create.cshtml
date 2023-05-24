@@ -3,59 +3,87 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create New User</h1>
+<body>
+    <div style="padding-left:200px;">
+        <h3 style="color:#000099"> <u><b>Add User </b></u>   </h3>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-route="/User/Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row" style="padding-top:5px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                             <b>   <label asp-for="EmployeeCode" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="EmployeeCode" class="form-control" required/>
+                                <span asp-validation-for="EmployeeCode" class="text-danger"></span>
+                            </div>
+                        </div>
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="/User/Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeCode" class="control-label"></label>
-                <input asp-for="EmployeeCode" class="form-control" />
-                <span asp-validation-for="EmployeeCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <<div class="form-group">
-                <label asp-for="IsAccountLocked" class="control-label"></label>
-                <select asp-for="IsAccountLocked" class="form-control">
-                    <option value="">-- Select --</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                <span asp-validation-for="IsAccountLocked" class="text-danger"></span>
-            </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                             <b>   <label asp-for="Password" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="Password" class="form-control" type="password" required/>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-8" style="padding-top:5px;">
+                        <div class="form-group">
+                          <b>  <label asp-for="Role" class="control-label"></label><span style="color:red;">*</span></b>
+                            <input asp-for="Role" class="form-control" required/>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+                    </div>
+                   
+                    <div class="row" style="padding-top:5px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <b>  <label asp-for="IsAccountLocked" class="control-label"></label><span style="color:red;">*</span></b>
+                                <select asp-for="IsAccountLocked" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                                <span asp-validation-for="IsAccountLocked" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <select asp-for="IsActive" class="form-control">
-                    <option value="">-- Select --</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
+                        <div class="col-md-3" style="padding-left:10px;">
+                            <div class="form-group">
+                              <b>  <label asp-for="IsActive" class="control-label"></label><span style="color:red;">*</span></b>
+                                <select asp-for="IsActive" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                    
+
+                    <div class="form-group" style="padding-top:25px;padding-left:450px;">
+                        @*<input type="submit" value="Create" class="btn btn-primary" />*@
+
+                        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+        @*<div>
+            <a asp-action="Index">Back to List</a>
+        </div>*@
     </div>
-</div>
+       
+</body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @*@section Scripts {
     @{

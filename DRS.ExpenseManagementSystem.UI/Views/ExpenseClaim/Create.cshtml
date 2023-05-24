@@ -10,6 +10,26 @@
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
+                    <label> Employee Id</label>
+                    <input asp-for="EmpId" class="form-control" />
+                    <span asp-validation-for="EmpId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <input asp-for="DeptId" class="form-control" />
+                    <span asp-validation-for="DeptId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Project</label>
+                    <input asp-for="ProjectId" class="form-control" />
+                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Todays Date </label>
+                    <input asp-for="ClaimRequestDate" class="form-control" />
+                    <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label> Start Date</label>
                     <input asp-for="StartDate" class="form-control" />
                     <span asp-validation-for="StartDate" class="text-danger"></span>
@@ -25,11 +45,7 @@
                     <input asp-for="TotalAmount" class="form-control" />
                     <span asp-validation-for="TotalAmount" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label>Todays Date </label>
-                    <input asp-for="ClaimRequestDate" class="form-control" />
-                    <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
-                </div>
+                
                 
                 <div class="form-group" style="padding-left:600px;">
                     <input type="submit" value="Create"  class="btn btn-info" />
