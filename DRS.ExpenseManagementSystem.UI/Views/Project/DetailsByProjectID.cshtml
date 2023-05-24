@@ -4,56 +4,58 @@
     ViewData["Title"] = "Details";
 }
 
-<style>
-    dt{
-        padding-top: 5px;
-    }
-</style>
+<h1>Details</h1>
 
-
-<body>
-    <div style="padding-left:100px;">
-        <h3 style="color:#000099"> <u> <b>Department Details </b></u>  </h3>
-        <br />
-        <dl class="row">
-            <form asp-route="/Project/DetailsProject/@Model.Id">
-            <dt class="col-sm-12">
-                ID:&nbsp;@Html.DisplayFor(model => model.Id)
-            </dt>
-
-            <dt class="col-sm-12">
-                EMP ID: &nbsp; @Html.DisplayFor(model => model.EmpId)
-            </dt>
-
-            <dt class="col-sm-12">
-                Start Date:&nbsp;@Html.DisplayFor(model => model.StartDate)
-            </dt>
-
-            <dt class="col-sm-12">
-                End Date:&nbsp;  @Html.DisplayFor(model => model.EndDate)
-            </dt>
-
-            <dt class="col-sm-12">
-                Client:  @Html.DisplayFor(model => model.Client)
-            </dt>
-           
-
-            <dt class="col-sm-12">
-                Title : &nbsp; @Html.DisplayFor(model => model.Title)
-            </dt>
-
-            <dt class="col-sm-12">
-                Description : &nbsp;@Html.DisplayFor(model => model.Description)
-            </dt>
-
-           
-          
-
-            </form>
-        </dl>
-    </div>
-    <div style="padding-left:750px;">
-        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
-    </div>
-
-</body>
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <form asp-route="/Project/DetailsProject/@Model.Id">
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EmpId)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EmpId)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client)
+        </dd>
+        </form>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

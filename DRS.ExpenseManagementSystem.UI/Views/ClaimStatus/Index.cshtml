@@ -1,84 +1,44 @@
 ﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.ClaimStatusViewModel>
 
-<head>
-    @{
-        ViewData["Title"] = "Index";
-    }
 
-    <style>
-        td {
-            border: 1px solid #000033;
-            text-align: left;
-            padding: 1px;
-            padding-left: 30px;
-        }
+@{
+    ViewData["Title"] = "Index";
+}
 
-        th {
-            border: 1px solid #000033;
-            text-align: center;
-            padding: 2px;
-            color: whitesmoke;
-        }
+<h1>Claim Status List</h1>
 
-       
+<p>
+    <a asp-action="CreateClaimStatus">Create New Claim Status</a>
+</p>
 
-        tr:nth-child(even) {
-            background-color: #e6f2ff;
-        }
-    </style>
-</head>
-
-<body>
-    <div style="padding-left:200px;">
-        <h3 style="color:#000099"><u> <b>Claim Status List </b></u></h3>
-
-        <div style="padding-left:350px;">
-            <a asp-action="CreateClaimStatus" class="btn btn-outline-success">Create New Claim Status</a>
-            @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
-        </div>
-        <br />
-            @*<p>
-                <a asp-action="CreateClaimStatus">Create New Claim Status</a>
-            </p>*@
-
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 60%;padding-top:10px;">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th style="background-color: #0000b3;">
-                   ID
-                </th>
-                <th style="background-color: #0000b3;">
-                    Claim Status
-                </th>
-                <th style="background-color: #0000b3;">
-                    Actions
-                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="EditClaimStatus" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id">Details</a> |
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td style="padding-left:20px;">
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td style="padding-left:20px;">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td style="padding-left:20px;">
-                       @* <a asp-action="EditClaimStatus" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id">Details</a> |*@
-
-                            <a asp-action="EditClaimStatus" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    </div>
-</body>
-
-
+        }
+    </tbody>
+</table>
 
 
