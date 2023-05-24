@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
-    public class AuthController : ControllerBase
+    public class AuthorizationController : ControllerBase
     {
         [ApiController]
         [Route("api/[controller]")]

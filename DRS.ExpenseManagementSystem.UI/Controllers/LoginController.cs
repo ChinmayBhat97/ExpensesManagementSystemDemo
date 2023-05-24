@@ -50,6 +50,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string EmployeeCode, string Password)
         {
+       
+
+
             var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode == EmployeeCode && u.Password == Password);
 
             if (checkUser)
@@ -58,8 +61,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var empID = user.Id;
                 var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Id;
                 var designation = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Designation;
+                var fName = expensesManagementSystem_UpdatedContext.Employees.Where(m => m.EmpId==ID_Employee).Select(n => n.FirstName).SingleOrDefault();
 
                 TempData["logged_empID"] = ID_Employee;
+
+                ViewBag.UserName=fName;
+                ViewBag.UserRole= designation;
+
 
                 List<Claim> userClaims = new List<Claim>()
                 {
