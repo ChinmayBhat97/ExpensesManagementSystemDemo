@@ -22,6 +22,21 @@
     tr:nth-child(even) {
         background-color: #e6f2ff;
     }
+
+        /* Set the serial number counter to 0 */
+        #expenditures {
+            counter-reset: serial-number; 
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #expenditures td:first-child:before {
+                counter-increment: serial-number; 
+                content: counter(serial-number); 
+            }
+
+
+       
 </style>
 
 
@@ -35,9 +50,12 @@
             @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
         <br />
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 60%;padding-top:10px;">
+        <table class="table" id="expenditures" style="font-family: arial, sans-serif;border-collapse:collapse;width: 90%;padding-top:10px;">
             <thead>
                 <tr>
+                    <th style="background-color: #0000b3;">
+                        Sl.No
+                    </th>
                     <th style="background-color: #0000b3;">
                         ID
                     </th>
@@ -67,6 +85,9 @@
                 {
                     <tr>
                         <td style="padding-left:20px;">
+                            &nbsp;
+                        </td>
+                        <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td style="padding-left:30px;">
@@ -92,5 +113,23 @@
                 }
             </tbody>
         </table>
+        <span id="val">
+
+        </span> 
+
     </div>
 </body>
+
+
+<script>
+
+    var table = document.getElementById("expenditures"), sumAmount = 0;
+
+    for (var i = 1; i < table.rows.length; i++) {
+        sumAmount = sumAmount + parseInt(table.rows[i].cells[6].innerHTML);
+    }
+
+    document.getElementById("val").innerHTML = "sum Amount = " + sumAmount;
+    console.log(sumAmount);
+
+</script>

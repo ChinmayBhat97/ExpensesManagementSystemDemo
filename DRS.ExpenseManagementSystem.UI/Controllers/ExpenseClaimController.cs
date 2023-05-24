@@ -113,7 +113,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> DetailsByClaimID(int claimId)
         {
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
-           var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseDetailsClaim.Content.ReadAsStringAsync());
+           var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
             return View(detailsClaim);
 
 
@@ -142,16 +142,17 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             //    await individualExpenditure.ImageFile.CopyToAsync(fileStream);
             //}
 
+            individualExpenditure.AttachmentPath="www.gmail.com";
 
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(individualExpenditure.ImageFile.FileName);
-            string extension = Path.GetExtension(individualExpenditure.ImageFile.FileName);
-            individualExpenditure.AttachmentPath=fileName = fileName + DateTime.Now.ToString("yymmddssff")+ extension;
-            string path = Path.Combine(wwwRootPath + "/Image/", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                await individualExpenditure.ImageFile.CopyToAsync(fileStream);
-            }
+            //string wwwRootPath = _hostEnvironment.WebRootPath;
+            //string fileName = Path.GetFileNameWithoutExtension(individualExpenditure.ImageFile.FileName);
+            //string extension = Path.GetExtension(individualExpenditure.ImageFile.FileName);
+            //individualExpenditure.AttachmentPath=fileName = fileName + DateTime.Now.ToString("yymmddssff")+ extension;
+            //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            //using (var fileStream = new FileStream(path, FileMode.Create))
+            //{
+            //    await individualExpenditure.ImageFile.CopyToAsync(fileStream);
+            //}
 
             var myContent = JsonConvert.SerializeObject(individualExpenditure);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);

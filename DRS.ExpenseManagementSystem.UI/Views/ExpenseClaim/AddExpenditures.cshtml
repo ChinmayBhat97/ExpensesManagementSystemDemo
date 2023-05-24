@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
             <label asp-for="Amount" class="control-label"></label>
-            <input asp-for="Amount" class="form-control" />
+            <input asp-for="Amount" class="form-control"  />
             <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -93,3 +93,18 @@
         await Html.RenderPartialAsync("");
     }
 }*@
+
+
+       @*  <script>
+            
+            var table = document.getElementById("table"), sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[2].innerHTML);
+            }
+            
+            document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+            console.log(sumVal);
+            
+        </script>*@
