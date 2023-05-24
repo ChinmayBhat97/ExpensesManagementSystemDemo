@@ -21,7 +21,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 Timeout = TimeSpan.FromMinutes(5)
             };
         }
-        //[Authorize(Roles = "4")]
+        [Authorize(Roles = "4")]
 
         [HttpGet]
         public async Task<IActionResult> Index()
