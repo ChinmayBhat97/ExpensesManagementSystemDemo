@@ -7,7 +7,7 @@
         <h3 style="color:#000099"> <u><b>Add Employee </b></u>   </h3>
         <br />
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
               
             <form asp-route="/Employee/CreateEmployee">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -143,13 +143,13 @@
                     </div>
 
 
-                    
+                    <br />
 
                   
 
                  
                
-                <div class="form-group">
+                <div class="form-group" style="padding-left:700px;">
                     @*<input type="submit" value="Create" class="btn btn-primary" />*@
 
                         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>

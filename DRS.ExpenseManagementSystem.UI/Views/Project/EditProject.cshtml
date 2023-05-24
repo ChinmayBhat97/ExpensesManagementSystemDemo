@@ -4,61 +4,85 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit Project</h1>
-
-<h4></h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="/Project/EditProject/@Model.Id">
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" required />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmpId" class="control-label"></label>
-                <input asp-for="EmpId" class="form-control" required />
-                <span asp-validation-for="EmpId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" required />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" required />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" required />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" required />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client" class="control-label"></label>
-                <input asp-for="Client" class="form-control" required />
-                <span asp-validation-for="Client" class="text-danger"></span>
-            </div>
+<body>
+    <div style="padding-left:200px;">
+        <h3><u><b> Edit Project Details</b></u></h3>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-route="/Project/EditProject/@Model.Id">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label asp-for="Id" class="control-label"></label>
+                            <input asp-for="Id" class="form-control" readonly />
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <b>    <label asp-for="EmpId" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="EmpId" class="form-control" required />
+                                <span asp-validation-for="EmpId" class="text-danger"></span>
+                            </div>
+                        </div>
 
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index"></a>
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <b>    <label asp-for="Title" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="Title" class="form-control" required />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b>    <label asp-for="StartDate" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="StartDate" class="form-control" required />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b>     <label asp-for="EndDate" class="control-label"></label><span style="color:red;">*</span></b>
+                                <input asp-for="EndDate" class="form-control" required />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <b>    <label asp-for="Description" class="control-label"></label><span style="color:red;">*</span></b>
+                        <input asp-for="Description" class="form-control" required />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <b>   <label asp-for="Client" class="control-label"></label><span style="color:red;">*</span></b>
+                        <input asp-for="Client" class="form-control" required />
+                        <span asp-validation-for="Client" class="text-danger"></span>
+                    </div>
+                    <br />
+
+                    <div class="form-group" style="padding-left:700px;">
+                        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+   
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</body>
+
+
 
 @section Scripts {
     @{

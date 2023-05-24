@@ -4,33 +4,43 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit Claim Status</h1>
 
-<h4></h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="/ClaimStatus/EditClaimStatus/@Model.Id">
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" readonly/>
-                <span asp-validation-for="Id" class="text-danger"></span>
+<body>
+    <div style="padding-left:180px;">
+        <h4> <b> <u> Edit Claim Status  </u></b></h4>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-route="/ClaimStatus/EditClaimStatus/@Model.Id">
+                    <div class="form-group">
+                      <b>  <label asp-for="Id" class="control-label"></label> <span style="color:red;">*</span></b>
+                        <input asp-for="Id" class="form-control" readonly />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <b>  <label asp-for="Name" class="control-label"></label> <span style="color:red;">*</span></b>
+                        <input asp-for="Name" class="form-control" required />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group" style="padding-left:120px;">
+                       
+                        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" required />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+        @*<div>
+            <a asp-action="Index">Back to List</a>
+        </div>*@
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</body>
+
+
 
 @section Scripts {
     @{

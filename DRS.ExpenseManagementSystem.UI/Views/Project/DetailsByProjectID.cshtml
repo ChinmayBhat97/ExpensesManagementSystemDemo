@@ -4,58 +4,45 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Project</h4>
-    <hr />
+<div style="padding-left:200px;">
+
+    <h4>   <u> <b>  Details of Project </b></u> </h4>
     <dl class="row">
         <form asp-route="/Project/DetailsProject/@Model.Id">
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Id)
+        <dt class="col-sm-8">
+            ID: &nbsp   @Html.DisplayFor(model => model.Id)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.EmpId)
+      
+      
+        <dt class="col-sm-10" style="padding-top:10px;">
+            EMP ID: &nbsp   @Html.DisplayFor(model => model.EmpId)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.EmpId)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Title)
+       
+        <dt class="col-sm-10" style="padding-top:10px;">
+           Title: &nbsp @Html.DisplayFor(model => model.Title)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
+       
+        <dt class="col-sm-10" style="padding-top:10px;">
+            Description: &nbsp   @Html.DisplayFor(model => model.Description)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.StartDate)
+        
+        <dt class="col-sm-10" style="padding-top:10px;">
+            Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.EndDate)
+        
+        <dt class="col-sm-10" style="padding-top:10px;">
+           End Date: &nbsp  @Html.DisplayFor(model => model.EndDate)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Client)
+      
+        <dt class="col-sm-10" style="padding-top:10px;">
+            Client:&nbsp     @Html.DisplayFor(model => model.Client)
         </dt>
-        <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Client)
-        </dd>
         </form>
     </dl>
+    <br />
+    <div style="padding-left:450px;">
+        <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
