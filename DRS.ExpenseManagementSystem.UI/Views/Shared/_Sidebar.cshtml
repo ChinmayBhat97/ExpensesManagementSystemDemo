@@ -107,7 +107,7 @@
                         </span>
                     </a>
                 </li>
-                @if (User.IsInRole("1") || User.IsInRole("2") || User.IsInRole("3") || User.IsInRole("4"))
+                @if (User.IsInRole("1"))
                 {
                     <li class="has-subnav">
                         <a href="#">
@@ -123,7 +123,7 @@
                         </ul>
                     </li>
                 }
-                @if (User.IsInRole("2") || User.IsInRole("3") || User.IsInRole("4"))
+                @if (User.IsInRole("2") || User.IsInRole("3"))
                 {
                     <li class="has-subnav">
                         <a href="#">
