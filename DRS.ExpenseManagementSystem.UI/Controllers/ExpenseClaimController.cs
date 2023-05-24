@@ -51,8 +51,21 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Create()
         {
             HttpResponseMessage responseCreateClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            if (responseCreateClaim.IsSuccessStatusCode && responseProjectList.IsSuccessStatusCode)
+            {
+                var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+                var projectSelectList = new List<SelectListItem>();
+                foreach (var project in projectList)
+                {
+                    projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+                }
+                ViewBag.projectList = projectSelectList;
+                var expenseClaimList = JsonConvert.DeserializeObject<List<ExpenseClaim>>(await responseCreateClaim.Content.ReadAsStringAsync());
+                expenseClaimList = expenseClaimList.OrderBy(x => x.Id).ToList();
+                return View();
+            }
             return View();
-
         }
 
         [HttpPost("ExpenseClaim/Create")]
@@ -60,6 +73,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                expenseClaim.Status = 1;
                 int EmpID = Convert.ToInt32(TempData["logged_empID"]);
                 var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
@@ -71,37 +85,28 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaim);
         }
 
-        [HttpGet("ExpenseClaim/EditByClaimant/{id}")]
+        [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> EditByClaimant(int id)
         {
             HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
+            var EditClaim = JsonConvert.DeserializeObject<ExpenseClaim>(await responseEditClaim.Content.ReadAsStringAsync());
             return View(EditClaim);
         }
 
-        //[HttpGet("Department/EditDepartment/{id}")]
-        //public async Task<IActionResult> EditDepartment(int id)
-        //{
-        //    HttpResponseMessage responseEditDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
-        //    var EditDepartment = JsonConvert.DeserializeObject<DepartmentViewModel>(await responseEditDepartment.Content.ReadAsStringAsync());
-        //    return View(EditDepartment);
-        //}
-
         [HttpPost("ExpenseClaim/Edit")]
-        public async Task<IActionResult> EditByClaimant(ExpenseClaimViewModel expenseClaimViewModel)
+        public async Task<IActionResult> EditByClaimant(ExpenseClaim expenseClaim)
         {
             if (ModelState.IsValid)
             {
-                expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
-                expenseClaimViewModel.Status = 1;
-                var myContent = JsonConvert.SerializeObject(expenseClaimViewModel);
+                expenseClaim.Status = 1;
+                var myContent = JsonConvert.SerializeObject(expenseClaim);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaimViewModel.Id}", byteContent);
+                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
                 return RedirectToAction("Index");
             }
-            return View(expenseClaimViewModel);
+            return View(expenseClaim);
         }
 
         [HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]

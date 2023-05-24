@@ -1,4 +1,4 @@
-﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaim
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-route="/ExpenseClaim/Edit/@Model.Id">
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />

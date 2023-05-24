@@ -14,7 +14,7 @@
                     <div class="row" >
                         <div class="col-md-3">
                             <div class="form-group">
-                              <b>  <label asp-for="EmpId" class="control-label"></label><span style="color:red;">*</span></b>
+                              <b>  <label asp-for="EmpId" class="control-label">User Id</label><span style="color:red;">*</span></b>
                                 <input asp-for="EmpId" class="form-control" required />
                                 <span asp-validation-for="EmpId" class="text-danger"></span>
                             </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <b>   <label asp-for="Email" class="control-label"></label><span style="color:red;">*</span></b>
+                                    <b>   <label asp-for="Email" class="control-label">Email Id</label><span style="color:red;">*</span></b>
                                     <input asp-for="Email" class="form-control" required />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
@@ -45,23 +45,26 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <b> <label asp-for="FirstName" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b> <label asp-for="FirstName" class="control-label">First Name</label><span style="color:red;">*</span></b>
                                 <input asp-for="FirstName" class="form-control" required />
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <b>   <label asp-for="LastName" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>   <label asp-for="LastName" class="control-label">Last Name</label><span style="color:red;">*</span></b>
                                 <input asp-for="LastName" class="form-control" required />
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <b> <label asp-for="DeptId" class="control-label"></label><span style="color:red;">*</span></b>
-                                <input asp-for="DeptId" class="form-control" required />
-                                <span asp-validation-for="DeptId" class="text-danger"></span>
+                                <b> <label asp-for="DeptId" class="control-label">Department</label><span style="color:red;">*</span></b>
+                                
+                                <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
+                                    <option value="">-- Select --</option>
+                                </select>
+                                
                             </div>
                         </div>
                     </div>
@@ -70,7 +73,7 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <b>  <label asp-for="PhoneNumber" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
                                 <input asp-for="PhoneNumber" class="form-control" />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
@@ -89,7 +92,7 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <b>  <label asp-for="DateOfJoining" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>  <label asp-for="DateOfJoining" class="control-label">Joining Date</label><span style="color:red;">*</span></b>
                                 <input asp-for="DateOfJoining" class="form-control" required />
                                 <span asp-validation-for="DateOfJoining" class="text-danger"></span>
                             </div>
@@ -107,14 +110,14 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <b>   <label asp-for="AccountNumber" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>   <label asp-for="AccountNumber" class="control-label">Account Number</label><span style="color:red;">*</span></b>
                                 <input asp-for="AccountNumber" class="form-control" required />
                                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <b>  <label asp-for="Ifsc" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>  <label asp-for="Ifsc" class="control-label">IFSC Code</label><span style="color:red;">*</span></b>
                                 <input asp-for="Ifsc" class="form-control" required />
                                 <span asp-validation-for="Ifsc" class="text-danger"></span>
                             </div>
@@ -125,14 +128,14 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <b>  <label asp-for="BankName" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>  <label asp-for="BankName" class="control-label">Bank Name</label><span style="color:red;">*</span></b>
                                 <input asp-for="BankName" class="form-control" required />
                                 <span asp-validation-for="BankName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                              <b>  <label asp-for="PanNumber" class="control-label"></label><span style="color:red;">*</span></b>
+                              <b>  <label asp-for="PanNumber" class="control-label">Pan Number</label><span style="color:red;">*</span></b>
                                 <input asp-for="PanNumber" class="form-control" required />
                                 <span asp-validation-for="PanNumber" class="text-danger"></span>
                             </div>

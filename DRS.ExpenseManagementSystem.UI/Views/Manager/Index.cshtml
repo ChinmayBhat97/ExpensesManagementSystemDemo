@@ -41,9 +41,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ManagerApprovedOn)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FinanceManagerApprovedOn)
-            </th>
+            </th>*@
         </tr>
     </thead>
     <tbody>
@@ -80,9 +80,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ManagerApprovedOn)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.FinanceManagerApprovedOn)
-                </td>
+                </td>*@
                 <td>
                     <a asp-action="EditByManager" asp-route-id="@item.Id">Edit</a>
                     <a asp-action="DetailsByManager" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>

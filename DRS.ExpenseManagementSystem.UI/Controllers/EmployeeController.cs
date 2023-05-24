@@ -1,5 +1,6 @@
 ﻿using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
@@ -42,8 +43,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> CreateEmployeeAsync()
         {
             HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            if (responseCreateEmployee.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
+            {
+                var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+                var departmentSelectList = new List<SelectListItem>();
+                foreach (var project in departmentList)
+                {
+                    departmentSelectList.Add(new SelectListItem(project.Name, project.Id.ToString()));
+                }
+                ViewBag.departmentList = departmentSelectList;
+
+                return View();
+            }
             return View();
         }
+
 
         [HttpPost("Employee/CreateEmployee")]
         public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
