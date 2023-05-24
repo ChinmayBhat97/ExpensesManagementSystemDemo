@@ -56,11 +56,17 @@
             <input asp-for="ReceiptNumber" class="form-control" />
             <span asp-validation-for="ReceiptNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @* <div class="form-group">
             <label asp-for="AttachmentPath" class="control-label"></label>
             <input asp-for="AttachmentPath" class="form-control" />
             <span asp-validation-for="AttachmentPath" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" accept="image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
+
             @*<div class="form-group">
             <label asp-for="" class="control-label"></label>
             <input asp-for="FinanceManagerApprovedOn" class="form-control" />

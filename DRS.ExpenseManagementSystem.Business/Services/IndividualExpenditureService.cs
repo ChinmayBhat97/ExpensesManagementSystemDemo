@@ -28,10 +28,10 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         //    return await repository.GetByCategory(category);
         //}
 
-        //public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
-        //{
-        //    return await repository.GetByClaimID(Id);
-        //}
+        public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
+        {
+            return await repository.GetByClaimID(Id);
+        }
 
         //public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)
         //{

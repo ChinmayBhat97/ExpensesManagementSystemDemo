@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Models
 {
@@ -14,7 +16,12 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public decimal? Amount { get; set; }
         public string? Comments { get; set; }
         public string? ReceiptNumber { get; set; }
+
         public string? AttachmentPath { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
 
