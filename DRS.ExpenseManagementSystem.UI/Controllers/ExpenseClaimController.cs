@@ -7,6 +7,7 @@ using System.Text.Json;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -27,6 +28,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
+
+        [Authorize(Roles = "1")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -47,6 +50,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet("ExpenseClaim/Create")]
         public async Task<IActionResult> Create()
         {
