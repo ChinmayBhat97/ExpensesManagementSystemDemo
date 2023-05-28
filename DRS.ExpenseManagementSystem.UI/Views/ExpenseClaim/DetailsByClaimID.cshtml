@@ -6,35 +6,35 @@
 
 
 <div style="padding-left:200px">
-   
-    <div >
+
+    <div>
         <h4> <b><u>Expense Claim Details </u></b> </h4>
-           
-            <dl class="row">
-               
-                <dt class = "col-sm-10">
-                  Claim ID :  @Html.DisplayFor(model => model.Id)
-                </dt>
-               
-                <dt class = "col-sm-10">
-                  EMP ID :  @Html.DisplayFor(model => model.EmpId)
-                </dt>
-          
 
-            <dt class = "col-sm-10">
-                  Start Date :  @Html.DisplayFor(model => model.StartDate)
-                </dt>
-               
-                <dt class = "col-sm-10">
-                  End Date :  @Html.DisplayFor(model => model.EndDate)
-                </dt>
+        <dl class="row">
 
-                    <dt class="col-sm-10">
-                        Project Title :  @Html.DisplayFor(model => model.ProjectId)
-                    </dt>
-                <dt class = "col-sm-10">
-                   Status: @Html.DisplayFor(model => model.Status)
-                </dt>
+            <dt class="col-sm-10">
+                Claim ID :  @Html.DisplayFor(model => model.Id)
+            </dt>
+
+            <dt class="col-sm-10">
+                EMP ID :  @Html.DisplayFor(model => model.EmpId)
+            </dt>
+
+
+            <dt class="col-sm-10">
+                Start Date :  @Html.DisplayFor(model => model.StartDate)
+            </dt>
+
+            <dt class="col-sm-10">
+                End Date :  @Html.DisplayFor(model => model.EndDate)
+            </dt>
+
+            <dt class="col-sm-10">
+                Project Title :  @Html.DisplayFor(model => model.ProjectId)
+            </dt>
+            <dt class="col-sm-10">
+                Status: @Html.DisplayFor(model => model.Status)
+            </dt>
             <dt class="col-sm-10">
                 Total Amount: @Html.DisplayFor(model => model.TotalAmount)
             </dt>
@@ -42,48 +42,52 @@
                 Claim request Date: @Html.DisplayFor(model => model.ClaimRequestDate)
             </dt>
         </dl>
-        <thead>
-            <tr>
-                <th><label><b>Expenditure Date</b></label></th>
-                <th><label><b>Description</b></label></th>
-                <th><label><b>Category</b></label></th>
-                <th><label><b>Expense Category</b></label></th>
-                <th><label><b>Amount</b></label></th>
-                <th><label><b>Comments</b></label></th>
-                <th><label><b>Receipt Number</b></label></th>
-                <th><label><b>Upload</b></label></th>
-                <th><label><b>IsApproved</b></label></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var individualExpenditure in Model.IndividualExpenditures)
-            {
+        <table>
+            <tbody>
+
+
                 <tr>
-                    <td>@individualExpenditure.ExpenditureDate</td>
-                    <td>@individualExpenditure.Description</td>
-                    <td>@individualExpenditure.Category</td>
-                    <td>@individualExpenditure.ExpenseCategory</td>
-                    <td>@individualExpenditure.Amount</td>
-                    <td>@individualExpenditure.Comments</td>
-                    <td>@individualExpenditure.ReceiptNumber</td>
-                    <td><img src="~/@individualExpenditure.AttachmentPath" /></td>
-                    <td>@individualExpenditure.IsApproved</td>
+                    <th><label><b>Expenditure Date</b></label></th>
+                    <th><label><b>Description</b></label></th>
+                    <th><label><b>Category</b></label></th>
+                    <th><label><b>Expense Category</b></label></th>
+                    <th><label><b>Amount</b></label></th>
+                    <th><label><b>Comments</b></label></th>
+                    <th><label><b>Receipt Number</b></label></th>
+                    <th><label><b>Upload</b></label></th>
+                    <th><label><b>IsApproved</b></label></th>
                 </tr>
-            }
+                <tr>
+                    @foreach (var individualExpenditure in Model.IndividualExpenditures)
+                    {
 
-        </tbody>
+                        <td>@individualExpenditure.ExpenditureDate</td>
+                        <td>@individualExpenditure.Description</td>
+                        <td>@individualExpenditure.Category</td>
+                        <td>@individualExpenditure.ExpenseCategory</td>
+                        <td>@individualExpenditure.Amount</td>
+                        <td>@individualExpenditure.Comments</td>
+                        <td>@individualExpenditure.ReceiptNumber</td>
+                        <td><img src="~/@individualExpenditure.AttachmentPath" /></td>
+                        <td>@individualExpenditure.IsApproved</td>
+
+                    }
+                </tr>
+
+
+            </tbody>
         </table>
-         
 
-       <br />
-      
+
+        <br />
+
 
 
         <a asp-action="AddExpenditures" asp-route-id="@Model.Id" class="btn btn-success"> Add Individual Expenditures</a>
         <a asp-action="IndexExpenditures" asp-route-id="@Model.Id" class="btn btn-primary"> View Individual Expenditures</a>
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-            
-        </div>
+
+    </div>
 </div>
 
 @*@await Html.PartialAsync("AddExpenditures", new DRS.ExpenseManagementSystem.UI.Models.IndividualExpenditure())
