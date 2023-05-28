@@ -11,12 +11,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
     public class ExpenseClaimController : ControllerBase
     {
         private IExpenseClaimServices expensesClaimServices;
-      
+
 
         public ExpenseClaimController(IExpenseClaimServices _expensesClaimServices)
         {
             this.expensesClaimServices = _expensesClaimServices;
-           
+
         }
 
         // GET: api/<ExpenseClaimController>
@@ -55,7 +55,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         [HttpGet("empId/{EmpId}")]
         public async Task<List<ExpenseClaim>> GetByEmployeeID(int employeeId)
         {
-            return await expensesClaimServices.GetByEmpId(employeeId); 
+            return await expensesClaimServices.GetByEmpId(employeeId);
         }
 
 
@@ -71,7 +71,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         [HttpGet("dateStart,dateEnd/{startDate,dateEnd}")]
         public async Task<List<ExpenseClaim>> GetByPeriod(DateTime dateStart, DateTime dateEnd, int empId)
         {
-            return await expensesClaimServices.GetByClaimPeriods(dateStart,dateEnd,empId);
+            return await expensesClaimServices.GetByClaimPeriods(dateStart, dateEnd, empId);
         }
 
         // GET api/<ExpenseClaimController>/
@@ -83,9 +83,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // POST api/<ExpenseClaimController>
         [HttpPost]
-        public async Task Post(ExpenseClaim expensesClaim)
+        public async Task<int> Post(ExpenseClaim expensesClaim)
         {
-            await expensesClaimServices.AddAsync(expensesClaim);
+            return await expensesClaimServices.AddAsync(expensesClaim);
         }
 
         // PUT api/<ExpenseClaimController>/5
@@ -95,7 +95,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             await expensesClaimServices.UpdateAsync(expensesClaim);
         }
 
-        
+
 
     }
 }

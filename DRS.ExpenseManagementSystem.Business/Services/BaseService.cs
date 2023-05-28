@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,8 +19,20 @@ namespace DRS.ExpenseManagementSystem.Business.Services
 
         public async Task<int> AddAsync(T entity)
         {
-            await repository.AddAsync(entity);
-            return await repository.SaveChangesAsync();
+            try
+            {
+                Type entityObj = entity.GetType();
+                await repository.AddAsync(entity);
+                await repository.SaveChangesAsync();
+                PropertyInfo prop = entityObj.GetProperty("Id");
+                int result = (int)prop.GetValue(entity);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var p = ex.Message;
+                return 0;
+            }
         }
 
         public async Task<int> DeleteAsync(T entity)

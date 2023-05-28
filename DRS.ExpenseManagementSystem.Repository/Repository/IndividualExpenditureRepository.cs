@@ -35,9 +35,14 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
         //    return await _dbContext.IndividualExpenditures.AsQueryable().Where(c =>c.ExpenseCategoryId==Id).ToListAsync();
         //}
 
-        public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
+        public async Task<List<IndividualExpenditure>> GetByClaimID(int claimId)
         {
-            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.ClaimId==Id).ToListAsync();
+            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.Id==claimId).ToListAsync();
+        }
+
+        public Task<List<IndividualExpenditure>> SaveIndividualExpenseDb()
+        {
+            throw new NotImplementedException();
         }
     }
 }

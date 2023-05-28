@@ -18,13 +18,9 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public string? ReceiptNumber { get; set; }
 
         public string? AttachmentPath { get; set; }
-
-        [NotMapped]
-        [DisplayName("Upload File")]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ExpenseProof { get; set; }
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
-
         public virtual ExpenseClaim? Claim { get; set; }
         public virtual ExpenseCategory? ExpenseCategory { get; set; }
     }

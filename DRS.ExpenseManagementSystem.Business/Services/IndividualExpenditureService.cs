@@ -28,15 +28,28 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         //    return await repository.GetByCategory(category);
         //}
 
-        public async Task<List<IndividualExpenditure>> GetByClaimID(int Id)
+        public async Task<List<IndividualExpenditure>> GetByClaimID(int claimId)
         {
-            return await repository.GetByClaimID(Id);
+            return await repository.GetByClaimID(claimId);
+        }
+
+        public async Task<List<IndividualExpenditure>> SaveIndividualExpenseDb()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<IndividualExpenditure>> SaveIndividualExpenseDb(IndividualExpenditure individualExpenditure)
+        {
+            throw new NotImplementedException();
         }
 
         //public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)
         //{
         //    return repository.GetByExpenseCategory(Id);
         //}
+
+
+
     }
 }
 
