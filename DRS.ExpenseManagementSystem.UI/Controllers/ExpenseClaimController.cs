@@ -65,6 +65,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("ExpenseClaim/Create")]
         public async Task<IActionResult> Create()
         {
+            //dropdown to show department
+            HttpResponseMessage responsedepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responsedepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
             //drop down to show project names
             HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
             var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
@@ -91,6 +101,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             expenseClaimViewModel.IndividualExpenditures.Add(indiExp);
             return View(expenseClaimViewModel);
         }
+        
 
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
@@ -98,9 +109,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             //if (ModelState.IsValid)
             //{
             string wwwPath = this.webHostEnvironment.WebRootPath;
-            string contentPath = this.webHostEnvironment.ContentRootPath;
 
-            string path = Path.Combine(this.webHostEnvironment.WebRootPath, "ExpenseProof");
+            string path = Path.Combine(wwwPath, "ExpenseProof");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -120,13 +130,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             expenseClaimViewModel.Status = 1;
+            expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
+            
 
             HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
@@ -226,7 +237,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
 
             detailsClaim.IndividualExpenditures = individualExpenditures;
-
+            string wwwPath = this.webHostEnvironment.WebRootPath;
             return View(detailsClaim);
         }
 

@@ -30,7 +30,7 @@
 
             /* Increment the serial number counter */
             /* Display the counter */
-        #Expense td:first-child:before {
+            #Expense td:first-child:before {
                 counter-increment: serial-number;
                 content: counter(serial-number);
             }
@@ -99,9 +99,9 @@
                     @foreach (var individualExpenditure in Model.IndividualExpenditures)
                     {
                         <tr>
-                            <td >
+                            <td>
                                 &nbsp;
-                             
+
                             </td>
                             <td>@individualExpenditure.ExpenditureDate</td>
                             <td>@individualExpenditure.Description</td>
@@ -110,7 +110,7 @@
                             <td>@individualExpenditure.Amount</td>
                             <td>@individualExpenditure.Comments</td>
                             <td>@individualExpenditure.ReceiptNumber</td>
-                            <td><img src="~/@individualExpenditure.AttachmentPath" /></td>
+                            <td><img src="/ExpenseProof/@individualExpenditure.AttachmentPath" width="100" height="100" /></td>
                             <td>@individualExpenditure.IsApproved</td>
                         </tr>
                     }
@@ -125,6 +125,7 @@
             @*   <a asp-action="AddExpenditures" asp-route-id="@Model.Id" class="btn btn-success"> Add Individual Expenditures</a>
             <a asp-action="IndexExpenditures" asp-route-id="@Model.Id" class="btn btn-primary"> View Individual Expenditures</a>*@
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit Claim</a>
 
         </div>
     </div>
