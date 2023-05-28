@@ -11,6 +11,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
     public interface IUserService:IBaseService<User>
     {
         public Task<List<User>> GetByRoleAsync(int role);
-        AuthenticationViewModel Authenticate(string userName, string password);
+        AuthenticationViewModel Authenticate(string UserName, string Password);
     }
 }

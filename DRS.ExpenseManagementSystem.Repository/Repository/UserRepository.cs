@@ -19,14 +19,17 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             _dbContext = dbContext;
         }
 
-        public UserViewModel GetByEmployeeCodeAndPassword(string employeeCode, string password)
+        public UserViewModel GetByEmployeeCodeAndPassword(string EmployeeCode, string Password)
         {
-            var userTable = _dbContext.Users.Include("Employee")
-                .Where(n => n.EmployeeCode == employeeCode && n.Password == password).ToList()
+            var userTable = _dbContext.Users
+                .Where(n => n.EmployeeCode == EmployeeCode && n.Password == Password).ToList()
                 .Select(x => new UserViewModel
                 {
                     EmployeeCode = x.EmployeeCode,
-                    Password = x.Password
+                    Password = x.Password,
+                    IsAccountLocked = x.IsAccountLocked,
+                    IsActive =x.IsActive,
+                    Role = x.Role
                 }).FirstOrDefault();
 
             return userTable;

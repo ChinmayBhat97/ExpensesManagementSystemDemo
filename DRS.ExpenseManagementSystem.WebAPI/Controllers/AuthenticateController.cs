@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
-    public class AuthorizationController : ControllerBase
-    {
+    
         [ApiController]
         [Route("api/[controller]")]
         public class AuthenticateController : ControllerBase
@@ -19,10 +18,10 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             }
 
             [HttpPost]
-            public AuthenticationViewModel Authenticate(string EmployeeCode, string password)
+            public AuthenticationViewModel Authenticate(string EmployeeCode, string Password)
             {
-                return userService.Authenticate(EmployeeCode, password);
+                return userService.Authenticate(EmployeeCode, Password);
             }
         }
-    }
+    
 }

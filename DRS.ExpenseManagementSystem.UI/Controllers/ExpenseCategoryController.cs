@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Web;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -22,14 +23,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        [Authorize(Roles = "4")]
-
+        
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseCategory");
             if (responseHomePage.IsSuccessStatusCode)
             {
+
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseCategoryViewModel>>(responseContent);
                 return View(model);
@@ -41,6 +42,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+
+    
+
         [HttpGet("ExpenseCategory/CreateExpenseCategory")]
         public async Task<IActionResult> CreateExpenseCategoryAsync()
         {
@@ -48,21 +52,26 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+
+
         [HttpPost("ExpenseCategory/CreateExpenseCategory")]
-        public async Task<IActionResult> CreateExpenseCategory(ExpenseCategoryViewModel expenseCategoryViewModel)
+        public async Task<IActionResult> CreateExpenseCategory(ExpenseCategory expenseCategory, string? title)
         {
             if (ModelState.IsValid)
             {
-                var myContent = JsonConvert.SerializeObject(expenseCategoryViewModel);
+                title= expenseCategory.Name;
+                HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"ExpenseCategory?title={HttpUtility.UrlEncode(title)}", null);
+
+                var myContent = JsonConvert.SerializeObject(expenseCategory);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
                 HttpResponseMessage createNewExpenseCategory = await client.PostAsync(client.BaseAddress + $"ExpenseCategory", byteContent);
 
                 return RedirectToAction("Index");
             }
-
-            return View(expenseCategoryViewModel);
+            return View(expenseCategory);
         }
 
 
@@ -73,6 +82,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var EditExpenseCategory = JsonConvert.DeserializeObject<ExpenseCategoryViewModel>(await responseEditExpenseCategory.Content.ReadAsStringAsync());
             return View(EditExpenseCategory);
         }
+
+
+       
 
         [HttpPost("ExpenseCategory/EditExpenseCategory/{id}")]
         public async Task<IActionResult> EditExpenseCategory(int id, ExpenseCategoryViewModel expenseCategoryViewModel)
@@ -100,5 +112,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var detailsExpenseCategory = JsonConvert.DeserializeObject<ExpenseCategoryViewModel>(await responseDetailsExpenseCategory.Content.ReadAsStringAsync());
             return View(detailsExpenseCategory);
         }
+
+
+        [HttpGet("ExpenseCategory/DetailsByExpenseCategoryTitle")]
+        public async Task<IActionResult> DetailsByExpenseCategoryTitle()
+        {
+            HttpResponseMessage responseCreateExpenseCategory = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            return View();
+        }
+
+
+       
     }
 }

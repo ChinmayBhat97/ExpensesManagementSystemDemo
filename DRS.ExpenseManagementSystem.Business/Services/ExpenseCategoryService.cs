@@ -1,6 +1,8 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
+using DRS.ExpenseManagementSystem.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,27 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         public ExpenseCategoryService(IExpenseCategoryRepository repository) : base (repository) 
         {
                 this.expensesCategoryRepository = repository;
+        }
+
+        public  ExpenseCategoryViewModel GetByTitle(string title)
+        {
+            var checkByTitle = expensesCategoryRepository.GetByTitleName(title);
+            if (checkByTitle == null)
+            {
+                return new ExpenseCategoryViewModel
+                {
+                    IsAuthenticated = false,
+                    ErrorMessage = "ERR001"
+                };
+            }
+            else
+            {
+                return new ExpenseCategoryViewModel
+                {
+                    IsAuthenticated = true,
+                    ExpenseCheckViewModel = checkByTitle
+                };
+            }
         }
     }
 }

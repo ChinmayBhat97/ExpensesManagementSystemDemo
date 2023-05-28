@@ -19,9 +19,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             this.userRepository = _repository;
         }
 
-        public AuthenticationViewModel Authenticate(string employeeCode, string password)
+        public AuthenticationViewModel Authenticate(string EmployeeCode, string Password)
         {
-            var userTable = userRepository.GetByEmployeeCodeAndPassword(employeeCode, password);
+            var userTable = userRepository.GetByEmployeeCodeAndPassword(EmployeeCode, Password);
             if (userTable == null)
             {
                 return new AuthenticationViewModel
@@ -35,7 +35,7 @@ namespace DRS.ExpenseManagementSystem.Business.Services
                 return new AuthenticationViewModel
                 {
                     IsAuthenticated = true,
-
+                    userDetails = userTable
                 };
             }
         }

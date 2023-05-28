@@ -22,11 +22,23 @@
         tr:nth-child(even) {
             background-color: #e6f2ff;
         }
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
     </style>
 </head>
 
-<body>
-    <div style="padding-left:20px;">
+<body style="padding-bottom:50px;">
+    <div style="padding-left:20px;padding-bottom:80px;">
         <h3 style="color:#000099"><u> <b>Projects List </b></u></h3>
 
         <div style="padding-left:925px;">
@@ -35,29 +47,34 @@
         </div>
         <br />
 
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:10px;">
+        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:25px;font-size:17px">
             <thead>
-                <tr>
+            
+                <tr style="vertical-align:central;">
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Id)
+                        Sl.No
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.EmpId)
+                        @*@Html.DisplayNameFor(model => model.Id)*@
+                       Project ID
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Title)
+                        EMP ID
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Description)
+                      Project Title
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.StartDate)
+                      Project Description
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.EndDate)
+                      Project Start Date
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Client)
+                      Project End Date
+                    </th>
+                    <th style="background-color: #0000b3;">
+                       Client Name
                     </th>
                     <th style="background-color: #0000b3;">Action </th>
                 </tr>
@@ -65,17 +82,21 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td style="padding-left:10px;">
+                    
+                    <tr style="vertical-align:central;">
+                        <td style="padding-left:25px;vertical-align:central;">
+                            &nbsp;
+                        </td>
+                        <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.EmpId)
                         </td>
-                        <td>
+                        <td style="vertical-align:central;">
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;vertical-align:central;">
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td style="padding-left:10px;">

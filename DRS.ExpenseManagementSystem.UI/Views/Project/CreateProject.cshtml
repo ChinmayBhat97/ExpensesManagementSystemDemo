@@ -4,72 +4,78 @@
 }
 
 <body>
-    <div style="padding-left:150px;">
+    <div style="padding-left:200px;">
         <h3 style="color:#000099"> <u><b>Add Project </b></u>   </h3>
         <br />
     <div class="row">
-        <div class="col-md-12">
+            <div class="col-md-12" style="padding-top:10px;">
             <form asp-route="/Project/CreateProject">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                
                 <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                            <b>    <label asp-for="EmpId" class="control-label"></label><span style="color:red;">*</span></b>
+                            <b>    <label asp-for="EmpId" class="control-label"> EMP ID</label><span style="color:red;">*</span></b>
                                 <input asp-for="EmpId" class="form-control" required />
                                 <span asp-validation-for="EmpId" class="text-danger"></span>
                             </div>
                         </div>
-
-
-
-                        <div class="col-md-10">
+                        <div class="col-md-4">
                             <div class="form-group">
-                            <b>    <label asp-for="Title" class="control-label"></label><span style="color:red;">*</span></b>
-                                <input asp-for="Title" class="form-control" required />
-                                <span asp-validation-for="Title" class="text-danger"></span>
-                            </div>
-
-                        </div>
-                </div>
-                     
-                <div class="row">
-                    <div class="col-md-4">
-                            <div class="form-group">
-                            <b>    <label asp-for="StartDate" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>    <label asp-for="StartDate" class="control-label"> Project Start Date</label><span style="color:red;">*</span></b>
                                 <input asp-for="StartDate" class="form-control" required />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
-                    </div>
+                        </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                           <b>     <label asp-for="EndDate" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>     <label asp-for="EndDate" class="control-label">Project End Date</label> <span style="color:red;">*</span></b>
                                 <input asp-for="EndDate" class="form-control" required />
                                 <span asp-validation-for="EndDate" class="text-danger"></span>
                             </div>
+                        </div>
+                </div>
+
+                  
+                 
+                <div class="row" style="padding-top:10px;">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <b>   <label asp-for="Client" class="control-label">Client Name</label> <span style="color:red;">*</span></b>
+                                <input asp-for="Client" class="form-control" required />
+                                <span asp-validation-for="Client" class="text-danger"></span>
+                            </div>
+                        </div>
+                </div>
+
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <b>    <label asp-for="Title" class="control-label">Project Title</label><span style="color:red;">*</span></b>
+                                <input asp-for="Title" class="form-control" required />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
+
+                <div class="form-group" style="padding-top:10px;">
+                        <div class="col-md-10">
+                    <b>    <label asp-for="Description" class="control-label">Project Description</label><span style="color:red;">*</span></b>
+                        <textarea asp-for="Description" class="form-control" rows="2" cols="40" required> </textarea>
+                        </div>
                 </div>
                
-                <div class="form-group">
-                    <b>    <label asp-for="Description" class="control-label"></label><span style="color:red;">*</span></b>
-                    <input asp-for="Description" class="form-control" required />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-              
                
-                <div class="form-group">
-                     <b>   <label asp-for="Client" class="control-label"></label><span style="color:red;">*</span></b>
-                    <input asp-for="Client" class="form-control" required />
-                    <span asp-validation-for="Client" class="text-danger"></span>
-                </div>
+               
                 <br />
-                <div class="form-group" style="padding-left:700px;">
+                <div class="form-group" style="padding-left:600px;">
                    
                         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
                         <input type="submit" value="Save" class="btn btn-success" />
                 </div>
             </form>
+                <p> <i style="color:red">Note: </i>  EMP ID refers to Employee ID of the Manager or Team Lead of The Project. </p>
         </div>
     </div>
    </div>

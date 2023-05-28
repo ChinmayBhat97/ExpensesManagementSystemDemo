@@ -27,22 +27,37 @@
             tr:nth-child(even) {
                 background-color: #e6f2ff;
             }
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
         </style>
 
 
     </head>
     <body >
-        <div style="padding-left:150px;">
-        <h3 style="color:#000099"><u> <b>Department List </b></u></h3>
+        <div style="padding-left:200px;">
+        <h4 style="color:#000099"><u> <b>Department List </b></u></h4>
 
-        <div style="padding-left:400px;">
+        <div style="padding-left:535px;">
             <a asp-action="CreateDepartment"  class="btn btn-outline-success">Create New Department</a>
           @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
         <br />
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 60%;padding-top:10px;">
+        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:80%;padding-top:25px;font-size:17px">
             <thead>
                 <tr>
+                    <th style="background-color: #0000b3;">
+                        Sl.No
+                    </th>
                     <th style="background-color: #0000b3;">
                         ID
                     </th>
@@ -58,6 +73,10 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                    
+                        <td style="padding-left:25px;" width="10%">
+                            &nbsp;
+                        </td>
                         <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>

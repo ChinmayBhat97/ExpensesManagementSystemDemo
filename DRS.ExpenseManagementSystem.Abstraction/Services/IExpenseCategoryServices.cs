@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
     public interface IExpenseCategoryServices : IBaseService<ExpenseCategory>
     {
-
+        ExpenseCategoryViewModel GetByTitle(string title);
     }
 }

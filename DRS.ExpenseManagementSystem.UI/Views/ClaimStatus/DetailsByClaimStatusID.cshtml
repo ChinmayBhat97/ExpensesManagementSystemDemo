@@ -7,7 +7,7 @@
 
 <div style="padding-left:200px;">
     <h4> <b> <u>Claim Status  </u></b></h4>
-
+    <br />
     <dl class="row">
 
         <dt class="col-sm-8">
@@ -20,10 +20,11 @@
       
 
     </dl>
-    <div style=" padding-left:200px;">
-        <input type="submit" value="Save" class="btn btn-primary" />
-
+    <div style=" padding-left:100px;">
+      
         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+        <a asp-action="EditClaimStatus" asp-route-id="@Model.Id" class="btn  btn btn-success">Edit Claim Status</a>
+
 
     </div>
 </div>

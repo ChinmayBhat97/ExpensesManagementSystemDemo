@@ -1,5 +1,6 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +44,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public async Task Put(ExpenseCategory expensesCategory)
         {
             await expensesCategoryServices.UpdateAsync(expensesCategory);
+        }
+
+
+        [HttpPost]
+        public ExpenseCategoryViewModel CheckByTitle(string title)
+        {
+           return  expensesCategoryServices.GetByTitle(title);
         }
 
     }

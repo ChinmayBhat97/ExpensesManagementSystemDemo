@@ -22,28 +22,44 @@
         tr:nth-child(even) {
             background-color: #e6f2ff;
         }
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
+
     </style>
 </head>
 
 
-<body>
-    <div style="padding-left:20px;">
+<body style="overflow:hidden;">
+    <div style="padding-left:200px;padding-bottom:220px;">
         <h3 style="color:#000099"><u> <b>Status List </b></u></h3>
 
-        <div style="padding-left:925px;">
-            <a asp-action="CreateClaimStatus" class="btn btn-outline-success">Add New Status</a>
+        <div style="padding-left:500px;">
+            <a asp-action="CreateClaimStatus" class="btn btn-outline-success" style="background-color: #009900;color:white">Add New Status</a>
 
         </div>
         <br />
 
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:10px;">
+        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:15px;font-size:17px">
             <thead>
                 <tr>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Id)
+                        Sl.No
                     </th>
                     <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Name)
+                        ID
+                    </th>
+                    <th style="background-color: #0000b3;">
+                       Type of Claim Status
                     </th>
                     <th style="background-color: #0000b3;">Action </th>
                 </tr>
@@ -51,14 +67,18 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    
                     <tr>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:25px;" width="10%">
+                            &nbsp;
+                        </td>
+                        <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td style="padding-left:10px;">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;" width="25%">
                             <a asp-action="EditClaimStatus" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
@@ -66,6 +86,7 @@
                 }
             </tbody>
         </table>
+    </div>
 </body>
 
 

@@ -6,25 +6,26 @@
 
 <body>
     <div style="padding-left:200px;">
-        <h3 style="color:#000099"> <u><b>Edit Department </b></u>   </h3>
+        <h4 style="color:#000099"> <u><b>Edit Department </b></u>   </h4>
         <br />
         <div class="row">
             <div class="col-md-6">
                 <form asp-route="/Department/EditDepartment/@Model.Id">
                     <div class="form-group">
                         <div class="col-md-2">
-                               <b> <label asp-for="Id" class="control-label"></label><span style="color:red;">*</span></b>
+                               <b> <label asp-for="Id" class="control-label">ID</label></b>
                             <input asp-for="Id" class="form-control" readonly/>
                             <span asp-validation-for="Id" class="text-danger"></span>
                         </div>
                     </div>
+                    <br />
                     <div class="form-group">
-                        <b>  <label asp-for="Name" class="control-label"></label><span style="color:red;">*</span></b>
+                        <b>  <label asp-for="Name" class="control-label">Department Name</label><span style="color:red;">*</span></b>
                         <input asp-for="Name" class="form-control" required />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <br />
-                    <div class="form-group" style="padding-left:250px;">
+                    <div class="form-group" style="padding-left:275px;">
                         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
                         <input type="submit" value="Save" class="btn btn-success" />
                     </div>

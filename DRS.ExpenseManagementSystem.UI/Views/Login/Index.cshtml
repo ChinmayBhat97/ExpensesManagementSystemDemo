@@ -31,6 +31,8 @@
                 <div class="row" style="padding-top:50px" >
                     <div class="col-lg-5">
                         <div class="form-fields mb-3">
+
+                              
                                 <b> <label> Employee Code </label> </b> <span style="color:red;">*</span>
                             <input type="text" class="form-control f-15 fw-500" id="user-name" asp-for="EmployeeCode" placeholder="User Name" />
                             <span asp-validation-for="EmployeeCode" class="text-danger"></span>
@@ -47,6 +49,14 @@
                             {
                                 <label>@ViewData["Validate message"]</label>
                             }
+                    </div>
+
+                    <div>
+                            <h6>@TempData["Message"]</h6>
+                            <h6>@TempData["MessageInst"]</h6>
+
+                            <h6>@TempData["MessageInfo"]</h6>
+                            <h6>@TempData["Check"]</h6>
                     </div>
                 </div>
             </form>

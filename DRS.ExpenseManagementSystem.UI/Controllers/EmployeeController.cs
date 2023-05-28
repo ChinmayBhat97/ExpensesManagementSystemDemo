@@ -19,11 +19,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             this.client = new HttpClient
             {
                 BaseAddress = new Uri(configuration["BaseUrl"]),
-                Timeout = TimeSpan.FromMinutes(5)
+                Timeout = TimeSpan.FromMinutes(20)
             };
         }
 
-        [Authorize(Roles = "4")]
+       // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -63,20 +63,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
         [HttpPost("Employee/CreateEmployee")]
-        public async Task<IActionResult> CreateEmployee(EmployeeViewModel employeeViewModel)
+        public async Task<IActionResult> CreateEmployee(Employee employee)
         {
+            employee.CreatedAt=DateTime.Now;
             if (ModelState.IsValid)
             {
-                var myContent = JsonConvert.SerializeObject(employeeViewModel);
+          
+                var myContent = JsonConvert.SerializeObject(employee);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+               // HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+                  HttpResponseMessage createNewEmp = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
                 return RedirectToAction("Index");
             }
 
-            return View(employeeViewModel);
+            return View(employee);
         }
 
         //[HttpGet("User/EditEmployee/{id}")]
@@ -90,8 +93,21 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditEmployee(int id)
         {
             HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
-            return View(EditEmployee);
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            if (responseEditEmployee.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
+            {
+                var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+                var departmentSelectList = new List<SelectListItem>();
+                foreach (var department in departmentList)
+                {
+                    departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+                }
+                ViewBag.departmentList = departmentSelectList;
+                var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
+                return View(EditEmployee);
+                
+            }
+            return View();
         }
 
         [HttpPost("Employee/EditEmployee/{id}")]

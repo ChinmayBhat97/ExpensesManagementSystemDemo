@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using DRS.ExpenseManagementSystem.WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -47,135 +48,73 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+
+
+
         [HttpPost]
         public async Task<IActionResult> Login(string EmployeeCode, string Password)
         {
-       
-
-
-            var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode == EmployeeCode && u.Password == Password);
-
-            if (checkUser)
+            if (ModelState.IsValid)
             {
-                var user = expensesManagementSystem_UpdatedContext.Users.Single(u => u.EmployeeCode == EmployeeCode);
-                var empID = user.Id;
-                var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Id;
-                var designation = expensesManagementSystem_UpdatedContext.Employees.Single(x => x.EmpId == empID).Designation;
-                var fName = expensesManagementSystem_UpdatedContext.Employees.Where(m => m.EmpId==ID_Employee).Select(n => n.FirstName).SingleOrDefault();
-
-                TempData["logged_empID"] = ID_Employee;
-
-                ViewBag.UserName=fName;
-                ViewBag.UserRole= designation;
-
-
-                List<Claim> userClaims = new List<Claim>()
+                HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"Authenticate?EmployeeCode={HttpUtility.UrlEncode(EmployeeCode)}&Password={HttpUtility.UrlEncode(Password)}", null);
+              //  HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"Authenticate?userName={HttpUtility.UrlEncode(data.userName)}&password={HttpUtility.UrlEncode(data.password)}", null);
+                if (response.IsSuccessStatusCode)
                 {
-                    new Claim(ClaimTypes.NameIdentifier, EmployeeCode),
-                    new Claim(ClaimTypes.Role, user.Role.ToString())
-                    
-                };
+                    var authResponse = JsonConvert.DeserializeObject<AuthenticationViewModel>(await response.Content.ReadAsStringAsync());
+                    if (authResponse.IsAuthenticated==true)
+                    {
+                        if(authResponse.userDetails.IsActive==true && authResponse.userDetails.IsAccountLocked==false)
+                        {
+                            TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
+                           
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            TempData["Message"]="Your are not active User or you dont have access to this application.";
+                            TempData["MessageInst"]="Kindly contact Admin or HR Manager for further information.";
+                            return RedirectToAction("Index", "Login");
+                        }
+                        //HttpContext.Session.SetString("UserRole", authResponse.userDetails.RoleName);
+                        //HttpContext.Session.SetInt32("RoleId", authResponse.userDetails.RoleID);
+                        //HttpContext.Session.SetInt32("UserId", authResponse.userDetails.UserId);
+                        //HttpContext.Session.SetString("UserName", authResponse.userDetails.FirstName + " " + authResponse.userDetails.LastName);
+                        //HttpContext.Session.SetString("UserFullName", authResponse.userDetails.FirstName + " " + authResponse.userDetails.LastName);
+                    }
+                    else
+                    {
+                        TempData["MessageInfo"] = "Kindly check your credentials and Try again.";
+                        //ViewBag.NotFound="Kindly check your credentials and Try again.";
+                        return RedirectToAction("Index", "Login");
+                    }
 
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                AuthenticationProperties properties = new AuthenticationProperties()
+                }
+                else
                 {
-                    AllowRefresh = false,
-                };
+                    TempData["Check"]="You are not registered.";
+                    return RedirectToAction("Index", "Login");
+                }
+               
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity), properties);
-
-                return RedirectToAction("Index", "Home");
+               // ModelState.AddModelError(string.Empty, "Incorrect Username or Password");
             }
 
-            ViewData["Validate message"] = "Incorrect user credentials! Please check and enter again.";
             return View("Index");
         }
 
+      
 
-
-
-        // [HttpGet("EmployeeCode/{employeeCode},Password/{password}")]
-        //[HttpPost]
-        //public async Task<IActionResult> Login(string EmployeeCode, string Password)
-        //{
-
-        //    var checkUser = expensesManagementSystem_UpdatedContext.Users.Any(u => u.EmployeeCode==EmployeeCode);
-        //    var checkPswd = expensesManagementSystem_UpdatedContext.Users.Any(u => u.Password==Password);
-
-        //    if ((checkUser && checkPswd)==true)
-        //    {
-        //        var empID = expensesManagementSystem_UpdatedContext.Users.Where(v => v.EmployeeCode==EmployeeCode).Select(k => k.Id).SingleOrDefault();
-        //        var ID_Employee = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Id).SingleOrDefault();
-        //        var designation = expensesManagementSystem_UpdatedContext.Employees.Where(x => x.EmpId==empID).Select(x => x.Designation).SingleOrDefault();
-        //        TempData["logged_empID"] = ID_Employee;
-        //        List<Claim> user1 = new List<Claim>()
-        //        {
-        //            new Claim(ClaimTypes.NameIdentifier, EmployeeCode),
-        //            new Claim(ClaimTypes.Role, designation)
-
-        //        };
-
-
-
-        //        ClaimsIdentity claimsIdentity = new ClaimsIdentity(user1, CookieAuthenticationDefaults.AuthenticationScheme);
-
-        //        AuthenticationProperties properties = new AuthenticationProperties()
-        //        {
-        //           AllowRefresh= false,
-
-        //        };
-
-        //         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-        //         new ClaimsPrincipal(claimsIdentity), properties);
-
-        //        return RedirectToAction("Index", "Home");
-
-
-        //    }
-        //    ViewData["Validate message"]= "Incorrect user credentials!.Kindly check and enter again.";
-        //    return View("Index");
-        //}
-
-
+        
         public async Task<IActionResult> Logout()
         {
-            try
-            {
-                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            
+            TempData.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 return RedirectToAction("Index", "Login");
-            }
-            catch (Exception ex)
-            {
-                return View(ex.Message);
-            }
-
-
+           
         }
 
 
     }
 }
-
-//if (ModelState.IsValid)
-//{
-//    HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"Auth?employeeCode={HttpUtility.UrlEncode(EmployeeCode)}&password={HttpUtility.UrlEncode(Password)}",null);
-
-//    if (response.IsSuccessStatusCode)
-//    {
-//        var authResponse = JsonConvert.DeserializeObject<Auth>(await response.Content.ReadAsStringAsync());
-//        if (authResponse.isAuthenticated)
-//        {
-//            HttpContext.Session.SetString("UserRole", authResponse.employeeDetails.Designation);
-//            HttpContext.Session.SetInt32("UserId", authResponse.userDetails.Id);
-//            HttpContext.Session.SetString("UserName", authResponse.employeeDetails.FirstName + " " + authResponse.employeeDetails.LastName);
-//            HttpContext.Session.SetString("UserFullName", authResponse.employeeDetails.FirstName + " " + authResponse.employeeDetails.LastName);
-
-//            return RedirectToAction("Index", "Home");
-//        }
-//    }
-
-//    ModelState.AddModelError(string.Empty, "Incorrect Username or Password");
-//}
 

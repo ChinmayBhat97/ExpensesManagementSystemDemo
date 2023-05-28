@@ -14,11 +14,11 @@
 
     <dl class="row">
 
-        <dt class="col-sm-6">
+        <dt class="col-sm-8">
             ID  :&nbsp; @Html.DisplayFor(model => model.Id)
         </dt>
        
-        <dt class="col-sm-6">
+        <dt class="col-sm-8">
             Employee Code: &nbsp; @Html.DisplayFor(model => model.EmployeeCode)
         </dt>
         
@@ -28,17 +28,33 @@
         <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Password)
         </dd>*@
-        <br />
-        <dt class="col-sm-6">
+      
+        <dt class="col-sm-8">
             Role :&nbsp;  @Html.DisplayFor(model => model.Role)
         </dt>
-       <br />
-        <dt class="col-sm-6">
-            IsAccountLocked:&nbsp;  @Html.DisplayFor(model => model.IsAccountLocked)
+       
+        <dt class="col-sm-8">
+            Account Locked:&nbsp;  @*@Html.DisplayFor(model => model.IsAccountLocked)*@
+            @if (Model.IsAccountLocked==true)
+            {
+                <p>Yes</p>
+            }
+            else
+            {
+                <p>No</p>
+            }
         </dt>
-       <br />
-        <dt class="col-sm-6">
-            IsActive:&nbsp;   @Html.DisplayFor(model => model.IsActive)
+      
+        <dt class="col-sm-8">
+            Active Employee:&nbsp;   @*@Html.DisplayFor(model => model.IsActive)*@
+            @if (Model.IsActive==true)
+            {
+                <p>Yes</p>
+            }
+            else
+            {
+                <p>No</p>
+            }
         </dt>
        
     </dl>

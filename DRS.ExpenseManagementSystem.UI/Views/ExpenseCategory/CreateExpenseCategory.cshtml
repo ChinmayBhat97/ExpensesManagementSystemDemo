@@ -1,13 +1,13 @@
-﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseCategoryViewModel
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseCategory
 @{
     ViewData["Title"] = "Create";
 }
 
 
 
-<body>
+<body style="overflow:hidden;">
     
-    <div style="padding-left:200px;">
+    <div style="padding-left:250px;padding-bottom:80px;">
         <h3>  <u> <b> Create New Expense Category </b> </u></h3>
         <div class="row">
             <div class="col-md-6">
@@ -20,9 +20,8 @@
                     </div>
                     <br />
                     <div class="form-group" style="padding-left:250px;">
-                        <input type="submit" value="Save" class="btn btn-success" />
-
                         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" />
 
                     </div>
                 </form>

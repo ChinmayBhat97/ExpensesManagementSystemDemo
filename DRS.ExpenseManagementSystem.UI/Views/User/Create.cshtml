@@ -5,7 +5,7 @@
 
 <body>
     <div style="padding-left:200px;">
-        <h3 style="color:#000099"> <u><b>Add User </b></u>   </h3>
+        <h4 style="color:#000099"> <u><b>Add User </b></u>   </h4>
         <br />
         <div class="row">
             <div class="col-md-12">
@@ -14,7 +14,7 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-4">
                             <div class="form-group">
-                             <b>   <label asp-for="EmployeeCode" class="control-label"></label><span style="color:red;">*</span></b>
+                             <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label><span style="color:red;">*</span></b>
                                 <input asp-for="EmployeeCode" class="form-control" required/>
                                 <span asp-validation-for="EmployeeCode" class="text-danger"></span>
                             </div>
@@ -22,17 +22,17 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                             <b>   <label asp-for="Password" class="control-label"></label><span style="color:red;">*</span></b>
+                             <b>   <label asp-for="Password" class="control-label">Password</label><span style="color:red;">*</span></b>
                                 <input asp-for="Password" class="form-control" type="password" required/>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                   
-                    <div class="col-md-8" style="padding-top:5px;">
+                    <div class="col-md-2" style="padding-top:5px;">
                         <div class="form-group">
-                          <b>  <label asp-for="Role" class="control-label"></label><span style="color:red;">*</span></b>
-                            <input asp-for="Role" class="form-control" required/>
+                          <b>  <label asp-for="Role" class="control-label"> Role </label><span style="color:red;">*</span></b>
+                            <input asp-for="Role" class="form-control" required min="1"/>
                             <span asp-validation-for="Role" class="text-danger"></span>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <b>  <label asp-for="IsAccountLocked" class="control-label"></label><span style="color:red;">*</span></b>
+                                <b>  <label asp-for="IsAccountLocked" class="control-label">Account Locked Status </label><span style="color:red;">*</span></b>
                                 <select asp-for="IsAccountLocked" class="form-control" required>
                                     <option value="">-- Select --</option>
                                     <option value="true">Yes</option>
@@ -52,7 +52,7 @@
 
                         <div class="col-md-3" style="padding-left:10px;">
                             <div class="form-group">
-                              <b>  <label asp-for="IsActive" class="control-label"></label><span style="color:red;">*</span></b>
+                              <b>  <label asp-for="IsActive" class="control-label"> Active Employee</label><span style="color:red;">*</span></b>
                                 <select asp-for="IsActive" class="form-control" required>
                                     <option value="">-- Select --</option>
                                     <option value="true">Yes</option>

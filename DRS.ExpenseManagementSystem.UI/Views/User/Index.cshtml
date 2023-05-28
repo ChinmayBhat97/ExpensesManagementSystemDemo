@@ -22,93 +22,114 @@
         tr:nth-child(even) {
             background-color: #e6f2ff;
         }
+
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
     </style>
 
 </head>
 
 
-<body>
-    <div style="padding-left:150px;">
-        <h3 style="color:#000099"><u> <b>Department List </b></u></h3>
+<body style="padding-bottom:15px;">
+    <div style="padding-left:200px;">
+        <h3 style="color:#000099"><u> <b>Users List </b></u></h3>
 
-        <div style="padding-left:695px;">
+        <div style="padding-left:700px;">
             <a asp-action="Create" class="btn btn-outline-success">Add new User</a>
             @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
-        <br />
-        <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 85%;padding-top:10px;">
-            <thead>
-                <tr>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Id)
-                    </th>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.EmployeeCode)
-                    </th>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Password)
-                    </th>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.Role)
-                    </th>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.IsAccountLocked)
-                    </th>
-                    <th style="background-color: #0000b3;">
-                        @Html.DisplayNameFor(model => model.IsActive)
-                    </th>
-                    <th style="background-color: #0000b3;">Action </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <div style="padding-top:10px;">
+            <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:90%;padding-top:25px;font-size:17px;">
+                <thead>
                     <tr>
-                        <td style="padding-left:20px;">
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td style="padding-left:20px;">
-                            @Html.DisplayFor(modelItem => item.EmployeeCode)
-                        </td>
-                        <td style="padding-left:20px;">
-                            @Html.DisplayFor(modelItem => item.Password)
-                        </td>
-                        <td style="padding-left:20px;">
-                            @Html.DisplayFor(modelItem => item.Role)
-                        </td>
-                        <td style="padding-left:20px;">
-                            @*@Html.DisplayFor(modelItem => item.IsAccountLocked)*@
-                            @if(item.IsAccountLocked==true)
-                            {
-                                <p >Yes</p>
-                            }
-                            else
-                            {
-                                <p >No</p>
-                            }
-                        </td>
-                        <td style="padding-left:20px;">
-                            @*@Html.DisplayFor(modelItem => item.IsActive)*@
-                            @if (item.IsActive==true)
-                            {
-                                <p >Yes</p>
-                            }
-                            else
-                            {
-                                <p >No</p>
-                            }
-                        </td>
-                        <td style="padding-left:20px;">
-                           @* <a asp-action="EditUser" asp-route-id="@item.Id">Edit</a> |
+                        <th style="background-color: #0000b3;">
+                            Sl.No
+                        </th>
+                        <th style="background-color: #0000b3;">
+                            ID @*@Html.DisplayNameFor(model => model.Id)*@
+                        </th>
+                        <th style="background-color: #0000b3;">
+                            Employee Code @*@Html.DisplayNameFor(model => model.EmployeeCode)*@
+                        </th>
+                        @* <th style="background-color: #0000b3;">
+                        @Html.DisplayNameFor(model => model.Password)
+                        </th>*@
+                        <th style="background-color: #0000b3;">
+                            @Html.DisplayNameFor(model => model.Role)
+                        </th>
+                        <th style="background-color: #0000b3;">
+                            Account Locked @*@Html.DisplayNameFor(model => model.IsAccountLocked)*@
+                        </th>
+                        <th style="background-color: #0000b3;">
+                            Active Employee @*@Html.DisplayNameFor(model => model.IsActive)*@
+                        </th>
+                        <th style="background-color: #0000b3;">Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="padding-left:10px; vertical-align:central;text-align:center;" width="10%">
+                                &nbsp;
+                            </td>
+                            <td style="padding-left:10px;vertical-align:central; text-align:center;">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td style="padding-left:30px;">
+                                @Html.DisplayFor(modelItem => item.EmployeeCode)
+                            </td>
+                            @*  <td style="padding-left:20px;">
+                        @Html.DisplayFor(modelItem => item.Password)
+                        </td>*@
+                            <td style="padding-left:25px;">
+                                @Html.DisplayFor(modelItem => item.Role)
+                            </td>
+                            <td style="padding-left:60px;">
+                                @*@Html.DisplayFor(modelItem => item.IsAccountLocked)*@
+                                @if (item.IsAccountLocked==true)
+                                {
+                                    <p>Yes</p>
+                                }
+                                else
+                                {
+                                    <p>No</p>
+                                }
+                            </td>
+                            <td style="padding-left:60px;">
+                                @*@Html.DisplayFor(modelItem => item.IsActive)*@
+                                @if (item.IsActive==true)
+                                {
+                                    <p>Yes</p>
+                                }
+                                else
+                                {
+                                    <p>No</p>
+                                }
+                            </td>
+                            <td style="padding-left:20px;">
+                                @* <a asp-action="EditUser" asp-route-id="@item.Id">Edit</a> |
                             <a asp-action="DetailsByUserID" asp-route-id="@item.Id">Details</a> |*@
 
-                            <a asp-action="EditUser" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByUserID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                <a asp-action="EditUser" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a asp-action="DetailsByUserID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
 
         </div>
 </body>
