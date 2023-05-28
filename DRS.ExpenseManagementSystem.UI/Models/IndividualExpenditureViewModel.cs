@@ -8,7 +8,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
     public class IndividualExpenditureViewModel
     {
         public int Id { get; set; }
-        public int? ClaimId { get; set; }
+        public int ClaimId { get; set; }
         [Required]
         public DateTime? ExpenditureDate { get; set; }
         [Required]
