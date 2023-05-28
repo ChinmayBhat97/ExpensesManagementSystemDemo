@@ -39,99 +39,48 @@
         <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead>
                 <tr>
-                    @*  <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                    </th>*@
                     <th style="background-color: #0000b3;">
                         Employee ID
                     </th>
                     <th style="background-color: #0000b3;">
+                        Project
+                    </th>
+                    <th style="background-color: #0000b3;">
                         Department
                     </th>
-                    @* <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                    </th>
-                    <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                    </th>*@
                     <th style="background-color: #0000b3;">
                         Claim Request Date
                     </th>
                     <th style="background-color: #0000b3;">
                         Amount
                     </th>
-
                     <th style="background-color: #0000b3;">
                         Status
                     </th>
-                    @* <th>
-                    @Html.DisplayNameFor(model => model.ManagerRemarks)
-                    </th>
-                    <th>
-                    @Html.DisplayNameFor(model => model.ManagerApprovedOn)
-                    </th>
-                    <th>
-                    @Html.DisplayNameFor(model => model.FinanceManagerApprovedOn)
-                    </th>*@
                     <th style="background-color: #0000b3;">Actions</th>
                 </tr>
-
-
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        @*  <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                    </td>*@
                         <td style="padding-left:30px;">
                             @Html.DisplayFor(modelItem => item.EmpId)
+                        </td>
+                        <td style="padding-left:30px;">
+                            @Html.DisplayFor(modelItem => item.ProjectId)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DeptId)
                         </td>
-                        @* <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                    </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.ClaimRequestDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TotalAmount)
                         </td>
-
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
-                            @* @if (item.Status==1)
-                        {
-                        <h6 style="padding-left:5px;padding-top:5px;color:#0000cc">Applied</h6>
-                        }
-                        else if (item.Status==2)
-                        {
-                        <h6 style="padding-left:5px;padding-top:5px;color:#00cc00">Approved</h6>
-                        }
-                        else if (item.Status==3)
-                        {
-                        <h6 style="padding-left:5px;padding-top:5px;color: #ffd11a">Partial Approved</h6>
-                        }
-                        else
-                        {
-                        <h6 style="padding-left:5px;padding-top:5px;color:red">Reject</h6>
-                        }*@
-                        </td>
-                        @*<td>
-                    @Html.DisplayFor(modelItem => item.ManagerRemarks)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.ManagerApprovedOn)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.FinanceManagerApprovedOn)
-                    </td>*@
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>

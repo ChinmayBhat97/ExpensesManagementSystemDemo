@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\ExpenseClaim\AddExpenditures.cshtml" />
+    <Content Remove="Views\ExpenseClaim\EditByClaimant.cshtml" />
+    <Content Remove="Views\ExpenseClaim\EditIndividualExpense.cshtml" />
+    <Content Remove="Views\ExpenseClaim\IndexExpenditures.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
@@ -23,6 +30,10 @@
   <ItemGroup>
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Abstraction\DRS.ExpenseManagementSystem.Abstraction.csproj" />
     <ProjectReference Include="..\DRS.ExpenseManagementSystem.Repository\DRS.ExpenseManagementSystem.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\Cover\" />
   </ItemGroup>
 
 </Project>

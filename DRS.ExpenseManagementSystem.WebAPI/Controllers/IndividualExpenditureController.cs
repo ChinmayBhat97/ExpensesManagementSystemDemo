@@ -21,9 +21,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // GET api/individualexpenditure/5
         [HttpGet("{id}")]
-        public async Task<List<IndividualExpenditure>> GetByClaimId(int id)
+        public async Task<List<IndividualExpenditure>> GetByClaimId(int claimId)
         {
-            return await individualExpenditureServices.GetByClaimID(id);
+            return await individualExpenditureServices.GetByClaimID(claimId);
 
         }
 
@@ -32,7 +32,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         [HttpPost]
         public async Task Post(IndividualExpenditure individualExpenditure)
         {
-            await individualExpenditureServices.AddAsync(individualExpenditure);
+            await individualExpenditureServices.SaveIndividualExpenseDb(individualExpenditure);
         }
 
 

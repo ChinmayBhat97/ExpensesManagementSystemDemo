@@ -31,7 +31,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View(model);
         //}
 
-        [Authorize(Roles = "3")]
+        //[Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
