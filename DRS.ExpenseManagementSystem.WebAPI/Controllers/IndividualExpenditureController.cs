@@ -20,7 +20,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/individualexpenditure/5
-        [HttpGet("{id}")]
+        [HttpGet("{claimId}")]
         public async Task<List<IndividualExpenditure>> GetByClaimId(int claimId)
         {
             return await individualExpenditureServices.GetByClaimID(claimId);

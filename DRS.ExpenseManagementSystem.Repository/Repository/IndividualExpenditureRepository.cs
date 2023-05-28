@@ -37,7 +37,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
         public async Task<List<IndividualExpenditure>> GetByClaimID(int claimId)
         {
-            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.Id==claimId).ToListAsync();
+            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.ClaimId==claimId).ToListAsync();
         }
 
         public Task<List<IndividualExpenditure>> SaveIndividualExpenseDb()
