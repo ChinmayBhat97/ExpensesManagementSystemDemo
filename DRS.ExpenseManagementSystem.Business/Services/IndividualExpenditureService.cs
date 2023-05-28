@@ -15,7 +15,7 @@ namespace DRS.ExpenseManagementSystem.Business.Services
 
         public IndividualExpenditureService(IIndividualExpenditureRepository repository) : base(repository)
         {
-            this.repository = repository; 
+            this.repository = repository;
         }
 
         //public async Task<List<IndividualExpenditure>> GetByBillingDate(DateTime billingDate)
@@ -38,9 +38,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<IndividualExpenditure>> SaveIndividualExpenseDb(IndividualExpenditure individualExpenditure)
+        public async Task<int> SaveIndividualExpenseDb(List<IndividualExpenditure> individualExpenditures)
         {
-            throw new NotImplementedException();
+            return await repository.SaveIndividualExpenseDb(individualExpenditures);
         }
 
         //public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)

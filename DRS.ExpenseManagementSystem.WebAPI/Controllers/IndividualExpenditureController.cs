@@ -27,12 +27,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         }
 
+
        
         // POST api/<ExpenseClaimController>
         [HttpPost]
-        public async Task Post(IndividualExpenditure individualExpenditure)
+        public async Task Post(List<IndividualExpenditure> individualExpenditures)
         {
-            await individualExpenditureServices.SaveIndividualExpenseDb(individualExpenditure);
+            await individualExpenditureServices.SaveIndividualExpenseDb(individualExpenditures);
         }
 
 

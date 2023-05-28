@@ -13,7 +13,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
     public class IndividualExpenditureRepository : BaseRepository<IndividualExpenditure>, IIndividualExpenditureRepository
     {
         private ExpensesManagementSystem_UpdatedContext _dbContext;
-        public IndividualExpenditureRepository(ExpensesManagementSystem_UpdatedContext dbcontext) : base (dbcontext) 
+        public IndividualExpenditureRepository(ExpensesManagementSystem_UpdatedContext dbcontext) : base(dbcontext)
         {
             this._dbContext = dbcontext;
         }
@@ -37,12 +37,13 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
         public async Task<List<IndividualExpenditure>> GetByClaimID(int claimId)
         {
-            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.ClaimId==claimId).ToListAsync();
+            return await _dbContext.IndividualExpenditures.AsQueryable().Where(d => d.ClaimId == claimId).ToListAsync();
         }
 
-        public Task<List<IndividualExpenditure>> SaveIndividualExpenseDb()
+        public async Task<int> SaveIndividualExpenseDb(List<IndividualExpenditure> individualExpenditures)
         {
-            throw new NotImplementedException();
+            await _dbContext.IndividualExpenditures.AddRangeAsync(individualExpenditures);
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }
