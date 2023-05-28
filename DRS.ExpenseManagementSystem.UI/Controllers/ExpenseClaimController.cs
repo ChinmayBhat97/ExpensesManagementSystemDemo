@@ -171,7 +171,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-        [HttpPost("ExpenseClaim/Edit")]
+        [HttpPost("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> Edit(ExpenseClaimViewModel expenseClaimViewModel)
         {
             //if (ModelState.IsValid)
@@ -207,7 +207,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
-            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
 
             return RedirectToAction("Index");
 

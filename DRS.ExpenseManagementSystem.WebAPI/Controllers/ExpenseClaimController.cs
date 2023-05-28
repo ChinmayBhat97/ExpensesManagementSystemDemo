@@ -89,7 +89,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // PUT api/<ExpenseClaimController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task Put(ExpenseClaim expensesClaim)
         {
             await expensesClaimServices.UpdateAsync(expensesClaim);
