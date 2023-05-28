@@ -47,11 +47,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
 
-        [HttpPost]
-        public ExpenseCategoryViewModel CheckByTitle(string title)
-        {
-           return  expensesCategoryServices.GetByTitle(title);
-        }
+        //[HttpPost]
+        //public ExpenseCategoryViewModel CheckByTitle(string title)
+        //{
+        //   return  expensesCategoryServices.GetByTitle(title);
+        //}
 
     }
 }

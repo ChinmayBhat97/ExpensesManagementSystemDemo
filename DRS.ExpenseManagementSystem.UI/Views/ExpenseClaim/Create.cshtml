@@ -118,7 +118,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" id="addRowBtn" name="Add New" />
+                <input type="button" id="addRowBtn" value="Add New" name="Add New" />
 
                 <br />
                 <div class="form-group" style="padding-left:600px;">
@@ -175,7 +175,7 @@
         }
     });
 
-  // insert new rows
+    // insert new rows
     document.getElementById("addRowBtn").addEventListener("click", function () {
         var tbody = document.getElementById("ExpenseBody");
         tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));

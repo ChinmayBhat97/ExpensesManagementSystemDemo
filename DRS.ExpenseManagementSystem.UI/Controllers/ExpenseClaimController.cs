@@ -16,6 +16,7 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Syncfusion.EJ2.Diagrams;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using System.Security.Claims;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -91,7 +92,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseClaimViewModel);
         }
 
-
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
@@ -120,64 +120,100 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             expenseClaimViewModel.Status = 1;
-            
+
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent); 
+            expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
-            if (createNewClaim.IsSuccessStatusCode)
-            {
-                expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
-                int createdClaimId = JsonConvert.DeserializeObject<int>(await createNewClaim.Content.ReadAsStringAsync());
-                expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = createdClaimId);
-                // Save IndividualExpenditure
-                var individualExpenditureContent = JsonConvert.SerializeObject(expenseClaimViewModel.IndividualExpenditures);
-                var individualExpenditureBuffer = System.Text.Encoding.UTF8.GetBytes(individualExpenditureContent);
-                var individualExpenditureByteContent = new ByteArrayContent(individualExpenditureBuffer);
-                individualExpenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewExpenditure = await client.PostAsync(client.BaseAddress + $"IndividualExpenditure", individualExpenditureByteContent);
-            }
+            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+
             return RedirectToAction("Index");
-            
+
         }
 
-
-       
-
-        [HttpGet("ExpenseClaim/Edit/{claimId}")]
-        public async Task<IActionResult> EditByClaimant(int claimId)
+        [HttpGet("ExpenseClaim/Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
         {
-            HttpResponseMessage responseEditClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
-            var EditClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditClaim.Content.ReadAsStringAsync());
-            return View(EditClaim);
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+
+            // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
+            HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
+            var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
+
+            detailsClaim.IndividualExpenditures = individualExpenditures;
+
+            //drop down to show project names
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+            var projectSelectList = new List<SelectListItem>();
+            foreach (var project in projectList)
+            {
+                projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+            }
+            ViewBag.projectList = projectSelectList;
+
+            //dropdown to show categories
+            HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            var categoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseCategoryList.Content.ReadAsStringAsync());
+            var categorySelectList = new List<SelectListItem>();
+            foreach (var category in categoryList)
+            {
+                categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+            ViewBag.categoryList = categorySelectList;
+
+
+            return View(detailsClaim);
         }
+
 
         [HttpPost("ExpenseClaim/Edit")]
-        public async Task<IActionResult> EditByClaimant(ExpenseClaim expenseClaim)
+        public async Task<IActionResult> Edit(ExpenseClaimViewModel expenseClaimViewModel)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            string wwwPath = this.webHostEnvironment.WebRootPath;
+            string contentPath = this.webHostEnvironment.ContentRootPath;
+
+            string path = Path.Combine(this.webHostEnvironment.WebRootPath, "ExpenseProof");
+            if (!Directory.Exists(path))
             {
-                expenseClaim.Status = 1;
-                var myContent = JsonConvert.SerializeObject(expenseClaim);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
-                return RedirectToAction("Index");
+                Directory.CreateDirectory(path);
             }
-            return View(expenseClaim);
+
+            List<string> uploadedFiles = new List<string>();
+            foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
+            {
+                string fileName = Path.GetFileName(expenseProofs.FileName);
+                using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                {
+                    expenseProofs.CopyTo(stream);
+                    uploadedFiles.Add(fileName);
+                    ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                }
+
+            }
+
+            expenseClaimViewModel.Status = 1;
+
+            // Save ExpenseClaim
+            var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
+            var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
+            var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
+            expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
+
+            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+
+            return RedirectToAction("Index");
+
         }
 
-        //[HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]
-        //public async Task<IActionResult> DetailsByClaimID(int id)
-        //{
-        //    HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
-        //    var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
-        //    return View(detailsClaim);
-        //}
+
 
         [HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]
         public async Task<IActionResult> DetailsByClaimID(int claimId)
@@ -226,5 +262,21 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View(individualExpenditure);
         }
+
+        //[HttpPost("ExpenseClaim/Edit")]
+        //public async Task<IActionResult> EditByClaimant(ExpenseClaim expenseClaim)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        expenseClaim.Status = 1;
+        //        var myContent = JsonConvert.SerializeObject(expenseClaim);
+        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //        var byteContent = new ByteArrayContent(buffer);
+        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(expenseClaim);
+        //}
     }
 }

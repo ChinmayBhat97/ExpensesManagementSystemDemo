@@ -21,18 +21,14 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             try
             {
-                Type entityObj = entity.GetType();
                 await repository.AddAsync(entity);
-                await repository.SaveChangesAsync();
-                PropertyInfo prop = entityObj.GetProperty("Id");
-                int result = (int)prop.GetValue(entity);
-                return result;
+                return await repository.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 var p = ex.Message;
-                return 0;
             }
+            return 0;
         }
 
         public async Task<int> DeleteAsync(T entity)
