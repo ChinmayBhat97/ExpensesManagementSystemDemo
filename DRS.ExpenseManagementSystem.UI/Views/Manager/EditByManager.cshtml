@@ -1,83 +1,220 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Manager";
 }
 
-<h1>Manager Approval</h1>
 
-<h4></h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="/Manager/EditByManager/@Model.Id">
-            <div class="form-group">
-                <label asp-for="EmpId" class="control-label"></label>
-                <input asp-for="EmpId" class="form-control" readonly />
-                <span asp-validation-for="EmpId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeptId" class="control-label" ></label>
-                <input asp-for="DeptId" class="form-control" readonly />
-                <span asp-validation-for="DeptId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" readonly />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" readonly />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalAmount" class="control-label"></label>
-                <input asp-for="TotalAmount" class="form-control" readonly />
-                <span asp-validation-for="TotalAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClaimRequestDate" class="control-label"></label>
-                <input asp-for="ClaimRequestDate" class="form-control" readonly />
-                <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectId" class="control-label"></label>
-                <input asp-for="ProjectId" class="form-control" readonly />
-                <span asp-validation-for="ProjectId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManagerRemarks" class="control-label"></label>
-                <input asp-for="ManagerRemarks" class="form-control" required />
-                <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManagerApprovedOn" class="control-label">Manager Approval Date</label>
-                <input asp-for="ManagerApprovedOn" class="form-control" required />
-                <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control">
-                    <option value="">-- Select --</option>
-                    <option value="2">Approve</option>
-                    <option value="3">Reject</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+    <h4 style="padding-left:230px;"><u><b>Edit Claim Applied</b></u></h4>
+    <br />
+    <div class="row">
+        <div class="col-md-12" style="padding-left:250px;">
+            <form asp-route="/ExpenseClaim/EditByManager/@Model.Id" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <a asp-action="Index"></a>
+                    <label><b>Employee</b><span style="color:red;">*</span></label>
+                    <input asp-for="EmpId" class="form-control" required />
+                    <span asp-validation-for="EmpId" class="text-danger"></span>
                 </div>
-        </form>
+                <div class="form-group">
+                    <label><b>Department</b><span style="color:red;">*</span></label>
+                    <input asp-for="DeptId" class="form-control" required />
+                    <span asp-validation-for="DeptId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label><b>Today's Date</b><span style="color:red;">*</span></label>
+                    <input asp-for="ClaimRequestDate" class="form-control" required />
+                    <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+                </div>
+                <div class="col-md-8">
+                    <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
+                    <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
+                        <option value="">-- Select --</option>
+                    </select>
+                </div>
+                <br />
+                <div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
+                                <input asp-for="StartDate" class="form-control" required />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Expense End Date</b><span style="color:red;">*</span></label>
+                                <input asp-for="EndDate" class="form-control" required />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Total Expenditure</b><span style="color:red;">*</span></label>
+                            <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
+                            @*<span class="form-control" id="ttlamnt"></span>*@
+                            <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <table id="Expense">
+                    <tbody id="ExpenseBody">
+                        <tr>
+                            <th> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
+                            <th> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
+                            <th> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
+                            <th> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
+                            <th> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
+                            <th> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
+                            <th> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
+                            <th> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
+                        </tr>
+                        @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
+                        {
+                            <tr>
+
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <input type="button" id="addRowBtn" value="Add New" name="Add New" />
+
+                <br />
+                <div class="form-group" style="padding-left:600px;">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</body>
+</html>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    // to add new rows in table
+    var tablePosition = 1;
+    var tableDom = `&lt;tr&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;datetime-local&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}].Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}].Category&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Site&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Food&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Test Record 1&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Travel&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Test 5&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}].AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;/tr&gt;`
+    $(document).ready(function () {
+
+        InitializeKeyUp();
+
+        $(".btn-success").click(function () {
+
+            $(".expenseproof").each(function () {
+
+                $(this).siblings('.chosenfilename').val($(this)[0].files[0].name);
+            });
+
+
+        });
+
+        function InitializeKeyUp() {
+            //iterate through each textboxes and add keyup
+            //handler to trigger sum event
+            $(".txt").each(function () {
+                $(this).keyup(function () {
+                    calculateSum();
+                });
+            });
+        }
+
+        function calculateSum() {
+
+            var sum = 0;
+            //iterate through each textboxes and add the values
+            $(".txt").each(function () {
+
+                //add only if the value is number
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+                }
+            });
+            $("#ttlamnt").val(sum);
+        }
+    });
+
+    // insert new rows
+    document.getElementById("addRowBtn").addEventListener("click", function () {
+        var tbody = document.getElementById("ExpenseBody");
+        tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));
+        InitializeKeyUp();
+        tablePosition++;
+    });
+
+
+    function InitializeKeyUp() {
+        //iterate through each textboxes and add keyup
+        //handler to trigger sum event
+        $(".txt").each(function () {
+            $(this).keyup(function () {
+                calculateSum();
+            });
+        });
     }
-}
+
+    function calculateSum() {
+
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".txt").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+        });
+        $("#ttlamnt").val(sum);
+    }
+
+    function htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
+
+
+</script>
+
+
