@@ -76,6 +76,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
 
+            detailsClaim.FinanceManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
 
             //drop down to show project names
@@ -87,6 +88,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
             }
             ViewBag.projectList = projectSelectList;
+            //drop down to show department names
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
 
             //dropdown to show categories
             HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
@@ -97,6 +107,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
             }
             ViewBag.categoryList = categorySelectList;
+
+            //drop down to show status
+            HttpResponseMessage responseStatusList = await client.GetAsync(client.BaseAddress + $"ClaimStatus");
+            var statusList = JsonConvert.DeserializeObject<List<ClaimStatus>>(await responseStatusList.Content.ReadAsStringAsync());
+            var statusSelectList = new List<SelectListItem>();
+            foreach (var status in statusList)
+            {
+                statusSelectList.Add(new SelectListItem(status.Name, status.Id.ToString()));
+            }
+            ViewBag.statusList = statusSelectList;
 
 
             return View(detailsClaim);
@@ -118,28 +138,33 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             List<string> uploadedFiles = new List<string>();
-            foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
-            {
-                string fileName = Path.GetFileName(expenseProofs.FileName);
-                using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+            if (expenseClaimViewModel.ExpenseProof != null && expenseClaimViewModel.ExpenseProof.Count > 0)
+                foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
                 {
-                    expenseProofs.CopyTo(stream);
-                    uploadedFiles.Add(fileName);
-                    ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    string fileName = Path.GetFileName(expenseProofs.FileName);
+                    using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                    {
+                        expenseProofs.CopyTo(stream);
+                        uploadedFiles.Add(fileName);
+                        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    }
                 }
 
-            }
-
-            expenseClaimViewModel.Status = 1;
-
+            //expenseClaimViewModel.Status = 1;
+            expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
+            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
-            HttpResponseMessage createNewClaim = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            //Save Individual Expenditure
+            var expenditureContent = JsonConvert.SerializeObject(expenseClaimViewModel.IndividualExpenditures);
+            var expenditureBuffer = System.Text.Encoding.UTF8.GetBytes(expenditureContent);
+            var expenditureByteContent = new ByteArrayContent(expenditureBuffer);
+            expenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
 
             return RedirectToAction("Index");
 

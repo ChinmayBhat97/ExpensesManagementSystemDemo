@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
-    public interface IExpenseClaimRepository:IBaseRepository<ExpenseClaim>
+    public interface IExpenseClaimRepository : IBaseRepository<ExpenseClaim>
     {
         public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate, int empId);
         public Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus);

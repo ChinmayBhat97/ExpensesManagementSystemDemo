@@ -18,6 +18,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 
         Task<int> SaveChangesAsync();
         Task DeleteAsync(T entity);
-        
+        Task UpdateRangeAsync(List<T> entity);
     }
 }

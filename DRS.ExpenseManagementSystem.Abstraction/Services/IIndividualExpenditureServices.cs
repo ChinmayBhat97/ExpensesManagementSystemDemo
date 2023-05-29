@@ -18,5 +18,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
 
         public Task<List<IndividualExpenditure>> GetByClaimID(int ClaimId);
         public Task<int> SaveIndividualExpenseDb(List<IndividualExpenditure> individualExpenditures);
+        public Task<int> UpdateIndividualExpenses(List<IndividualExpenditure> individualExpenditures);
+
     }
 }

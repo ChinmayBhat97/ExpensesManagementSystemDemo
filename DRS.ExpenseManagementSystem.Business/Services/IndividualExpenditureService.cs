@@ -43,6 +43,24 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await repository.SaveIndividualExpenseDb(individualExpenditures);
         }
 
+        public async Task<int> UpdateIndividualExpenses(List<IndividualExpenditure> individualExpenditures)
+        {
+            //await repository.UpdateRangeAsync(individualExpenditures);
+            foreach (var exp in individualExpenditures)
+            {
+                await repository.UpdateAsync(exp);
+            }
+            try
+            {
+                return await repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                var test = ex.Message;
+                return 0;
+            }
+        }
+
         //public Task<List<IndividualExpenditure>> GetByExpenseCategory(int Id)
         //{
         //    return repository.GetByExpenseCategory(Id);
