@@ -160,7 +160,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
             HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
-
+            detailsClaim.ClaimRequestDate = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
 
             //drop down to show project names
