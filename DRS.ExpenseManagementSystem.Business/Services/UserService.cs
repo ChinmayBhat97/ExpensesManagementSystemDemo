@@ -14,9 +14,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
     public class UserService : BaseService<User>, IUserService
     {
         private IUserRepository userRepository;
+      
         public UserService(IUserRepository _repository) : base(_repository)
         {
             this.userRepository = _repository;
+            
         }
 
         public AuthenticationViewModel Authenticate(string EmployeeCode, string Password)
@@ -34,11 +36,16 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             {
                 return new AuthenticationViewModel
                 {
+                    
                     IsAuthenticated = true,
                     userDetails = userTable
                 };
             }
+
+            
         }
+
+       
 
         public Task<List<User>> GetByRoleAsync(int role)
         {

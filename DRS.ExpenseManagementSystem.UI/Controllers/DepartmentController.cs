@@ -23,7 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        //[Authorize(Roles = "4")]
+      //  [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -41,24 +41,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Index()
-        //{
-        //    HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Employee");
-        //    if (responseHomePage.IsSuccessStatusCode)
-        //    {
-        //        var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-        //        var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
-        //        return View(model);
-        //    }
-        //    else
-        //    {
+      
 
-        //        return View();
-        //    }
-        //}
-
-
+      //  [Authorize(Roles = "4")]
         [HttpGet("Department/CreateDepartment")]
         public async Task<IActionResult> CreateDepartmentAsync()
         {
@@ -66,6 +51,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+
+       // [Authorize(Roles = "4")]
         [HttpPost("Department/CreateDepartment")]
         public async Task<IActionResult> CreateDepartment(DepartmentViewModel departmentViewModel)
         {
@@ -84,7 +71,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(departmentViewModel);
         }
 
-
+       // [Authorize(Roles = "4")]
         [HttpGet("Department/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id)
         {
@@ -93,6 +80,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditDepartment);
         }
 
+      //  [Authorize(Roles = "4")]
         [HttpPost("Department/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id, DepartmentViewModel departmentViewModel)
         {
@@ -112,6 +100,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(departmentViewModel);
         }
 
+       // [Authorize(Roles = "4")]
         [HttpGet("Department/DetailsDepartment/{id}")]
         public async Task<IActionResult> DetailsByDepartmentID(int id)
         {

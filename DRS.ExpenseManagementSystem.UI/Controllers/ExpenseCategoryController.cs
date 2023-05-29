@@ -23,7 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        
+       // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -43,8 +43,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-    
 
+      //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/CreateExpenseCategory")]
         public async Task<IActionResult> CreateExpenseCategoryAsync()
         {
@@ -53,7 +53,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-
+      //  [Authorize(Roles = "4")]
         [HttpPost("ExpenseCategory/CreateExpenseCategory")]
         public async Task<IActionResult> CreateExpenseCategory(ExpenseCategory expenseCategory, string? title)
         {
@@ -74,7 +74,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseCategory);
         }
 
-
+      //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/EditExpenseCategory/{id}")]
         public async Task<IActionResult> EditExpenseCategory(int id)
         {
@@ -84,8 +84,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-       
 
+      //  [Authorize(Roles = "4")]
         [HttpPost("ExpenseCategory/EditExpenseCategory/{id}")]
         public async Task<IActionResult> EditExpenseCategory(int id, ExpenseCategoryViewModel expenseCategoryViewModel)
         {
@@ -105,6 +105,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(expenseCategoryViewModel);
         }
 
+      //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/DetailsExpenseCategory/{id}")]
         public async Task<IActionResult> DetailsByExpenseCategoryID(int id)
         {
@@ -113,7 +114,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsExpenseCategory);
         }
 
-
+      // [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/DetailsByExpenseCategoryTitle")]
         public async Task<IActionResult> DetailsByExpenseCategoryTitle()
         {

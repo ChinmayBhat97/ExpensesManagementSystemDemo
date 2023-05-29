@@ -20,7 +20,8 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             [HttpPost]
             public AuthenticationViewModel Authenticate(string EmployeeCode, string Password)
             {
-                return userService.Authenticate(EmployeeCode, Password);
+            return userService.Authenticate(EmployeeCode, Password);
+
             }
         }
     

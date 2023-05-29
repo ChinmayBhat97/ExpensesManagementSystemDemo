@@ -29,6 +29,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public List<IFormFile> ExpenseProof { get; set; }
         public List<IndividualExpenditureViewModel> IndividualExpenditures { get; set; }
 
-        public IndividualExpenditure individualExpenditure { get; set; }
+        public Department department { get; set; }
+        public IndividualExpenditure? individualExpenditure { get; set; }
     }
 }

@@ -21,8 +21,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 Timeout = TimeSpan.FromMinutes(5)
             };
         }
-        //[Authorize(Roles = "4")]
-
+       
+      //  [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -40,6 +40,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+       // [Authorize(Roles = "4")]
+
         [HttpGet("ClaimStatus/CreateClaimStatus")]
         public async Task<IActionResult> CreateClaimStatusAsync()
         {
@@ -47,6 +49,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+     //   [Authorize(Roles = "4")]
         [HttpPost("ClaimStatus/CreateClaimStatus")]
         public async Task<IActionResult> CreateClaimStatus(ClaimStatusViewModel claimStatusViewModel)
         {
@@ -64,7 +67,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(claimStatusViewModel);
         }
 
-
+      //  [Authorize(Roles = "4")]
         [HttpGet("ClaimStatus/EditClaimStatus/{id}")]
         public async Task<IActionResult> EditClaimStatus(int id)
         {
@@ -73,6 +76,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditClaimStatus);
         }
 
+       // [Authorize(Roles = "4")]
         [HttpPost("ClaimStatus/EditClaimStatus/{id}")]
         public async Task<IActionResult> EditClaimStatus(int id, ClaimStatusViewModel claimStatusViewModel)
         {
@@ -92,6 +96,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(claimStatusViewModel);
         }
 
+      //  [Authorize(Roles = "4")]
         [HttpGet("ClaimStatus/DetailsClaimStatus/{id}")]
         public async Task<IActionResult> DetailsByClaimStatusID(int id)
         {

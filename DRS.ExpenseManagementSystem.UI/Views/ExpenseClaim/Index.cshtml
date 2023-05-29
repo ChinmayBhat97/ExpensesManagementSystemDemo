@@ -36,6 +36,8 @@
         <a asp-action="Create" type="button" class="btn btn-info">Create New</a>
     </div>
     <div style="padding-top:10px;">
+   
+
         <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead>
                 <tr>
@@ -72,6 +74,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DeptId)
+                            
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ClaimRequestDate)
@@ -81,6 +84,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
+                            </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>

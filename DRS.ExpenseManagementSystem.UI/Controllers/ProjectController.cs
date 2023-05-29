@@ -22,7 +22,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-        //[Authorize(Roles = "4")]
+       // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -40,6 +40,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+       // [Authorize(Roles = "4")]
         [HttpGet("Project/CreateProject")]
         public async Task<IActionResult> CreateProjectAsync()
         {
@@ -47,6 +48,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+       // [Authorize(Roles = "4")]
         [HttpPost("Project/CreateProject")]
         public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
         {
@@ -64,7 +66,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
-
+      //  [Authorize(Roles = "4")]
         [HttpGet("Project/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id)
         {
@@ -73,6 +75,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditProject);
         }
 
+       // [Authorize(Roles = "4")]
         [HttpPost("Project/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
         {
@@ -92,6 +95,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
+      //  [Authorize(Roles = "4")]
         [HttpGet("Project/DetailsProject/{id}")]
         public async Task<IActionResult> DetailsByProjectID(int id)
         {

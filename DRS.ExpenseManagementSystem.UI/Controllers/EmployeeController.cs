@@ -41,6 +41,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+       // [Authorize(Roles = "4")]
         [HttpGet("Employee/CreateEmployee")]
         public async Task<IActionResult> CreateEmployeeAsync()
         {
@@ -61,7 +62,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-
+      //  [Authorize(Roles = "4")]
         [HttpPost("Employee/CreateEmployee")]
         public async Task<IActionResult> CreateEmployee(Employee employee)
         {
@@ -89,6 +90,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View();
         //}
 
+       // [Authorize(Roles = "4")]
         [HttpGet("Employee/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id)
         {
@@ -110,6 +112,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+
+       // [Authorize(Roles = "4")]
         [HttpPost("Employee/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
         {
@@ -129,6 +133,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(employeeViewModel);
         }
 
+      //  [Authorize(Roles = "4")]
         [HttpGet("Employee/DetailsEmployee/{id}")]
         public async Task<IActionResult> DetailsByEmployeeID(int id)
         {

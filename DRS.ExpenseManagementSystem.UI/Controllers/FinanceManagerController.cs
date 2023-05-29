@@ -9,6 +9,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
+    [Authorize(Roles = "3")]
     public class FinanceManagerController : Controller
     {
         readonly IConfiguration configuration;
@@ -35,7 +36,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View(model);
         //}
 
-        //[Authorize(Roles = "3")]
+      //  [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -55,6 +56,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+      //  [Authorize(Roles = "3")]
         [HttpGet("FinanceManager/DetailsByClaimID/{claimId}")]
         public async Task<IActionResult> DetailsByClaimID(int claimId)
         {
@@ -63,6 +65,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsClaim);
         }
 
+       // [Authorize(Roles = "3")]
         [HttpGet("ExpenseClaim/EditByFinanceManager/{id}")]
         public async Task<IActionResult> EditbyFinanceManager(int id)
         {
@@ -99,7 +102,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsClaim);
         }
 
-
+      //  [Authorize(Roles = "3")]
         [HttpPost("ExpenseClaim/EditByFinanceManager/{id}")]
         public async Task<IActionResult> EditByFinanceManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
@@ -143,7 +146,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-
+       // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> GetByClaimId(int ID)
         {
@@ -151,6 +154,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+       // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> GetByEmployeeId(int EmpId)
         {
@@ -158,6 +162,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+       // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> GetByPeriod(DateTime startDate, DateTime endDate)
         {
@@ -165,6 +170,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
+       // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> GetByClaimRequestDate(DateTime requestDate)
         {
