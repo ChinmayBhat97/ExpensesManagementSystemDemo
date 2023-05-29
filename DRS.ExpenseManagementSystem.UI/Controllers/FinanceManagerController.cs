@@ -123,45 +123,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("ExpenseClaim/EditByFinanceManager/{id}")]
         public async Task<IActionResult> EditByFinanceManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
-            string wwwPath = this.webHostEnvironment.WebRootPath;
-            string contentPath = this.webHostEnvironment.ContentRootPath;
-
-            string path = Path.Combine(this.webHostEnvironment.WebRootPath, "ExpenseProof");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            List<string> uploadedFiles = new List<string>();
-            if (expenseClaimViewModel.ExpenseProof != null && expenseClaimViewModel.ExpenseProof.Count > 0)
-                foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
-                {
-                    string fileName = Path.GetFileName(expenseProofs.FileName);
-                    using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
-                    {
-                        expenseProofs.CopyTo(stream);
-                        uploadedFiles.Add(fileName);
-                        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
-                    }
-                }
-
-            //expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
+
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
             await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
-
-            //Save Individual Expenditure
-            var expenditureContent = JsonConvert.SerializeObject(expenseClaimViewModel.IndividualExpenditures);
-            var expenditureBuffer = System.Text.Encoding.UTF8.GetBytes(expenditureContent);
-            var expenditureByteContent = new ByteArrayContent(expenditureBuffer);
-            expenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
 
             return RedirectToAction("Index");
 
