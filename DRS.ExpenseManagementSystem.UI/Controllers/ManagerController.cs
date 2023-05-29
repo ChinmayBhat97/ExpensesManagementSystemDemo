@@ -20,7 +20,7 @@ using System.Security.Claims;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
-    [Authorize(Roles = "2")]
+    //[Authorize(Roles = "2")]
     public class ManagerController : Controller
     {
         private readonly IConfiguration configuration;
@@ -47,7 +47,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View();
         //}
 
-       // [Authorize(Roles = "2")]
+        [Authorize(Roles = "2")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {

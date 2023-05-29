@@ -71,10 +71,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                             TempData.Keep();
                             TempData["LoggedFirstName"]= authResponse.userDetails.FirstName;
                             TempData.Keep();
-                            TempData["Role"]= authResponse.userDetails.Role;
+                            TempData["Role"]=authResponse.userDetails.Role.ToString();
                             TempData.Keep();
 
-                           // HttpContext.Session.SetInt32("Roles",authResponse.userDetails.Role);
+                            //TempData["Role"]= authResponse.userDetails.Role;
+                            // TempData.Keep();
+
+                            // HttpContext.Session.SetInt32("Roles",authResponse.userDetails.Role);
                             TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
                            
                             return RedirectToAction("Index", "Home");
