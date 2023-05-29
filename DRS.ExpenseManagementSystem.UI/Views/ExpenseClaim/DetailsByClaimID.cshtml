@@ -76,8 +76,15 @@
                 <dt class="col-sm-5">
                     Total Amount: @Html.DisplayFor(model => model.TotalAmount)
                 </dt>
-
+                <dt class="col-sm-5">
+                    Manager Remarks: @Html.DisplayFor(model => model.ManagerRemarks)
+                </dt>
+                <dt class="col-sm-5">
+                    Finance Manager Remarks: @Html.DisplayFor(model => model.FinanceManagerRemarks)
+                </dt>
             </dl>
+            <br />
+            <br />
             <table id="Expense" style="font-family: arial, sans-serif;border-collapse:collapse;width:105%;padding-top:5px;">
 
                 <thead>
@@ -116,10 +123,8 @@
                     }
                 </tbody>
             </table>
-
-
             <br />
-
+            
 
 
             @*   <a asp-action="AddExpenditures" asp-route-id="@Model.Id" class="btn btn-success"> Add Individual Expenditures</a>

@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
         //Manager
         public Task<List<ExpenseClaim>> GetByClaimantEmpId(int empId);
         public Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus);
-        public Task<List<ExpenseClaim> >GetByClaimIdManager(int Id);
-
-
-
+        public Task<List<ExpenseClaim>> GetByClaimIdManager(int Id);
     }
 }

@@ -53,5 +53,11 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             table.Attach(entity);
             dbContext.Entry(entity).State = EntityState.Modified;
         }
+
+        public async Task UpdateRangeAsync(List<T> entity)
+        {
+            table.UpdateRange(entity);
+            dbContext.Entry(entity).State = EntityState.Modified;
+        }
     }
 }

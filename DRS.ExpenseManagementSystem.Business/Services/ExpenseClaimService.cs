@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace DRS.ExpenseManagementSystem.Business.Services
     {
         private IExpenseClaimRepository repository;
 
-        public ExpenseClaimService(IExpenseClaimRepository repository) : base(repository) 
+        public ExpenseClaimService(IExpenseClaimRepository repository) : base(repository)
         {
             this.repository = repository;
         }
@@ -28,14 +29,14 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await repository.GetByClaimStatus(claimStatus);
         }
 
-        public async Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate,int empId)
+        public async Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate, int empId)
         {
             return await repository.GetByClaimPeriods(periodStartDate, periodEndDate, empId);
         }
 
         public async Task<ExpenseClaim> GetByClaimId(int Id)
         {
-           return await repository.GetByClaimId(Id);
+            return await repository.GetByClaimId(Id);
         }
 
         //  Manager

@@ -28,7 +28,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
 
-       
+
         // POST api/<ExpenseClaimController>
         [HttpPost]
         public async Task Post(List<IndividualExpenditure> individualExpenditures)
@@ -37,7 +37,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
 
-       
+        // PUT api/<ExpenseClaimController>/5
+        [HttpPut]
+        public async Task Put(List<IndividualExpenditure> individualExpenditures)
+        {
+            await individualExpenditureServices.UpdateIndividualExpenses(individualExpenditures);
+        }
+
     }
 }
 
