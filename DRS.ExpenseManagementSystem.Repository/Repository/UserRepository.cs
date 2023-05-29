@@ -21,16 +21,44 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
         public UserViewModel GetByEmployeeCodeAndPassword(string EmployeeCode, string Password)
         {
-            var userTable = _dbContext.Users
-                .Where(n => n.EmployeeCode == EmployeeCode && n.Password == Password).ToList()
-                .Select(x => new UserViewModel
-                {
-                    EmployeeCode = x.EmployeeCode,
-                    Password = x.Password,
-                    IsAccountLocked = x.IsAccountLocked,
-                    IsActive =x.IsActive,
-                    Role = x.Role
-                }).FirstOrDefault();
+            //var userTable = _dbContext.Users
+            //    .Where(n => n.EmployeeCode == EmployeeCode && n.Password == Password).ToList()
+            //    .Select(x => new UserViewModel
+            //    {
+            //        EmployeeCode = x.EmployeeCode,
+            //        Password = x.Password,
+            //        IsAccountLocked = x.IsAccountLocked,
+            //        IsActive =x.IsActive,
+            //        Role = x.Role
+            //    }).FirstOrDefault();
+
+
+
+            var userTable = (from u in _dbContext.Users.AsQueryable().ToList() // outer sequence
+                             join e in _dbContext.Employees.AsQueryable().ToList() //inner sequence 
+                            on u.Id equals e.EmpId // key selector 
+                             where u.EmployeeCode == EmployeeCode && u.Password ==Password
+
+                             select new UserViewModel
+
+                             { // result selector 
+                                 EmployeeCode = u.EmployeeCode,
+                                 Password = u.Password,
+                                 IsAccountLocked = u.IsAccountLocked,
+                                 IsActive =u.IsActive,
+                                 Role = (int)u.Role,
+                                 EmpId = e.Id,
+                                 FirstName = e.FirstName,
+                                 Designation = e.Designation
+                             }).FirstOrDefault();
+
+            //  var  userID = _dbContext.Users.Where(a =>a.EmployeeCode==EmployeeCode).Select(c =>c.Id).FirstOrDefault();
+            //  var  empID= _dbContext.Employees.Where(k =>k.EmpId==userID).Select(g =>g.Id).FirstOrDefault();
+
+            //  var firstName = _dbContext.Employees.Where(d =>d.Id==empID).Select(s =>s.FirstName).FirstOrDefault();
+            //  var designation = _dbContext.Employees.Where(w =>w.Id==empID).Select(t =>t.Designation).FirstOrDefault();
+
+            //TempData["EmpID"]= empID;
 
             return userTable;
         }
@@ -40,6 +68,6 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             throw new NotImplementedException();
         }
 
-        
+
     }
 }

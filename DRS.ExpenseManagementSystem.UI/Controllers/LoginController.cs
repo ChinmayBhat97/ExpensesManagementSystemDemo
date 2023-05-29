@@ -65,12 +65,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     {
                         if(authResponse.userDetails.IsActive==true && authResponse.userDetails.IsAccountLocked==false)
                         {
+                            TempData["EmpID"]= authResponse.userDetails.EmpId;
+                            TempData.Keep();
+                            TempData["LoggedDesignation"]= authResponse.userDetails.Designation;
+                            TempData.Keep();
+                            TempData["LoggedFirstName"]= authResponse.userDetails.FirstName;
+                            TempData.Keep();
+                            TempData["Role"]= authResponse.userDetails.Role;
+                            TempData.Keep();
+
+                           // HttpContext.Session.SetInt32("Roles",authResponse.userDetails.Role);
                             TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
                            
                             return RedirectToAction("Index", "Home");
                         }
                         else
                         {
+                            
                             TempData["Message"]="Your are not active User or you dont have access to this application.";
                             TempData["MessageInst"]="Kindly contact Admin or HR Manager for further information.";
                             return RedirectToAction("Index", "Login");
