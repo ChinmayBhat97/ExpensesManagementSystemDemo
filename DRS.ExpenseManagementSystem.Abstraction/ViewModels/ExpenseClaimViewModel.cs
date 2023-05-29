@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public string? FinanceManagerRemarks { get; set; }
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
+
+        public Department Department { get; set; }
     }
 }

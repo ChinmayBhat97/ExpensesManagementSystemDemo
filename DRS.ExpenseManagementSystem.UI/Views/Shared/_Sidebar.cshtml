@@ -7,8 +7,8 @@
         url = "/Home/Index"
     });
 
-    //if (User.IsInRole("1"))
-    //{
+    if (User.IsInRole("1"))
+    {
         menuItems.Add(new
         {
             text = "Expense Claim",
@@ -20,29 +20,29 @@
             text = "Create Expense Claim",
             url = "/ExpenseClaim/Create"
         });
-    //}
-    
+    }
 
-    //if (User.IsInRole("2"))
-    //{
+
+    if (User.IsInRole("2"))
+    {
         menuItems.Add(new
         {
             text = "Manager Approvals",
             url = "/Manager/Index"
         });
-    
+    }
 
-    //if (User.IsInRole("3"))
-    //{
+    if (User.IsInRole("3"))
+    {
         menuItems.Add(new
         {
             text = "Finance Manager Approvals",
             url = "/FinanceManager/Index"
         });
-    //}
+    }
 
-    //if (User.IsInRole("4"))
-    //{
+    if (User.IsInRole("4"))
+    {
         menuItems.Add(new
         {
             text = "Employee",
@@ -72,7 +72,7 @@
             text = "Expense Category",
             url = "/ExpenseCategory/Index"
         });
-    //}
+    }
 }
 
 
@@ -108,45 +108,45 @@
                         </span>
                     </a>
                 </li>
-               @*@if (User.IsInRole("1"))
-                    {*@
+               @if (User.IsInRole("1"))
+                    {
                         <li class="has-subnav">
                             <a href="#">
                                 <i class="fa fa-file-text" aria-hidden="true"></i>
                                 <span class="nav-text">Expenses</span>
                             </a>
                             <ul>
-                               @* @if (User.IsInRole("1"))
-                                {*@
+                                @if (User.IsInRole("1"))
+                                {
                                     <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a></li>
                                     <li><a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a></li>
-                                @*}*@
+                                }
                             </ul>
                         </li>
-                    @*}*@
-                    @*@if (User.IsInRole("2") || User.IsInRole("3"))
-                {*@
+                    }
+                    @if (User.IsInRole("2") || User.IsInRole("3"))
+                {
                     <li class="has-subnav">
                         <a href="#">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
                             <span class="nav-text">Admin</span>
                         </a>
                         <ul>
-                            @*@if (User.IsInRole("2"))
-                            {*@
+                            @if (User.IsInRole("2"))
+                            {
                                 <li><a asp-area="" asp-controller="Manager" asp-action="Index" asp-route-id="2">Manager Approvals</a></li>
-                           @* }
+                            }
                             @if (User.IsInRole("3"))
-                            {*@
+                            {
                                 <li><a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a></li>
-                            @*}*@
+                            }
                             
                         </ul>
                     </li>
-                @*}*@
+                }
                 <ul>
-                    @*@if (User.IsInRole("4"))
-                    {*@
+                    @if (User.IsInRole("4"))
+                    {
                         <li class="has-subnav">
                         <a href="#">
                             <i class="fa fa-file-text" aria-hidden="true"></i>
@@ -161,7 +161,7 @@
                             <li><a asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a></li>
                         </ul>
                     </li>
-                    @*}*@
+                    }
                     
                 </ul>
                   

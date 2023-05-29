@@ -103,12 +103,24 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+            //var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsClaim.Content.ReadAsStringAsync());
+            //if(detailsClaim.ProjectId == detailsProject.Id )
 
             // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
             HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
 
             detailsClaim.IndividualExpenditures = individualExpenditures;
+
+            //drop down to show department names
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
 
             //drop down to show project names
             HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
