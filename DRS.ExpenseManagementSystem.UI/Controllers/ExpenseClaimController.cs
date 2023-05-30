@@ -112,8 +112,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
             string wwwPath = this.webHostEnvironment.WebRootPath;
 
             string path = Path.Combine(wwwPath, "ExpenseProof");
@@ -132,7 +130,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     uploadedFiles.Add(fileName);
                     ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
                 }
-
             }
 
             expenseClaimViewModel.Status = 1;
@@ -150,9 +147,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return RedirectToAction("Index");
 
         }
-
-
-       
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -188,7 +182,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             return View(detailsClaim);
         }
-
        
         [HttpPost("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> Edit(ExpenseClaimViewModel expenseClaimViewModel)
@@ -229,10 +222,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage createNewClaim = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
-
         }
-
-
         
         [HttpGet("ExpenseClaim/DetailsByClaimID/{claimId}")]
         public async Task<IActionResult> DetailsByClaimID(int claimId)
@@ -248,8 +238,5 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             string wwwPath = this.webHostEnvironment.WebRootPath;
             return View(detailsClaim);
         }
-
-
-       
     }
 }
