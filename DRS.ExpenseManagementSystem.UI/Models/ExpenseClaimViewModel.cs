@@ -31,5 +31,6 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public Department Dept { get; set; }
         public Project Project { get; set; }
         public Employee Employee { get; set; }
+        public ClaimStatus StatusNavigation { get; set; }
     }
 }
