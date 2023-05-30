@@ -151,13 +151,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+            var editClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
 
             // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
             HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
 
-            detailsClaim.IndividualExpenditures = individualExpenditures;
+            editClaim.IndividualExpenditures = individualExpenditures;
 
             //drop down to show project names
             HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
@@ -180,7 +180,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             ViewBag.categoryList = categorySelectList;
 
 
-            return View(detailsClaim);
+            return View(editClaim);
         }
        
         [HttpPost("ExpenseClaim/Edit/{id}")]

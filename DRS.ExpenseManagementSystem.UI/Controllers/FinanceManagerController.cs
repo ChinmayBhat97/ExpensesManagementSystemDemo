@@ -9,7 +9,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
-    [Authorize(Roles = "3")]
+   // [Authorize(Roles = "3")]
     public class FinanceManagerController : Controller
     {
         readonly IConfiguration configuration;
@@ -36,7 +36,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View(model);
         //}
 
-       [Authorize(Roles = "3")]
+      // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {

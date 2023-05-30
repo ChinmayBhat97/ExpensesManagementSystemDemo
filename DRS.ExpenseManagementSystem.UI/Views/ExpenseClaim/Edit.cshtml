@@ -1,11 +1,11 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
-
+<html>
+<head>
 @{
     ViewData["Title"] = "Create";
 }
 
-<html>
-<head>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
@@ -70,14 +70,14 @@
                 <table id="Expense">
                     <tbody id="ExpenseBody">
                         <tr>
-                            <th> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
-                            <th> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
-                            <th> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
-                            <th> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
-                            <th> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
-                            <th> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
-                            <th> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                            <th> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
+                            <th> <label><b>Expenditure Date</b></label> </th>
+                            <th> <label><b>Description</b></label>      </th>
+                            <th> <label><b>Category</b></label>         </th>
+                            <th> <label><b>Expense Category</b></label> </th>
+                            <th> <label><b>Amount</b></label>           </th>
+                            <th> <label><b>Comments</b></label>         </th>
+                            <th> <label><b>Receipt Number</b></label>   </th>
+                            <th> <label><b>Upload</b></label>           </th>
                         </tr>
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
