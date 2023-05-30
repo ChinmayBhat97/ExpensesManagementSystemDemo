@@ -40,16 +40,16 @@
 
 
 <body>
-    <div style="padding-left:200px;">
+    <div style="padding-left:300px;">
         <h3 style="color:#000099"><u> <b>Employee List </b></u></h3>
 
         <div style="padding-left:525px;">
-            <a asp-action="CreateEmployee" class="btn btn-outline-success">Add New Employee</a>
+            <a asp-action="CreateEmployee" class="btn btn-success">Add New Employee</a>
             
         </div>
         <br />
 
-        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:25px;font-size:17px">
+        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:15px;font-size:16px">
             <thead style="vertical-align:middle;">
             <tr>
                     <th style="background-color: #0000b3;">
@@ -94,13 +94,13 @@
             <tbody style="vertical-align:middle;">
             @foreach (var item in Model)
             {
-                    <tr style="height:10%;">
+                    <tr >
                         <td style="padding-left:25px;">
                             &nbsp;
                         </td>
 
                         <td style="width:5%">
-                        @Html.DisplayFor(modelItem => item.EmpId)
+                        @Html.DisplayFor(modelItem => item.Emp.EmployeeCode)
                     </td>
                         @*<td style="padding-left:10px;">
                       Employee User ID  @Html.DisplayFor(modelItem => item.EmpId)
@@ -132,9 +132,14 @@
                         @*<td style="padding-left:10px;">
                         @Html.DisplayFor(modelItem => item.DateOfJoining)
                     </td>*@
-                        <td style="width:13%">
-                            <a asp-action="EditEmployee" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <td >
+                           <div style="padding-left:10px;">
+                                <a asp-action="EditEmployee" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                           </div>
+                           <div style="padding-left:10px;">
+                                <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                           </div>
+                            
 
                        @* <a asp-action="EditEmployee" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id">Details</a> |*@

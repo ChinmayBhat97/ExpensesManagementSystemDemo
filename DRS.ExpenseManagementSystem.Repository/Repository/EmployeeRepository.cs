@@ -38,7 +38,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<List<Employee>> GetAllDetails()
         {
-            return await _dbContext.Employees.Include(a => a.Dept).ToListAsync();
+            return await _dbContext.Employees.Include(a => a.Dept).Include(a =>a.Emp).ToListAsync();
         }
     }
 }

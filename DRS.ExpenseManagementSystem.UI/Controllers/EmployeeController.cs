@@ -67,6 +67,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> CreateEmployee(Employee employee)
         {
             employee.CreatedAt=DateTime.Now;
+            employee.FirstName= employee.FirstName.ToUpper();
+            employee.LastName= employee.LastName.ToUpper();
             if (ModelState.IsValid)
             {
           

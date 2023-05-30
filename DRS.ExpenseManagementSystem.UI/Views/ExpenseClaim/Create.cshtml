@@ -90,7 +90,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="StartDate" class="form-control" required />
+                            <input asp-for="StartDate" class="form-control" id="startDate" required />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="EndDate" class="form-control" required />
+                            <input asp-for="EndDate" class="form-control" id="endDate" required />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -309,5 +309,17 @@
         return doc.documentElement.textContent;
     }
 
+
+
+
+    $("#EndDate").change(function () {
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+
+        if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        alert("End date should be greater than Start date");
+        document.getElementById("EndDate").value = "";
+    }
+});
 
 </script>

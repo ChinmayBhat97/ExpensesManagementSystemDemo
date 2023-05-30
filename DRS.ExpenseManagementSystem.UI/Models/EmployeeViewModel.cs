@@ -20,5 +20,7 @@
         public DateTime? CreatedAt { get; set; }
 
         public Department? Dept { get; set; }
+
+        public User Emp { get; set; }
     }
 }

@@ -6,7 +6,7 @@
 
 
 
-<div style="padding-left:200px;">
+<div style="padding-left:300px;">
   
     
         <h3 style="color:#000099"> <u> <b>User Details </b></u>  </h3>
@@ -14,11 +14,11 @@
 
     <dl class="row">
 
-        <dt class="col-sm-8">
+        <dt class="col-md-10" style="padding-top:10px;">
             ID  :&nbsp; @Html.DisplayFor(model => model.Id)
         </dt>
        
-        <dt class="col-sm-8">
+        <dt class="col-md-10" style="padding-top:10px;">
             Employee Code: &nbsp; @Html.DisplayFor(model => model.EmployeeCode)
         </dt>
         
@@ -29,32 +29,32 @@
                 @Html.DisplayFor(model => model.Password)
         </dd>*@
       
-        <dt class="col-sm-8">
-            Role :&nbsp;  @Html.DisplayFor(model => model.Role)
+        <dt class="col-md-10" style="padding-top:10px;">
+            Role :&nbsp; @Html.DisplayFor(model => model.Role)
         </dt>
        
-        <dt class="col-sm-8">
-            Account Locked:&nbsp;  @*@Html.DisplayFor(model => model.IsAccountLocked)*@
-            @if (Model.IsAccountLocked==true)
-            {
-                <p>Yes</p>
-            }
-            else
-            {
-                <p>No</p>
-            }
+        <dt class="col-md-10" style="padding-top:10px;">
+            @*@Html.DisplayFor(model => model.IsAccountLocked)*@
+          Account Locked:&nbsp; @if (Model.IsAccountLocked==true)
+                                {
+                                    <p>Yes</p>
+                                }
+                                else
+                                {
+                                    <p>No</p>
+                                }
         </dt>
       
-        <dt class="col-sm-8">
-            Active Employee:&nbsp;   @*@Html.DisplayFor(model => model.IsActive)*@
-            @if (Model.IsActive==true)
-            {
-                <p>Yes</p>
-            }
-            else
-            {
-                <p>No</p>
-            }
+        <dt class="col-md-10" style="padding-top:10px;">
+              @*@Html.DisplayFor(model => model.IsActive)*@
+            Active Employee:&nbsp;   @if (Model.IsActive==true)
+                                        {
+                                            <p>Yes</p>
+                                        }
+                                        else
+                                        {
+                                            <p>No</p>
+                                        }
         </dt>
        
     </dl>
