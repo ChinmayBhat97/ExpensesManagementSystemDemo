@@ -20,6 +20,7 @@ using System.Security.Claims;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
+    //[Authorize(Roles = "2")]
     public class ManagerController : Controller
     {
         private readonly IConfiguration configuration;
@@ -46,8 +47,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View();
         //}
 
-        //[Authorize(Roles = "2")]
-
+        [Authorize(Roles = "2")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -96,7 +96,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         //    return View(expenseClaim);
         //}
-
 
         [HttpGet("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(int id)
@@ -157,7 +156,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsClaim);
         }
 
-
+        
         [HttpPost("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
