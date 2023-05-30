@@ -54,5 +54,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await repository.GetByClaimIdManager(claimId);
         }
+        public async Task<List<ExpenseClaim>> GetAllDetails()
+        {
+            return await repository.GetAllDetails();
+        }
     }
 }
