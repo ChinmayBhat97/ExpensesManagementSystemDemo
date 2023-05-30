@@ -18,5 +18,7 @@
         public DateTime? DateOfJoining { get; set; }
         public int? DeptId { get; set; }
         public DateTime? CreatedAt { get; set; }
+
+        public Department? Dept { get; set; }
     }
 }

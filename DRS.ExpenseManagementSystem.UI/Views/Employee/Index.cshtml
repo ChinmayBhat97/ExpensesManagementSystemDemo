@@ -40,10 +40,10 @@
 
 
 <body>
-    <div style="padding-left:135px;">
+    <div style="padding-left:200px;">
         <h3 style="color:#000099"><u> <b>Employee List </b></u></h3>
 
-        <div style="padding-left:725px;">
+        <div style="padding-left:525px;">
             <a asp-action="CreateEmployee" class="btn btn-outline-success">Add New Employee</a>
             
         </div>
@@ -56,7 +56,7 @@
                         Sl.No
                     </th>
                     <th style="background-color: #0000b3;">
-                  Employee ID @*  @Html.DisplayNameFor(model => model.Id)*@
+                  Employee Code @*  @Html.DisplayNameFor(model => model.Id)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
                   Employee User ID  @Html.DisplayNameFor(model => model.EmpId)
@@ -100,7 +100,7 @@
                         </td>
 
                         <td style="width:5%">
-                        @Html.DisplayFor(modelItem => item.Id)
+                        @Html.DisplayFor(modelItem => item.EmpId)
                     </td>
                         @*<td style="padding-left:10px;">
                       Employee User ID  @Html.DisplayFor(modelItem => item.EmpId)
@@ -124,7 +124,7 @@
                         @Html.DisplayFor(modelItem => item.Gender)
                     </td>*@
                         <td style="padding-left:10px;">
-                            @Html.DisplayFor(modelItem => item.DeptId)
+                            @Html.DisplayFor(modelItem => item.Dept.Name)
                         </td>
                         <td >
                         @Html.DisplayFor(modelItem => item.Designation)

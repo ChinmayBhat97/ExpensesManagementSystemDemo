@@ -55,9 +55,9 @@
                         <th style="background-color: #0000b3;">
                             Sl.No
                         </th>
-                        <th style="background-color: #0000b3;">
-                            ID @*@Html.DisplayNameFor(model => model.Id)*@
-                        </th>
+                        @*<th style="background-color: #0000b3;">
+                            ID 
+                        </th>*@
                         <th style="background-color: #0000b3;">
                             Employee Code @*@Html.DisplayNameFor(model => model.EmployeeCode)*@
                         </th>
@@ -83,9 +83,9 @@
                             <td style="padding-left:10px; vertical-align:central;text-align:center;" width="10%">
                                 &nbsp;
                             </td>
-                            <td style="padding-left:10px;vertical-align:central; text-align:center;">
+                           @* <td style="padding-left:10px;vertical-align:central; text-align:center;">
                                 @Html.DisplayFor(modelItem => item.Id)
-                            </td>
+                            </td>*@
                             <td style="padding-left:30px;">
                                 @Html.DisplayFor(modelItem => item.EmployeeCode)
                             </td>

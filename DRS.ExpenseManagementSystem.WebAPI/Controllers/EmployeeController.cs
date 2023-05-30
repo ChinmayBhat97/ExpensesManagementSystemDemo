@@ -18,18 +18,18 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<List<Employee>> GetAllDetails()
-        //{
-        //    return await employeeService.GetAllDetails();
-        //}
+        [HttpGet]
+        public async Task<List<Employee>> GetAllDetails()
+        {
+            return await employeeService.GetAllDetails();
+        }
 
         // GET: api/<EmployeeController>
-        [HttpGet]
-        public async Task<List<Employee>> GetAll()
-        {
-            return await employeeService.GetAllAsync();
-        }
+        //[HttpGet]
+        //public async Task<List<Employee>> GetAll()
+        //{
+        //    return await employeeService.GetAllAsync();
+        //}
 
         // GET: api/<EmployeeController>/5
         [HttpGet("{id}")]
