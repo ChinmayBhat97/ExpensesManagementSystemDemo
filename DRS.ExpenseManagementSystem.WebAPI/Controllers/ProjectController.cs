@@ -26,12 +26,17 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         //}
 
         // GET api/<Project Controller>/5
-        [HttpGet]
-        public async Task<List<Project>> Get()
-        {
-            return await projectService.GetAllAsync();
-        }
+        //[HttpGet]
+        //public async Task<List<Project>> Get()
+        //{
+        //    return await projectService.GetAllAsync();
+        //}
 
+        [HttpGet]
+        public async Task<List<Project>> GetAllDetails()
+        {
+            return await projectService.GetAllDetails();
+        }
 
         // Edited by Chinmay
         // GET api/<Project Controller>/5

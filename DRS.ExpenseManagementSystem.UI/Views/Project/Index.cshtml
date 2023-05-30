@@ -59,7 +59,7 @@
                        Project ID
                     </th>
                     <th style="background-color: #0000b3;">
-                        EMP ID
+                        Manager Name
                     </th>
                     <th style="background-color: #0000b3;">
                       Project Title
@@ -91,7 +91,7 @@
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td style="padding-left:10px;text-align:center;">
-                            @Html.DisplayFor(modelItem => item.EmpId)
+                            @Html.DisplayFor(modelItem => item.Emp.FirstName)
                         </td>
                         <td style="vertical-align:central;">
                             @Html.DisplayFor(modelItem => item.Title)
