@@ -34,5 +34,11 @@ namespace DRS.ExpenseManagementSystem.Repository
         {
             return await _dbContext.Employees.AsQueryable().Where(u =>u.EmpId==empid).FirstOrDefaultAsync<Employee>();
         }
+
+
+        public async Task<List<Employee>> GetAllDetails()
+        {
+            return await _dbContext.Employees.Include(a => a.Dept).ToListAsync();
+        }
     }
 }

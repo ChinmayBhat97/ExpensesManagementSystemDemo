@@ -31,5 +31,10 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await employeeRepository.GetByEmpId(empid);
         }
+
+        public async Task<List<Employee>> GetAllDetails()
+        {
+            return await employeeRepository.GetAllDetails();
+        }
     }
 }

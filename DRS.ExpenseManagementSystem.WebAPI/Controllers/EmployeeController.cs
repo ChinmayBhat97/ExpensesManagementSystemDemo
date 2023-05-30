@@ -17,6 +17,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             this.employeeService = _employeeService;
         }
 
+
+        //[HttpGet]
+        //public async Task<List<Employee>> GetAllDetails()
+        //{
+        //    return await employeeService.GetAllDetails();
+        //}
+
         // GET: api/<EmployeeController>
         [HttpGet]
         public async Task<List<Employee>> GetAll()
