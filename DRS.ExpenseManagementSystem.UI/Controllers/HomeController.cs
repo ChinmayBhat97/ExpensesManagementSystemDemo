@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
-   
+   // [Authorize(Roles =("1,2,3,4"))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

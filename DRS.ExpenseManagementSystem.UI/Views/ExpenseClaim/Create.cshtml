@@ -7,7 +7,7 @@
         ViewData["Title"] = "Create";
     }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    @*<style>
+    <style>
 
         td {
             border: 1px solid #000033;
@@ -33,17 +33,17 @@
        
 
         /* Set the serial number counter to 0 */
-        /*#Expense {
+        #Expense {
             counter-reset: serial-number;
         }
 
             /* Increment the serial number counter */
             /* Display the counter */
-            /*#Expense td:first-child:before {
+            #Expense td:first-child:before {
                 counter-increment: serial-number;
                 content: counter(serial-number);
-            }*/*/
-    </style>*@
+            }
+    </style>
 
 
 </head>
@@ -52,10 +52,10 @@
 
 
 <body>
-    <h4 style="padding-left:200px;"><u><b>Create New Claim</b></u></h4>
+    <h4 style="padding-left:225px;"><u><b>Create New Claim</b></u></h4>
     <br />
     <div class="row">
-        <div class="col-md-12" style="padding-left:130px;">
+        <div class="col-md-12" style="padding-left:160px;">
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
@@ -137,14 +137,14 @@
                         <table id="Expense">
                             <tbody id="ExpenseBody">
                                 <tr>
-                                    <th> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
-                                    <th> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
-                                    <th> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
-                                    <th> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
-                                    <th> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
-                                    <th> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
-                                    <th> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                                    <th> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
+                                    <th style="background-color: #0000b3;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
                                 </tr>
                                 @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                                 {
@@ -195,7 +195,7 @@
                             </tbody>
                         </table>
                         <input type="button" id="addRowBtn" value="Add New" name="Add New" />
-
+              </div>
                         <br />
                         <div class="form-group" style="padding-left:600px;">
                             <input type="submit" value="Save" class="btn btn-success" />

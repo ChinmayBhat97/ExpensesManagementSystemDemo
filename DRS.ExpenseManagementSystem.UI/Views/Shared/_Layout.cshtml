@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-5">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="#" asp-action="#">Expense Management System </a>
-                <p style="padding-right:25px;color:#000066;"> Welcome @TempData["LoggedFirstName"] </p>
+                <p style="padding-right:25px;color:#000066;">  @TempData["LoggedFirstName"] </p>
                 <p style="padding-right:25px;color:#000066;">  @TempData["LoggedDesignation"] </p>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -49,10 +49,14 @@
         </nav>
     </header>
    
-    <div >
+    <div class="layout">
         <div class="sidenav">
-            <p> var User=@TempData["Role"]  </p>
-            @if (User.IsInRole("4"))
+            @{
+                var User=@TempData["Role"];
+                TempData.Keep();
+            }
+           
+            @if (User.Equals("4"))
             {
                 <a asp-area="" asp-controller="Home" asp-action="Index"> Home </a>
                 <button class="dropdown-btn">
@@ -63,7 +67,9 @@
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a>
                 </div>
-                <button class="dropdown-btn">
+
+
+               @* <button class="dropdown-btn">
                     Manager
                     <i class="fa fa-caret-down"></i>
                 </button>
@@ -76,7 +82,9 @@
                 </button>
                 <div class="dropdown-container">
                     <a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a>
-                </div>
+                </div>*@
+
+
                 <button class="dropdown-btn">
                     Super Admin
                     <i class="fa fa-caret-down"></i>
@@ -91,7 +99,7 @@
                 </div>
                 <a asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
             }
-            else if(User.IsInRole("3"))
+            else if (User.Equals("3"))
             {
                 <a asp-area="" asp-controller="Home" asp-action="Index"> Home </a>
                 <button class="dropdown-btn">
@@ -111,7 +119,7 @@
                 </div>
                 <a asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
             }
-            else if (User.IsInRole("2"))
+            else if (User.Equals("2"))
             {
                 <a asp-area="" asp-controller="Home" asp-action="Index"> Home </a>
                 <button class="dropdown-btn">
@@ -167,7 +175,7 @@
 </body>
 </html>
 
-
+        @* Side Navigation bar with Sub menus*@
     <script>
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var i;
@@ -182,5 +190,17 @@
                 dropdownContent.style.display = "block";
             }
         });
+    }
+    </script>
+
+    @*To store role value*@
+    <script>
+   
+
+    window.onload = function () {
+        localStorage.setItem("role", $('#role').val());
+    }
+    var role = localStorage.getItem('role');
+
     }
     </script>

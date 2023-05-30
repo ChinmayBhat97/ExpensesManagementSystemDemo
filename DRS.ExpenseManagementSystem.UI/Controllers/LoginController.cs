@@ -66,19 +66,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                         if(authResponse.userDetails.IsActive==true && authResponse.userDetails.IsAccountLocked==false)
                         {
                             TempData["EmpID"]= authResponse.userDetails.EmpId;
-                            TempData.Keep();
                             TempData["LoggedDesignation"]= authResponse.userDetails.Designation;
-                            TempData.Keep();
                             TempData["LoggedFirstName"]= authResponse.userDetails.FirstName;
-                            TempData.Keep();
                             TempData["Role"]=authResponse.userDetails.Role.ToString();
                             TempData.Keep();
 
-                            //TempData["Role"]= authResponse.userDetails.Role;
-                            // TempData.Keep();
+                            
 
                             // HttpContext.Session.SetInt32("Roles",authResponse.userDetails.Role);
-                            TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
+                           // TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
                            
                             return RedirectToAction("Index", "Home");
                         }
@@ -97,7 +93,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     }
                     else
                     {
-                        TempData["MessageInfo"] = "Kindly check your credentials and Try again.";
+                        TempData["MessageInfo"] = "Kindly check your credentials and Try again/ Or you are not registered.";
                         //ViewBag.NotFound="Kindly check your credentials and Try again.";
                         return RedirectToAction("Index", "Login");
                     }
@@ -123,8 +119,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             
             TempData.Clear();
+            
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                return RedirectToAction("Index", "Login");
+            
+            return RedirectToAction("Index", "Login");
            
         }
 

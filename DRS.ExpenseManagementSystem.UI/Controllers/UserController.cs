@@ -26,7 +26,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-        [Authorize(Roles = "4")]
+       // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
