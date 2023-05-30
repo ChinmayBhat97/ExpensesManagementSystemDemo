@@ -15,6 +15,9 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
         public Task<ExpenseClaim> GetByClaimId(int Id);
         public Task<List<ExpenseClaim>> GetByEmpId(int empId);
 
+        public Task<List<ExpenseClaim>> GetAllDetails();
+
+
         //public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
 
         //Manager

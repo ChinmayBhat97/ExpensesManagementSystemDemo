@@ -65,5 +65,13 @@ namespace DRS.ExpenseManagementSystem.Repository
         {
             return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == claimId).ToListAsync();
         }
+
+        public async Task<List<ExpenseClaim>> GetAllDetails()
+        {
+            //return await _dbcontext.ExpenseClaims.Include(u => u.Dept.Name).ToListAsync());
+            var dept= _dbContext.ExpenseClaims.Include(a => a.Dept);
+            return dept.ToList();
+
+        }
     }
 }

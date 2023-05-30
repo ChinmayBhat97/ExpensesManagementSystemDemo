@@ -5,6 +5,7 @@ using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +54,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         public async Task<List<ExpenseClaim>> GetByClaimIdManager(int claimId)
         {
             return await repository.GetByClaimIdManager(claimId);
+        }
+
+        public async Task<List<ExpenseClaim>> GetAllDetails()
+        {
+            return await repository.GetAllDetails();
         }
     }
 }

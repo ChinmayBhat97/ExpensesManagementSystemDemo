@@ -20,10 +20,17 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET: api/<ExpenseClaimController>
+        //[HttpGet]
+        //public async Task<List<ExpenseClaim>> GetAll()
+        //{
+        //    return await expensesClaimServices.GetAllAsync();
+        //}
+
+        // GET: api/<ExpenseClaimController>/3
         [HttpGet]
-        public async Task<List<ExpenseClaim>> GetAll()
+        public async Task<List<ExpenseClaim>> GetAllDetails()
         {
-            return await expensesClaimServices.GetAllAsync();
+            return await expensesClaimServices.GetAllDetails();
         }
 
 
