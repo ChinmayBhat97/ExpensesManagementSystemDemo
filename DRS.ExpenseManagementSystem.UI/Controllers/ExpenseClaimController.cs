@@ -251,54 +251,5 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             string wwwPath = this.webHostEnvironment.WebRootPath;
             return View(detailsClaim);
         }
-
-
-        //[HttpGet("IndividualExpenditure/IndexExpenditures/{id}")]
-        //public async Task<IActionResult> IndexExpenditures(int id)
-        //{
-        //    HttpResponseMessage responseExpenditure = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
-        //    var EditClaim = JsonConvert.DeserializeObject<List<IndividualExpenditure>>(await responseExpenditure.Content.ReadAsStringAsync());
-        //    return View(EditClaim);
-        //}
-
-        //[HttpGet("IndividualExpenditure/EditIndividualExpense/{id}")]
-        //public async Task<IActionResult> EditIndividualExpense(int id)
-        //{
-        //    HttpResponseMessage responseEditIndividualExpense = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-        //    var EditIndividualExpense = JsonConvert.DeserializeObject<IndividualExpenditure>(await responseEditIndividualExpense.Content.ReadAsStringAsync());
-        //    return View(EditIndividualExpense);
-        //}
-
-        //[HttpPost("ExpenseClaim/Edit")]
-        //public async Task<IActionResult> EditindIvidualExpense(IndividualExpenditure individualExpenditure)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        var myContent = JsonConvert.SerializeObject(individualExpenditure);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{individualExpenditure.Id}", byteContent);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(individualExpenditure);
-        //}
-
-        //[HttpPost("ExpenseClaim/Edit")]
-        //public async Task<IActionResult> EditByClaimant(ExpenseClaim expenseClaim)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        expenseClaim.Status = 1;
-        //        var myContent = JsonConvert.SerializeObject(expenseClaim);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(expenseClaim);
-        //}
     }
 }
