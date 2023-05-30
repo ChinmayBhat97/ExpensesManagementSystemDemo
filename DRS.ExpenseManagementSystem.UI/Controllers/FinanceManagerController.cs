@@ -140,8 +140,49 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         }
 
+        // Get all that are approved
 
-       // [Authorize(Roles = "3")]
+        [HttpGet]
+        public async Task<IActionResult> IndexApprovedByFManager()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e =>  e.Status == 10 || e.Status == 11).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
+        // Get all that are rejected
+
+        [HttpGet]
+        public async Task<IActionResult> IndexRejectedByFManager()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 16).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
+        // [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> GetByClaimId(int ID)
         {

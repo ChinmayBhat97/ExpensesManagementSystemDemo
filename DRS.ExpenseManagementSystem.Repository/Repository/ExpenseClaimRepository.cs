@@ -47,7 +47,12 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<ExpenseClaim> GetByClaimId(int claimId)
         {
-            return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == claimId).SingleOrDefaultAsync();
+            //return await _dbContext.ExpenseClaims.AsQueryable().Where(x => x.Id == claimId).SingleOrDefaultAsync();
+            return await _dbContext.ExpenseClaims
+                .Include(p => p.Emp).ThenInclude(pa => pa.Emp)
+                .AsQueryable()
+                .Where(x => x.Id == claimId)
+                .SingleOrDefaultAsync();
 
         }
 

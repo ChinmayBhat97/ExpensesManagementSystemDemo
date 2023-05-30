@@ -177,6 +177,47 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsManager);
         }
 
+        // Get all that are approved
+
+        [HttpGet]
+        public async Task<IActionResult> IndexApprovedByManager()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
+        // Get all that are rejected
+
+        [HttpGet]
+        public async Task<IActionResult> IndexRejectedByManager()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetByClaimId(int ID)

@@ -1,42 +1,41 @@
 ﻿@model IEnumerable<DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel>
 
-    <head>
+<head>
     @{
         ViewData["Title"] = "Index";
     }
 
     <style>
-        td{
+        td {
             border: 1px solid #000033;
-            text-align:left;
+            text-align: left;
             padding: 6px;
         }
 
-        th{
+        th {
             border: 1px solid #000033;
             text-align: center;
             padding: 4px;
             color: whitesmoke;
-            
         }
 
         tr:nth-child(even) {
-            background-color: #e6f2ff;  
+            background-color: #e6f2ff;
         }
     </style>
 
-    </head>
+</head>
 
 
 
 
 <div style="padding-left:200px;">
-  <h4 style="color:navy"> <u> <b> Claims Lists </b>  </u> </h4>
-    <div style="padding-left:800px;">
+    <h4 style="color:navy"> <u> <b>Rejected Claims Lists </b>  </u> </h4>
+    @*<div style="padding-left:800px;">
         <a asp-action="Create" type="button" class="btn btn-info">Create New</a>
-    </div>
+    </div>*@
     <div style="padding-top:10px;">
-   
+
 
         <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead>
@@ -59,7 +58,6 @@
                     <th style="background-color: #0000b3;">
                         Status
                     </th>
-                    <th style="background-color: #0000b3;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,18 +81,12 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                           @* <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
-                        </td>
-
                     </tr>
                 }
             </tbody>
         </table>
-  </div>
-   
+    </div>
+
 </div>
 
 
