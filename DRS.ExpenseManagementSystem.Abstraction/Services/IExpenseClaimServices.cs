@@ -17,6 +17,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
 
         public Task<List<ExpenseClaim>> GetByClaimPeriods(DateTime periodStartDate, DateTime periodEndDate, int empId);
 
+        public Task<List<ExpenseClaim>> GetAllDetails();
+
         //public Task<List<ExpenseClaim>> GetByClaimedDate(DateTime claimedDate);
 
         //Manager
