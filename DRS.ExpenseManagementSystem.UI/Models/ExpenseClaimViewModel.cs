@@ -28,8 +28,9 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public DateTime? FinanceManagerApprovedOn { get; set; }
         public List<IFormFile> ExpenseProof { get; set; }
         public List<IndividualExpenditureViewModel> IndividualExpenditures { get; set; }
-        public Department Department { get; set; }
+        public Department Dept { get; set; }
         public Project Project { get; set; }
         public Employee Employee { get; set; }
+        public ClaimStatus StatusNavigation { get; set; }
     }
 }
