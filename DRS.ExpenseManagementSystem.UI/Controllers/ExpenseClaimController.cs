@@ -100,10 +100,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
             }
             ViewBag.categoryList = categorySelectList;
-
+            
             var indiExp = new IndividualExpenditureViewModel();
             var expenseClaimViewModel = new ExpenseClaimViewModel();
             expenseClaimViewModel.IndividualExpenditures = new List<IndividualExpenditureViewModel>();
+            expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
             expenseClaimViewModel.IndividualExpenditures.Add(indiExp);
             return View(expenseClaimViewModel);
         }
