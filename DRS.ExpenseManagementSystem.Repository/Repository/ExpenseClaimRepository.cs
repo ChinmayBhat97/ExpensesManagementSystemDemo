@@ -68,7 +68,11 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<List<ExpenseClaim>> GetAllDetails()
         {
-            return await _dbContext.ExpenseClaims.Include(a => a.Dept).Include(r => r.StatusNavigation).Include(b => b.Project).ToListAsync();
+            return await _dbContext.ExpenseClaims.Include(a => a.Dept)
+                .Include(r => r.StatusNavigation)
+                .Include(b => b.Project)
+                .Include(p => p.Emp).ThenInclude(pa=>pa.Emp)
+                .ToListAsync();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
-using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.ContentModel;
@@ -20,11 +19,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         }
 
-        //// GET: api/<ExpenseClaimController>
-        //[HttpGet("EmpId")]
-        //public async Task<List<ExpenseClaim>> GetAll(int EmpId)
+        // GET: api/<ExpenseClaimController>
+        //[HttpGet]
+        //public async Task<List<ExpenseClaim>> GetAll()
         //{
-        //    return await expensesClaimServices.GetByEmpId(EmpId);
+        //    return await expensesClaimServices.GetAllAsync();
         //}
 
         // GET: api/<ExpenseClaimController>/3
@@ -37,10 +36,10 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet("{Id}")]
-        public async Task<ExpenseClaim> GetByID(int Id)
+        [HttpGet("Id/{id}")]
+        public async Task<ExpenseClaim> GetByID(int id)
         {
-            return await expensesClaimServices.GetByIdAsync(Id);
+            return await expensesClaimServices.GetByIdAsync(id);
         }
 
 
@@ -60,11 +59,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/<ExpenseClaimController>/5
-        //[HttpGet]
-        //public async Task<List<ExpenseClaim>> GetByEmployeeID(int EmpId)
-        //{
-        //    return await expensesClaimServices.GetByEmpId(EmpId);
-        //}
+        [HttpGet("empId/{EmpId}")]
+        public async Task<List<ExpenseClaim>> GetByEmployeeID(int employeeId)
+        {
+            return await expensesClaimServices.GetByEmpId(employeeId);
+        }
 
 
         // GET api/<ExpenseClaimController>/5
