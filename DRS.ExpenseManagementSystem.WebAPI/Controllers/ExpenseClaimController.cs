@@ -60,11 +60,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         }
 
         // GET api/<ExpenseClaimController>/5
-        [HttpGet]
-        public async Task<List<ExpenseClaim>> GetByEmployeeID(int EmpId)
-        {
-            return await expensesClaimServices.GetByEmpId(EmpId);
-        }
+        //[HttpGet]
+        //public async Task<List<ExpenseClaim>> GetByEmployeeID(int EmpId)
+        //{
+        //    return await expensesClaimServices.GetByEmpId(EmpId);
+        //}
 
 
         // GET api/<ExpenseClaimController>/5
