@@ -30,7 +30,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public List<IndividualExpenditureViewModel> IndividualExpenditures { get; set; }
         public Department Dept { get; set; }
         public Project Project { get; set; }
-        public Employee Employee { get; set; }
+        public Employee Emp { get; set; }
         public ClaimStatus StatusNavigation { get; set; }
     }
 }

@@ -185,6 +185,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             ViewBag.categoryList = categorySelectList;
 
+            //dropdown to show department
+            HttpResponseMessage responsedepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responsedepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
 
             return View(detailsClaim);
         }
@@ -249,9 +259,81 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{claimId}");
             var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
 
+            //drop down to show project names
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+            var projectSelectList = new List<SelectListItem>();
+            foreach (var project in projectList)
+            {
+                projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+            }
+            ViewBag.projectList = projectSelectList;
+
+            //dropdown to show categories
+            HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            var categoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseCategoryList.Content.ReadAsStringAsync());
+            var categorySelectList = new List<SelectListItem>();
+            foreach (var category in categoryList)
+            {
+                categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+            ViewBag.categoryList = categorySelectList;
+
+            //dropdown to show department
+            HttpResponseMessage responsedepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responsedepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
             detailsClaim.IndividualExpenditures = individualExpenditures;
             string wwwPath = this.webHostEnvironment.WebRootPath;
             return View(detailsClaim);
+        }
+
+        // Get all that are approved
+
+        [HttpGet]
+        public async Task<IActionResult> IndexApproved()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2 || e.Status == 10 || e.Status == 11).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
+        // Get all that are rejected
+
+        [HttpGet]
+        public async Task<IActionResult> IndexRejected()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3 || e.Status == 16).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
         }
     }
 }
