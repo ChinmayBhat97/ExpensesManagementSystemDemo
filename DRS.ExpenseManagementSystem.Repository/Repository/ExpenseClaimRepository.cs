@@ -71,7 +71,7 @@ namespace DRS.ExpenseManagementSystem.Repository
             return await _dbContext.ExpenseClaims.Include(a => a.Dept)
                 .Include(r => r.StatusNavigation)
                 .Include(b => b.Project)
-                .Include(c => c.Emp)
+                .Include(p => p.Emp).ThenInclude(pa=>pa.Emp)
                 .ToListAsync();
         }
     }
