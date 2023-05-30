@@ -65,6 +65,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     {
                         if(authResponse.userDetails.IsActive==true && authResponse.userDetails.IsAccountLocked==false)
                         {
+                            TempData["EmployeeCode"]= authResponse.userDetails.EmployeeCode;
                             TempData["EmpID"]= authResponse.userDetails.EmpId;
                             TempData["LoggedDesignation"]= authResponse.userDetails.Designation;
                             TempData["LoggedFirstName"]= authResponse.userDetails.FirstName;

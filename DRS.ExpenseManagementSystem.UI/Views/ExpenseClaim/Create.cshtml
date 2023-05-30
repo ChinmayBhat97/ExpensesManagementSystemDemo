@@ -52,23 +52,32 @@
 
 
 <body>
-    <h4 style="padding-left:275px;"><u><b>Create New Claim</b></u></h4>
+    <h4 style="padding-left:200px;"><u><b>Create New Claim</b></u></h4>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:220px;">
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label><b>Employee</b><span style="color:red;">*</span></label>
-                            <input asp-for="EmpId" class="form-control" required />
-                            <span asp-validation-for="EmpId" class="text-danger"></span>
+                            <label><b>Employee Code</b></label>
+                            <input asp-for="EmpId" class="form-control" placeholder="@TempData["EmployeeCode"]" style="font-weight:700;font-size:18px;color:black" readonly />
                         </div>
                     </div>
 
-                 <div class="row">
-                        <div class="col-md-6">
+                    <div class="col-md-8" style="padding-left:10px;">
+                        <div class="form-group">
+                            <label asp-for="DeptId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
+                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
+                                <option value="">-- Select --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label asp-for="DeptId" class="form-label input-lable"><b>Department/ Title</b><span style="color:red;">*</span></label>
                                 <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
@@ -100,7 +109,7 @@
               
 
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                             <div class="form-group">
                                 <label><b>Claim Request Date</b><span style="color:red;">*</span></label>
                                 <input asp-for="ClaimRequestDate" class="form-control" readonly />
@@ -109,7 +118,7 @@
                     </div>
 
 
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label asp-for="ProjectId" class="form-label input-lable"><b>Project Detail/ Title</b><span style="color:red;">*</span></label>
                             <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
@@ -118,7 +127,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2" style="padding-top:7px;">
+                    <div class="col-md-2" >
                         <div class="form-group">
                             <label><b>Total Amount (<span>&#8377;</span>) </b>  </label>
                             <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
@@ -138,7 +147,8 @@
                    </div>
                    
                </div>
-                <div style="padding-top:10px;">
+
+              <div style="padding-top:10px;">
                         <table id="Expense">
                             <tbody id="ExpenseBody">
                                 <tr>
