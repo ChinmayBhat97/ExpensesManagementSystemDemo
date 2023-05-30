@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -68,10 +70,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<List<ExpenseClaim>> GetAllDetails()
         {
-            
-            var dept= _dbContext.ExpenseClaims.Include(a => a.Dept);
-            return dept.ToList();
-
+            return await _dbContext.ExpenseClaims.Include(a => a.Dept).ToListAsync();
         }
     }
 }
