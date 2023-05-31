@@ -31,5 +31,10 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await projectRepository.GetByTitleAsync(projectTitle);
         }
+
+        public async Task<List<Project>> GetAllDetails()
+        {
+            return await projectRepository.GetAllDetails();
+        }
     }
 }
