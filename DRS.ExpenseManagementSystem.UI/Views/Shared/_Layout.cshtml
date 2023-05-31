@@ -66,13 +66,13 @@
                     Claims
                     <i class="fa fa-caret-down"></i>
                 </button>
-                <div class="dropdown-container">
+                @*<div class="dropdown-container">
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexApproved">Approved Claims </a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexRejected">Rejected Claims </a>
                 </div>
-
+*@
 
                @* <button class="dropdown-btn">
                     Manager
@@ -114,14 +114,17 @@
                 <div class="dropdown-container">
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a>
-                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="PreviousClaims">Claim History</a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexApproved">Approved Claims </a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexRejected">Rejected Claims </a>
                 </div>
                 <button class="dropdown-btn">
                     Finance  Manager
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a asp-area="" asp-controller="FinanceManager" asp-action="Index" asp-route-id="2">Finance Manager Approvals</a>
+                    <a asp-area="" asp-controller="FinanceManager" asp-action="Index" >Finance Manager Approvals</a>
+                    <a asp-area="" asp-controller="FinanceManager" asp-action="IndexApprovedByFManager">Approved Claims</a>
+                    <a asp-area="" asp-controller="FinanceManager" asp-action="IndexRejectedByFManager">Rejected Claims</a>
                 </div>
                 <a asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
             }
@@ -135,13 +138,17 @@
                 <div class="dropdown-container">
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a>
                     <a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexApproved">Approved Claims </a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexRejected">Rejected Claims </a>
                 </div>
                 <button class="dropdown-btn">
                     Manager
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a asp-area="" asp-controller="Manager" asp-action="Index" asp-route-id="2">Manager Approvals</a>
+                    <a asp-area="" asp-controller="Manager" asp-action="Index">Manager Approvals</a>
+                    <a asp-area="" asp-controller="Manager" asp-action="IndexApprovedByManager">Approved Claims </a>
+                    <a asp-area="" asp-controller="Manager" asp-action="IndexRejectedByManager">Rejected Claims </a>
                 </div>
                 <a asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
             }
@@ -155,6 +162,8 @@
             <div class="dropdown-container">
                 <a asp-area="" asp-controller="ExpenseClaim" asp-action="Create">New Claim</a>
                 <a asp-area="" asp-controller="ExpenseClaim" asp-action="Index">Claim List</a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexApproved">Approved Claims </a>
+                    <a asp-area="" asp-controller="ExpenseClaim" asp-action="IndexRejected">Rejected Claims </a>
             </div>
             <a asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
             }

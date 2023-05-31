@@ -21,6 +21,6 @@
 
         public Department? Dept { get; set; }
 
-        public User Emp { get; set; }
+        public User? Emp { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public DateTime? DateOfJoining { get; set; }
         public int? DeptId { get; set; }
         public DateTime? CreatedAt { get; set; }
+
+        public Department? dept { get; set; }
     }
 }

@@ -134,6 +134,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
 
             expenseClaimViewModel.Status = 1;
+            expenseClaimViewModel.EmpId=Convert.ToInt32(TempData["EmpID"]);
             expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
             // Save ExpenseClaim
