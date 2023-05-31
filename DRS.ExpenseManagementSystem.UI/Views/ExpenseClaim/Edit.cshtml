@@ -19,47 +19,63 @@
                     <input asp-for="Id" class="form-control" style="display:none" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label><b>Employee</b><span style="color:red;">*</span></label>
-                    @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })
-                    <span asp-validation-for="EmpId" class="text-danger"></span>
-                </div>
 
-                <div class="form-group">
-                    <label asp-for="DeptId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
-                    <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
-                        <option value="">-- Select --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label><b>Claim Date</b><span style="color:red;">*</span></label>
-                    <input asp-for="ClaimRequestDate" class="form-control" readonly />
-                    <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
-                </div>
-                <div class="col-md-8">
-                    <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
-                    <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
-                        <option value="">-- Select --</option>
-                    </select>
-                </div>
-                <br />
-                <div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                                <input asp-for="StartDate" class="form-control" required />
-                                <span asp-validation-for="StartDate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                                <input asp-for="EndDate" class="form-control" required />
-                                <span asp-validation-for="EndDate" class="text-danger"></span>
-                            </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label><b>Employee Code:</b></label>
+                            @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })
                         </div>
                     </div>
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label asp-for="DeptId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
+                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
+                                <option value="">-- Select --</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="col-md-8">
+                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
+                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
+                                <option value="">-- Select --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+               
+
+               <div class="row">
+                   <div class="col-md-4">
+                        <div class="form-group">
+                            <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
+                            <input asp-for="StartDate" class="form-control" required />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                   </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label><b>Expense End Date</b><span style="color:red;">*</span></label>
+                            <input asp-for="EndDate" class="form-control" required />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                   </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label><b>Claim Date</b><span style="color:red;">*</span></label>
+                            <input asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+                        </div>
+                    </div>
+               </div>
+               
+                <div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Total Expenditure</b><span style="color:red;">*</span></label>
@@ -69,18 +85,22 @@
                         </div>
                     </div>
                 </div>
-                <table id="Expense">
-                    <tbody id="ExpenseBody">
+
+
+
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+                   
                         <tr>
-                            <th> <label><b>Expenditure Date</b></label> </th>
-                            <th> <label><b>Description</b></label>      </th>
-                            <th> <label><b>Category</b></label>         </th>
-                            <th> <label><b>Expense Category</b></label> </th>
-                            <th> <label><b>Amount</b></label>           </th>
-                            <th> <label><b>Comments</b></label>         </th>
-                            <th> <label><b>Receipt Number</b></label>   </th>
-                            <th> <label><b>Upload</b></label>           </th>
+                        <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b></label> </th>
+                        <th style="background-color: #0000b3;"> <label><b>Description</b></label>      </th>
+                            <th style="background-color: #0000b3;"> <label><b>Category</b></label>         </th>
+                        <th style="background-color: #0000b3;">  <label><b>Expense Category</b></label> </th>
+                        <th style="background-color: #0000b3;"> <label><b>Amount</b></label>           </th>
+                            <th style="background-color: #0000b3;"> <label><b>Comments</b></label>         </th>
+                        <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label>   </th>
+                        <th style="background-color: #0000b3;"> <label><b>Upload</b></label>           </th>
                         </tr>
+                  <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
 
