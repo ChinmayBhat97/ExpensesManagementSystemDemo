@@ -37,37 +37,34 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 Timeout = TimeSpan.FromMinutes(5)
             };
         }
-
-
-        // GET method for index 
         
         [HttpGet("ExpenseClaim/Index")]
         public async Task<IActionResult> Index()
         {
-            //int empID = Convert.ToInt32(TempData["logged_empID"]);
-            //int EmpID = empID;
+            int empId = Convert.ToInt32(TempData["EmpID"]);
+            TempData.Keep();
 
-           int EmpId = Convert.ToInt32(TempData["EmpID"]);
-           TempData.Keep();
-            //bool ID = int.TryParse(LoggedID, out int result);
-
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim?EmpId={EmpId}");
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim?EmpId={empId}");
             if (responseHomePage.IsSuccessStatusCode)
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
-                return View(model);
+
+                // Filter the claims based on matching EmpId
+                var filteredClaims = model.Where(c => c.EmpId == empId).ToList();
+
+                return View(filteredClaims);
             }
             else
             {
-
                 return View();
             }
         }
 
-      
+
+
         // GET method to create expense claim
-        
+
         [HttpGet("ExpenseClaim/Create")]
         public async Task<IActionResult> Create()
         {
