@@ -44,7 +44,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             int empId = Convert.ToInt32(TempData["EmpID"]);
             TempData.Keep();
 
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim?EmpId={empId}");
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
             if (responseHomePage.IsSuccessStatusCode)
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();

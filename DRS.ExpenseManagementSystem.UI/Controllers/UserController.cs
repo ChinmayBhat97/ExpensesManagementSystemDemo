@@ -103,7 +103,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> DetailsByUserID(int id)
         {
             HttpResponseMessage responseDetailsUser = await client.GetAsync(client.BaseAddress + $"User/{id}");
-            var detailsUser = JsonConvert.DeserializeObject<User>(await responseDetailsUser.Content.ReadAsStringAsync());
+            var detailsUser = JsonConvert.DeserializeObject<UserViewModel>(await responseDetailsUser.Content.ReadAsStringAsync());
             return View(detailsUser);
         }
 

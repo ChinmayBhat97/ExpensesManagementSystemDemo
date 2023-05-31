@@ -41,7 +41,7 @@
     <div style="padding-left:225px;padding-bottom:80px;">
         <h3 style="color:#000099"><u> <b>Projects List </b></u></h3>
 
-        <div style="padding-left:750px;">
+        <div style="padding-left:720px;">
             <a asp-action="CreateProject" class="btn btn-success">Add New Project</a>
 
         </div>
@@ -54,10 +54,10 @@
                     <th style="background-color: #0000b3;">
                         Sl.No
                     </th>
-                    <th style="background-color: #0000b3;">
-                        @*@Html.DisplayNameFor(model => model.Id)*@
+                    @*@Html.DisplayNameFor(model => model.Id)*@
+                    @*<th style="background-color: #0000b3;">
                        Project ID
-                    </th>
+                    </th>*@
                     <th style="background-color: #0000b3;">
                         Manager Name
                     </th>
@@ -87,9 +87,9 @@
                         <td style="padding-left:25px;vertical-align:central;">
                             &nbsp;
                         </td>
-                        <td style="padding-left:10px;text-align:center;">
+                       @* <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Id)
-                        </td>
+                        </td>*@
                         <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Emp.FirstName)
                         </td>

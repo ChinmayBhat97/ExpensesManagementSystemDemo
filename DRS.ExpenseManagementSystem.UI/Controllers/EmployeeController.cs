@@ -140,8 +140,20 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> DetailsByEmployeeID(int id)
         {
             HttpResponseMessage responseDetailsEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            var detailsEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseDetailsEmployee.Content.ReadAsStringAsync());
-            return View(detailsEmployee);
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            if (responseDetailsEmployee.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
+            {
+                var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+                var departmentSelectList = new List<SelectListItem>();
+                foreach (var department in departmentList)
+                {
+                    departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+                }
+                ViewBag.departmentList = departmentSelectList;
+                var detailsEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseDetailsEmployee.Content.ReadAsStringAsync());
+                return View(detailsEmployee);
+            }
+            return View();
         }
     }
 }

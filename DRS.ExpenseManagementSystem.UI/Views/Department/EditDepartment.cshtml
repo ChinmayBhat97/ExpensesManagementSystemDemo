@@ -13,8 +13,8 @@
                 <form asp-route="/Department/EditDepartment/@Model.Id">
                     <div class="form-group">
                         <div class="col-md-2">
-                               <b> <label asp-for="Id" class="control-label">ID</label></b>
-                            <input asp-for="Id" class="form-control" readonly/>
+                             @*  <b> <label asp-for="Id" class="control-label">ID</label></b>*@
+                            <input asp-for="Id" class="form-control" readonly type="hidden"/>
                             <span asp-validation-for="Id" class="text-danger"></span>
                         </div>
                     </div>
