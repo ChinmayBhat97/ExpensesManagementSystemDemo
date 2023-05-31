@@ -30,9 +30,7 @@
 
     <div style="padding-left:200px;">
         <h4 style="color:navy"> <u> <b> Applied Claims Lists </b>  </u> </h4>
-        <div style="padding-left:800px;">
-            <a asp-action="Create" type="button" class="btn btn-info">Create New</a>
-        </div>
+        
         <div style="padding-top:10px;">
             <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
                 <thead>
@@ -81,7 +79,7 @@
                                 @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
                             <td>
                                 <a asp-action="EditByManager" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                @*<a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>*@
                                     @* <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
                             </td>
 
