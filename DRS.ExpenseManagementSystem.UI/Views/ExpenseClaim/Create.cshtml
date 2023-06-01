@@ -1,50 +1,46 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
 <html>
 
-<head> 
+<head>
 
     @{
         ViewData["Title"] = "Create";
     }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-
     <style>
 
         td {
             border: 1px solid #000033;
             text-align: left;
-           /* padding: 2px;*/
-          
-            
+            /* padding: 2px;*/
         }
 
         th {
             border: 1px solid #000033;
             text-align: center;
-           /* padding: 2px;*/
+            /* padding: 2px;*/
             color: whitesmoke;
         }
 
-       
+
 
         tr:nth-child(even) {
             background-color: #e6f2ff;
         }
 
-       
+
 
         /* Set the serial number counter to 0 */
-      /*  #Expense {
-            counter-reset: serial-number;
-        }*/
+        /*  #Expense {
+                    counter-reset: serial-number;
+                }*/
 
-            /* Increment the serial number counter */
-            /* Display the counter */
-            /*#Expense td:first-child:before {
-                counter-increment: serial-number;
-                content: counter(serial-number);
-            }*/
+        /* Increment the serial number counter */
+        /* Display the counter */
+        /*#Expense td:first-child:before {
+                        counter-increment: serial-number;
+                        content: counter(serial-number);
+                    }*/
     </style>
 
 
@@ -79,7 +75,7 @@
                 </div>
 
                 <div class="row">
-                       
+
 
 
                     <div class="col-md-3">
@@ -107,12 +103,12 @@
                     </div>
                 </div>
 
-              
-              
-              
+
+
+
 
                 <div class="row">
-                   
+
                     <div class="col-md-7">
                         <div class="form-group">
                             <label asp-for="ProjectId" class="form-label input-lable"><b>Project Detail/ Title</b><span style="color:red;">*</span></label>
@@ -122,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3" >
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Total Amount (<span>&#8377;</span>) </b>  </label>
                             <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
@@ -132,90 +128,90 @@
                     </div>
                 </div>
 
-              
-               <hr />
-               <div class="row">
-                   <div class="col-md-6">
-                       <div class="form-group">
+
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <h6> <b>Individual Expenditure  </b> </h6>
-                       </div>
-                   </div>
-                   
-               </div>
-
-              <div style="padding-top:10px;">
-                        <table id="Expense">
-                            <tbody id="ExpenseBody">
-                                <tr>
-                                    <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                                    <th style="background-color: #0000b3;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
-                                </tr>
-                                @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
-                                {
-
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
-                                    <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
-
-                                    <tr>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" required />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            @*<input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required />*@
-                                            <select asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required>
-                                                 <option value="">-- Select --</option>
-                                                 <option value="Official">Official</option>
-                                                  <option value="Personal">Personal</option>
-                                             </select>
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
-                                                <option value="">-- Select --</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" required />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" required />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
-                                            <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
-                                            <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                        </td>
-                                        @*<td>
-                                            <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
-                                        </td>*@
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <input type="button" id="addRowBtn" value="Add New" name="Add New" />
-              </div>
-                        <br />
-                        <div class="form-group" style="padding-left:600px;">
-                            <input type="submit" value="Save" class="btn btn-success" />
-                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
                         </div>
+                    </div>
+
+                </div>
+
+                <div style="padding-top:10px;">
+                    <table id="Expense">
+                        <tbody id="ExpenseBody">
+                            <tr>
+                                <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b><span style="color:red;">*</span></label> </th>
+                                <th style="background-color: #0000b3;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
+                                <th style="background-color: #0000b3;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
+                                <th style="background-color: #0000b3;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
+                                <th style="background-color: #0000b3;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
+                                <th style="background-color: #0000b3;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
+                                <th style="background-color: #0000b3;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
+                                <th style="background-color: #0000b3;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
+                            </tr>
+                            @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
+                            {
+
+                                <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
+                                <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
+
+                                <tr>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        @*<input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required />*@
+                                        <select asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required>
+                                            <option value="">-- Select --</option>
+                                            <option value="Official">Official</option>
+                                            <option value="Personal">Personal</option>
+                                        </select>
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
+                                            <option value="">-- Select --</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+                                    </td>
+                                    @*<td>
+                                <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
+                                </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="button" id="addRowBtn" value="Add New" name="Add New" />
+                </div>
+                <br />
+                <div class="form-group" style="padding-left:600px;">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
             </form>
         </div>
     </div>
@@ -307,22 +303,14 @@
 
 
 
-    function DateCheck() {
-        $('#startDate').datepicker({
-            onSelect: function (dateText, inst) {
-                $('#endDate').datepicker('option', 'minDate', new Date(dateText));
-            }
-        });
-        $('#endDate').datepicker({
-            onSelect: function (dateText, inst) {
-                $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
-            }
-        });
-    
-    }
+    $("#EndDate").change(function () {
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
 
-       
-
-});
-
+        if ((Date.parse(endDate) <= Date.parse(startDate))) {
+            alert("End date should be greater than Start date");
+            document.getElementById("EndDate").value = "";
+        }
+    });
+    // completed js code
 </script>
