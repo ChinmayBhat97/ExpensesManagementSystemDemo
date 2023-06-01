@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
@@ -22,7 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -40,15 +41,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("Project/CreateProject")]
         public async Task<IActionResult> CreateProjectAsync()
         {
             HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
+            var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+            var userSelectList = new List<SelectListItem>();
+            foreach (var user in userList)
+            {
+                 userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+            }
+            ViewBag.userList = userSelectList;
             return View();
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpPost("Project/CreateProject")]
         public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
         {
@@ -66,16 +75,24 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("Project/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id)
         {
             HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
+            var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+            var userSelectList = new List<SelectListItem>();
+            foreach (var user in userList)
+            {
+                userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+            }
+            ViewBag.userList = userSelectList;
             var EditProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
             return View(EditProject);
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpPost("Project/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
         {
@@ -95,7 +112,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(projectViewModel);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("Project/DetailsProject/{id}")]
         public async Task<IActionResult> DetailsByProjectID(int id)
         {

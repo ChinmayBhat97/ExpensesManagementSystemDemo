@@ -144,6 +144,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             ViewBag.statusList = statusSelectList;
 
+            //to show employeecode
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
+            var userSelectList = new List<SelectListItem>();
+            foreach (var user in userList)
+            {
+                userSelectList.Add(new SelectListItem(user.Emp.EmployeeCode, user.Id.ToString()));
+            }
+            ViewBag.userList = userSelectList;
+
 
             return View(detailsClaim);
         }

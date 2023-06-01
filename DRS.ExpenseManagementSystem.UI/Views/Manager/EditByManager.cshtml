@@ -23,9 +23,10 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label><b>Eployee Code</b><span style="color:red;">*</span></label>
-                            <input asp-for="EmpId" class="form-control" readonly />
-                            <span asp-validation-for="EmpId" class="text-danger"></span>
+                            <label asp-for="EmpId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
+                            <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Employee" readonly>
+                                <option value="">-- Select --</option>
+                            </select>
                         </div>
                     </div>
 
