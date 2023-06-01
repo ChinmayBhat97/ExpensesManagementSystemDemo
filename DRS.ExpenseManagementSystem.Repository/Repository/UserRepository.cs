@@ -35,8 +35,12 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
 
             var userTable = (from u in _dbContext.Users.AsQueryable().ToList() // outer sequence
-                             join e in _dbContext.Employees.AsQueryable().ToList() //inner sequence 
+                             join e in _dbContext.Employees.AsQueryable().ToList() //inner sequence  
                             on u.Id equals e.EmpId // key selector 
+
+                             join p in _dbContext.Projects.AsQueryable().ToList() on e.Id equals p.EmpId
+
+
                              where u.EmployeeCode == EmployeeCode && u.Password ==Password
 
                              select new UserViewModel
@@ -49,7 +53,9 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
                                  Role = (int)u.Role,
                                  EmpId = e.Id,
                                  FirstName = e.FirstName,
-                                 Designation = e.Designation
+                                 Designation = e.Designation,
+                                 pID = p.Id
+
                              }).FirstOrDefault();
 
             //  var  userID = _dbContext.Users.Where(a =>a.EmployeeCode==EmployeeCode).Select(c =>c.Id).FirstOrDefault();

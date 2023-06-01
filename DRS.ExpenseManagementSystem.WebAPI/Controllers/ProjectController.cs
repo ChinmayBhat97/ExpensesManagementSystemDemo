@@ -38,6 +38,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await projectService.GetAllDetails();
         }
 
+        //[HttpGet("{pid}")]
+        //public async Task<Project> GetByProjectId(int pid)
+        //{
+        //    return await projectService.GetByIdAsync(pid);
+        //}
+
+
         // Edited by Chinmay
         // GET api/<Project Controller>/5
         [HttpGet("{id}")]

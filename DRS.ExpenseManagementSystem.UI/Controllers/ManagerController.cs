@@ -44,13 +44,17 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+
+            int pID = Convert.ToInt32(TempData["projectID"]);
+            TempData.Keep();
+
             HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
             if (responseHomePage.IsSuccessStatusCode)
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==pID).ToList() : new();
                 return View(filteredModel);
             }
             else

@@ -26,18 +26,30 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Project");
-            if (responseHomePage.IsSuccessStatusCode)
+            int ID = Convert.ToInt32(@TempData["EmpID"]);
+            int role = Convert.ToInt32(@TempData["Role"]);
+            if(role==2)
             {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
-                return View(model);
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"Project/{ID}");
+                if (responseHomePage.IsSuccessStatusCode)
+                {
+                    var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                    var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
+
+                    //  userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                    return View(model);
+                }
+                else
+                {
+
+                    return View();
+                }
             }
             else
             {
-
                 return View();
             }
+            
         }
 
        // [Authorize(Roles = "4")]
@@ -77,7 +89,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
        // [Authorize(Roles = "4")]
         [HttpPost("Project/EditProject/{id}")]
-        public async Task<IActionResult> EditProject(int id, ProjectViewModel projectViewModel)
+        public async Task<IActionResult> EditProject(int id, Project projectViewModel)
         {
             if (ModelState.IsValid)
             {
