@@ -1,14 +1,43 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.ExpenseClaimViewModel
-
-@{
-    ViewData["Title"] = "Edit Manager";
-}
-
-
-<html>
 <head>
+    @{
+        ViewData["Title"] = "Edit Manager";
+    }
+<style>
+            td {
+                border: 1px solid #000033;
+                text-align: left;
+                padding: 3px;
+            padding-left: 30px;
+            }
+
+            th {
+                border: 1px solid #000033;
+                text-align: center;
+                padding: 4px;
+                color: whitesmoke;
+                
+            }
+
+            tr:nth-child(even) {
+                background-color: #e6f2ff;
+            }
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
+</style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
+
 <body>
     <h4 style="padding-left:230px;"><u><b>Edit Claim Applied</b></u></h4>
     <br />
@@ -26,7 +55,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label><b>Employee Code:</b></label>
-                            @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })
+                            <div style="padding-left:10px;">  <b>   @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })</b></div>
                         </div>
                     </div>
 
@@ -82,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Manager Approved On</b><span style="color:red;">*</span></label>
                             <input asp-for="ManagerApprovedOn" class="form-control" readonly />
@@ -90,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label><b>Finanace Manager Approved On</b><span style="color:red;">*</span></label>
                             <input asp-for="FinanceManagerApprovedOn" class="form-control" disabled />
@@ -134,23 +163,29 @@
 
                 </div>
                
-                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:85%;padding-top:10px;font-size:16px">
                     
                         <tr>
+                        <th style="background-color: #0000b3;">
+                            Sl.No
+                        </th>
                         <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b></label> </th>
-                        <th style="background-color: #0000b3;"> <label><b>Description</b></label>      </th>
-                        <th style="background-color: #0000b3;"> <label><b>Category</b></label>         </th>
+                        <th style="background-color: #0000b3;"> <label><b>Description</b></label></th>
+                        <th style="background-color: #0000b3;"> <label><b>Category</b></label></th>
                         <th style="background-color: #0000b3;"> <label><b>Expense Category</b></label> </th>
-                            <th style="background-color: #0000b3;"> <label><b>Amount</b></label>           </th>
-                        <th style="background-color: #0000b3;"> <label><b>Comments</b></label>         </th>
-                            <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label>   </th>
-                        <th style="background-color: #0000b3;"> <label><b>Attachment</b></label>           </th>
-                        <th style="background-color: #0000b3;"> <label><b>Is Approved</b><span style="color:red;">*</span></label>           </th>
+                            <th style="background-color: #0000b3;"> <label><b>Amount</b></label></th>
+                        <th style="background-color: #0000b3;"> <label><b>Comments</b></label></th>
+                            <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label></th>
+                        <th style="background-color: #0000b3;"> <label><b>Attachment</b></label></th>
+                        <th style="background-color: #0000b3;"> <label><b>Is Approved</b><span style="color:red;">*</span></label></th>
                         </tr>
                    <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
                             <tr>
+                                <td style="padding-left:25px;" width="10%">
+                                    &nbsp;
+                                </td>
                                @* <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />*@
                                 <td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
@@ -212,11 +247,11 @@
         </div>
     </div>
 </body>
-</html>
+
 
 <script>
 
-    // to add new rows in table
+    //to add new rows in table
     var tablePosition = 1;
     var tableDom = `&lt;tr&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;datetime-local&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}].Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}].Category&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Site&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Food&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Test Record 1&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Travel&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Test 5&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}].AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;/tr&gt;`
     $(document).ready(function () {

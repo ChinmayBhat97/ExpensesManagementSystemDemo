@@ -244,5 +244,18 @@
         return doc.documentElement.textContent;
     }
 
+   function DateCheck(){
+
+        $('#startDate').datepicker({
+            onSelect: function (dateText, inst) {
+                $('#endDate').datepicker('option', 'minDate', new Date(dateText));
+            }
+        });
+        $('#endDate').datepicker({
+            onSelect: function (dateText, inst) {
+                $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
+            }
+        });
+   } 
 
 </script>

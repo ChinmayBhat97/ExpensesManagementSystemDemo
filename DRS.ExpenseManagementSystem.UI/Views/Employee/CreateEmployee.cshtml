@@ -34,7 +34,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PhoneNumber" class="form-control" type="number" pattern="[1-9]{1}[0-9]{9} required  />
+                                <input asp-for="PhoneNumber" class="form-control" type="number" min="7777777777" max="9999999999" required  />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 <span asp-validation-for="DateOfJoining" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <b> <label asp-for="DeptId" class="control-label">Department</label><span style="color:red;">*</span></b>
 
