@@ -3,6 +3,7 @@ using DRS.ExpenseManagementSystem.Abstraction.Services;
 using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.ContentModel;
+using System.Linq;
 
 namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 {
@@ -31,9 +32,15 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         public async Task<List<ExpenseClaim>> GetAllDetails()
         {
             return await expensesClaimServices.GetAllDetails();
+            
         }
 
-
+        [HttpGet("Details/{id}")]
+        public async Task<List<ExpenseClaim>> GetExpenseClaimDetailsById(string id)
+        {
+            var test = await expensesClaimServices.GetDetailsByEmpId(int.Parse(id));            
+            return test;
+        }
 
         // GET api/<ExpenseClaimController>/5
         [HttpGet("Id/{id}")]
