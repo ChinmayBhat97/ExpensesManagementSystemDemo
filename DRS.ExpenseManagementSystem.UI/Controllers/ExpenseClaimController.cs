@@ -34,7 +34,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             this.client = new HttpClient
             {
                 BaseAddress = new Uri(configuration["BaseUrl"]),
-                Timeout = TimeSpan.FromMinutes(5)
+                Timeout = TimeSpan.FromMinutes(15)
             };
         }
         
@@ -44,16 +44,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             int empId = Convert.ToInt32(TempData["EmpID"]);
             TempData.Keep();
 
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/Details/{empId}", HttpCompletionOption.ResponseHeadersRead);
             if (responseHomePage.IsSuccessStatusCode)
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                // Filter the claims based on matching EmpId
-                var filteredClaims = model.Where(c => c.EmpId == empId).ToList();
+                //// Filter the claims based on matching EmpId
+                //var filteredClaims = model;
 
-                return View(filteredClaims);
+                return View(model);
             }
             else
             {

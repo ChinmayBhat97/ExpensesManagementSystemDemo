@@ -58,5 +58,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await repository.GetAllDetails();
         }
+        public async Task<List<ExpenseClaim>> GetDetailsByEmpId(int empId)
+        {
+            return await repository.GetDetailsByEmpId(empId);
+        }
     }
 }

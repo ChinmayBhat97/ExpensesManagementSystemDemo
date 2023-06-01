@@ -79,5 +79,14 @@ namespace DRS.ExpenseManagementSystem.Repository
                 .Include(p => p.Emp).ThenInclude(pa=>pa.Emp)
                 .ToListAsync();
         }
+        public async Task<List<ExpenseClaim>> GetDetailsByEmpId(int empId)
+        {
+            return await _dbContext.ExpenseClaims.Include(a => a.Dept)
+               .Include(r => r.StatusNavigation)
+               .Include(b => b.Project)
+               .Include(p => p.Emp).ThenInclude(pa => pa.Emp)
+               .Where(x => x.EmpId.Equals(empId))
+               .ToListAsync();
+        }
     }
 }

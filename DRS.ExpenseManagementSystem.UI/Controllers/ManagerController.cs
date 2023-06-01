@@ -55,7 +55,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             else
             {
-
                 return View();
             }
         }
