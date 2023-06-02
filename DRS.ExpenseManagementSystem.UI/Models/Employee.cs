@@ -29,7 +29,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public DateTime? CreatedAt { get; set; }
 
         public virtual Department? Dept { get; set; }
-        public virtual User? Emp { get; set; }
+        public virtual User Emp { get; set; }
         public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
     }

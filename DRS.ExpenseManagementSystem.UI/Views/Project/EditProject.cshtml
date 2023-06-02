@@ -1,4 +1,4 @@
-﻿@model DRS.ExpenseManagementSystem.UI.Models.ProjectViewModel
+﻿@model DRS.ExpenseManagementSystem.UI.Models.Project
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,7 +14,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
-                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users" readonly>
+                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users" >
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>

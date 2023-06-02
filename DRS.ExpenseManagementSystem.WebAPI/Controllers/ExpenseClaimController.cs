@@ -108,5 +108,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             await expensesClaimServices.UpdateAsync(expensesClaim);
         }
+
+        [HttpPut("Project/Details/{id}")]
+        public async Task UpdateProjectDetails(ExpenseClaim expensesClaim)
+        {
+            await expensesClaimServices.UpdateAsync(expensesClaim);
+        }
     }
 }

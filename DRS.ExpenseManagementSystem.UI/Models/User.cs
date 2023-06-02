@@ -16,6 +16,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public bool? IsAccountLocked { get; set; }
         public bool? IsActive { get; set; }
         public int? Role { get; set; }
+        public Employee Employee { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
     }

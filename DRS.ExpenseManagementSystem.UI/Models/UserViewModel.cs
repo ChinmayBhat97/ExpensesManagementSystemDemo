@@ -9,6 +9,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public bool? IsAccountLocked { get; set; }
         public bool? IsActive { get; set; }
         public int? Role { get; set; }
+        public Employee employee { get; set; }
     }
 }
 

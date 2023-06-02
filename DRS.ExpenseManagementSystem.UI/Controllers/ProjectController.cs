@@ -27,30 +27,18 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            int ID = Convert.ToInt32(@TempData["EmpID"]);
-            int role = Convert.ToInt32(@TempData["Role"]);
-            if(role==2)
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "Project");
+            if (responseHomePage.IsSuccessStatusCode)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"Project/{ID}");
-                if (responseHomePage.IsSuccessStatusCode)
-                {
-                    var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                    var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
-
-                    //  userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
-                    return View(model);
-                }
-                else
-                {
-
-                    return View();
-                }
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
+                return View(model);
             }
             else
             {
+
                 return View();
             }
-            
         }
 
         // [Authorize(Roles = "4")]
@@ -58,12 +46,19 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> CreateProjectAsync()
         {
             HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
-            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
-            var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
             foreach (var user in userList)
             {
-                 userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                // Retrieve the employee ID from the Employee table using the FK in the User table
+                int employeeId = user.Id;
+
+                // Retrieve the employee code from the User table
+                string employeeCode = user.Emp.EmployeeCode;
+
+                // Create a SelectListItem with the employee code and ID
+                userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
             }
             ViewBag.userList = userSelectList;
             return View();
@@ -71,7 +66,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
         // [Authorize(Roles = "4")]
         [HttpPost("Project/CreateProject")]
-        public async Task<IActionResult> CreateProject(ProjectViewModel projectViewModel)
+        public async Task<IActionResult> CreateProject(Project projectViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -92,15 +87,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditProject(int id)
         {
             HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
-            var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
             foreach (var user in userList)
             {
-                userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                // Retrieve the employee ID from the Employee table using the FK in the User table
+                int employeeId = user.Id;
+
+                // Retrieve the employee code from the User table
+                string employeeCode = user.Emp.EmployeeCode;
+                
+                // Create a SelectListItem with the employee code and ID
+                userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
             }
             ViewBag.userList = userSelectList;
-            var EditProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseEditProject.Content.ReadAsStringAsync());
+            var EditProject = JsonConvert.DeserializeObject<Project>(await responseEditProject.Content.ReadAsStringAsync());
             return View(EditProject);
         }
 

@@ -58,6 +58,7 @@
                     <th style="background-color: #0000b3;">
                         Status
                     </th>
+                    <th style="background-color: #0000b3;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,6 +82,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
+                        <td>
+                            <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        </td>
                     </tr>
                 }
             </tbody>
