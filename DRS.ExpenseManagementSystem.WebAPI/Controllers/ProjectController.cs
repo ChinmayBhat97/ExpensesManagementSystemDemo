@@ -32,6 +32,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         //    return await projectService.GetAllAsync();
         //}
 
+
         [HttpGet]
         public async Task<List<Project>> GetAllDetails()
         {
@@ -67,13 +68,24 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
            await projectService.AddAsync(project);
         }
 
+
+        
         // PUT api/<Project Controller>/5
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task Put(Project project)
         {
-            await projectService.UpdateAsync(project);
+            try
+            {
+                await projectService.UpdateAsync(project);
+            }
+            catch(Exception ex)
+            {
+                
+            }
+           
         }
-
 
     }
 }
+
+
