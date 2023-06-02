@@ -1,4 +1,4 @@
-﻿@model DRS.ExpenseManagementSystem.UI.Models.EmployeeViewModel
+﻿@model DRS.ExpenseManagementSystem.UI.Models.Employee
 @{
     ViewData["Title"] = "Create";
 }
@@ -14,13 +14,12 @@
                     <div class="row" >
                         <div class="col-md-2">
                             <div class="form-group">
-                              <b>  <label asp-for="EmpId" class="control-label">User ID</label><span style="color:red;">*</span></b>
-                                <input asp-for="EmpId" class="form-control" type="number" min="1" required />
-                                <span asp-validation-for="EmpId" class="text-danger"></span>
+                                <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
+                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Department" required>
+                                    <option value="">-- Select --</option>
+                                </select>
                             </div>
                         </div>
-                       
-                       
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
@@ -34,7 +33,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PhoneNumber" class="form-control" type="number" min="7777777777" max="9999999999" required  />
+                                <input asp-for="PhoneNumber" class="form-control" type="number" required  />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PanNumber" class="control-label">PAN Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PanNumber" class="form-control" regex="[A-Z]{5}[0-9]{4}[A-Z]{1}" required />
+                                <input asp-for="PanNumber" class="form-control"  required />
                                 <span asp-validation-for="PanNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -131,14 +130,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>   <label asp-for="AccountNumber" class="control-label">Account Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="AccountNumber" class="form-control" type="number" regex="[7-9]{1}[0-9]{9}" required />
+                                <input asp-for="AccountNumber" class="form-control" type="number"  required />
                                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="Ifsc" class="control-label">IFSC Code</label><span style="color:red;">*</span></b>
-                                <input asp-for="Ifsc" class="form-control"  regex="[A-Z]{4}[0][0-9/A-Z]{6}" required />
+                                <input asp-for="Ifsc" class="form-control"   required />
                                 <span asp-validation-for="Ifsc" class="text-danger"></span>
                             </div>
                         </div>

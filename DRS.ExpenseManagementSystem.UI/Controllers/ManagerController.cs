@@ -63,36 +63,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-
-
-        //[HttpGet("Manager/EditByManager/{id}")]
-        //public async Task<IActionResult> EditByManager(int id)
-        //{
-        //    HttpResponseMessage responseEditUser = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
-        //    var EditByManager = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseEditUser.Content.ReadAsStringAsync());
-        //    return View(EditByManager);
-        //}
-
-        //[HttpPost("Manager/EditByManager/{id}")]
-        //public async Task<IActionResult> EditByManager(int id, ExpenseClaim expenseClaim)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        var myContent = JsonConvert.SerializeObject(expenseClaim);
-        //        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //        var byteContent = new ByteArrayContent(buffer);
-        //        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ExpenseClaim/{expenseClaim.Id}", byteContent);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-
-        //    return View(expenseClaim);
-        //}
-
         [HttpGet("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(int id)
         {
@@ -178,9 +148,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-
 
         [HttpGet("Manager/DetailsManager/{id}")]
         public async Task<IActionResult> DetailsByManager(int id)

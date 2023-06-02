@@ -56,8 +56,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("User/Create")]
         public async Task<IActionResult> Create(UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
-            {
+            
                 var myContent = JsonConvert.SerializeObject(userViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -65,8 +64,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"User", byteContent);
 
                 return RedirectToAction("Index");
-            }
-            return View(userViewModel);
+            
         }
 
        // [Authorize(Roles = "4")]
@@ -82,8 +80,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("User/EditUser/{id}")]
         public async Task<IActionResult> EditUser(int id, UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
-            {
+            
                 var myContent = JsonConvert.SerializeObject(userViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -93,7 +90,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-            }
+            
 
             return View(userViewModel);
         }

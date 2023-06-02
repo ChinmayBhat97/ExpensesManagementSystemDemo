@@ -57,6 +57,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 }
                 ViewBag.departmentList = departmentSelectList;
 
+                // Get employee code
+                HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
+                var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+                var userSelectList = new List<SelectListItem>();
+                foreach (var user in userList)
+                {
+                    userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                }
+                ViewBag.userList = userSelectList;
+
                 return View();
             }
             return View();
@@ -67,11 +77,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> CreateEmployee(Employee employee)
         {
             employee.CreatedAt=DateTime.Now;
-            employee.FirstName= employee.FirstName.ToUpper();
-            employee.LastName= employee.LastName.ToUpper();
-            if (ModelState.IsValid)
-            {
-          
                 var myContent = JsonConvert.SerializeObject(employee);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -80,9 +85,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                   HttpResponseMessage createNewEmp = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
 
                 return RedirectToAction("Index");
-            }
-
-            return View(employee);
         }
 
         //[HttpGet("User/EditEmployee/{id}")]
@@ -97,6 +99,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditEmployee(int id)
         {
             HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
+            
+            // Get Department
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
             if (responseEditEmployee.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
             {
@@ -107,6 +111,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
                 }
                 ViewBag.departmentList = departmentSelectList;
+
+                // Get employee code
+                HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
+                var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+                var userSelectList = new List<SelectListItem>();
+                foreach (var user in userList)
+                {
+                    userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                }
+                ViewBag.userList = userSelectList;
                 var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
                 return View(EditEmployee);
                 
