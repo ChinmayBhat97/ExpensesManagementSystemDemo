@@ -71,7 +71,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         
         // PUT api/<Project Controller>/5
-        [HttpPatch("{id}")]
+        [HttpPut("{Id}")]
         public async Task Put(Project project)
         {
             try
