@@ -32,23 +32,18 @@
 
         /* Set the serial number counter to 0 */
         /*  #Expense {
-                    counter-reset: serial-number;
-                }*/
+                            counter-reset: serial-number;
+                        }*/
 
         /* Increment the serial number counter */
         /* Display the counter */
         /*#Expense td:first-child:before {
-                        counter-increment: serial-number;
-                        content: counter(serial-number);
-                    }*/
+                                counter-increment: serial-number;
+                                content: counter(serial-number);
+                            }*/
     </style>
 
-
 </head>
-
-
-
-
 <body>
     <h4 style="padding-left:200px;"><u><b>Create New Claim</b></u></h4>
     <br />
@@ -75,9 +70,6 @@
                 </div>
 
                 <div class="row">
-
-
-
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
@@ -102,11 +94,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
                 <div class="row">
 
                     <div class="col-md-7">
@@ -127,18 +114,13 @@
                         </div>
                     </div>
                 </div>
-
-
-                <hr />
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <h6> <b>Individual Expenditure  </b> </h6>
                         </div>
                     </div>
-
                 </div>
-
                 <div style="padding-top:10px;">
                     <table id="Expense">
                         <tbody id="ExpenseBody">
@@ -154,14 +136,12 @@
                             </tr>
                             @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                             {
-
                                 <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                                 <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
-
                                 <tr>
                                     <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
+                                        <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" min="@Model.StartDate" max="@Model.EndDate" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" id="ExpDate"></span>
                                     </td>
                                     <td>
                                         <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
@@ -300,17 +280,28 @@
         return doc.documentElement.textContent;
     }
 
+    // to add date range for start and end date
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
 
-
-
-    $("#EndDate").change(function () {
-        var startDate = document.getElementById("startDate").value;
-        var endDate = document.getElementById("endDate").value;
-
-        if ((Date.parse(endDate) <= Date.parse(startDate))) {
-            alert("End date should be greater than Start date");
-            document.getElementById("EndDate").value = "";
-        }
+    startDateInput.addEventListener("change", function () {
+        endDateInput.min = startDateInput.value;
     });
-    // completed js code
+
+    endDateInput.addEventListener("change", function () {
+        startDateInput.max = endDateInput.value;
+    });
+
+    function validateDateRange(input, startDate, endDate) {
+        var selectedDate = new Date(input.value);
+        var start = new Date(startDate);
+        var end = new Date(endDate);
+
+        if (selectedDate < start || selectedDate > end) {
+            input.setCustomValidity("Please select a date between the start and end dates.");
+        } else {
+            input.setCustomValidity("");
+        } 
+    }
+    
 </script>
