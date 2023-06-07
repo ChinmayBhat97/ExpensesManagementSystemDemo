@@ -110,6 +110,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
+            int role = Convert.ToInt32(TempData["Role"]);
+            TempData.Keep();
+
             string wwwPath = this.webHostEnvironment.WebRootPath;
 
             string path = Path.Combine(wwwPath, "ExpenseProof");
@@ -129,8 +132,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
                 }
             }
-
             expenseClaimViewModel.Status = 1;
+
+            if (role == 3)
+            {
+                expenseClaimViewModel.Status = 2;
+                expenseClaimViewModel.ManagerRemarks = "Not Applicable";
+                expenseClaimViewModel.ManagerApprovedOn = DateTime.Now;
+            }
+
+            //expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.EmpId=Convert.ToInt32(TempData["EmpID"]);
             expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
