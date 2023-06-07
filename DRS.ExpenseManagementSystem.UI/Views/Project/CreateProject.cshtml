@@ -24,7 +24,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>    <label asp-for="StartDate" class="control-label"> Project Start Date</label><span style="color:red;">*</span></b>
-                                <input asp-for="StartDate" class="form-control" required type="date"   />
+                                <input asp-for="StartDate" class="form-control" id="startDate" required type="date"   />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                         <div class="col-md-3" style="padding-left:10px;">
                             <div class="form-group">
                                 <b>     <label asp-for="EndDate" class="control-label">Project End Date</label> <span style="color:red;">*</span></b>
-                                <input asp-for="EndDate" class="form-control" required type="date"/>
+                                <input asp-for="EndDate" class="form-control" id="endDate" required type="date"/>
                                 <span asp-validation-for="EndDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -89,3 +89,16 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script>
+    // to add date range for start and end date
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+
+    startDateInput.addEventListener("change", function () {
+        endDateInput.min = startDateInput.value;
+    });
+
+    endDateInput.addEventListener("change", function () {
+        startDateInput.max = endDateInput.value;
+    });
+</script>

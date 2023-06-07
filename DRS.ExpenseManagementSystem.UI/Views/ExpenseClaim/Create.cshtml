@@ -145,8 +145,8 @@
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" onchange="DateRange()" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" id="expDate"></span>
+                                        <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control expDate" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" ></span>
                                     </td>
                                     <td>
                                         <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
@@ -226,6 +226,12 @@
     .ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
     .ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_0__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}]
     .AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;td&gt; &lt;button class=&quot;btn btn-danger delete-row&quot;&gt;Delete&lt;/button&gt; &lt;/td&gt; &lt;/tr&gt;`
+   
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+
+    //var startDateInput = date.("#startDate")
+    //var endDateInput = date.("")
     $(document).ready(function () {
 
         InitializeKeyUp();
@@ -263,7 +269,18 @@
             });
             $("#ttlamnt").val(sum);
         }
+
+        
+
+        $(".expDate").change(function () {
+            alert($(this).min);
+            if (Date.parse($(".expDate").min) < Date.parse(startDateInput.value) || Date.parse($(".expDate").max) > Date.parse(endDateInput.value)) {
+                alert("Select date between start and end date");
+            }
+        });
     });
+
+
 
     // insert new rows
     document.getElementById("addRowBtn").addEventListener("click", function () {
@@ -306,7 +323,7 @@
     // to add date range for start and end date
     var startDateInput = document.getElementById("startDate");
     var endDateInput = document.getElementById("endDate");
-    var expDateInput = document.getElementById("expDate");
+    var expDateInput = $(".expDate");
 
     startDateInput.addEventListener("change", function () {
         endDateInput.min = startDateInput.value;
@@ -317,7 +334,7 @@
     });
 
 
-    expDateInput.addEventListener("change", function () {
+    expDateInput.change (function () {
         if (expDateInput.min < startDateInput.value || expDateInput.max > endDateInput.value) {
             alert("Select date between start and end date")
         }
