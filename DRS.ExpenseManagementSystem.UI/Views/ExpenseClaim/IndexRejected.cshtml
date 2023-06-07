@@ -30,7 +30,7 @@
 
 
 <div style="padding-left:200px;">
-    <h4 style="color:navy"> <u> <b>Rejected Claims Lists </b>  </u> </h4>
+    <h5 style="color:navy"> <u> <b>Rejected Claims Lists </b>  </u> </h5>
     @*<div style="padding-left:800px;">
         <a asp-action="Create" type="button" class="btn btn-info">Create New</a>
     </div>*@
@@ -40,49 +40,49 @@
         <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead>
                 <tr>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Employee ID
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Project
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Department
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Claim Request Date
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Amount
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Status
                     </th>
-                    <th style="background-color: #0000b3;">Actions</th>
+                    <th style="background-color: #0000b3;vertical-align:central;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td style="padding-left:30px;">
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.Emp.Emp.EmployeeCode)
                         </td>
-                        <td style="padding-left:30px;">
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.Project.Title)
                         </td>
-                        <td>
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.Dept.Name)
                         </td>
-                        <td>
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.ClaimRequestDate)
                         </td>
-                        <td>
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.TotalAmount)
                         </td>
-                        <td>
+                        <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
-                        <td>
+                        <td style="text-align:center;">
                             <a asp-action="DetailsRejected" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
                     </tr>
