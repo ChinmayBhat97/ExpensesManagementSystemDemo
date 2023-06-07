@@ -99,6 +99,7 @@
                             <th style="background-color: #0000b3;"> <label><b>Comments</b></label>         </th>
                         <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label>   </th>
                         <th style="background-color: #0000b3;"> <label><b>Upload</b></label>           </th>
+                        <th style="background-color: #0000b3;"> <label><b>Delete Row</b><span style="color:red;">*</span></label>           </th>
                         </tr>
                   <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
@@ -137,13 +138,16 @@
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                                <td>
+                                @*<td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>
+                                </td>*@
                                 <td>
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger delete-row">Delete</button>
                                 </td>
                             </tr>
                         }
@@ -281,5 +285,11 @@
             input.setCustomValidity("");
         }
     }
+
+    // delete row button function
+    $(document).on("click", ".delete-row", function () {
+        $(this).closest("tr").remove();
+        calculateSum();
+    });
 
 </script>

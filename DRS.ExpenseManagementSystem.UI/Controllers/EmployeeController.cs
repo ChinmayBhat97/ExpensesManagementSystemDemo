@@ -37,7 +37,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(responseContent);
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Emp.IsActive == true).ToList() : new();
+                return View(filteredModel);
             }
             else
             {

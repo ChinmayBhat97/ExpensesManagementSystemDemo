@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
@@ -36,7 +37,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<UserViewModel>>(responseContent);
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.IsActive == true).ToList() : new();
+                return View(filteredModel);
             }
             else
             {
