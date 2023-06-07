@@ -14,6 +14,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 
         public Task<List<Employee>> GetAllDetails();
 
-
+        public Task<List<Employee>> GetByRole(int role);
     }
 }

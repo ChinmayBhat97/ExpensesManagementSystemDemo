@@ -40,34 +40,34 @@
 
 
 <body>
-    <div style="padding-left:300px;">
-        <h3 style="color:#000099"><u> <b>Employee List </b></u></h3>
+    <div style="padding-left:210px;">
+        <h3 style="color:#000099;padding-left:25px;"><u> <b>Employee List </b></u></h3>
 
-        <div style="padding-left:650px;">
+       @* <div style="padding-left:650px;">
             <a asp-action="CreateEmployee" class="btn btn-success">Add New Employee</a>
             
         </div>
-        <br />
+        <br />*@
 
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:15px;font-size:16px">
             <thead style="vertical-align:middle;">
             <tr>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Sl.No
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;width:2%;vertical-align:middle;">
                   Employee Code @*  @Html.DisplayNameFor(model => model.Id)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
                   Employee User ID  @Html.DisplayNameFor(model => model.EmpId)
                 </th>*@
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;width:11%;vertical-align:central;">
                  First Name  @* @Html.DisplayNameFor(model => model.FirstName)*@
                 </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;width:11%;vertical-align:central;">
                  Last Name  @* @Html.DisplayNameFor(model => model.LastName)*@
                 </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                   Email ID  @*@Html.DisplayNameFor(model => model.Email)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
@@ -79,39 +79,39 @@
                     <th style="background-color: #0000b3;">
                     @Html.DisplayNameFor(model => model.Gender)
                 </th>*@
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                         Department  @*@Html.DisplayNameFor(model => model.DeptId)*@
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #0000b3;vertical-align:central;">
                   Designation  @*@Html.DisplayNameFor(model => model.Designation)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
                     @Html.DisplayNameFor(model => model.DateOfJoining)
                 </th>*@
-                    <th style="background-color: #0000b3;">Action </th>
+                    <th style="background-color: #0000b3;vertical-align:central;">Action </th>
             </tr>
         </thead>
             <tbody style="vertical-align:middle;">
             @foreach (var item in Model)
             {
                     <tr >
-                        <td style="padding-left:25px;">
+                        <td style="padding-left:15px;text-align:center">
                             &nbsp;
                         </td>
 
-                        <td style="width:5%">
+                        <td style="text-align:center">
                         @Html.DisplayFor(modelItem => item.Emp.EmployeeCode)
                     </td>
                         @*<td style="padding-left:10px;">
                       Employee User ID  @Html.DisplayFor(modelItem => item.EmpId)
                     </td>*@
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;width:11%;text-align:center">
                         @Html.DisplayFor(modelItem => item.FirstName)
                     </td>
-                        <td style ="padding-left:10px;">
+                        <td style="padding-left:10px;width:11%;text-align:center">
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;text-align:center">
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                        @* <td style="padding-left:10px;" >
@@ -123,10 +123,10 @@
                         <td style="padding-left:10px;">
                         @Html.DisplayFor(modelItem => item.Gender)
                     </td>*@
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;text-align:center">
                             @Html.DisplayFor(modelItem => item.Dept.Name)
                         </td>
-                        <td >
+                        <td style="text-align:center">
                         @Html.DisplayFor(modelItem => item.Designation)
                     </td>
                         @*<td style="padding-left:10px;">

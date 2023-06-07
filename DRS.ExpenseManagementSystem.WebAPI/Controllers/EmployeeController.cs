@@ -24,6 +24,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await employeeService.GetAllDetails();
         }
 
+        [HttpPost("{role}")]
+        public async Task<List<Employee>> GetByRole(int role)
+        {
+            return await employeeService.GetByRole(role);
+        }
+
         // GET: api/<EmployeeController>
         //[HttpGet]
         //public async Task<List<Employee>> GetAll()

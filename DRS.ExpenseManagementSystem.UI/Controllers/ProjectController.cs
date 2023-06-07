@@ -46,8 +46,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("Project/CreateProject")]
         public async Task<IActionResult> CreateProjectAsync()
         {
+            int role = 2;
             HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
-            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}",null);
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
             var filteredUsers = userList.Where(user => user.Emp != null && user.Emp.Role == 2);
@@ -88,8 +89,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("Project/EditProject/{id}")]
         public async Task<IActionResult> EditProject(int id)
         {
+            int role = 2;
             HttpResponseMessage responseEditProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}", null);
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
             foreach (var user in userList)

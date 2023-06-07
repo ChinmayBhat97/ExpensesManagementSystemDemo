@@ -36,5 +36,10 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await employeeRepository.GetAllDetails();
         }
+
+        public async Task<List<Employee>> GetByRole(int role)
+        {
+            return await employeeRepository.GetByRole(role);
+        }
     }
 }
