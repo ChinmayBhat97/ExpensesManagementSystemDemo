@@ -15,5 +15,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
         public Task<List<User>> GetByRole(int role);
         public UserViewModel GetByEmployeeCodeAndPassword(string EmployeeCode, string Password);
 
+        public UserViewModel GetByEmployeeCodeAsync(string EmployeeCode);
     }
 }

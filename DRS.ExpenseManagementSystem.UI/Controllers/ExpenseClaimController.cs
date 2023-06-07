@@ -139,13 +139,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            
 
             HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
 
         }
+
+
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {

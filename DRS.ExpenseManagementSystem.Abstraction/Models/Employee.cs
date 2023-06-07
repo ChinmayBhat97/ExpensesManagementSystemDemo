@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Models
 {
@@ -24,6 +25,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
         public string? AccountNumber { get; set; }
         public string? Ifsc { get; set; }
         public string? BankName { get; set; }
+        
         public DateTime? DateOfJoining { get; set; }
         public int? DeptId { get; set; }
         public DateTime? CreatedAt { get; set; }

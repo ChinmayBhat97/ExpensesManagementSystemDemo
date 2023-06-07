@@ -15,8 +15,8 @@
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label><span style="color:red;">*</span></b>
-                                <input asp-for="EmployeeCode" class="form-control" required />
+                                <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label></b>
+                                <input asp-for="EmployeeCode" class="form-control" readonly />
                                 <span asp-validation-for="EmployeeCode" class="text-danger"></span>
                             </div>
                         </div>
@@ -24,7 +24,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>   <label asp-for="Password" class="control-label">Password</label><span style="color:red;">*</span></b>
-                                <input asp-for="Password" class="form-control" value="@Model.Password" type="password" />
+                                <input asp-for="Password" class="form-control" value="@Model.Password" type="password" name="password" autocomplete="current-password" required="" id="id_password" />
+                                <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
@@ -94,3 +95,15 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#id_password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>

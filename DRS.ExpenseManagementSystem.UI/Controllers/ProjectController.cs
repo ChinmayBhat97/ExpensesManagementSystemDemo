@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Linq;
 using System.Net.Http.Headers;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
@@ -92,14 +93,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var userSelectList = new List<SelectListItem>();
             foreach (var user in userList)
             {
-                // Retrieve the employee ID from the Employee table using the FK in the User table
-                int employeeId = user.Id;
+                 // Retrieve the employee ID from the Employee table using the FK in the User table
+                    int employeeId = user.Id;
 
-                // Retrieve the employee code from the User table
-                string employeeCode = user.Emp.EmployeeCode;
-                
+                    // Retrieve the employee code from the User table
+                    string employeeCode = (user.Emp.EmployeeCode); // .Where(user.Emp.Role==2))
+
                 // Create a SelectListItem with the employee code and ID
                 userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
+
             }
             ViewBag.userList = userSelectList;
             var EditProject = JsonConvert.DeserializeObject<Project>(await responseEditProject.Content.ReadAsStringAsync());

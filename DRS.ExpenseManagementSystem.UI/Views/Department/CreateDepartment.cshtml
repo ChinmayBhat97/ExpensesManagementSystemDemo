@@ -1,28 +1,31 @@
 ﻿@model DRS.ExpenseManagementSystem.UI.Models.DepartmentViewModel
 
+    @{
+        ViewData["Title"] = "Create";
 
-@{
-    ViewData["Title"] = "Create";
-    
-}
+    }
+  
+
+
+
 <body>
 
 
-<div style="padding-left:225px;">
+<div style="padding-left:245px;">
     <h4 style="color:#000099"> <u><b>Create New Department </b></u>   </h4>
     <br />
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <form asp-route="/Department/CreateDepartment">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
-                <div class="form-group">
-                    <b>  <label asp-for="Name" class="control-label">Department Name</label><span style="color:red;">*</span></b>
-                    <input asp-for="Name" class="form-control" required />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
+               @* <div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+                    <div class="form-group">
+                        <b>   <label asp-for="Name" class="control-label"></label><span style="color:red;">*</span></b>
+                        <input asp-for="Name" class="form-control" required  type="text"  minlength="5" maxlength="50"  placeholder="Type Department Name here."/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
                 <br />
-                <div class="form-group" style="padding-left:225px;">
+                <div class="form-group" style="padding-left:400px;">
                    
 
                     <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
@@ -39,6 +42,10 @@
 
 </div>
 
+
+</body>
+
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -46,5 +53,8 @@
 }
 
 
-</body>
-
+@*<div class="form-group">
+    <b>  <label asp-for="Name" class="control-label">Department Name</label><span style="color:red;">*</span></b>
+    <input asp-for="Name" class="form-control" type="text" data-val="true" data-val-length="The Department Name is required with a maximum length of 50." data-val-length-max="50" data-val-length-min="3" data-val-required="The Department Name is manadatory field." id="deptName" maxlength="50" name="deptName" value="" />
+    <span style="color: red;" class="field-validation-valid" data-valmsg-for="deptName" data-valmsg-replace="true"></span>
+</div>*@

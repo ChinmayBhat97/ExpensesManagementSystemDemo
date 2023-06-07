@@ -12,5 +12,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
     {
         public Task<List<User>> GetByRoleAsync(int role);
         AuthenticationViewModel Authenticate(string UserName, string Password);
+
+        AuthenticationViewModel GetByEmpCodeAsync(string EmployeeCode);
     }
 }

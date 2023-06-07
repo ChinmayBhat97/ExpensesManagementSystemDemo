@@ -45,7 +45,14 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             
         }
 
-       
+        public AuthenticationViewModel GetByEmpCodeAsync(string EmployeeCode)
+        {
+            var userInfo = userRepository.GetByEmployeeCodeAsync(EmployeeCode);
+            return new AuthenticationViewModel
+            {
+                userDetails = userInfo
+            };
+        }
 
         public Task<List<User>> GetByRoleAsync(int role)
         {

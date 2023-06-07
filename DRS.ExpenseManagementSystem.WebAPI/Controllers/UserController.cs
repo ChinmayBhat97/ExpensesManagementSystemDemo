@@ -1,6 +1,7 @@
 ﻿
 using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,6 +54,14 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         //}
 
         // POST api/<UserController>
+
+        [HttpPost("{EmployeeCode}")]
+        public AuthenticationViewModel GetByEmployeeCode(string EmployeeCode)
+        {
+            return userTableService.GetByEmpCodeAsync(EmployeeCode);
+
+        }
+
         [HttpPost]
         public async Task Post(User user)
         {

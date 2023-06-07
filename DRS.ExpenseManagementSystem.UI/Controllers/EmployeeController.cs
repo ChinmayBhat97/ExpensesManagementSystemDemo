@@ -1,9 +1,14 @@
-﻿using DRS.ExpenseManagementSystem.UI.Models;
+﻿using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
+using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using NuGet.Protocol;
 using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Web;
+using EmployeeViewModel = DRS.ExpenseManagementSystem.UI.Models.EmployeeViewModel;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -42,8 +47,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
        // [Authorize(Roles = "4")]
-        [HttpGet("Employee/CreateEmployee")]
-        public async Task<IActionResult> CreateEmployeeAsync()
+        [HttpGet("Employee/CreateEmployee/{EmployeeCode}")]
+        public async Task<IActionResult> CreateEmployee(string EmployeeCode)
         {
             HttpResponseMessage responseCreateEmployee = await client.GetAsync(client.BaseAddress + $"Employee");
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
@@ -57,26 +62,38 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 }
                 ViewBag.departmentList = departmentSelectList;
 
-                // Get employee code
-                HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User");
-                var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
-                var userSelectList = new List<SelectListItem>();
-                foreach (var user in userList)
+                // Get ID by passing EmployeeCode
+                HttpResponseMessage responseUserNew = await client.PostAsync(client.BaseAddress + $"User/{EmployeeCode}",null);
+                if (responseUserNew.IsSuccessStatusCode)
                 {
-                    userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                   // var authResponse = JsonConvert.DeserializeObject<AuthenticationViewModel>(await response.Content.ReadAsStringAsync());
+                    var userList = JsonConvert.DeserializeObject<AuthenticationViewModel>(await responseUserNew.Content.ReadAsStringAsync());
+                    TempData["EmpId"]= userList.userDetails.Id;
+                    TempData["EmployeeCode"]= userList.userDetails.EmployeeCode;
+                    TempData.Keep();
+                    return View();
                 }
-                ViewBag.userList = userSelectList;
+                   
+                //var userSelectList = new List<SelectListItem>();
+                //foreach (var user in userList)
+                //{
+                //    userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+                //}
+                //ViewBag.userList = userSelectList;
 
                 return View();
             }
             return View();
         }
 
+
+
       //  [Authorize(Roles = "4")]
-        [HttpPost("Employee/CreateEmployee")]
-        public async Task<IActionResult> CreateEmployee(Employee employee)
+        [HttpPost("Employee/CreateEmployee/{EmployeeCode}")]
+        public async Task<IActionResult> CreateEmployee(string EmployeeCode,Employee employee)
         {
-            employee.CreatedAt=DateTime.Now;
+               employee.EmpId= Convert.ToInt32(TempData["EmpId"]);
+               employee.CreatedAt=DateTime.Now;
                 var myContent = JsonConvert.SerializeObject(employee);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
@@ -171,3 +188,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
     }
 }
+
+
+
+//HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"User/");
+//var userList = JsonConvert.DeserializeObject<List<User>>(await responseUserList.Content.ReadAsStringAsync());
+//var userSelectList = new List<SelectListItem>();
+//foreach (var user in userList)
+//{
+//    userSelectList.Add(new SelectListItem(user.EmployeeCode, user.Id.ToString()));
+//}
+//ViewBag.userList = userSelectList;
+
+//return View();

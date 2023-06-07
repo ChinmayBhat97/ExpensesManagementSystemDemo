@@ -4,18 +4,18 @@
 }
 
 <body>
-    <div style="padding-left:200px;">
-        <h4 style="color:#000099"> <u><b>Add User </b></u>   </h4>
+    <div style="padding-left:225px;">
+        <h4 style="color:#000099"> <u><b> User Account Details </b></u>   </h4>
         <br />
         <div class="row">
             <div class="col-md-12">
                 <form asp-route="/User/Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row" style="padding-top:5px;">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                              <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label><span style="color:red;">*</span></b>
-                                <input asp-for="EmployeeCode" class="form-control" required/>
+                                <input asp-for="EmployeeCode" class="form-control" pattern="[DT]{2}[0-9]{4}" required />
                                 <span asp-validation-for="EmployeeCode" class="text-danger"></span>
                             </div>
                         </div>
@@ -23,19 +23,28 @@
                         <div class="col-md-4">
                             <div class="form-group">
                              <b>   <label asp-for="Password" class="control-label">Password</label><span style="color:red;">*</span></b>
-                                <input asp-for="Password" class="form-control" type="password" required/>
+                                <input asp-for="Password" class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%^&*_=+-]).{8,16}" required />
                                 <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b>  <label asp-for="Role" class="control-label"> Role </label><span style="color:red;">*</span></b>
+                                
+                                <select asp-for="Role" class="form-control" required >
+                                    <option value="">-- Select --</option>
+                                    <option value="1">User</option>
+                                    <option value="2">Manager</option>
+                                    <option value="3">Finance Manager</option>
+                                    <option value="4">Super Admin</option>
+                                </select>
+                                <span asp-validation-for="Role" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                   
-                    <div class="col-md-2" style="padding-top:5px;">
-                        <div class="form-group">
-                          <b>  <label asp-for="Role" class="control-label"> Role </label><span style="color:red;">*</span></b>
-                            <input asp-for="Role" class="form-control" required min="1"/>
-                            <span asp-validation-for="Role" class="text-danger"></span>
-                        </div>
-                    </div>
+    
                    
                     <div class="row" style="padding-top:5px;">
                         <div class="col-md-3">
@@ -50,6 +59,7 @@
                             </div>
                         </div>
 
+
                         <div class="col-md-3" style="padding-left:10px;">
                             <div class="form-group">
                               <b>  <label asp-for="IsActive" class="control-label"> Active Employee</label><span style="color:red;">*</span></b>
@@ -62,9 +72,8 @@
                             </div>
                         </div>
                     </div>
-                    
 
-                    
+                    <br />
 
                     <div class="form-group" style="padding-top:25px;padding-left:450px;">
                         @*<input type="submit" value="Create" class="btn btn-primary" />*@
@@ -73,6 +82,22 @@
                         <input type="submit" value="Save" class="btn btn-success" />
                     </div>
                 </form>
+                <br />
+                <p><i style="color:red"> Note:</i>
+                    <ul>
+                        <p>1. Employee Code should start with <b>DT </b> followed by <b>4 digits</b> and is unique for every user. <i>Ex:</i> DT3001 </p>
+                </ul>
+                <ul>
+                        <p>2. Password should contain at least one  number and one uppercase and lowercase letter, and 8 or more characters. </p>
+                </ul>
+                    <ul>
+                        <p>3. Only Active user and whose account is not locked can access this application. </p>
+                    </ul>
+                    </p>
+                
+
+                
+
             </div>
         </div>
 
@@ -89,4 +114,5 @@
     @{
         await Html.RenderPartialAsync("");
     }
-}*@
+}
+*@

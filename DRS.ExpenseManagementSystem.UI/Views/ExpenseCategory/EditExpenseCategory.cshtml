@@ -11,19 +11,19 @@
         <h4 style="color:#000099"> <u> <b> Edit Expense Category</b></u> </h4>
 
         <div class="row" style="padding-top:10px;">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <form asp-route="/ExpenseCategory/EditExpenseCategory/@Model.Id">
                     <div class="form-group">
                         <div class="col-md-2">
-                           <b> <label asp-for="Id" class="control-label">ID</label><span style="color:red;">*</span></b>
-                            <input asp-for="Id" class="form-control" readonly />
+                         @*  <b> <label asp-for="Id" class="control-label">ID</label><span style="color:red;">*</span></b>*@
+                            <input asp-for="Id" class="form-control" readonly type="hidden"/>
                             <span asp-validation-for="Id" class="text-danger"></span>
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
                         <b>  <label asp-for="Name" class="control-label">Type of Expense Category </label><span style="color:red;">*</span></b>
-                        <input asp-for="Name" class="form-control" required />
+                        <input asp-for="Name" class="form-control" required type="text" minlength="5" maxlength="100"  />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <br />

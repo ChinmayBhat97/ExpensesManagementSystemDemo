@@ -16,23 +16,23 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
-                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users" readonly>
+                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users"  required>
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <b>    <label asp-for="StartDate" class="control-label"> Project Start Date</label><span style="color:red;">*</span></b>
-                                <input asp-for="StartDate" class="form-control" required />
+                                <input asp-for="StartDate" class="form-control" required type="date"   />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3" style="padding-left:10px;">
                             <div class="form-group">
                                 <b>     <label asp-for="EndDate" class="control-label">Project End Date</label> <span style="color:red;">*</span></b>
-                                <input asp-for="EndDate" class="form-control" required />
+                                <input asp-for="EndDate" class="form-control" required type="date"/>
                                 <span asp-validation-for="EndDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <b>   <label asp-for="Client" class="control-label">Client Name</label> <span style="color:red;">*</span></b>
-                                <input asp-for="Client" class="form-control" required />
+                                <input asp-for="Client" class="form-control" required type="text" minlength="5" maxlength="50" placeholder="Type Client Information here" />
                                 <span asp-validation-for="Client" class="text-danger"></span>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <b>    <label asp-for="Title" class="control-label">Project Title</label><span style="color:red;">*</span></b>
-                                <input asp-for="Title" class="form-control" required />
+                                <input asp-for="Title" class="form-control" required type="text" minlength="5" maxlength="50" placeholder="Type Project Title here" />
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                 <div class="form-group" style="padding-top:10px;">
                         <div class="col-md-10">
                     <b>    <label asp-for="Description" class="control-label">Project Description</label></b>
-                        <textarea asp-for="Description" class="form-control" rows="2" cols="40" required> </textarea>
+                            <textarea asp-for="Description" class="form-control" rows="2" cols="40"  placeholder="Type Project Description here(Optional)"> </textarea>
                         </div>
                 </div>
                

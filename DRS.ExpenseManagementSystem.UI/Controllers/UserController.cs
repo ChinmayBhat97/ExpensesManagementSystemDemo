@@ -3,6 +3,7 @@ using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
 using DRS.ExpenseManagementSystem.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using UserViewModel = DRS.ExpenseManagementSystem.UI.Models.UserViewModel;
@@ -48,8 +49,21 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Create()
         {
             HttpResponseMessage responseCreateUser = await client.GetAsync(client.BaseAddress + $"User");
-            return View();
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            if (responseCreateUser.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
+            {
+                var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+                var departmentSelectList = new List<SelectListItem>();
+                foreach (var department in departmentList)
+                {
+                    departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+                }
+                ViewBag.departmentList = departmentSelectList;
 
+
+                return View();
+            }
+            return View();
         }
 
        // [Authorize(Roles = "4")]
@@ -61,9 +75,20 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"User", byteContent);
+                HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"User/", byteContent);
+            // expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
 
-                return RedirectToAction("Index");
+
+            //userViewModel.employee.CreatedAt= DateTime.Now;
+            //userViewModel.employee.EmpId= userViewModel.Id;
+
+            //var employeeContent = JsonConvert.SerializeObject(userViewModel.employee);
+            //var employeeBuffer = System.Text.Encoding.UTF8.GetBytes(employeeContent);
+            //var employeeeByteContent = new ByteArrayContent(employeeBuffer);
+            //employeeeByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            //await client.PutAsync(client.BaseAddress + $"Employee/", employeeeByteContent);
+
+            return RedirectToAction("CreateEmployee", "Employee", new {@EmployeeCode = userViewModel.EmployeeCode});
             
         }
 

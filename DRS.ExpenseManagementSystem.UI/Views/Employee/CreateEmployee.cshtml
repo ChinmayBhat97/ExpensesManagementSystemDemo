@@ -11,20 +11,23 @@
               
             <form asp-route="/Employee/CreateEmployee">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                   
                     <div class="row" >
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
-                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Department" required>
+                                <label class="form-label input-lable"><b>Employee Code : @TempData["EmployeeCode"] </b></label>
+                                
+                               @* <span asp-validation-for="Email" class="text-danger"></span>*@
+                               @* <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Department" required>
                                     <option value="">-- Select --</option>
-                                </select>
+                                </select>*@
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
                                     <b>   <label asp-for="Email" class="control-label">Email ID</label><span style="color:red;">*</span></b>
-                                    <input asp-for="Email" class="form-control" type="email" required />
+                                    <input asp-for="Email" class="form-control" type="email"  required />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
@@ -33,7 +36,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PhoneNumber" class="form-control" type="number" required  />
+                                <input asp-for="PhoneNumber" class="form-control" type="number" pattern="[789][0-9]{9}" required />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -75,7 +78,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="DateOfJoining" class="control-label">Joining Date</label><span style="color:red;">*</span></b>
-                                <input asp-for="DateOfJoining" class="form-control" required />
+                                <input asp-for="DateOfJoining" class="form-control" type="date" required />
                                 <span asp-validation-for="DateOfJoining" class="text-danger"></span>
                             </div>
                         </div>
@@ -92,7 +95,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>  <label asp-for="Designation" class="control-label"></label><span style="color:red;">*</span></b>
-                                <input asp-for="Designation" class="form-control" required />
+                                <input asp-for="Designation" class="form-control"  required />
                                 <span asp-validation-for="Designation" class="text-danger"></span>
                             </div>
                         </div>
@@ -109,10 +112,11 @@
                                 <span asp-validation-for="City" class="text-danger"></span>
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PanNumber" class="control-label">PAN Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PanNumber" class="form-control"  required />
+                                <input asp-for="PanNumber" class="form-control" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"  required />
                                 <span asp-validation-for="PanNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -130,14 +134,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>   <label asp-for="AccountNumber" class="control-label">Account Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="AccountNumber" class="form-control" type="number"  required />
+                                <input asp-for="AccountNumber" class="form-control" type="number" min="10000000" required />
                                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="Ifsc" class="control-label">IFSC Code</label><span style="color:red;">*</span></b>
-                                <input asp-for="Ifsc" class="form-control"   required />
+                                <input asp-for="Ifsc" class="form-control" pattern="[A-Z]{4}[0]{1}[0-9]{6}" required />
                                 <span asp-validation-for="Ifsc" class="text-danger"></span>
                             </div>
                         </div>

@@ -69,6 +69,20 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             return userTable;
         }
 
+        public UserViewModel GetByEmployeeCodeAsync(string EmployeeCode)
+        {
+            var userInfo = _dbContext.Users
+                .Where(n => n.EmployeeCode == EmployeeCode).ToList()
+                .Select(x => new UserViewModel
+                {
+                    Id = x.Id,
+                    EmployeeCode = x.EmployeeCode,
+                   
+                }).FirstOrDefault();
+
+            return userInfo;
+        }
+
         public Task<List<User>> GetByRole(int role)
         {
             throw new NotImplementedException();
