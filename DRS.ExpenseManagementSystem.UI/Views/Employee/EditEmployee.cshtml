@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<body>
+<body style="overflow:hidden;">
 
    
-<div style="padding-left:200px;">
+<div style="padding-left:220px;">
     <h3 style="color:#000099"> <u><b>Edit Employee Details</b></u> </h3>
     <br />
 <div class="row">
@@ -15,14 +15,33 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b></label>
+                                <b> <label asp-for="EmpId" class="control-label">Employee Code </label> </b>
                                 <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" disabled>
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
                         </div>
 
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <b> <label asp-for="FirstName" class="control-label">First Name</label><span style="color:red;">*</span></b>
+                                <input asp-for="FirstName" class="form-control" type="text" required />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <b>   <label asp-for="LastName" class="control-label">Last Name</label><span style="color:red;">*</span></b>
+                                <input asp-for="LastName" class="form-control" type="text" required />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
 
+                       
+                    </div>
+
+
+                    <div class="row" style="padding-top:5px;">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
@@ -38,24 +57,6 @@
                                 <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
                                 <input asp-for="PhoneNumber" class="form-control" type="number" pattern="[7-9]{1}[0-9]{9}" required />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row" style="padding-top:5px;">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <b> <label asp-for="FirstName" class="control-label">First Name</label><span style="color:red;">*</span></b>
-                                <input asp-for="FirstName" class="form-control" type="text" required />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <b>   <label asp-for="LastName" class="control-label">Last Name</label><span style="color:red;">*</span></b>
-                                <input asp-for="LastName" class="form-control" type="text" required />
-                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -82,7 +83,7 @@
                                 <span asp-validation-for="DateOfJoining" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <b> <label asp-for="DeptId" class="control-label">Department</label><span style="color:red;">*</span></b>
 
