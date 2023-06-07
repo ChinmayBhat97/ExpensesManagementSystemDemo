@@ -4,7 +4,19 @@
     @{
         ViewData["Title"] = "Create";
     }
+    <style>
+        /* Set the serial number counter to 0 */
+        #Expense {
+            counter-reset: serial-number;
+        }
 
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #Expense td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
+    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
@@ -71,6 +83,7 @@
                 <table id="Expense">
                     <tbody id="ExpenseBody">
                         <tr>
+                            <th> <label>Sl.No</label> </th>
                             <th> <label><b>Expenditure Date</b></label> </th>
                             <th> <label><b>Description</b></label>      </th>
                             <th> <label><b>Category</b></label>         </th>
@@ -87,6 +100,9 @@
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
                             <tr>
+                                <td style="padding-left:10px;" width="10%">
+                                    &nbsp;
+                                </td>
                                 <td>
                                     <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
