@@ -4,17 +4,17 @@
 }
 
 <body>
-    <div style="padding-left:225px;">
-        <h4 style="color:#000099"> <u><b> User Account Details </b></u>   </h4>
+    <div style="padding-left:275px;">
+        <h5 style="color:#000099"> <u><b> User Account Details </b></u>   </h5>
         <br />
         <div class="row">
             <div class="col-md-12">
                 <form asp-route="/User/Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row" style="padding-top:5px;">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
-                             <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label><span style="color:red;">*</span></b>
+                                <b>   <label asp-for="EmployeeCode" class="control-label">Employee Code</label><span style="color:red;">*</span></b>
                                 <input asp-for="EmployeeCode" class="form-control" pattern="[DT]{2}[0-9]{4}" required />
                                 <span asp-validation-for="EmployeeCode" class="text-danger"></span>
                             </div>
