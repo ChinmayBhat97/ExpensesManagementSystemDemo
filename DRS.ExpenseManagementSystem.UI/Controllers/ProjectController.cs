@@ -51,7 +51,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}",null);
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
-            foreach (var user in userList)
+            var filteredUsers = userList.Where(user => user.Emp != null && user.Emp.Role == 2);
+            foreach (var user in filteredUsers)
             {
                 // Retrieve the employee ID from the Employee table using the FK in the User table
                 int employeeId = user.Id;
