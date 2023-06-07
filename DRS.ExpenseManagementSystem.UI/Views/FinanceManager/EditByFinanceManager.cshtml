@@ -19,7 +19,6 @@
                     <input asp-for="Id" class="form-control" style="display:none" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
-
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -29,7 +28,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-5">
                         <div class="form-group">
                             <label asp-for="DeptId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
@@ -37,9 +35,7 @@
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
-
                     </div>
-
                     <div class="col-md-5">
                         <div class="col-md-8">
                             <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
@@ -49,13 +45,11 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="StartDate" class="form-control" readonly />
+                            <input type="date" asp-for="StartDate" class="form-control" readonly />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -63,7 +57,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="EndDate" class="form-control" readonly />
+                            <input type="date" asp-for="EndDate" class="form-control" readonly />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -71,12 +65,11 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Claim Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <div class="col-md-3">
                         <div class="form-group">
@@ -90,11 +83,10 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label><b>Date of Approval</b><span style="color:red;">*</span></label>
-                        <input asp-for="ManagerApprovedOn" class="form-control" readonly />
+                        <input type="date" asp-for="ManagerApprovedOn" class="form-control" readonly />
                         <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="Status" class="form-label input-lable"><b>Claim Status</b><span style="color:red;">*</span></label>
@@ -103,7 +95,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label><b>Manager Remarks</b></label>
                     <input asp-for="ManagerRemarks" class="form-control" readonly />
@@ -116,7 +107,7 @@
                 </div>
                 <div class="form-group">
                     <label><b>Finance Manager Approved On</b></label>
-                    <input asp-for="FinanceManagerApprovedOn" class="form-control" />
+                    <input type="date" asp-for="FinanceManagerApprovedOn" class="form-control" readonly />
                     <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
                 </div>
 
@@ -131,6 +122,7 @@
                         <th style="background-color: #0000b3;"> <label><b>Comments</b></label>         </th>
                         <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label>   </th>
                         <th style="background-color: #0000b3;"> <label><b>Upload</b></label>           </th>
+                        <th style="background-color: #0000b3;"> <label><b>Action</b></label>           </th>
                     </tr>
                     <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
@@ -141,7 +133,7 @@
 
                             <tr>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
+                                    <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
                                 <td>
@@ -169,20 +161,26 @@
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                                <td>
+                                @*<td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>
+                                </td>*@
                                 <td>
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
+                                </td>
+                                <td>
+                                    <select asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control Selectinput" id="IsApproved" onchange="calculateSum()">
+                                        <option value="null">-- Select --</option>
+                                        <option value="1">-- Yes --</option>
+                                        <option value="0">-- No --</option>
+                                    </select>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
                 @*<input type="button" id="addRowBtn" value="Add New" name="Add New" />*@
-
                 <br />
                 <div class="form-group" style="padding-left:600px;">
                     <input type="submit" value="Save" class="btn btn-success" />
@@ -210,6 +208,11 @@
                 $(this).siblings('.chosenfilename').val($(this)[0].files[0].name);
             });
 
+            //$('select[name^="selectedValue"]').change(function () {
+            //    //calculateSum();
+            //    console.log("Working")
+            //});
+
 
         });
 
@@ -223,28 +226,16 @@
             });
         }
 
-        function calculateSum() {
-
-            var sum = 0;
-            //iterate through each textboxes and add the values
-            $(".txt").each(function () {
-
-                //add only if the value is number
-                if (!isNaN(this.value) && this.value.length != 0) {
-                    sum += parseFloat(this.value);
-                }
-            });
-            $("#ttlamnt").val(sum);
-        }
+       
     });
 
     // insert new rows
-    document.getElementById("addRowBtn").addEventListener("click", function () {
-        var tbody = document.getElementById("ExpenseBody");
-        tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));
-        InitializeKeyUp();
-        tablePosition++;
-    });
+    //document.getElementById("addRowBtn").addEventListener("click", function () {
+    //    var tbody = document.getElementById("ExpenseBody");
+    //    tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));
+    //    InitializeKeyUp();
+    //    tablePosition++;
+    //});
 
 
     function InitializeKeyUp() {
@@ -258,18 +249,29 @@
     }
 
     function calculateSum() {
-
+        console.log("Hello");
         var sum = 0;
-        //iterate through each textboxes and add the values
         $(".txt").each(function () {
-
-            //add only if the value is number
-            if (!isNaN(this.value) && this.value.length != 0) {
-                sum += parseFloat(this.value);
+            var isApproved = $(this).closest("tr").find("select[name$='IsApproved']").val();
+            var value = parseFloat($(this).val());
+            if (isApproved === "1" && !isNaN(value)) {
+                sum += value;
             }
         });
-        $("#ttlamnt").val(sum);
+        $("#ttlamnt").val(sum.toFixed(2));
     }
+
+    //function calculateSum() {
+    //    var sum = 0;
+    //    $(".txt").each(function () {
+    //        var isApproved = $(this).closest("tr").find("select[name$='IsApproved']").val();
+    //        var value = parseFloat($(this).val());
+    //        if (isApproved === "1" && !isNaN(value)) {
+    //            sum += value;
+    //        }
+    //    });
+    //    $("#ttlamnt").val(sum.toFixed(2));
+    //}
 
     function htmlDecode(input) {
         var doc = new DOMParser().parseFromString(input, "text/html");

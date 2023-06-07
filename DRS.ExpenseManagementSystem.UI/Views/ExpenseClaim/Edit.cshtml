@@ -50,26 +50,26 @@
                
 
                <div class="row">
-                   <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="StartDate" class="form-control" required />
+                            <input type="date" asp-for="StartDate" class="form-control" id="startDate" readonly />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
-                   </div>
+                    </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="EndDate" class="form-control" required />
+                            <input type="date" asp-for="EndDate" class="form-control" id="endDate" readonly />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
-                   </div>
+                    </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Claim Date</b><span style="color:red;">*</span></label>
-                            <input asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -244,18 +244,42 @@
         return doc.documentElement.textContent;
     }
 
-   function DateCheck(){
+   //function DateCheck(){
 
-        $('#startDate').datepicker({
-            onSelect: function (dateText, inst) {
-                $('#endDate').datepicker('option', 'minDate', new Date(dateText));
-            }
-        });
-        $('#endDate').datepicker({
-            onSelect: function (dateText, inst) {
-                $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
-            }
-        });
-   } 
+   //     $('#startDate').datepicker({
+   //         onSelect: function (dateText, inst) {
+   //             $('#endDate').datepicker('option', 'minDate', new Date(dateText));
+   //         }
+   //     });
+   //     $('#endDate').datepicker({
+   //         onSelect: function (dateText, inst) {
+   //             $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
+   //         }
+   //     });
+   //}
+
+    // to add date range for start and end date
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+
+    startDateInput.addEventListener("change", function () {
+        endDateInput.min = startDateInput.value;
+    });
+
+    endDateInput.addEventListener("change", function () {
+        startDateInput.max = endDateInput.value;
+    });
+
+    function validateDateRange(input, startDate, endDate) {
+        var selectedDate = new Date(input.value);
+        var start = new Date(startDate);
+        var end = new Date(endDate);
+
+        if (selectedDate < start || selectedDate > end) {
+            input.setCustomValidity("Please select a date between the start and end dates.");
+        } else {
+            input.setCustomValidity("");
+        }
+    }
 
 </script>

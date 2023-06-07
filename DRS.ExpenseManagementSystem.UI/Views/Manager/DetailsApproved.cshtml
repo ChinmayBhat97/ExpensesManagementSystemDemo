@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
-    <h4 style="padding-left:230px;"><u><b>Edit Claim</b></u></h4>
+    <h4 style="padding-left:230px;"><u><b>Detailed Claim</b></u></h4>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
@@ -98,7 +98,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="Status" class="form-label input-lable"><b>Claim Status</b><span style="color:red;">*</span></label>
-                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
+                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" readonly">
                             <option value="">-- Select --</option>
                         </select>
                     </div>
@@ -106,7 +106,7 @@
 
                 <div class="form-group">
                     <label><b>Manager Remarks</b></label>
-                    <input asp-for="ManagerRemarks" class="form-control" />
+                    <input asp-for="ManagerRemarks" class="form-control" readonly />
                     <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
                 </div>
 
@@ -177,8 +177,8 @@
 
                 <br />
                 <div class="form-group" style="padding-left:600px;">
-                    <input type="submit" value="Save" class="btn btn-success" />
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    @*<input type="submit" value="Save" class="btn btn-success" />*@
+                    <a asp-action="IndexApprovedByManager" class="btn btn-secondary">Back to List</a>
                 </div>
             </form>
         </div>

@@ -110,6 +110,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("ExpenseClaim/Create")]
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
+            int role = Convert.ToInt32(TempData["Role"]);
+            TempData.Keep();
+
             string wwwPath = this.webHostEnvironment.WebRootPath;
 
             string path = Path.Combine(wwwPath, "ExpenseProof");
@@ -129,8 +132,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
                 }
             }
-
             expenseClaimViewModel.Status = 1;
+
+            if (role == 3)
+            {
+                expenseClaimViewModel.Status = 2;
+                expenseClaimViewModel.ManagerRemarks = "Not Applicable";
+                expenseClaimViewModel.ManagerApprovedOn = DateTime.Now;
+            }
+
+            //expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.EmpId=Convert.ToInt32(TempData["EmpID"]);
             expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
@@ -139,14 +150,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
             HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
 
         }
-
-
         [HttpGet("ExpenseClaim/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -314,6 +322,52 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+
+        [HttpGet("ExpenseClaim/DetailsApproved/{claimId}")]
+        public async Task<IActionResult> DetailsApproved (int claimId)
+        {
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
+            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+
+            // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
+            HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{claimId}");
+            var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
+
+            //drop down to show project names
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+            var projectSelectList = new List<SelectListItem>();
+            foreach (var project in projectList)
+            {
+                projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+            }
+            ViewBag.projectList = projectSelectList;
+
+            //dropdown to show categories
+            HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            var categoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseCategoryList.Content.ReadAsStringAsync());
+            var categorySelectList = new List<SelectListItem>();
+            foreach (var category in categoryList)
+            {
+                categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+            ViewBag.categoryList = categorySelectList;
+
+            //dropdown to show department
+            HttpResponseMessage responsedepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responsedepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
+            detailsClaim.IndividualExpenditures = individualExpenditures;
+            string wwwPath = this.webHostEnvironment.WebRootPath;
+            return View(detailsClaim);
+        }
+
         // Get all that are rejected
 
         [HttpGet]
@@ -333,6 +387,51 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
                 return View();
             }
+        }
+
+        [HttpGet("ExpenseClaim/DetailsRejected/{claimId}")]
+        public async Task<IActionResult> DetailsRejected(int claimId)
+        {
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{claimId}");
+            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+
+            // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
+            HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{claimId}");
+            var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
+
+            //drop down to show project names
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+            var projectSelectList = new List<SelectListItem>();
+            foreach (var project in projectList)
+            {
+                projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+            }
+            ViewBag.projectList = projectSelectList;
+
+            //dropdown to show categories
+            HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            var categoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseCategoryList.Content.ReadAsStringAsync());
+            var categorySelectList = new List<SelectListItem>();
+            foreach (var category in categoryList)
+            {
+                categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+            ViewBag.categoryList = categorySelectList;
+
+            //dropdown to show department
+            HttpResponseMessage responsedepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responsedepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
+            detailsClaim.IndividualExpenditures = individualExpenditures;
+            string wwwPath = this.webHostEnvironment.WebRootPath;
+            return View(detailsClaim);
         }
     }
 }
