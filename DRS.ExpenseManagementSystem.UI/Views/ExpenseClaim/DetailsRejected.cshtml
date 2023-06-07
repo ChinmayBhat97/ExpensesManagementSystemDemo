@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label><b>Claim Date</b><span style="color:red;">*</span></label>
-                    <input asp-for="ClaimRequestDate" class="form-control" readonly />
+                    <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                     <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                 </div>
                 <div class="col-md-8">
@@ -47,14 +47,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                                <input asp-for="StartDate" class="form-control" disabled />
+                                <input type="date" asp-for="StartDate" class="form-control" disabled />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                                <input asp-for="EndDate" class="form-control" disabled />
+                                <input type="date" asp-for="EndDate" class="form-control" disabled />
                                 <span asp-validation-for="EndDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
 
                             <tr>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
+                                    <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
                                 <td>
