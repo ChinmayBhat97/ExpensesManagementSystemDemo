@@ -92,8 +92,25 @@
                             @*  <td style="padding-left:20px;">
                         @Html.DisplayFor(modelItem => item.Password)
                         </td>*@
-                            <td style="padding-left:25px;">
-                                @Html.DisplayFor(modelItem => item.Role)
+                            <td style="padding-left:10px;">
+                              @*  @Html.DisplayFor(modelItem => item.Role)*@
+                                @if (item.Role==1)
+                                {
+                                    <p>User</p>
+                                }
+                                else if(item.Role==2)
+                                {
+                                    <p>Manager</p>
+                                }
+                                 else if(item.Role==3)
+                                {
+                                    <p>Finance Manager</p>
+
+                                }
+                                else
+                                {
+                                    <p>Super Admin</p>
+                                }
                             </td>
                             <td style="padding-left:60px;">
                                 @*@Html.DisplayFor(modelItem => item.IsAccountLocked)*@

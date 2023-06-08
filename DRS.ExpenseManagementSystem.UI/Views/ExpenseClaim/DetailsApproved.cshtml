@@ -4,13 +4,7 @@
     @{
         ViewData["Title"] = "Create";
     }
-    <style>
 
-        td {
-            border: 1px solid #000033;
-            text-align: left;
-            /* padding: 2px;*/
-        }
 
         th {
             border: 1px solid #000033;
@@ -125,15 +119,14 @@
                 <table id="Expense" class="Expense" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;font-size:16px">
                     <tbody id="ExpenseBody">
                         <tr>
-                            <th style="background-color: #0000b3;"> <label>Sl.No</label> </th>
-                            <th style="background-color: #0000b3;"> <label>Expenditure Date</label> </th>
-                            <th style="background-color: #0000b3;"> <label>Description</label>      </th>
-                            <th style="background-color: #0000b3;"> <label>Category</label>         </th>
-                            <th style="background-color: #0000b3;"> <label>Expense Category</label> </th>
-                            <th style="background-color: #0000b3;"> <label>Amount</label>           </th>
-                            <th style="background-color: #0000b3;"> <label>Comments</label>         </th>
-                            <th style="background-color: #0000b3;"> <label>Receipt Number</label>   </th>
-                            <th style="background-color: #0000b3;"> <label>Attachments</label>           </th>
+                            <th> <label><b>Expenditure Date</b></label> </th>
+                            <th> <label><b>Description</b></label>      </th>
+                            <th> <label><b>Category</b></label>         </th>
+                            <th> <label><b>Expense Category</b></label> </th>
+                            <th> <label><b>Amount</b></label>           </th>
+                            <th> <label><b>Comments</b></label>         </th>
+                            <th> <label><b>Receipt Number</b></label>   </th>
+                            <th> <label><b>Upload</b></label>           </th>
                         </tr>
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {

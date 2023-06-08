@@ -95,7 +95,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>  <label asp-for="Designation" class="control-label"></label><span style="color:red;">*</span></b>
-                                <input asp-for="Designation" class="form-control"  required />
+                              @*  <input asp-for="Designation" class="form-control"  required />*@
+
+                                <select asp-for="Designation" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Associate">Associate</option>
+                                    <option value="Intern">Intern</option>
+                                    <option value="Junior Engineer">Junior Engineer</option>
+                                    <option value="Accountant">Accountant</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Finance Manager">Finance Manager</option>
+                                    <option value="Super Admin">Super Admin</option>
+                                    <option value="Director">Director</option>
+                                </select>
                                 <span asp-validation-for="Designation" class="text-danger"></span>
                             </div>
                         </div>

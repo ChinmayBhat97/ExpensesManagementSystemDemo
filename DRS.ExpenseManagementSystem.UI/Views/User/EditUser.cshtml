@@ -34,7 +34,13 @@
                     <div class="col-md-2" style="padding-top:5px;">
                         <div class="form-group">
                             <b>  <label asp-for="Role" class="control-label"> Role </label><span style="color:red;">*</span></b>
-                            <input asp-for="Role" class="form-control" required min="1"/>
+                            <select asp-for="Role" class="form-control" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">User</option>
+                                <option value="2">Manager</option>
+                                <option value="3">Finance Manager</option>
+                                <option value="4">Super Admin</option>
+                            </select>
                             <span asp-validation-for="Role" class="text-danger"></span>
                         </div>
                     </div>

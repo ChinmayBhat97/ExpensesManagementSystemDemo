@@ -9,8 +9,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
 {
     public class ExpenseCategoryViewModel
     {
-        public ExpenseCheckViewModel ExpenseCheckViewModel { get; set; }
+        public ExpenseCheckViewModel? ExpenseCheckViewModel { get; set; }
         public bool IsAuthenticated { get; set; }
-        public string ErrorMessage { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }
