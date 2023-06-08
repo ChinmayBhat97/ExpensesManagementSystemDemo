@@ -48,7 +48,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             int role = 2;
             HttpResponseMessage responseCreateProject = await client.GetAsync(client.BaseAddress + $"Project");
-            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}",null);
+            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}", null);
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
             var filteredUsers = userList.Where(user => user.Emp != null && user.Emp.Role == 2);
@@ -78,8 +78,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + "Project", byteContent);
-
-                return RedirectToAction("Index");
+                if (createNewProject.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return BadRequest("I apologize, but it seems that an project with those credentials already exists in our system. Please try again with different credentials");
             }
 
             return View(projectViewModel);
@@ -96,11 +99,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var userSelectList = new List<SelectListItem>();
             foreach (var user in userList)
             {
-                 // Retrieve the employee ID from the Employee table using the FK in the User table
-                    int employeeId = user.Id;
+                // Retrieve the employee ID from the Employee table using the FK in the User table
+                int employeeId = user.Id;
 
-                    // Retrieve the employee code from the User table
-                    string employeeCode = (user.Emp.EmployeeCode); // .Where(user.Emp.Role==2))
+                // Retrieve the employee code from the User table
+                string employeeCode = (user.Emp.EmployeeCode); // .Where(user.Emp.Role==2))
 
                 // Create a SelectListItem with the employee code and ID
                 userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
@@ -126,6 +129,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+                return BadRequest("I apologize, but it seems that an project with those credentials already exists in our system. Please try again with different credentials");
             }
 
             return View(projectViewModel);

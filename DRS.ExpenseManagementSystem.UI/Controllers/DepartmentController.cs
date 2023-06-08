@@ -23,7 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-     // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -41,9 +41,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-      
 
-      //  [Authorize(Roles = "4")]
+
+        //  [Authorize(Roles = "4")]
         [HttpGet("Department/CreateDepartment")]
         public async Task<IActionResult> CreateDepartmentAsync()
         {
@@ -52,7 +52,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpPost("Department/CreateDepartment")]
         public async Task<IActionResult> CreateDepartment(DepartmentViewModel departmentViewModel)
         {
@@ -64,14 +64,17 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
-
-                return RedirectToAction("Index");
+                if (createNewDepartment.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return BadRequest("DEPARTMENT ALREADY EXISTS !");
             }
 
             return View(departmentViewModel);
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("Department/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id)
         {
@@ -80,7 +83,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditDepartment);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpPost("Department/EditDepartment/{id}")]
         public async Task<IActionResult> EditDepartment(int id, DepartmentViewModel departmentViewModel)
         {
@@ -95,12 +98,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+                return BadRequest("You dont have the permission to edit this data");
             }
 
             return View(departmentViewModel);
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("Department/DetailsDepartment/{id}")]
         public async Task<IActionResult> DetailsByDepartmentID(int id)
         {

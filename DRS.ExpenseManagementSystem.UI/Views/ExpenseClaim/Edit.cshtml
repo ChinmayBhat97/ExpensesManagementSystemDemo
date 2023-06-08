@@ -130,83 +130,76 @@
                 </div>
 
 
-                <div style="padding-top:10px;">
-                    <table id="Expense">
-                        <tbody id="ExpenseBody">
-                            <tr>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Sl.No</label> </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Expenditure Date<span style="color:red;">*</span></label> </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Description<span style="color:red;">*</span></label>      </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Category<span style="color:red;">*</span></label>         </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Expense Category<span style="color:red;">*</span></label> </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Amount<span style="color:red;">*</span></label>           </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Comments<span style="color:red;">*</span></label>         </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Attachments<span style="color:red;">*</span></label>           </th>
-                                <th style="background-color: #0000b3;vertical-align:central;"> <label>Delete Row<span style="color:red;">*</span></label>           </th>
-                            </tr>
-                            @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
-                            {
-                                <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
-                                <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
-                                <tr>
-                                    <td style="text-align:center;">
-                                        &nbsp;
-                                    </td>
-                                    <td>
-                                        <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" onchange="DateRange()" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" id="expDate"></span>
-                                    </td>
-                                    <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
-                                    </td>
-                                    <td>
-                                        @*<input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required />*@
-                                        <select asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required>
-                                            <option value="">-- Select --</option>
-                                            <option value="Official">Official</option>
-                                            <option value="Personal">Personal</option>
-                                        </select>
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
-                                    </td>
-                                    <td>
-                                        <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
-                                            <option value="">-- Select --</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
-                                    </td>
-                                    <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
-                                    </td>
-                                    <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
-                                    </td>
-                                    <td>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
-                                        <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger delete-row">Delete</button>
-                                    </td>
-                                    @*<td>
-                                <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
-                                </td>*@
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <div style="padding-top:5px;">
-                        <input type="button" id="addRowBtn" value="Add New" name="Add New" />
-                    </div>
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+                   
+                        <tr>
+                        <th style="background-color: #0000b3;"> <label>Sl.No</label> </th>
+                        <th style="background-color: #0000b3;"> <label><b>Expenditure Date</b></label> </th>
+                        <th style="background-color: #0000b3;"> <label><b>Description</b></label>      </th>
+                            <th style="background-color: #0000b3;"> <label><b>Category</b></label>         </th>
+                        <th style="background-color: #0000b3;">  <label><b>Expense Category</b></label> </th>
+                        <th style="background-color: #0000b3;"> <label><b>Amount</b></label>           </th>
+                            <th style="background-color: #0000b3;"> <label><b>Comments</b></label>         </th>
+                        <th style="background-color: #0000b3;"> <label><b>Receipt Number</b></label>   </th>
+                        <th style="background-color: #0000b3;"> <label><b>Upload</b></label>           </th>
+                        <th style="background-color: #0000b3;"> <label><b>Delete Row</b><span style="color:red;">*</span></label>           </th>
+                        </tr>
+                  <tbody id="ExpenseBody">
+                        @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
+                        {
 
-                </div>
+                            <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
+                            <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
+
+                            <tr>
+                                <td style="padding-left:10px;" width="10%">
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" required />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
+                                </td>
+                                @*<td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+                                </td>*@
+                                <td>
+                                    <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger delete-row">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <input type="button" id="addRowBtn" value="Add New" name="Add New" />
 
                 <br />
                 <div class="form-group" style="padding-left:700px;">
@@ -224,7 +217,13 @@
 
     // to add new rows in table
     var tablePosition = 1;
-    var tableDom = `&lt;tr&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;datetime-local&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}].Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}].Category&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Site&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Food&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Test Record 1&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Travel&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Test 5&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_${tablePosition}__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}].AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;/tr&gt;`
+    var tableDom = `&lt;tr&gt; &lt;td style=&quot;padding-left:10px;&quot; width=&quot;10%&quot;&gt; &amp;nbsp; &lt;/td&gt; &lt;td&gt; &lt;input type=&quot;date&quot; class=&quot;form-control expDate&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_0__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}].Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_0__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}].Category&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;Official&quot;&gt;Official&lt;/option&gt; &lt;option value=&quot;Personal&quot;&gt;Personal&lt;/option&gt; &lt;/select&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Sites&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Documents and Journals&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Others / Unlisted&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Foods and Medicines&lt;/option&gt; &lt;option value=&quot;8&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;18&quot;&gt;Misc&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_0__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_0__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_0__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}].AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;td&gt; &lt;button class=&quot;btn btn-danger delete-row&quot;&gt;Delete&lt;/button&gt; &lt;/td&gt; &lt;/tr&gt;`
+
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+
+    //var startDateInput = date.("#startDate")
+    //var endDateInput = date.("")
     $(document).ready(function () {
 
         InitializeKeyUp();
@@ -262,7 +261,32 @@
             });
             $("#ttlamnt").val(sum);
         }
+
+        $(document).on("change", ".expDate", function () {
+            // Iterate through each "expDate" element
+            $(".expDate").each(function () {
+                var selectedDate = Date.parse($(this).val());
+                var startDate = Date.parse(startDateInput.value);
+                var endDate = Date.parse(endDateInput.value);
+
+                // Check if selected date is outside the range
+                if (selectedDate < startDate || selectedDate > endDate) {
+                    alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+                    $(this).val("");
+                }
+            });
+        });
+
+
+        //$(".expDate").change(function () {
+        //        if (Date.parse(($(".expDate")).val()) < Date.parse(startDateInput.value) || Date.parse(($(".expDate")).val()) > Date.parse(endDateInput.value)) {
+        //        alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+        //        $(".expDate").val("");
+        //    }
+        //});
     });
+
+
 
     // insert new rows
     document.getElementById("addRowBtn").addEventListener("click", function () {
@@ -302,23 +326,11 @@
         return doc.documentElement.textContent;
     }
 
-   //function DateCheck(){
-
-   //     $('#startDate').datepicker({
-   //         onSelect: function (dateText, inst) {
-   //             $('#endDate').datepicker('option', 'minDate', new Date(dateText));
-   //         }
-   //     });
-   //     $('#endDate').datepicker({
-   //         onSelect: function (dateText, inst) {
-   //             $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
-   //         }
-   //     });
-   //}
 
     // to add date range for start and end date
     var startDateInput = document.getElementById("startDate");
     var endDateInput = document.getElementById("endDate");
+
 
     startDateInput.addEventListener("change", function () {
         endDateInput.min = startDateInput.value;
@@ -328,16 +340,16 @@
         startDateInput.max = endDateInput.value;
     });
 
-    function validateDateRange(input, startDate, endDate) {
-        var selectedDate = new Date(input.value);
-        var start = new Date(startDate);
-        var end = new Date(endDate);
-
-        if (selectedDate < start || selectedDate > end) {
-            input.setCustomValidity("Please select a date between the start and end dates.");
-        } else {
-            input.setCustomValidity("");
+    $(".expDate").change(function () {
+        if (Date.parse(($(".expDate")).val()) < Date.parse(startDateInput.value) || Date.parse(($(".expDate")).val()) > Date.parse(endDateInput.value)) {
+            alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+            $(".expDate").val("");
         }
-    }
+    });
 
+    // delete row button function
+    $(document).on("click", ".delete-row", function () {
+        $(this).closest("tr").remove();
+        calculateSum();
+    });
 </script>

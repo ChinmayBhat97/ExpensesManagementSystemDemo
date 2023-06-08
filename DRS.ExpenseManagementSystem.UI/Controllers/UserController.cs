@@ -28,7 +28,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -46,7 +46,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("User/Create")]
         public async Task<IActionResult> Create()
         {
@@ -68,33 +68,26 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpPost("User/Create")]
         public async Task<IActionResult> Create(UserViewModel userViewModel)
         {
-            
-                var myContent = JsonConvert.SerializeObject(userViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"User/", byteContent);
-            // expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
+
+            var myContent = JsonConvert.SerializeObject(userViewModel);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"User/", byteContent);
+            if (createNewClaim.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CreateEmployee", "Employee", new { @EmployeeCode = userViewModel.EmployeeCode });
+            }
+            return BadRequest("I apologize, but it seems that an User with those credentials already exists in our system. Please try again with different credentials");
 
 
-            //userViewModel.employee.CreatedAt= DateTime.Now;
-            //userViewModel.employee.EmpId= userViewModel.Id;
-
-            //var employeeContent = JsonConvert.SerializeObject(userViewModel.employee);
-            //var employeeBuffer = System.Text.Encoding.UTF8.GetBytes(employeeContent);
-            //var employeeeByteContent = new ByteArrayContent(employeeBuffer);
-            //employeeeByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            //await client.PutAsync(client.BaseAddress + $"Employee/", employeeeByteContent);
-
-            return RedirectToAction("CreateEmployee", "Employee", new {@EmployeeCode = userViewModel.EmployeeCode});
-            
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("User/EditUser/{id}")]
         public async Task<IActionResult> EditUser(int id)
         {
@@ -103,26 +96,25 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(EditUser);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpPost("User/EditUser/{id}")]
         public async Task<IActionResult> EditUser(int id, UserViewModel userViewModel)
         {
-            
-                var myContent = JsonConvert.SerializeObject(userViewModel);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"User/{userViewModel.Id}", byteContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-            
 
-            return View(userViewModel);
+            var myContent = JsonConvert.SerializeObject(userViewModel);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"User/{userViewModel.Id}", byteContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return BadRequest("I apologize, but it seems that an user with those credentials already exists in our system. Please try again with different credentials");
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("User/DetailsUser/{id}")]
         public async Task<IActionResult> DetailsByUserID(int id)
         {
@@ -131,7 +123,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View(detailsUser);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> GetByRole(int role)
         {
@@ -140,8 +132,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-        
 
-      
+
+
     }
 }

@@ -68,8 +68,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage createNewExpenseCategory = await client.PostAsync(client.BaseAddress + $"ExpenseCategory", byteContent);
-
-                return RedirectToAction("Index");
+                if (createNewExpenseCategory.IsSuccessStatusCode)
+                {
+return RedirectToAction("Index");
+                }
+                return BadRequest("I apologize, but it seems that a category with those credentials already exists in our system. Please try again with different credentials");
             }
             return View(expenseCategory);
         }
@@ -100,6 +103,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+                return BadRequest("I apologize, but it seems that an category with those credentials already exists in our system. Please try again with different credentials");
             }
 
             return View(expenseCategoryViewModel);
