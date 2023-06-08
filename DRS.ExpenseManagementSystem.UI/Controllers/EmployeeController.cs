@@ -28,7 +28,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -47,7 +47,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("Employee/CreateEmployee/{EmployeeCode}")]
         public async Task<IActionResult> CreateEmployee(string EmployeeCode)
         {
@@ -64,17 +64,17 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 ViewBag.departmentList = departmentSelectList;
 
                 // Get ID by passing EmployeeCode
-                HttpResponseMessage responseUserNew = await client.PostAsync(client.BaseAddress + $"User/{EmployeeCode}",null);
+                HttpResponseMessage responseUserNew = await client.PostAsync(client.BaseAddress + $"User/{EmployeeCode}", null);
                 if (responseUserNew.IsSuccessStatusCode)
                 {
-                   // var authResponse = JsonConvert.DeserializeObject<AuthenticationViewModel>(await response.Content.ReadAsStringAsync());
+                    // var authResponse = JsonConvert.DeserializeObject<AuthenticationViewModel>(await response.Content.ReadAsStringAsync());
                     var userList = JsonConvert.DeserializeObject<AuthenticationViewModel>(await responseUserNew.Content.ReadAsStringAsync());
-                    TempData["EmpId"]= userList.userDetails.Id;
-                    TempData["EmployeeCode"]= userList.userDetails.EmployeeCode;
+                    TempData["EmpId"] = userList.userDetails.Id;
+                    TempData["EmployeeCode"] = userList.userDetails.EmployeeCode;
                     TempData.Keep();
                     return View();
                 }
-                   
+
                 //var userSelectList = new List<SelectListItem>();
                 //foreach (var user in userList)
                 //{
@@ -89,20 +89,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpPost("Employee/CreateEmployee/{EmployeeCode}")]
-        public async Task<IActionResult> CreateEmployee(string EmployeeCode,Employee employee)
+        public async Task<IActionResult> CreateEmployee(string EmployeeCode, Employee employee)
         {
-               employee.EmpId= Convert.ToInt32(TempData["EmpId"]);
-               employee.CreatedAt=DateTime.Now;
-                var myContent = JsonConvert.SerializeObject(employee);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-               // HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
-                  HttpResponseMessage createNewEmp = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
-
+            employee.EmpId = Convert.ToInt32(TempData["EmpId"]);
+            employee.CreatedAt = DateTime.Now;
+            var myContent = JsonConvert.SerializeObject(employee);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            // HttpResponseMessage createNewEmployee = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+            HttpResponseMessage createNewEmp = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
+            if (createNewEmp.IsSuccessStatusCode)
+            {
                 return RedirectToAction("Index");
+            }
+            return BadRequest("I apologize, but it seems that an employee with those credentials already exists in our system. Please try again with different credentials");
         }
 
         //[HttpGet("User/EditEmployee/{id}")]
@@ -112,12 +115,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         //    return View();
         //}
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("Employee/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id)
         {
             HttpResponseMessage responseEditEmployee = await client.GetAsync(client.BaseAddress + $"Employee/{id}");
-            
+
             // Get Department
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
             if (responseEditEmployee.IsSuccessStatusCode && responseDepartmentList.IsSuccessStatusCode)
@@ -141,13 +144,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 ViewBag.userList = userSelectList;
                 var EditEmployee = JsonConvert.DeserializeObject<EmployeeViewModel>(await responseEditEmployee.Content.ReadAsStringAsync());
                 return View(EditEmployee);
-                
+
             }
             return View();
         }
 
 
-       // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpPost("Employee/EditEmployee/{id}")]
         public async Task<IActionResult> EditEmployee(int id, EmployeeViewModel employeeViewModel)
         {
@@ -162,12 +165,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+                return BadRequest("I apologize, but it seems that an employee with those credentials already exists in our system. Please try again with different credentials");
             }
 
             return View(employeeViewModel);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("Employee/DetailsEmployee/{id}")]
         public async Task<IActionResult> DetailsByEmployeeID(int id)
         {
