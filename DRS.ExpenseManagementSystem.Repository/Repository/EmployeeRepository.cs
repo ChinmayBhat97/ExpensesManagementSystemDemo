@@ -43,7 +43,7 @@ namespace DRS.ExpenseManagementSystem.Repository
 
         public async Task<List<Employee>> GetByRole(int role)
         {
-            return await _dbContext.Employees.Include(a => a.Dept).Include(a => a.Emp).Where(d =>d.Emp.Role==role).ToListAsync();
+            return await _dbContext.Employees.Include(a => a.Dept).Include(a => a.Emp).Where(d =>d.Emp.Role==role && d.Emp.IsActive==true).ToListAsync();
         }
     }
 }

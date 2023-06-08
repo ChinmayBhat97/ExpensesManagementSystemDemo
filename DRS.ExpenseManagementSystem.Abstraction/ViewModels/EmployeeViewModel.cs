@@ -26,6 +26,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public int? DeptId { get; set; }
         public DateTime? CreatedAt { get; set; }
 
-        public Department dept { get; set; }
+        public Department? dept { get; set; }
     }
 }
