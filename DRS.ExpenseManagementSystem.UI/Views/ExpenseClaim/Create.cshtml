@@ -148,8 +148,8 @@
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" onchange="DateRange()" required />
-                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" id="expDate"></span>
+                                        <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control expDate" required />
+                                        <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger" ></span>
                                     </td>
                                     <td>
                                         <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" required />
@@ -216,22 +216,13 @@
 
     // to add new rows in table
     var tablePosition = 1;
-    var tableDom = `&lt;tr&gt; &lt;td style=&quot;padding-left:10px;&quot; width=&quot;10%&quot;&gt; &amp;nbsp; &lt;/td&gt; &lt;td&gt; &lt;input type=&quot;date&quot; class=&quot;form-control&quot; onchange=&quot;DateRange()&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; id=&quot;expDate&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_0__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_0__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .Category&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;Official&quot;&gt;Official&lt;/option&gt; &lt;option value=&quot;Personal&quot;&gt;Personal&lt;/option&gt; &lt;/select&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Sites&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Documents and Journals&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Others / Unlisted&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Foods and Medicines&lt;/option&gt; &lt;option value=&quot;8&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;18&quot;&gt;Misc&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_0__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_0__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}]
-    .ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_0__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}]
-    .AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;td&gt; &lt;button class=&quot;btn btn-danger delete-row&quot;&gt;Delete&lt;/button&gt; &lt;/td&gt; &lt;/tr&gt;`
+    var tableDom = `&lt;tr&gt; &lt;td style=&quot;padding-left:10px;&quot; width=&quot;10%&quot;&gt; &amp;nbsp; &lt;/td&gt; &lt;td&gt; &lt;input type=&quot;date&quot; class=&quot;form-control expDate&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenditureDate field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenditureDate&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenditureDate&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Description field is required.&quot; id=&quot;IndividualExpenditures_0__Description&quot; name=&quot;IndividualExpenditures[${tablePosition}].Description&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Description&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The Category field is required.&quot; id=&quot;IndividualExpenditures_0__Category&quot; name=&quot;IndividualExpenditures[${tablePosition}].Category&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;Official&quot;&gt;Official&lt;/option&gt; &lt;option value=&quot;Personal&quot;&gt;Personal&lt;/option&gt; &lt;/select&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Category&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;select class=&quot;form-control Selectinput&quot; id=&quot;ExpenseCategory&quot; required=&quot;&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseCategoryId field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].ExpenseCategoryId&quot;&gt; &lt;option value=&quot;&quot;&gt;-- Select --&lt;/option&gt; &lt;option value=&quot;1&quot;&gt;Internet and Telecom&lt;/option&gt; &lt;option value=&quot;2&quot;&gt;Travel to Client Sites&lt;/option&gt; &lt;option value=&quot;3&quot;&gt;Documents and Journals&lt;/option&gt; &lt;option value=&quot;4&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;5&quot;&gt;Others / Unlisted&lt;/option&gt; &lt;option value=&quot;6&quot;&gt;Foods and Medicines&lt;/option&gt; &lt;option value=&quot;8&quot;&gt;Local Travel&lt;/option&gt; &lt;option value=&quot;18&quot;&gt;Misc&lt;/option&gt; &lt;/select&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control txt&quot; id=&quot;amnt&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-number=&quot;The field Amount must be a number.&quot; data-val-required=&quot;The Amount field is required.&quot; name=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Amount&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The Comments field is required.&quot; id=&quot;IndividualExpenditures_0__Comments&quot; name=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].Comments&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control&quot; required=&quot;&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The ReceiptNumber field is required.&quot; id=&quot;IndividualExpenditures_0__ReceiptNumber&quot; name=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; value=&quot;&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ReceiptNumber&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;/td&gt; &lt;td&gt; &lt;input class=&quot;form-control expenseproof&quot; type=&quot;file&quot; name=&quot;ExpenseProof&quot; accept=&quot;image/*&quot; data-val=&quot;true&quot; data-val-required=&quot;The ExpenseProof field is required.&quot; id=&quot;IndividualExpenditures_0__ExpenseProof&quot;&gt; &lt;span class=&quot;text-danger field-validation-valid&quot; data-valmsg-for=&quot;IndividualExpenditures[${tablePosition}].ExpenseProof&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt; &lt;input class=&quot;form-control chosenfilename&quot; style=&quot;display:none&quot; type=&quot;text&quot; data-val=&quot;true&quot; data-val-required=&quot;The AttachmentPath field is required.&quot; id=&quot;IndividualExpenditures_0__AttachmentPath&quot; name=&quot;IndividualExpenditures[${tablePosition}].AttachmentPath&quot; value=&quot;&quot;&gt; &lt;/td&gt; &lt;td&gt; &lt;button class=&quot;btn btn-danger delete-row&quot;&gt;Delete&lt;/button&gt; &lt;/td&gt; &lt;/tr&gt;`
+   
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+
+    //var startDateInput = date.("#startDate")
+    //var endDateInput = date.("")
     $(document).ready(function () {
 
         InitializeKeyUp();
@@ -269,7 +260,32 @@
             });
             $("#ttlamnt").val(sum);
         }
+
+        $(document).on("change", ".expDate", function () {
+            // Iterate through each "expDate" element
+            $(".expDate").each(function () {
+                var selectedDate = Date.parse($(this).val());
+                var startDate = Date.parse(startDateInput.value);
+                var endDate = Date.parse(endDateInput.value);
+
+                // Check if selected date is outside the range
+                if (selectedDate < startDate || selectedDate > endDate) {
+                    alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+                    $(this).val("");
+                }
+            });
+        });
+        
+
+        //$(".expDate").change(function () {
+        //        if (Date.parse(($(".expDate")).val()) < Date.parse(startDateInput.value) || Date.parse(($(".expDate")).val()) > Date.parse(endDateInput.value)) {
+        //        alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+        //        $(".expDate").val("");
+        //    }
+        //});
     });
+
+
 
     // insert new rows
     document.getElementById("addRowBtn").addEventListener("click", function () {
@@ -309,10 +325,11 @@
         return doc.documentElement.textContent;
     }
 
+
     // to add date range for start and end date
     var startDateInput = document.getElementById("startDate");
     var endDateInput = document.getElementById("endDate");
-    var expDateInput = document.getElementById("expDate");
+    
 
     startDateInput.addEventListener("change", function () {
         endDateInput.min = startDateInput.value;
@@ -322,10 +339,10 @@
         startDateInput.max = endDateInput.value;
     });
 
-
-    expDateInput.addEventListener("change", function () {
-        if (expDateInput.min < startDateInput.value || expDateInput.max > endDateInput.value) {
-            alert("Select date between start and end date")
+    $(".expDate").change(function () {
+        if (Date.parse(($(".expDate")).val()) < Date.parse(startDateInput.value) || Date.parse(($(".expDate")).val()) > Date.parse(endDateInput.value)) {
+            alert("EXPENDITURE DATE SHOULD BE BETWEEN START DATE AND END DATE");
+            $(".expDate").val("");
         }
     });
     
