@@ -38,25 +38,29 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
                              join e in _dbContext.Employees.AsQueryable().ToList() //inner sequence  
                             on u.Id equals e.EmpId // key selector 
 
-                             join p in _dbContext.Projects.AsQueryable().ToList() on e.Id equals p.EmpId
+                          // join p in _dbContext.Projects.AsQueryable().ToList() on e.Id equals p.EmpId
 
 
                              where u.EmployeeCode == EmployeeCode && u.Password ==Password
-
+                           
                              select new UserViewModel
-
+                            
                              { // result selector 
                                  EmployeeCode = u.EmployeeCode,
                                  Password = u.Password,
                                  IsAccountLocked = u.IsAccountLocked,
                                  IsActive =u.IsActive,
                                  Role = (int)u.Role,
+                                 
                                  EmpId = e.Id,
                                  FirstName = e.FirstName,
                                  Designation = e.Designation,
-                                 pID = p.Id
+                               
+                             //  pID = p.Id
 
                              }).FirstOrDefault();
+            
+
 
             //  var  userID = _dbContext.Users.Where(a =>a.EmployeeCode==EmployeeCode).Select(c =>c.Id).FirstOrDefault();
             //  var  empID= _dbContext.Employees.Where(k =>k.EmpId==userID).Select(g =>g.Id).FirstOrDefault();
@@ -65,7 +69,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             //  var designation = _dbContext.Employees.Where(w =>w.Id==empID).Select(t =>t.Designation).FirstOrDefault();
 
             //TempData["EmpID"]= empID;
-
+            
             return userTable;
         }
 

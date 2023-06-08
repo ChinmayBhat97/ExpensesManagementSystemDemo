@@ -13,5 +13,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 
         public Task<List<Project>> GetByTitleAsync(string projectTitle);
         public Task<List<Project>> GetAllDetails();
+
+        public Task<Project> GetByEmpId(int EmpId);
     }
 }

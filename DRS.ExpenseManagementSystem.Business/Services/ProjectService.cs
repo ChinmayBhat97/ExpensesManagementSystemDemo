@@ -1,6 +1,7 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Models;
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
+using DRS.ExpenseManagementSystem.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace DRS.ExpenseManagementSystem.Business.Services
 
         public async Task<List<Project>> GetByEmpIdAsync(int empId)
         {
-             return await projectRepository.GetByEmpIdAsync(empId);
+            return await projectRepository.GetByEmpIdAsync(empId);
         }
 
         public async Task<List<Project>> GetByTitleAsync(string projectTitle)
@@ -36,5 +37,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         {
             return await projectRepository.GetAllDetails();
         }
+
+        public async Task<Project> GetByEmpId(int EmpId)
+        {
+           return await projectRepository.GetByEmpId(EmpId);
+        }
+     
     }
 }

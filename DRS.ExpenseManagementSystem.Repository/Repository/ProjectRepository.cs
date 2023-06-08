@@ -41,5 +41,10 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
                .Include(p => p.Emp)
                .ToListAsync();
         }
+
+        public async Task<Project> GetByEmpId(int EmpId)
+        {
+            return await _dbContext.Projects.AsQueryable().Where(p => p.EmpId == EmpId).FirstAsync();
+        }
     }
 }

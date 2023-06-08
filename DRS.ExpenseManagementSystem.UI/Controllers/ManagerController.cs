@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Hosting;
 using Syncfusion.EJ2.Diagrams;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using System.Security.Claims;
+using System.Data;
 
 namespace DRS.ExpenseManagementSystem.UI.Controllers
 {
@@ -45,22 +46,35 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Index()
         {
 
-            int pID = Convert.ToInt32(TempData["projectID"]);
+            // int pID = Convert.ToInt32(TempData["projectID"]);
+
+            int EmpId = Convert.ToInt32(TempData["EmpID"]);
             TempData.Keep();
 
-            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
-            if (responseHomePage.IsSuccessStatusCode)
+            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
+            var ProjectList = JsonConvert.DeserializeObject<Project>(await responseUserList.Content.ReadAsStringAsync());
+           if(ProjectList.Id != null)
             {
-                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+                if (responseHomePage.IsSuccessStatusCode)
+                {
+                    var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                    var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==pID).ToList() : new();
-                return View(filteredModel);
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==ProjectList.Id).ToList() : new();
+                    //  return View(filteredModel);
+                    return View(filteredModel);
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
                 return View();
             }
+            
         }
 
         [HttpGet("ExpenseClaim/EditByManager/{id}")]
