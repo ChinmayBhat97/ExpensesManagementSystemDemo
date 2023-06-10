@@ -236,6 +236,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
+            expenseClaimViewModel.EmpId = Convert.ToInt32(TempData["EmpID"]);
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
