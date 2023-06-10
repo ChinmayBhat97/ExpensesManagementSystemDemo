@@ -63,7 +63,7 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
 
         [HttpPost("{EmpId}")]
-        public async Task<Project> GetByEmpId(int EmpId)
+        public async Task<List<Project>> GetByEmpId(int EmpId)
         {
             return await projectService.GetByEmpId(EmpId);
         }

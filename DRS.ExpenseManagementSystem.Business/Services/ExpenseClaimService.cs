@@ -19,9 +19,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             this.repository = repository;
         }
 
-        public async Task<List<ExpenseClaim>> GetByEmpId(int empId)
+        public async Task<List<ExpenseClaim>> GetByEmpId(int EmpId)
         {
-            return await repository.GetByEmpId(empId);
+            return await repository.GetByEmpId(EmpId);
         }
 
         public async Task<List<ExpenseClaim>> GetByClaimStatus(int claimStatus)

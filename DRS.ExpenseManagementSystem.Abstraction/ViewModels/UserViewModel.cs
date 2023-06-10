@@ -25,6 +25,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
 
         public int pID { get; set; }
 
+        public string deptName { get; set; }
         public List<Employee>? employee { get; set; }
 
         public List<Project>? projects { get; set; }

@@ -39,16 +39,16 @@
 
 <body >
     <div style="padding-left:225px;padding-bottom:80px;">
-        <h5 style="color:#000099"><u> <b>Projects List </b></u></h5>
+        <h4 style="color:#000099;text-align:center;"><u> <b>Projects List </b></u></h4>
 
-        <div style="padding-left:720px;">
+        <div style="padding-left:740px;">
             <a asp-action="CreateProject"  class="btn btn-success">Add New Project</a>
 
         </div>
         <br />
 
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:15px;font-size:16px">
-            <thead>
+            <thead style="vertical-align:middle;">
             
                 <tr style="vertical-align:central;">
                     <th style="background-color: #0000b3;vertical-align:central;">
@@ -59,13 +59,15 @@
                        Project ID
                     </th>*@
                     <th style="background-color: #0000b3;vertical-align:central;">
-                        Manager Name
+                        Project Title
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
-                      Project Title
-                    </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                   
+                  
+                   @* <th style="background-color: #0000b3;vertical-align:central;">
                       Project Description
+                    </th>*@
+                    <th style="background-color: #0000b3;vertical-align:central;">
+                        Client Name
                     </th>
                     <th style="background-color: #0000b3;vertical-align:central;">
                       Project Start Date
@@ -73,8 +75,13 @@
                     <th style="background-color: #0000b3;vertical-align:central;">
                       Project End Date
                     </th>
+
+                   
                     <th style="background-color: #0000b3;vertical-align:central;">
-                       Client Name
+                        Manager / Project Incharge
+                    </th>
+                    <th style="background-color: #0000b3;vertical-align:central;">
+                        Department
                     </th>
                     <th style="background-color: #0000b3;vertical-align:central;">Action </th>
                 </tr>
@@ -82,32 +89,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    
-                    <tr style="vertical-align:central;">
+
+                    <tr style="vertical-align:central;text-align:center;">
                         <td style="padding-left:25px;vertical-align:central;">
                             &nbsp;
+                        </td>
+                        <td style="vertical-align:central;text-align:center;">
+                            @Html.DisplayFor(modelItem => item.Title)
                         </td>
                        @* <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>*@
-                        <td style="padding-left:10px;text-align:center;">
-                            @Html.DisplayFor(modelItem => item.Emp.FirstName)
-                        </td>
-                        <td style="vertical-align:central;">
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td style="padding-left:10px;vertical-align:central;">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td style="padding-left:10px;">
-                            @Html.DisplayFor(modelItem => item.StartDate)
-                        </td>
-                        <td style="padding-left:10px;">
-                            @Html.DisplayFor(modelItem => item.EndDate)
-                        </td>
-                        <td style="padding-left:10px;">
+                        <td style="vertical-align:central;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Client)
                         </td>
+                        <td style="vertical-align:central;text-align:center;">
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td style="vertical-align:central;text-align:center;">
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+
+                        <td style="vertical-align:central;text-align:center;">
+                            @Html.DisplayFor(modelItem => item.Emp.FirstName)
+                        </td>
+                        <td style="vertical-align:central;text-align:center;">
+                            @Html.DisplayFor(modelItem => item.Emp.DeptId)
+                        </td>
+
+
+                        @*  <td style="padding-left:10px;vertical-align:central;">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>*@
+                        
                         <td style="padding-left:10px;">
                             <a asp-action="EditProject" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
                             <a asp-action="DetailsByProjectID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a> 

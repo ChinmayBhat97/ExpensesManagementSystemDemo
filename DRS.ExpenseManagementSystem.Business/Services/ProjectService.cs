@@ -38,10 +38,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             return await projectRepository.GetAllDetails();
         }
 
-        public async Task<Project> GetByEmpId(int EmpId)
+        public async Task<List<Project>> GetByEmpId(int EmpId)
         {
            return await projectRepository.GetByEmpId(EmpId);
         }
-     
+
+       
     }
 }

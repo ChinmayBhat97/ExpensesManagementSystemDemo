@@ -141,7 +141,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="Ifsc" class="control-label">IFSC Code</label><span style="color:red;">*</span></b>
-                                <input asp-for="Ifsc" class="form-control" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required />
+                                <input asp-for="Ifsc" class="form-control" pattern="[A-Z]{4}[0]{1}[0-9]{6}" required />
                                 <span asp-validation-for="Ifsc" class="text-danger"></span>
                             </div>
                         </div>

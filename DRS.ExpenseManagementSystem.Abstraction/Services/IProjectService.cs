@@ -16,6 +16,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
         public Task<List<Project>> GetByClientInfo(string clientInfo);
         public Task<List<Project>> GetAllDetails();
 
-        public  Task<Project> GetByEmpId(int EmpId);
+        public  Task<List<Project>> GetByEmpId(int EmpId);
     }
 }
