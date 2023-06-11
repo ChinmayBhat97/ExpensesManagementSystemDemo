@@ -55,6 +55,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
                                  EmpId = e.Id,
                                  FirstName = e.FirstName,
                                  Designation = e.Designation,
+                                 DeptId=e.DeptId,
                                  deptName= d.Name
                                
                              //  pID = p.Id

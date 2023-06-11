@@ -10,6 +10,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public int Id { get; set; }
         public int ClaimId { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ExpenditureDate { get; set; }
         [Required]
         public string? Description { get; set; }

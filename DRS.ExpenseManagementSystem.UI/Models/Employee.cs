@@ -25,9 +25,11 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public string? AccountNumber { get; set; }
         public string? Ifsc { get; set; }
         public string? BankName { get; set; }
-        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfJoining { get; set; }
         public int? DeptId { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? CreatedAt { get; set; }
 
         public virtual Department? Dept { get; set; }

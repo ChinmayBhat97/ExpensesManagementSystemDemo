@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DRS.ExpenseManagementSystem.UI.Models
 {
@@ -9,6 +10,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
     {
         public int Id { get; set; }
         public int? ClaimId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ExpenditureDate { get; set; }
         public string? Description { get; set; }
         public string? Category { get; set; }

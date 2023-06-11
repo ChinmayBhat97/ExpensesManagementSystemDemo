@@ -23,6 +23,9 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
 
        public string? Designation { get; set; }
 
+        public int? DeptId { get; set; }
+
+
         public int pID { get; set; }
 
         public string deptName { get; set; }

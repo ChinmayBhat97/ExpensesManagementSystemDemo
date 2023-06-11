@@ -156,13 +156,24 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
             expenseClaimViewModel.ManagerApprovedOn= DateTime.Now;
+
+            if(expenseClaimViewModel.Status==2)
+            {
+                expenseClaimViewModel.StatusManager=9;
+            }
+            else 
+            {
+                expenseClaimViewModel.StatusManager=10;
+            }
+           
+            
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+           // await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
         }
@@ -186,7 +197,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 9).ToList() : new();
                 return View(filteredModel);
             }
             else
@@ -277,7 +288,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 10).ToList() : new();
                 return View(filteredModel);
             }
             else

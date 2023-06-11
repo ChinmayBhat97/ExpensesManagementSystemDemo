@@ -313,7 +313,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2 || e.Status == 10 || e.Status == 11).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2 || e.Status == 3 ).ToList() : new();
                 return View(filteredModel);
             }
             else
@@ -380,7 +380,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3 || e.Status == 16).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 4 || e.Status == 5).ToList() : new();
                 return View(filteredModel);
             }
             else
