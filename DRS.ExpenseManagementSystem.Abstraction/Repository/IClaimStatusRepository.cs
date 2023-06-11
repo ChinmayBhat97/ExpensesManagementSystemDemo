@@ -9,6 +9,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
 {
     public interface IClaimStatusRepository : IBaseRepository<ClaimStatus>
     {
-
+        public Task<List<ClaimStatus>> StatusByRole(int role);
     }
 }

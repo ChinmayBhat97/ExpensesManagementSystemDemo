@@ -136,7 +136,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             if (role == 3)
             {
-                expenseClaimViewModel.Status = 2;
+                expenseClaimViewModel.Status = 6;
                 expenseClaimViewModel.ManagerRemarks = "Not Applicable";
                 expenseClaimViewModel.ManagerApprovedOn = DateTime.Now;
             }
