@@ -309,13 +309,20 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             [HttpGet]
             public async Task<IActionResult> IndexRejectedByManager()
             {
+            int EmpId = Convert.ToInt32(TempData["EmpID"]);
+            TempData.Keep();
+
+            HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
+            var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+            if (ProjectList != null)
+            {
                 HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                     var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 10).ToList() : new();
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 10).ToList() : new();
                     return View(filteredModel);
                 }
                 else
@@ -324,8 +331,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                     return View();
                 }
             }
+            else
+            {
+                return View();
+            }
 
-            [HttpGet("ExpenseClaim/DetailsRejectedByManager/{id}")]
+        }
+
+        [HttpGet("ExpenseClaim/DetailsRejectedByManager/{id}")]
             public async Task<IActionResult> DetailsRejected(int id)
             {
                 HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
