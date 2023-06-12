@@ -2,6 +2,7 @@
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 
 using DRS.ExpenseManagementSystem.WebAPI.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,27 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             table = dbContext.Set<T>();
         }
 
-        public async Task AddAsync(T entity)
+        public async Task<int> AddAsync(T entity)
         {
-            await table.AddAsync(entity);
+            try
+            {
+                await table.AddAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                var p = ex.Message;
+
+                SqlException innerException = ex.InnerException.InnerException as SqlException;
+                if (innerException != null && (innerException.Number == 2627 || innerException.Number == 2601))
+                {
+                   
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return 0;
         }
 
         public async Task DeleteAsync(T entity)
