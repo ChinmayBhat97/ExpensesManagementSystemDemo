@@ -72,7 +72,11 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                            <input type="date" asp-for="StartDate" class="form-control" id="startDate" required />
+                            @{
+                                DateTime maxDate = DateTime.Now;
+                                string maxDateString = maxDate.ToString("yyyy-MM-dd");
+                            }
+                            <input type="date" asp-for="StartDate" class="form-control" id="startDate" max="@maxDateString" required />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -80,7 +84,11 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                            <input type="date" asp-for="EndDate" class="form-control" id="endDate" required />
+                            @{
+                                DateTime maxEndDate = DateTime.Now;
+                                string maxEndDateString = maxDate.ToString("yyyy-MM-dd");
+                            }
+                            <input type="date" asp-for="EndDate" class="form-control" id="endDate" max="@maxEndDateString" required />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>

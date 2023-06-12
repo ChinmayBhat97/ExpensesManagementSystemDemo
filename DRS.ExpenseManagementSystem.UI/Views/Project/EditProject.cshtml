@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Edit";
 }
-@*index*@
+
 <body>
     <div style="padding-left:225px;">
         <h5 style="color:#000099"><u><b> Edit Project Details</b></u></h5>
@@ -14,7 +14,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
-                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users"  required>
+                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users" required>
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
@@ -22,7 +22,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>    <label asp-for="StartDate" class="control-label"> Project Start Date</label><span style="color:red;">*</span></b>
-                                <input asp-for="StartDate" class="form-control" required type="date"/>
+                                <input asp-for="StartDate" class="form-control" required  />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -30,13 +30,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>     <label asp-for="EndDate" class="control-label">Project End Date</label> <span style="color:red;">*</span></b>
-                                <input asp-for="EndDate" class="form-control" required type="date" />
+                                <input asp-for="EndDate" class="form-control" required  />
                                 <span asp-validation-for="EndDate" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
 
-                   
+
 
                     <div class="row" style="padding-top:10px;">
                         <div class="col-md-10">
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-   
+
 
 </body>
 

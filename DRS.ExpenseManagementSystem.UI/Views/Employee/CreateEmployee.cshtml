@@ -78,7 +78,11 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="DateOfJoining" class="control-label">Joining Date</label><span style="color:red;">*</span></b>
-                                <input asp-for="DateOfJoining" class="form-control" type="date" required />
+                                @{
+                                    DateTime maxDate = DateTime.Now;
+                                    string maxDateString = maxDate.ToString("yyyy-MM-dd");
+                                }
+                                <input asp-for="DateOfJoining" class="form-control" type="date" max="@maxDateString" required />
                                 <span asp-validation-for="DateOfJoining" class="text-danger"></span>
                             </div>
                         </div>
