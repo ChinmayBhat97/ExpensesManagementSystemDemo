@@ -24,6 +24,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
         public Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus);
         public Task<List<ExpenseClaim>> GetByClaimIdManager(int claimId);
 
+        public Task<List<ExpenseClaim>> GetByManagerId(int EmpId);
+
         //Finance Manager
         //public Task<List<ExpenseClaim>> GetByClaimantEmpId(int empId);
         //public Task<List<ExpenseClaim>> GetByClaimStatusManager(int claimStatus);

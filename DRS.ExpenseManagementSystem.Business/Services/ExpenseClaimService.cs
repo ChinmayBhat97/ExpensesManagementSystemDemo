@@ -2,8 +2,10 @@
 using DRS.ExpenseManagementSystem.Abstraction.Repository;
 using DRS.ExpenseManagementSystem.Abstraction.Services;
 using DRS.ExpenseManagementSystem.Abstraction.ViewModels;
+using DRS.ExpenseManagementSystem.Repository.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +63,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         public async Task<List<ExpenseClaim>> GetDetailsByEmpId(int empId)
         {
             return await repository.GetDetailsByEmpId(empId);
+        }
+
+        public async Task<List<ExpenseClaim>> GetByManagerId(int EmpId)
+        {
+            return await repository.GetByManagerId(EmpId);
         }
     }
 }

@@ -88,5 +88,10 @@ namespace DRS.ExpenseManagementSystem.Repository
                .Where(x => x.EmpId.Equals(empId))
                .ToListAsync();
         }
+
+        public async Task<List<ExpenseClaim>> GetByManagerId(int EmpId)
+        {
+            return await _dbContext.ExpenseClaims.Where(p => p.EmpId==EmpId).ToListAsync();
+        }
     }
 }

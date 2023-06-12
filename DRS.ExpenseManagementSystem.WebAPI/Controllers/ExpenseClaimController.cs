@@ -114,5 +114,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             await expensesClaimServices.UpdateAsync(expensesClaim);
         }
+
+
+        [HttpPost("{EmpId}")]
+        public async Task<List<ExpenseClaim>> GetByManagerId(int EmpId)
+        {
+            return await expensesClaimServices.GetByManagerId(EmpId);
+        }
     }
 }
