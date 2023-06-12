@@ -78,7 +78,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="StartDate" class="form-label input-lable"><b>Expense Start Date</b></label>
-                            <input type="date" asp-for="StartDate" class="form-control" disabled />
+                            <input type="datetime" asp-for="StartDate" class="form-control" disabled />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="EndDate" class="form-label input-lable"><b>Expense End Date</b></label>
-                            <input type="date" asp-for="EndDate" class="form-control" disabled />
+                            <input type="datetime" asp-for="EndDate" class="form-control" disabled />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                    <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="ClaimRequestDate" class="form-label input-lable"><b>Claim Requested Date</b></label>
-                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <input type="datetime" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
                   </div>
@@ -161,7 +161,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
+                                    <input type="datetime" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
                                 <td>

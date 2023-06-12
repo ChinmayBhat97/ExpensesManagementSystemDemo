@@ -307,16 +307,18 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> IndexApproved()
         {
-            int EmpId = Convert.ToInt32(TempData["EmpID"]);
+            int empId = Convert.ToInt32(TempData["EmpID"]);
+            TempData.Keep();
+            //int EmpId = Convert.ToInt32(TempData["EmpID"]);
 
-          //  HttpResponseMessage responseApproved = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}", null) ;
-            HttpResponseMessage responseApproved = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            //  HttpResponseMessage responseApproved = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}", null) ;
+            HttpResponseMessage responseApproved = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/Details/{empId}");
             if (responseApproved.IsSuccessStatusCode)
             {
                 var responseContent = await responseApproved.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2 || e.Status == 3 && (e.EmpId==EmpId)).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2 || e.Status == 3 /*&& (e.EmpId==EmpId)*/).ToList() : new();
                 return View(filteredModel);
             }
             else
@@ -377,16 +379,17 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> IndexRejected()
         {
-            int EmpId = Convert.ToInt32(TempData["EmpID"]);
+            int empId = Convert.ToInt32(TempData["EmpID"]);
+            TempData.Keep();
 
             // HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
-            HttpResponseMessage responseRejected = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/{EmpId}", null);
+            HttpResponseMessage responseRejected = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/Details/{empId}");
             if (responseRejected.IsSuccessStatusCode)
             {
                 var responseContent = await responseRejected.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 4 || e.Status == 5 && (e.EmpId==EmpId)).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 4 || e.Status == 5 ).ToList() : new();
                 return View(filteredModel);
             }
             else
