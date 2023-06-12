@@ -97,9 +97,9 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
 
         // POST api/<ExpenseClaimController>
         [HttpPost]
-        public async Task<int> Post(ExpenseClaim expensesClaim)
+        public async Task Post(ExpenseClaim expensesClaim)
         {
-            return await expensesClaimServices.AddAsync(expensesClaim);
+             await expensesClaimServices.AddAsync(expensesClaim);
         }
 
         // PUT api/<ExpenseClaimController>/5

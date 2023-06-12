@@ -51,8 +51,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Employee/{role}", null);
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
-            var filteredUsers = userList.Where(user => user.Emp != null && user.Emp.Role == 2);
-            foreach (var user in filteredUsers)
+           // var filteredUsers = userList.Where(user => user.Emp != null && user.Emp.Role == 2);
+            foreach (var user in userList)
             {
                 // Retrieve the employee ID from the Employee table using the FK in the User table
                 int employeeId = user.Id;
@@ -61,6 +61,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 string employeeCode = user.Emp.EmployeeCode;
 
                 // Create a SelectListItem with the employee code and ID
+                //userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
                 userSelectList.Add(new SelectListItem(employeeCode, employeeId.ToString()));
             }
             ViewBag.userList = userSelectList;

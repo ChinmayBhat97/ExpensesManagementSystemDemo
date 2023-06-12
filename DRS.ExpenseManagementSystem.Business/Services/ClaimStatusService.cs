@@ -14,8 +14,12 @@ namespace DRS.ExpenseManagementSystem.Business.Services
         private IClaimStatusRepository claimStatusRepository;
         public ClaimStatusService(IClaimStatusRepository repository) : base(repository)
         {
+            this.claimStatusRepository = repository;
         }
 
-        
+        public async Task<List<ClaimStatus>> StatusByRole(int role)
+        {
+            return await claimStatusRepository.StatusByRole(role);
+        }
     }
 }

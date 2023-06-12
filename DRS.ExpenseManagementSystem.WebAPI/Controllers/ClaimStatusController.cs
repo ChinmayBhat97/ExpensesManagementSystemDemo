@@ -45,5 +45,11 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             await claimStatusService.UpdateAsync(claimStatus);
         }
+
+        [HttpPost("{role}")]
+        public async Task<List<ClaimStatus>> StatusByRole(int role)
+        {
+            return await claimStatusService.StatusByRole(role);
+        }
     }
 }

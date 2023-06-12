@@ -12,19 +12,26 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         [Required]
         public int? DeptId { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? StartDate { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
         [Required]
         public decimal? TotalAmount { get; set; }
         [Required]
         public int? ProjectId { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ClaimRequestDate { get; set; }
         public int? Status { get; set; }
+
+        public int? StatusManager { get; set; }
         public string? ManagerRemarks { get; set; }
         public string? FinanceManagerRemarks { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ManagerApprovedOn { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? FinanceManagerApprovedOn { get; set; }
         public List<IFormFile> ExpenseProof { get; set; }
         public List<IndividualExpenditureViewModel> IndividualExpenditures { get; set; }

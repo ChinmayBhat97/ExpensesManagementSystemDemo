@@ -52,16 +52,18 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             TempData.Keep();
 
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
-            var ProjectList = JsonConvert.DeserializeObject<Project>(await responseUserList.Content.ReadAsStringAsync());
-           if(ProjectList.Id != null)
+            var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+           if(ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                     var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==ProjectList.Id).ToList() : new();
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
+
+                   // var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==ProjectList.Id).ToList() : new();
                     //  return View(filteredModel);
                     return View(filteredModel);
                 }
@@ -80,6 +82,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(int id)
         {
+            int role =Convert.ToInt32(TempData["Role"]);
+
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
             //var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsClaim.Content.ReadAsStringAsync());
@@ -123,7 +127,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             ViewBag.categoryList = categorySelectList;
 
             //drop down to show status
-            HttpResponseMessage responseStatusList = await client.GetAsync(client.BaseAddress + $"ClaimStatus");
+            HttpResponseMessage responseStatusList = await client.PostAsync(client.BaseAddress + $"ClaimStatus/{role}",null);
             var statusList = JsonConvert.DeserializeObject<List<ClaimStatus>>(await responseStatusList.Content.ReadAsStringAsync());
             var statusSelectList = new List<SelectListItem>();
             foreach (var status in statusList)
@@ -151,14 +155,25 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
+            expenseClaimViewModel.ManagerApprovedOn= DateTime.Now;
 
+            if(expenseClaimViewModel.Status==2)
+            {
+                expenseClaimViewModel.StatusManager=9;
+            }
+            else 
+            {
+                expenseClaimViewModel.StatusManager=10;
+            }
+           
+            
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+           // await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
         }
@@ -182,7 +197,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 2).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 9).ToList() : new();
                 return View(filteredModel);
             }
             else
@@ -273,7 +288,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 3).ToList() : new();
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 10).ToList() : new();
                 return View(filteredModel);
             }
             else

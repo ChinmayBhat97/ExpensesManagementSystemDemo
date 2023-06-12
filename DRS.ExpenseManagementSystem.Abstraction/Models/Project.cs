@@ -18,7 +18,10 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
         public DateTime? EndDate { get; set; }
         public string? Client { get; set; }
 
+        //public virtual Department? Dept { get; set; }
         public virtual Employee? Emp { get; set; }
         public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
+
+     //   public virtual ICollection<Department> Departments { get; set; }
     }
 }
