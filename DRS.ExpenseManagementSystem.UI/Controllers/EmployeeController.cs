@@ -86,7 +86,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
             return View();
         }
-
+        
 
 
         //  [Authorize(Roles = "4")]
@@ -105,7 +105,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return BadRequest("I apologize, but it seems that an employee with those credentials already exists in our system. Please try again with different credentials");
+            return BadRequest("I apologize, but it seems that an employee with those credentials already exists in our system.Please try again");
         }
 
         //[HttpGet("User/EditEmployee/{id}")]

@@ -133,6 +133,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 }
             }
             expenseClaimViewModel.Status = 1;
+            expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
 
             if (role == 3)
             {

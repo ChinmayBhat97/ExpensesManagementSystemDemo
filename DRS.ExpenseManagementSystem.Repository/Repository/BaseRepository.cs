@@ -16,6 +16,8 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
     {
         private readonly ExpensesManagementSystem_UpdatedContext dbContext;
         private DbSet<T> table;
+        private string message;
+
         public BaseRepository(ExpensesManagementSystem_UpdatedContext databaseContext)
         {
             this.dbContext = databaseContext;
@@ -23,7 +25,7 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             table = dbContext.Set<T>();
         }
 
-        public async Task<int> AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             try
             {
@@ -31,19 +33,17 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
             }
             catch (Exception ex)
             {
-                var p = ex.Message;
-
-                SqlException innerException = ex.InnerException.InnerException as SqlException;
-                if (innerException != null && (innerException.Number == 2627 || innerException.Number == 2601))
+                SqlException innerException = ex.InnerException as SqlException;
+                if (innerException != null)
                 {
-                   
+                    message = "yes";
                 }
                 else
                 {
                     throw;
                 }
             }
-            return 0;
+
         }
 
         public async Task DeleteAsync(T entity)
