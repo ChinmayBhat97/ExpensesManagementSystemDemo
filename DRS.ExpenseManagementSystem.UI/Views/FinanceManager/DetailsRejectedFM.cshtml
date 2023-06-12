@@ -79,7 +79,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Expense Start Date</b></label>
-                            <input type="date" asp-for="StartDate" class="form-control" readonly />
+                            <input type="datetime" asp-for="StartDate" class="form-control" readonly />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Expense End Date</b></label>
-                            <input type="date" asp-for="EndDate" class="form-control" readonly />
+                            <input type="datetime" asp-for="EndDate" class="form-control" readonly />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Claimed Date</b></label>
-                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <input type="datetime" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Date of Manager Approval</b></label>
-                            <input type="date" asp-for="ManagerApprovedOn" class="form-control" readonly />
+                            <input type="datetime" asp-for="ManagerApprovedOn" class="form-control" readonly />
                             <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Finance Manager Rejected On</b></label>
-                            <input type="date" asp-for="FinanceManagerApprovedOn" class="form-control" readonly />
+                            <input type="datetime" asp-for="FinanceManagerApprovedOn" class="form-control" readonly />
                             <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
+                                    <input type="datetime" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
                                 <td>

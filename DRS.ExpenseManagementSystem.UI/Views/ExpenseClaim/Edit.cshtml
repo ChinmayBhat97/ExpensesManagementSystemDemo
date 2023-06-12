@@ -83,7 +83,7 @@
                                     DateTime maxDate = DateTime.Now;
                                     string maxDateString = maxDate.ToString("yyyy-MM-dd");
                                 }
-                                <input type="date" asp-for="StartDate" class="form-control" id="startDate" max="@maxDateString" required />
+                                <input type="datetime" asp-for="StartDate" class="form-control" id="startDate" max="@maxDateString" readonly />
                                 <span asp-validation-for="StartDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 DateTime maxEndDate = DateTime.Now;
                                 string maxEndDateString = maxDate.ToString("yyyy-MM-dd");
                             }
-                            <input type="date" asp-for="EndDate" class="form-control" id="endDate" max="@maxEndDateString" required />
+                                <input type="datetime" asp-for="EndDate" class="form-control" id="endDate" max="@maxEndDateString" readonly />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
 
-                            <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
+                                <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" type="datetime" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
                             <tr>
