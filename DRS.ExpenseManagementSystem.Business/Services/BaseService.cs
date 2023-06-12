@@ -1,4 +1,5 @@
 ﻿using DRS.ExpenseManagementSystem.Abstraction.Repository;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace DRS.ExpenseManagementSystem.Business.Services
             this.repository = repository;
         }
 
+        public string Message { get; private set; }
+
         public async Task<int> AddAsync(T entity)
         {
             try
@@ -24,10 +27,12 @@ namespace DRS.ExpenseManagementSystem.Business.Services
                 await repository.AddAsync(entity);
                 return await repository.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 var p = ex.Message;
+                Message = "data already exists";
             }
+
             return 0;
         }
 
