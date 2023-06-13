@@ -113,25 +113,25 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             int role = Convert.ToInt32(TempData["Role"]);
             TempData.Keep();
 
-            //string wwwPath = this.webHostEnvironment.WebRootPath;
+            string wwwPath = this.webHostEnvironment.WebRootPath;
 
-            //string path = Path.Combine(wwwPath, "ExpenseProof");
-            //if (!Directory.Exists(path))
-            //{
-            //    Directory.CreateDirectory(path);
-            //}
+            string path = Path.Combine(wwwPath, "ExpenseProof");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
 
-            //List<string> uploadedFiles = new List<string>();
-            //foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
-            //{
-            //    string fileName = Path.GetFileName(expenseProofs.FileName);
-            //    using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
-            //    {
-            //        expenseProofs.CopyTo(stream);
-            //        uploadedFiles.Add(fileName);
-            //        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
-            //    }
-            //}
+            List<string> uploadedFiles = new List<string>();
+            foreach (IFormFile expenseProofs in expenseClaimViewModel.ExpenseProof)
+            {
+                string fileName = Path.GetFileName(expenseProofs.FileName);
+                using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                {
+                    expenseProofs.CopyTo(stream);
+                    uploadedFiles.Add(fileName);
+                    ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                }
+            }
 
             expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.ClaimRequestDate = DateTime.Now;
