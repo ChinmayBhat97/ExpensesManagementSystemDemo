@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<body style="overflow:hidden;">
+<body style="overflow:hidden;background-color:#e6e6ff;">
 
     <div style="padding-left:250px;padding-bottom:80px;">
-        <h5 style="color:#000099"> <u> <b>Expense Category </b></u></h5>
+        <h4 style="color:#000066"> <u> <b>Expense Category </b></u></h4>
         <br />
         <dl class="row">
 
@@ -23,8 +23,8 @@
 
 
         </dl>
-
-        <div style="padding-left:250px;">
+        <br />
+        <div style="padding-left:500px;">
             <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
             <a asp-action="EditExpenseCategory" asp-route-id="@Model.Id" class="btn  btn btn-success">Edit Category</a>
         </div>

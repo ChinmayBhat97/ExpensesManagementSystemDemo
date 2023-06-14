@@ -16,11 +16,14 @@
             border: 1px solid #000033;
             text-align: center;
             padding: 2px;
-            color: whitesmoke;
+            color: #ffffff;
         }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
 
@@ -38,30 +41,31 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#e6e6ff">
     <div style="padding-left:300px;">
-        <h5 style="color:#000099"><u> <b>Category List </b></u></h5>
+        <h4 style="color:#000066;align-content:center;"><u> <b>Category List </b></u></h4>
 
-        <div style="padding-left:400px;">
-            <a asp-action="CreateExpenseCategory" class="btn btn-success">Add New Category</a>
+        <div style="padding-left:412px;">
+            <a asp-action="CreateExpenseCategory" class="btn btn-success" style="background-color:#008000;">Add New Category</a>
 
         </div>
         <br />
 
 
-        <table class="table" id="table"  style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+        <table class="table" id="table"  style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:17px">
         <thead>
             <tr>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color:  #404040;">
                         Sl.No
                     </th>
                     @*<th style="background-color: #0000b3;">
                     @Html.DisplayNameFor(model => model.Id)
                 </th>*@
-                    <th style="background-color: #0000b3;">
-                    @Html.DisplayNameFor(model => model.Name)
+                    <th style="background-color:   #404040;">
+                        Category Name
+                   @* @Html.DisplayNameFor(model => model.Name)*@
                 </th>
-                    <th style="background-color: #0000b3;">Action </th>
+                    <th style="background-color:#404040;width:30%">Action </th>
             </tr>
         </thead>
         <tbody>
@@ -77,9 +81,9 @@
                     <td style="padding-left:10px;">
                         @Html.DisplayFor(modelItem => item.Name)
                     </td >
-                    <td style="padding-left:10px;">
-                            <a asp-action="EditExpenseCategory" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
-                            <a asp-action="DetailsByExpenseCategoryID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <td style="padding-left:20px;">
+                            <a asp-action="EditExpenseCategory" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit </a>
+                            <a asp-action="DetailsByExpenseCategoryID" asp-route-id="@item.Id" type="button" class="btn btn-info" >View</a>
                     </td>
                 </tr>
             }
