@@ -111,6 +111,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Create(ExpenseClaimViewModel expenseClaimViewModel)
         {
             int role = Convert.ToInt32(TempData["Role"]);
+           
             TempData.Keep();
 
             string wwwPath = this.webHostEnvironment.WebRootPath;
@@ -145,6 +146,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             //expenseClaimViewModel.Status = 1;
             expenseClaimViewModel.EmpId=Convert.ToInt32(TempData["EmpID"]);
+            expenseClaimViewModel.DeptId = Convert.ToInt32(TempData["DepID"]);
             expenseClaimViewModel.IndividualExpenditures.ForEach(n => n.IsApproved = false);
 
             // Save ExpenseClaim

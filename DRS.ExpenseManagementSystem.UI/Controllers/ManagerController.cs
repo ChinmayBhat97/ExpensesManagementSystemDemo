@@ -35,7 +35,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             this.client = new HttpClient
             {
                 BaseAddress = new Uri(configuration["BaseUrl"]),
-                Timeout = TimeSpan.FromMinutes(5)
+                Timeout = TimeSpan.FromMinutes(15)
             };
         }
 
@@ -55,7 +55,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
             if (ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
@@ -212,7 +212,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
             if (ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
