@@ -8,32 +8,34 @@
     }
     @*  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>*@
     <style>
-        td {
-            border: 1px solid #000033;
-            text-align: left;
-            padding: 3px;
-            padding-left: 30px;
-        }
+        /* padding: 2px;*/
+        /* td {
+                    border: 1px solid #000033;
+                    text-align: left;
 
-        th {
-            border: 1px solid #000033;
-            text-align: center;
-            padding: 4px;
-            color: whitesmoke;
-        }
+                }
+
+                th {
+                    border: 1px solid #000033;
+                    text-align: center;
+
+                    color: whitesmoke;
+                }*/
+        /* padding: 2px;*/
+
 
         tr:nth-child(even) {
             background-color: #e6f2ff;
         }
 
         /* Set the serial number counter to 0 */
-        #Expense {
+        #IndividualExpenditure {
             counter-reset: serial-number;
         }
 
             /* Increment the serial number counter */
             /* Display the counter */
-            #Expense td:first-child:before {
+            #IndividualExpenditure td:first-child:before {
                 counter-increment: serial-number;
                 content: counter(serial-number);
             }
@@ -58,10 +60,8 @@
 
                 <div class="col-md-8" style="padding-left:10px;">
                     <div class="form-group">
-                        <b>  <label asp-for="DeptId" class="form-control">Department<span style="color:red;">*</span></label></b>
-                        <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" required>
-                            <option value="">-- Select --</option>
-                        </select>
+                        <label><b>Department</b></label>
+                        <input class="form-control" placeholder="@TempData["Department"]" style="font-weight:700;font-size:18px;color:black" readonly />
                     </div>
                 </div>
             </div>
@@ -91,9 +91,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label asp-for="ClaimRequestDate" class="form-label input-lable"><b>Claim Requested Date</b></label>
+                        <label><b>Claim Request Date</b><span style="color:red;">*</span></label>
+                        @*<label asp-for="ClaimRequestDate" class="form-label input-lable"><b>Claim Requested Date</b></label>*@
                         <input type="datetime" asp-for="ClaimRequestDate" class="form-control" readonly />
                         <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                     </div>
@@ -110,24 +111,17 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <b> <label>Total Amount (<span>&#8377;</span>) </label> </b>
-                        <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
-                        @*<span class="form-control" id="ttlamnt"></span>*@
-                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                    </div>
-                </div>
-
-                @* <div class="col-md-3">
+                 <div class="col-md-3">
                 <div class="form-group">
                 <b> <label>Total Amount (<span>&#8377;</span>) </label> </b>
-                <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />*@
+                <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
                 @*<span class="form-control" id="ttlamnt"></span>*@
-                @* <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                 <span asp-validation-for="TotalAmount" class="text-danger"></span>
                 </div>
-                </div>*@
+                </div>
             </div>
+            <br />
+            <br />
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -137,56 +131,56 @@
             </div>
 
             <div class="col-md-12">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id='IndividualExpenditure'>
                     <thead>
                         <tr>
-                            <th> Sl.No</th>
-                            <th> Expenditure Date</th>
-                            <th>Description </th>
-                            <th>Category</th>
-                            <th> Expense Category </th>
-                            <th> Amount           </th>
-                            <th> Comments    </th>
-                            <th> Receipt Number</th>
-                            <th> Attachments </th>
+                            <th style="background-color: #339692;"> <label>Sl.No</label> </th>
+                            <th style="background-color: #339692;"> <label>Expenditure Date<span style="color:red;">*</span></label> </th>
+                            <th style="background-color: #339692;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
+                            <th style="background-color: #339692;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
+                            <th style="background-color: #339692;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
+                            <th style="background-color: #339692;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
+                            <th style="background-color: #339692;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
+                            <th style="background-color: #339692;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
+                            <th style="background-color: #339692;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
+                            <th style="background-color: #339692;"> <label><b>Delete Row</b><span style="color:red;">*</span></label>           </th>
                             @*  <th style="background-color: #0000b3;"> <label><b>Image</b><span style="color:red;">*</span></label>           </th>*@
-
-
-
                         </tr>
-
                     </thead>
-
-                    <tbody id="IndividualExpenditure">
+                    <tbody id="individual">
                         @for (int i = 0; i < Model.IndividualExpenditures.Count; i++)
                         {
-
                             <tr>
                                 <td>
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <input type="date" asp-for="@Model.IndividualExpenditures[i].ExpenditureDate" class="form-control expDate" required />
-                                    <span asp-validation-for="@Model.IndividualExpenditures[i].ExpenditureDate" class="text-danger"></span>
+                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenditureDate, new{htmlAttributes= new {@class ="form-control expDate"}})
                                 </td>
 
                                 <td>
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Description, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>
-
                                 <td>
+                                    @*<input asp-for="@Model.IndividualExpenditures[i].Category" class="form-control" required />*@
+                                    <select asp-for="@Model.IndividualExpenditures[i].Category" class="form-control" required>
+                                        <option value="">-- Select --</option>
+                                        <option value="Official">Official</option>
+                                        <option value="Personal">Personal</option>
+                                    </select>
+                                    <span asp-validation-for="@Model.IndividualExpenditures[i].Category" class="text-danger"></span>
+                                </td>
+                                @*<td>
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Category, new{htmlAttributes= new {@class ="form-control"}})
+                                </td>*@
+                                <td>
+                                    <select asp-for="@Model.IndividualExpenditures[i].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
+                                        <option value="">-- Select --</option>
+                                    </select>
                                 </td>
 
-
-
                                 <td>
-                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenseCategoryId, new{htmlAttributes= new {@class ="form-control"}})
-                                </td>
-
-                                <td>
-                                    <input asp-for="@Model.IndividualExpenditures[i].Amount" class="form-control txt" id="amnt" required />
-                                    <span asp-validation-for="@Model.IndividualExpenditures[i].Amount" class="text-danger"></span>
+                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].Amount, new{htmlAttributes= new {@class ="form-control txt"}})
                                 </td>
 
 
@@ -195,41 +189,37 @@
                                 </td>
 
                                 <td>
-                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ReceiptNumber, new{htmlAttributes= new {@class ="form-control" }})
+                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ReceiptNumber, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>
 
                                 <td>
                                     <input asp-for="@Model.IndividualExpenditures[i].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
                                     <span asp-validation-for="@Model.IndividualExpenditures[i].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[i].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>
-                                @* <td>style="left:90%;position:absolute"
-                            <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
-                            </td>*@
                                 <td>
+
+
                                     <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger visible"
                                             onclick="DeleteItem(this);">
                                         Delete
                                     </button>
                                 </td>
+
+
                             </tr>
-
-
-
                         }
 
                     </tbody>
 
                 </table>
-                <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">
-                    Add
-                </button>
 
 
 
 
                 <br />
-
+                <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">
+                    Add
+                </button>
                 <div class="form-group" style="padding-left:600px;">
                     <input type="submit" value="Save" class="btn btn-success" />
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
@@ -268,23 +258,23 @@
                 });
             });
 
-                function InitializeKeyUp() {
-                    $(".txt").each(function () {
-                        $(this).keyup(function () {
-                            calculateSum();
-                        });
+            function InitializeKeyUp() {
+                $(".txt").each(function () {
+                    $(this).keyup(function () {
+                        calculateSum();
                     });
-                }
+                });
+            }
 
-                function calculateSum() {
-                    var sum = 0;
-                    $(".txt").each(function () {
-                        if (!isNaN(this.value) && this.value.length != 0) {
-                            sum += parseFloat(this.value);
-                        }
-                    });
-                    $("#ttlamnt").val(sum);
-                }
+            function calculateSum() {
+                var sum = 0;
+                $(".txt").each(function () {
+                    if (!isNaN(this.value) && this.value.length != 0) {
+                        sum += parseFloat(this.value);
+                    }
+                });
+                $("#ttlamnt").val(sum);
+            }
 
             $(document).on("change", ".expDate", function () {
                 $(".expDate").each(function () {
@@ -301,41 +291,13 @@
         });
 
 
-        //var table = document.getElementById('individualExpenditure');
-        //var rows = table.getElementsByTagName('tr');
-        //var rowOuterHtml = rows[rows.length - 1].outerHTML;
-
-        //var lastrowIdx = document.getElementById('hdnLastIndex').value;
-        //var nextrowIdx = eval(lastrowIdx) + 1;
-
-        //document.getElementById('hdnLastIndex').value = nextrowIdx;
-
-        //rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
-        //rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
-        //rowOuterHtml = rowOuterHtml.replaceAll('-' + lastrowIdx, '-' + nextrowIdx);
-
-
-        //var newRow = table.insertRow();
-        //newRow.innerHtml = rowOuterHtml;
-
-        //var btnAddID = btn.id;
-        //var btnDeleteid = btnAddID.replaceAll('btnAddDetailRow', 'btnremove');
-
-        //var delbtn = document.getElementById(btnDeleteid);
-        //delbtn.classList.add("visible");
-        //delbtn.classList.remove("invisible");
-
-        //var addbtn = document.getElementById(btnAddID);
-        //addbtn.classList.remove("visible");
-        //addbtn.classList.add("invisible");
-
 
         function AddItem(btn) {
 
             var table = document.getElementById('IndividualExpenditure');
             var rows = table.getElementsByTagName('tr');
 
-            if (rows.length == 0) {
+            if (rows.length == 1) {
                 $(document).ready(function () {
                     location.reload(true);
                 });
@@ -357,19 +319,10 @@
             var newRow = table.insertRow();
             newRow.innerHTML = rowOuterHtml;
             InitializeKeyUp();
-            //var btnAddID = btn.id;
-            //var btnDeleteid = btnAddID.replaceAll('btnAddDetailRow', 'btnremove');
 
-            //var delbtn = document.getElementById(btnDeleteid);
-            //delbtn.classList.add("visible");
-            //delbtn.classList.remove("invisible");
-
-            //var addbtn = document.getElementById(btnAddID);
-            //addbtn.classList.remove("visible");
-            //addbtn.classList.add("visible");
-            //InitializeKeyUp();
 
         }
+
 
         function InitializeKeyUp() {
             //iterate through each textboxes and add keyup
@@ -381,6 +334,7 @@
             });
         }
 
+        //calculate sum
         function calculateSum() {
 
             var sum = 0;
@@ -394,19 +348,8 @@
             });
             $("#ttlamnt").val(sum);
         }
-        //  rebindvalidators();
 
-        //var btnAddID = btn.id;
-        //var btnDeleteid = btnAddID.replaceAll('btnAddDetailRow', 'btnremove');
-
-        //var delbtn = document.getElementById(btnDeleteid);
-        //delbtn.classList.add("visible");
-        //delbtn.classList.remove("invisible");
-
-
-        //var addbtn = document.getElementById(btnAddID);
-        //addbtn.classList.remove("visible");
-        //addbtn.classList.add("invisible");
+        //date ranges
 
         var startDateInput = document.getElementById("startDate");
         var endDateInput = document.getElementById("endDate");
@@ -426,13 +369,21 @@
             }
         });
 
-        function DeleteItem(btn) {
 
+
+
+        function DeleteItem(btn) {
             $(btn).closest('tr').remove();
 
             calculateSum();
         }
 
+
+
+        //$(document).on("click", "#btnremove-", function () {
+        //    $(this).closest("tr").remove();
+
+        //});
 
     </script>
 
