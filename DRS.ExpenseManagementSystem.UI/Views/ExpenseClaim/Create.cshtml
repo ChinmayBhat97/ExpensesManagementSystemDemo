@@ -155,7 +155,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenditureDate, new{htmlAttributes= new {@class ="form-control expDate"}})
+                                    @Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenditureDate, new{htmlAttributes= new {@class ="form-control expDate",Type="date"}})
                                 </td>
 
                                 <td>
@@ -196,6 +196,7 @@
                                     <input asp-for="@Model.IndividualExpenditures[i].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
                                     <span asp-validation-for="@Model.IndividualExpenditures[i].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[i].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+                                    
                                 <td>
 
 

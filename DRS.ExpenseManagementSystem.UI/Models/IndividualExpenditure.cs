@@ -10,7 +10,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
     {
         public int Id { get; set; }
         public int? ClaimId { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? ExpenditureDate { get; set; }
         public string? Description { get; set; }
         public string? Category { get; set; }
@@ -20,6 +20,8 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public string? ReceiptNumber { get; set; }
 
         public string? AttachmentPath { get; set; }
+
+        public int IsDelete { get; set; }
         public IFormFile? ExpenseProof { get; set; }
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }

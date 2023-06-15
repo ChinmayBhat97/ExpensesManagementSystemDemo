@@ -2,7 +2,7 @@
 <html>
 <head>
     @{
-        ViewData["Title"] = "Create";
+        ViewData["Title"] = "Details Approved";
     }
 
 
@@ -43,98 +43,126 @@
     </style>
 </head>
 <body>
-    <h5 style="padding-left:240px;color:navy;"><u><b>Claim Details</b></u></h5>
+    <h5 style="padding-left:230px;color:navy"><u><b>Partial Approved Claim</b></u></h5>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
-            <form asp-route="/ExpenseClaim/Edit/@Model.Id" enctype="multipart/form-data">
+            <form asp-route="/ExpenseClaim/DetailsPartialApprovedFM/@Model.Id" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <input asp-for="Id" class="form-control" style="display:none" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
 
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label><b>Employee Code :</b></label>
-                            @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })
-                            <span asp-validation-for="EmpId" class="text-danger"></span>
+                            <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code:</b></label>
+                            <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Employee" readonly>
+                                <option value="">-- Select --</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-md-8">
                         <div class="form-group">
                             <label asp-for="DeptId" class="form-label input-lable"><b>Department</b></label>
-                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" disabled>
+                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" readonly>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
                     </div>
-                </div>
-              
-               <div class="row" style="padding-top:10px;">
 
-                    <div class="col-md-3">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="StartDate" class="form-label input-lable"><b>Expense Start Date</b></label>
-                            <input type="datetime" asp-for="StartDate" class="form-control" disabled />
+                            <label><b>Expense Start Date</b></label>
+                            <input type="date" asp-for="StartDate" class="form-control" readonly />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="EndDate" class="form-label input-lable"><b>Expense End Date</b></label>
-                            <input type="datetime" asp-for="EndDate" class="form-control" disabled />
+                            <label><b>Expense End Date</b></label>
+                            <input type="date" asp-for="EndDate" class="form-control" readonly />
                             <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
                     </div>
 
-                   <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="ClaimRequestDate" class="form-label input-lable"><b>Claim Requested Date</b></label>
-                            <input type="datetime" asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <label><b>Claim Date</b></label>
+                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
-                  </div>
-
-
-
-                 
-               </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label><b>Status</b></label>
-                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" readonly>
-                            <option value="">-- Select --</option>
-                        </select>
                     </div>
                 </div>
-              
-                <br />
-               
-                    <div class="row">
+
+                <div class="row">
+
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b></label>
-                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" disabled>
+                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
+                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" readonly>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
                     </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                            <label asp-for="TotalAmount" class="form-label input-lable"><b>Total Expenditure</b></label>
-                                <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
-                                @*<span class="form-control" id="ttlamnt"></span>*@
-                                <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                            </div>
+
+
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Total Expenditure</b><span style="color:red;">*</span></label>
+                            <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
+                            @*<span class="form-control" id="ttlamnt"></span>*@
+                            <span asp-validation-for="TotalAmount" class="text-danger"></span>
                         </div>
                     </div>
-                    
-               
-                    <hr />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Date of Manager Approval</b><span style="color:red;">*</span></label>
+                            <input asp-for="ManagerApprovedOn" type="date" class="form-control" readonly />
+                            <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label><b>Status</b></label>
+                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
+                                <option value="">-- Select --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label><b>Finance Manager Approved On</b></label>
+                            <input type="datetime" asp-for="FinanceManagerApprovedOn" class="form-control" readonly />
+                            <span asp-validation-for="FinanceManagerApprovedOn" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Manager Remarks</b></label>
+                    <input asp-for="ManagerRemarks" class="form-control" readonly />
+                    <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label><b>Finance Manager Remarks</b></label>
+                    <input asp-for="FinanceManagerRemarks" class="form-control" readonly />
+                    <span asp-validation-for="FinanceManagerRemarks" class="text-danger"></span>
+                </div>
+                <br />
+                <hr />
 
                 <div class="row">
                     <div class="col-md-6">
@@ -144,19 +172,20 @@
                     </div>
                 </div>
 
-                <table id="Expense">
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+
+                    <tr>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label>Sl.No</label> </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Expenditure Date</b></label> </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Description</b></label>      </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Category</b></label>         </th>
+                        <th style="background-color: #0000b3;vertical-align:central;">  <label><b>Expense Category</b></label> </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Amount</b></label>           </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Comments</b></label>         </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Receipt Number</b></label>   </th>
+                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Attachments</b></label>           </th>
+                    </tr>
                     <tbody id="ExpenseBody">
-                        <tr>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label>Sl.No</label> </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Expenditure Date</b></label> </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Description</b></label>      </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Category</b></label>         </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Expense Category</b></label> </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Amount</b></label>           </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Comments</b></label>         </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Receipt Number</b></label>   </th>
-                            <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Attachments</b></label>           </th>
-                        </tr>
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
 
@@ -168,39 +197,39 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <input type="datetime" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
+                                    <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" disabled />
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
                                 </td>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" disabled />
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
                                 </td>
                                 <td>
-                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" disabled>
+                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" readonly>
                                         <option value="">-- Select --</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" disabled />
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
                                 </td>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" disabled />
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
                                 </td>
                                 <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" disabled />
+                                    <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                                <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" disabled />
-                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>
+                                @*  <td>
+                            <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" readonly />
+                            <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
+                            <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+                            </td>*@
                                 <td>
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
                                 </td>
@@ -208,10 +237,12 @@
                         }
                     </tbody>
                 </table>
+                @*<input type="button" id="addRowBtn" value="Add New" name="Add New" />*@
+
                 <br />
-                <div class="form-group" style="padding-left:700px;">
+                <div class="form-group" style="padding-left:650px;">
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+                    @*   <input type="submit" value="Save" class="btn btn-success" />*@
                 </div>
             </form>
         </div>
@@ -301,5 +332,18 @@
         return doc.documentElement.textContent;
     }
 
+    function DateCheck() {
+
+        $('#startDate').datepicker({
+            onSelect: function (dateText, inst) {
+                $('#endDate').datepicker('option', 'minDate', new Date(dateText));
+            }
+        });
+        $('#endDate').datepicker({
+            onSelect: function (dateText, inst) {
+                $('#startDate').datepicker('option', 'maxDate', new Date(dateText));
+            }
+        });
+    }
 
 </script>
