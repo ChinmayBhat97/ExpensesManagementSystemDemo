@@ -4,12 +4,13 @@
     ViewData["Title"] = "Details";
 }
 @*index*@
+<body style="overflow:hidden;background-color:#e6e6ff">
 
 <div style="padding-left:225px;">
-
-    <h5 style="color:#000099">   <u> <b>  Details of Project </b></u> </h5>
-    <dl class="row">
-        <form asp-route="/Project/DetailsProject/@Model.Id">
+    
+    <h5 style="color:#000066">   <u> <b>  Details of Project </b></u> </h5>
+        <dl class="row" style="padding-top:25px;">
+            <form asp-route="/Project/DetailsProject/@Model.Id">
         @*<dt class="col-sm-8">
             ID: &nbsp   @Html.DisplayFor(model => model.Id)
             &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp
@@ -46,10 +47,10 @@
         </form>
     </dl>
     <br />
-    <div style="padding-left:480px;">
+    <div style="padding-left:500px;padding-top:50px;">
         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
         <a asp-action="EditProject" asp-route-id="@Model.Id" class="btn  btn btn-success"> Edit Project Details </a>
     </div>
 </div>
 
-         
+</body> 

@@ -19,8 +19,11 @@
             color: whitesmoke;
         }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -37,54 +40,54 @@
     </style>
 </head>
 
-<body>
+<body style="overflow:auto;background-color:#e6e6ff">
     <div style="padding-left:225px;padding-bottom:80px;">
-        <h5 style="color:#000099"><u> <b>Projects List </b></u></h5>
+        <h4 style="color:#000066"><u> <b>Projects List </b></u></h4>
 
-        <div style="padding-left:720px;">
-            <a asp-action="CreateProject" class="btn btn-success">Add New Project</a>
+        <div style="padding-left:745px;">
+            <a asp-action="CreateProject" class="btn btn-success" style="background-color:#008000;">Add New Project</a>
 
         </div>
         <br />
 
-        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:15px;font-size:16px">
-            <thead>
+        <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:105%;padding-top:15px;font-size:16px">
+            <thead style="vertical-align:middle;">
 
-                <tr style="vertical-align:central;">
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                <tr style="text-align:center;">
+                    <th style="background-color: #404040;text-align:center;">
                         Sl.No
                     </th>
                     @*@Html.DisplayNameFor(model => model.Id)*@
                     @*<th style="background-color: #0000b3;">
                     Project ID
                     </th>*@
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Manager Name
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Project Title
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                   @* <th style="background-color: #0000b3;vertical-align:central;">
                         Project Description
-                    </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    </th>*@
+                    <th style="background-color: #404040;text-align:center;">
                         Project Start Date
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Project End Date
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Client Name
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">Action </th>
+                    <th style="background-color: #404040;vtext-align:center;">Actions </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
 
-                    <tr style="vertical-align:central;">
-                        <td style="padding-left:25px;vertical-align:central;">
+                    <tr style="vertical-align:middle;text-align:center;">
+                        <td style="padding-left:25px;">
                             &nbsp;
                         </td>
                         @* <td style="padding-left:10px;text-align:center;">
@@ -93,29 +96,32 @@
                         <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Emp.FirstName)
                         </td>
-                        <td style="vertical-align:central;">
+                        <td style="text-align:center;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
-                        <td style="padding-left:10px;vertical-align:central;">
+                      @*  <td style="padding-left:10px;vertical-align:central;">
                             @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td style="padding-left:10px;">
+                        </td>*@
+                        <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.StartDate)
                         </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.EndDate)
                         </td>
-                        <td style="padding-left:10px;">
+                        <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Client)
                         </td>
-                        <td style="padding-left:10px;">
-                            <a asp-action="EditProject" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByProjectID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <td style="text-align:center;width:16%">
+                            <a asp-action="EditProject" asp-route-id="@item.Id" class="btn btn-warning"> Edit</a>
+                            
+                                <a asp-action="DetailsByProjectID" asp-route-id="@item.Id" class="btn btn-info">View</a>
+                            
+                            
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</body>
+</body> 
 

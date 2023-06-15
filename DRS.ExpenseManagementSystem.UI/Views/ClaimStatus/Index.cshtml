@@ -16,11 +16,14 @@
             border: 1px solid #000033;
             text-align: center;
             padding: 2px;
-            color: whitesmoke;
+            color: #ffffff;
         }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -39,12 +42,12 @@
 </head>
 
 
-<body style="overflow:hidden;">
+<body style="overflow:auto;background-color:#e6e6ff;">
     <div style="padding-left:300px;">
-        <h5 style="color:#000099"><u> <b>Status List </b></u></h5>
+        <h4 style="color:#000066"><u> <b>Status List </b></u></h4>
 
         <div style="padding-left:425px;">
-            <a asp-action="CreateClaimStatus" class="btn btn-success" >Add New Status</a>
+            <a asp-action="CreateClaimStatus" class="btn btn-success" style="background-color:#008000;">Add New Status</a>
 
         </div>
         <br />
@@ -52,24 +55,24 @@
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:16px;font-size:17px">
             <thead>
                 <tr>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color:  #404040;">
                         Sl.No
                     </th>
                    @* <th style="background-color: #0000b3;">
                         ID
                     </th>*@
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color:  #404040;">
                        Type of Claim Status
                     </th>
-                    <th style="background-color: #0000b3;">Action </th>
+                    <th style="background-color:  #404040;">Action </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    
-                    <tr>
-                        <td style="padding-left:25px;" width="10%">
+
+                    <tr style="vertical-align:middle;">
+                        <td style="padding-left:22px;" width="10%">
                             &nbsp;
                         </td>
                        @* <td style="padding-left:20px;">
@@ -79,8 +82,8 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td style="padding-left:10px;" width="25%">
-                            <a asp-action="EditClaimStatus" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a asp-action="EditClaimStatus" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit</a>
+                            <a asp-action="DetailsByClaimStatusID" asp-route-id="@item.Id" type="button" class="btn btn-info">View</a>
                         </td>
                     </tr>
                 }

@@ -54,7 +54,7 @@
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
-            <form asp-route="/ExpenseClaim/Edit/@Model.Id" enctype="multipart/form-data">
+            <form asp-route="/ExpenseClaim/DetailsByClaimID/@Model.Id" enctype="multipart/form-data">
 
                 <dl class="row">
                     <span class="col-sm-3" >
@@ -68,7 +68,10 @@
 
                     <span class="col-md-5" >
 
-                        <b>Claim Status : </b>   @Html.DisplayFor(model => model.StatusNavigation.Name)
+                        <b>Claim Status : </b>  @* @Html.DisplayFor(model => model.StatusNavigation.Name)*@
+                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
+                            <option value="">-- Select --</option>
+                        </select>
                     </span>
                   
                 </dl>

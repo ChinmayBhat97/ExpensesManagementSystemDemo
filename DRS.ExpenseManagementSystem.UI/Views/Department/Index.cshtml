@@ -24,8 +24,11 @@
                 
             }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
             tr:nth-child(even) {
-                background-color: #e6f2ff;
+            background-color: #d9d9d9;
             }
 
         /* Set the serial number counter to 0 */
@@ -43,28 +46,28 @@
 
 
     </head>
-    <body >
+<body style="overflow:auto;background-color:#e6e6ff">
         <div style="padding-left:275px;">
-        <h5 style="color:#000099"><u> <b>Department List </b></u></h5>
+        <h4 style="color:#000066"><u> <b>Department List </b></u></h4>
 
         <div style="padding-left:475px;">
-            <a asp-action="CreateDepartment"  class="btn btn-success">Create New Department</a>
+            <a asp-action="CreateDepartment" class="btn btn-success" style="background-color:#008000;">Create New Department</a>
           @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
         <br />
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:80%;padding-top:25px;font-size:16px">
-            <thead>
+            <thead style="vertical-align:central">
                 <tr>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #404040;">
                         Sl.No
                     </th>
                   @*  <th style="background-color: #0000b3;">
                         ID
                     </th>*@
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #404040;">
                         Department Name
                     </th>
-                    <th style="background-color: #0000b3;">
+                    <th style="background-color: #404040;">
                         Actions
                     </th>
                 </tr>
@@ -72,7 +75,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr style="vertical-align:middle;">
                     
                         <td style="padding-left:25px;" width="10%">
                             &nbsp;
@@ -84,8 +87,8 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td style="padding-left:30px;">
-                            <a asp-action="EditDepartment" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByDepartmentID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a asp-action="EditDepartment" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                            <a asp-action="DetailsByDepartmentID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                         </td>
                     </tr>
                 }

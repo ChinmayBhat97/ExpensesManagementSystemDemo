@@ -3,9 +3,9 @@
     ViewData["Title"] = "Create";
 }
 @*index*@
-<body>
+<body style="overflow:hidden;background-color:#e6e6ff">
     <div style="padding-left:240px;">
-        <h5 style="color:#000099"> <u><b>Add Project </b></u>   </h5>
+        <h4 style="color:#000066"> <u><b>Add Project </b></u>   </h4>
         <br />
     <div class="row">
             <div class="col-md-12" style="padding-top:10px;">
@@ -16,7 +16,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code</b><span style="color:red;">*</span></label>
-                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Users"  required>
+                                <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control" id="Users"  required>
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
@@ -70,13 +70,13 @@
                
                
                 <br />
-                <div class="form-group" style="padding-left:600px;">
+                <div class="form-group" style="padding-left:560px;">
                    
                         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
                         <input type="submit" value="Save" class="btn btn-success" />
                 </div>
             </form>
-                <p> <i style="color:red">Note: </i>  Employee Code refers to the Manager or Team Lead of The Project. </p>
+               
         </div>
     </div>
    </div>
