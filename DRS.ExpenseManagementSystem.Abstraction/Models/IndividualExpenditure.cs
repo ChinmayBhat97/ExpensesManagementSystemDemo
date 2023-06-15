@@ -17,7 +17,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
         public string? AttachmentPath { get; set; }
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
-
+        public int IsDelete { get; set; }
         public virtual ExpenseClaim? Claim { get; set; }
         public virtual ExpenseCategory? ExpenseCategory { get; set; }
 
