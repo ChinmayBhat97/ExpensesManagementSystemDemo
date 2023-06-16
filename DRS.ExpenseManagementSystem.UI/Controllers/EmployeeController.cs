@@ -103,6 +103,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage createNewEmp = await client.PostAsync(client.BaseAddress + $"Employee", byteContent);
             if (createNewEmp.IsSuccessStatusCode)
             {
+                TempData["message"] = "Employee Created";
                 return RedirectToAction("Index");
             }
             return BadRequest("Pleaase check your credentials and try again ");

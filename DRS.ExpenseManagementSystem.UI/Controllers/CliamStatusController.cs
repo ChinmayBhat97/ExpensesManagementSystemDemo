@@ -93,6 +93,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ClaimStatus/{claimStatusViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
+                    TempData["message"] = "Claim Status Created";
                     return RedirectToAction("Index");
                 }
             }

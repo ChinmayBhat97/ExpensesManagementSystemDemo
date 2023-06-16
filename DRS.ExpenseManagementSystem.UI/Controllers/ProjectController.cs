@@ -81,6 +81,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewProject = await client.PostAsync(client.BaseAddress + "Project", byteContent);
                 if (createNewProject.IsSuccessStatusCode)
                 {
+                    TempData["message"] = "Project Created";
                     return RedirectToAction("Index");
                 }
                 return BadRequest("Please check the credentials and try again");
