@@ -4,9 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-
+<body style="overflow:auto;background-color:#e6e6ff;">
 <div style="padding-left:300px;">
-    <h5 style="color:#000099"> <b> <u>Claim Status  </u></b></h5>
+    <h4 style="color:#000066"> <b> <u>Claim Status  </u></b></h4>
     <br />
     <dl class="row">
 
@@ -21,7 +21,7 @@
 
     </dl>
     <br />
-    <div style=" padding-left:100px;">
+    <div style=" padding-left:300px;">
       
         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
         <a asp-action="EditClaimStatus" asp-route-id="@Model.Id" class="btn  btn btn-success">Edit Claim Status</a>
@@ -29,4 +29,4 @@
 
     </div>
 </div>
-
+</body>

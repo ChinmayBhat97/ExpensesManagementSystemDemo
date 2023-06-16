@@ -19,8 +19,11 @@
             color: whitesmoke;
         }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -39,9 +42,9 @@
 
 
 
-<body>
+<body style="overflow:auto;background-color:#e6e6ff">
     <div style="padding-left:225px;">
-        <h4 style="color:#000099;padding-left:5px;"><u> <b>Employee List </b></u></h4>
+        <h4 style="color:#000066;padding-left:5px;"><u> <b>Existing Employee's List </b></u></h4>
 
        @* <div style="padding-left:650px;">
             <a asp-action="CreateEmployee" class="btn btn-success">Add New Employee</a>
@@ -52,22 +55,22 @@
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:25px;font-size:16px">
             <thead style="vertical-align:middle;">
             <tr>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Sl.No
                     </th>
-                    <th style="background-color: #0000b3;width:2%;vertical-align:middle;">
+                    <th style="background-color: #404040;width:2%;text-align:center;">
                   Employee Code @*  @Html.DisplayNameFor(model => model.Id)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
                   Employee User ID  @Html.DisplayNameFor(model => model.EmpId)
                 </th>*@
-                    <th style="background-color: #0000b3;width:11%;vertical-align:central;">
+                    <th style="background-color: #404040;width:11%;text-align:center;">
                  First Name  @* @Html.DisplayNameFor(model => model.FirstName)*@
                 </th>
-                    <th style="background-color: #0000b3;width:11%;vertical-align:central;">
+                    <th style="background-color: #404040;width:11%;text-align:center;">
                  Last Name  @* @Html.DisplayNameFor(model => model.LastName)*@
                 </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                   Email ID  @*@Html.DisplayNameFor(model => model.Email)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
@@ -79,22 +82,22 @@
                     <th style="background-color: #0000b3;">
                     @Html.DisplayNameFor(model => model.Gender)
                 </th>*@
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                         Department  @*@Html.DisplayNameFor(model => model.DeptId)*@
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;text-align:center;">
                   Designation  @*@Html.DisplayNameFor(model => model.Designation)*@
                 </th>
                    @* <th style="background-color: #0000b3;">
                     @Html.DisplayNameFor(model => model.DateOfJoining)
                 </th>*@
-                    <th style="background-color: #0000b3;vertical-align:central;">Action </th>
+                    <th style="background-color: #404040;text-align:center;">Action </th>
             </tr>
         </thead>
             <tbody style="vertical-align:middle;">
             @foreach (var item in Model)
             {
-                    <tr >
+                    <tr style="vertical-align:middle;">
                         <td style="padding-left:15px;text-align:center">
                             &nbsp;
                         </td>
@@ -133,11 +136,11 @@
                         @Html.DisplayFor(modelItem => item.DateOfJoining)
                     </td>*@
                         <td >
-                           <div style="padding-left:10px;">
-                                <a asp-action="EditEmployee" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                           <div >
+                                <a asp-action="EditEmployee" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                            </div>
-                           <div style="padding-left:10px;">
-                                <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                           <div style="padding-top:5px;">
+                                <a asp-action="DetailsByEmployeeID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                            </div>
                             
 
