@@ -58,8 +58,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
                 if (responseHomePage.IsSuccessStatusCode)
                 {
-                    var responseContent = await responseHomePage.Content.ReadAsStringAsync();
-                    var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+                  //  var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                    var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(await responseHomePage.Content.ReadAsStringAsync());
 
                     var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
 
@@ -97,7 +97,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             detailsClaim.ManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
-            detailsClaim.Manager = (string?)firstName;
+            detailsClaim.ManagerName = (string?)firstName;
 
             //drop down to show department names
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
@@ -170,7 +170,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 expenseClaimViewModel.StatusManager = 10;
             }
 
-            expenseClaimViewModel.Manager = (string?)@TempData["FirstName"];
+            expenseClaimViewModel.ManagerName = (string?)@TempData["FirstName"];
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);

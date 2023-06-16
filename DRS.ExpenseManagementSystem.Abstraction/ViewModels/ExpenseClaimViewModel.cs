@@ -25,7 +25,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
 
-        
+        public string? ManagerName { get; set; }
+        public string? FinManagerName { get; set; }
         public Department Department { get; set; }
     }
 }
