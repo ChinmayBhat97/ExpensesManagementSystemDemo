@@ -72,7 +72,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                             TempData["Role"]=authResponse.userDetails.Role.ToString();
                             TempData["Department"]= authResponse.userDetails.deptName;
                             TempData["DepID"]=authResponse.userDetails.DeptId;
-                           // TempData["projectID"]=authResponse.userDetails.pID.ToString();
+                            TempData["FirstName"] = authResponse.userDetails.FirstName;
+                            // TempData["projectID"]=authResponse.userDetails.pID.ToString();
                             TempData.Keep();
 
                             

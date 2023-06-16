@@ -83,6 +83,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditByManager(int id)
         {
             int role = Convert.ToInt32(TempData["Role"]);
+            var firstName = TempData["FirstName"];
+            TempData.Keep();
 
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
@@ -95,6 +97,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             detailsClaim.ManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
+            detailsClaim.Manager = (string?)firstName;
 
             //drop down to show department names
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
@@ -154,6 +157,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpPost("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
+            var firstName = TempData["FirstName"];
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
             expenseClaimViewModel.ManagerApprovedOn = DateTime.Now;
 
@@ -166,7 +170,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 expenseClaimViewModel.StatusManager = 10;
             }
 
-
+            expenseClaimViewModel.Manager = (string?)@TempData["FirstName"];
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);

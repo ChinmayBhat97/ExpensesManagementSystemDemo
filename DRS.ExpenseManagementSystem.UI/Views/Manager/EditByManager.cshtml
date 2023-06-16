@@ -63,7 +63,7 @@
                             </select>
                         </div>
                     </div>
-
+                    
                     <div class="col-md-8">
                         <div class="form-group">
                             <label asp-for="DeptId" class="form-label input-lable"><b>Department</b><span style="color:red;">*</span></label>
@@ -93,7 +93,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><b>Claim Date</b><span style="color:red;">*</span></label>
-                            <input type="datetime" asp-for="ClaimRequestDate" class="form-control" readonly />
+                            <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -136,6 +136,9 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="@TempData["FirstName"]"  readonly />
                 </div>
 
                 <br />

@@ -31,7 +31,8 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public DateTime? ManagerApprovedOn { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? FinanceManagerApprovedOn { get; set; }
-
+        public string? Manager { get; set; }
+        public string? FManager { get; set; }
         public virtual Department? Dept { get; set; }
         public virtual Employee? Emp { get; set; }
         public virtual Project? Project { get; set; }

@@ -140,6 +140,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         [HttpGet("Project/DetailsProject/{id}")]
         public async Task<IActionResult> DetailsByProjectID(int id)
         {
+            //to show employeecode
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
+            var userSelectList = new List<SelectListItem>();
+            foreach (var user in userList)
+            {
+                userSelectList.Add(new SelectListItem(user.Emp.EmployeeCode, user.Id.ToString()));
+            }
+            ViewBag.userList = userSelectList;
+
             HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
             var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsProject.Content.ReadAsStringAsync());
             return View(detailsProject);

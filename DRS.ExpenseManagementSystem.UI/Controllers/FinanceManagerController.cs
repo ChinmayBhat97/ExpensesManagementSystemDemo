@@ -70,6 +70,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditbyFinanceManager(int id)
         {
             int role = Convert.ToInt32(TempData["Role"]);
+            var firstName = TempData["FirstName"];
+            TempData.Keep();
 
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
             var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
@@ -80,6 +82,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             detailsClaim.FinanceManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
+            detailsClaim.FManager = (string?)firstName;
 
             //drop down to show project names
             HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
@@ -139,6 +142,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> EditByFinanceManager(ExpenseClaimViewModel expenseClaimViewModel)
         {
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
+            var firstName = TempData["FirstName"];
+
+            expenseClaimViewModel.FManager = (string?)@TempData["FirstName"];
 
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
@@ -267,7 +273,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
-        [HttpGet("ExpenseClaim/DetailsPApprovedFM/{id}")]
+        [HttpGet("ExpenseClaim/DetailsPartialApprovedFM/{id}")]
         public async Task<IActionResult> DetailsPartialApprovedFM(int id)
         {
             HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");

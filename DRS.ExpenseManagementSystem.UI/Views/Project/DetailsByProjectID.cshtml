@@ -20,6 +20,14 @@
        @* <dt class="col-sm-10" style="padding-top:10px;">
            
         </dt>*@
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code:</b></label>
+                    <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Employee" readonly>
+                        <option value="">-- Select --</option>
+                    </select>
+                </div>
+            </div>
 
         <dt class="col-sm-12" style="padding-top:10px;" >
             Project Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate);
