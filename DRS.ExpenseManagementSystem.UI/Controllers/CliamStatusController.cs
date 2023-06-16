@@ -60,8 +60,12 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage createClaimStatus = await client.PostAsync(client.BaseAddress + $"ClaimStatus", byteContent);
-
-                return RedirectToAction("Index");
+                
+                if (createClaimStatus.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return BadRequest("Please check the credentials and try again");
             }
 
             return View(claimStatusViewModel);

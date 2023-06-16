@@ -83,7 +83,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                return BadRequest("I apologize, but it seems that an project with those credentials already exists in our system. Please try again with different credentials");
+                return BadRequest("Please check the credentials and try again");
             }
 
             return View(projectViewModel);

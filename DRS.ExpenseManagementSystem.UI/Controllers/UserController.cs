@@ -82,7 +82,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 return RedirectToAction("CreateEmployee", "Employee", new { @EmployeeCode = userViewModel.EmployeeCode });
             }
-            return BadRequest("I apologize, but it seems that an User with those credentials already exists in our system. Please try again with different credentials");
+            return BadRequest("Please check the credentials and try again!");
 
 
         }

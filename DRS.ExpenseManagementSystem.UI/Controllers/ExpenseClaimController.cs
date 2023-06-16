@@ -158,7 +158,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage createNewClaim = await client.PostAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
-            return RedirectToAction("Index");
+            if (createNewClaim.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return BadRequest("Please check the credentials and try again");
 
         }
 
@@ -263,9 +267,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenditureBuffer = System.Text.Encoding.UTF8.GetBytes(expenditureContent);
             var expenditureByteContent = new ByteArrayContent(expenditureBuffer);
             expenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
+            HttpResponseMessage editClaim = await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
 
-            return RedirectToAction("Index");
+            if (editClaim.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return BadRequest("Please check the credentials and try again");
 
         }
 

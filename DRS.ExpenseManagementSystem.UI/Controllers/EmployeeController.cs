@@ -105,7 +105,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return BadRequest("I apologize, but it seems that an employee with those credentials already exists in our system.Please try again");
+            return BadRequest("Pleaase check your credentials and try again ");
         }
 
         //[HttpGet("User/EditEmployee/{id}")]

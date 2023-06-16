@@ -23,7 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
-      // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -44,7 +44,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/CreateExpenseCategory")]
         public async Task<IActionResult> CreateExpenseCategoryAsync()
         {
@@ -53,13 +53,13 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         }
 
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpPost("ExpenseCategory/CreateExpenseCategory")]
         public async Task<IActionResult> CreateExpenseCategory(ExpenseCategory expenseCategory, string? title)
         {
             if (ModelState.IsValid)
             {
-                title= expenseCategory.Name;
+                title = expenseCategory.Name;
                 HttpResponseMessage response = await client.PostAsync(client.BaseAddress + $"ExpenseCategory?title={HttpUtility.UrlEncode(title)}", null);
 
                 var myContent = JsonConvert.SerializeObject(expenseCategory);
@@ -70,14 +70,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewExpenseCategory = await client.PostAsync(client.BaseAddress + $"ExpenseCategory", byteContent);
                 if (createNewExpenseCategory.IsSuccessStatusCode)
                 {
-return RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
-                return BadRequest("I apologize, but it seems that a category with those credentials already exists in our system. Please try again with different credentials");
+                return BadRequest("Please check the credentials and try again!");
             }
             return View(expenseCategory);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/EditExpenseCategory/{id}")]
         public async Task<IActionResult> EditExpenseCategory(int id)
         {
@@ -88,7 +88,7 @@ return RedirectToAction("Index");
 
 
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpPost("ExpenseCategory/EditExpenseCategory/{id}")]
         public async Task<IActionResult> EditExpenseCategory(int id, ExpenseCategoryViewModel expenseCategoryViewModel)
         {
@@ -109,7 +109,7 @@ return RedirectToAction("Index");
             return View(expenseCategoryViewModel);
         }
 
-      //  [Authorize(Roles = "4")]
+        //  [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/DetailsExpenseCategory/{id}")]
         public async Task<IActionResult> DetailsByExpenseCategoryID(int id)
         {
@@ -118,7 +118,7 @@ return RedirectToAction("Index");
             return View(detailsExpenseCategory);
         }
 
-      // [Authorize(Roles = "4")]
+        // [Authorize(Roles = "4")]
         [HttpGet("ExpenseCategory/DetailsByExpenseCategoryTitle")]
         public async Task<IActionResult> DetailsByExpenseCategoryTitle()
         {
@@ -127,6 +127,6 @@ return RedirectToAction("Index");
         }
 
 
-       
+
     }
 }

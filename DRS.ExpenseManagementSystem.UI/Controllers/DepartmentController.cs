@@ -68,7 +68,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                return BadRequest("DEPARTMENT ALREADY EXISTS !");
+                return BadRequest("DPlease check the credentials and try again");
             }
 
             return View(departmentViewModel);
