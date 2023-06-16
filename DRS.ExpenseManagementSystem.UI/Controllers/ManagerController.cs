@@ -42,29 +42,63 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
 
         // [Authorize(Roles = "2")]
+        //[HttpGet]
+        //public async Task<IActionResult> Index()
+        //{
+
+        //    // int pID = Convert.ToInt32(TempData["projectID"]);
+
+        //    int EmpId = Convert.ToInt32(TempData["EmpID"]);
+        //    TempData.Keep();
+
+        //    HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
+        //    var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+        //    if (ProjectList != null)
+        //    {
+        //        HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
+        //        if (responseHomePage.IsSuccessStatusCode)
+        //        {
+        //            var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+        //            var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+        //            var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1||).ToList() : new();
+
+        //            // var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==ProjectList.Id).ToList() : new();
+        //            //  return View(filteredModel);
+        //            return View(filteredModel);
+        //        }
+        //        else
+        //        {
+        //            return View();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+
+        //}
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-
-            // int pID = Convert.ToInt32(TempData["projectID"]);
-
             int EmpId = Convert.ToInt32(TempData["EmpID"]);
             TempData.Keep();
 
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
             var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+
             if (ProjectList != null)
             {
                 HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
+
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                   //  var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                     var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(await responseHomePage.Content.ReadAsStringAsync());
 
-                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && ProjectList.Any(p => p.Id == e.ProjectId)).ToList() : new List<ExpenseClaimViewModel>();
 
-                    // var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1 && e.ProjectId==ProjectList.Id).ToList() : new();
-                    //  return View(filteredModel);
                     return View(filteredModel);
                 }
                 else
@@ -76,8 +110,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 return View();
             }
-
         }
+
 
         [HttpGet("ExpenseClaim/EditByManager/{id}")]
         public async Task<IActionResult> EditByManager(int id)
@@ -214,20 +248,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
             var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+
             if (ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim");
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
+
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                     var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                    var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 9).ToList() : new();
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 9 && ProjectList.Any(p => p.Id == e.ProjectId)).ToList() : new List<ExpenseClaimViewModel>();
+
                     return View(filteredModel);
                 }
                 else
                 {
-
                     return View();
                 }
             }
@@ -318,20 +354,22 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             HttpResponseMessage responseUserList = await client.PostAsync(client.BaseAddress + $"Project/{EmpId}", null);
             var ProjectList = JsonConvert.DeserializeObject<List<Project>>(await responseUserList.Content.ReadAsStringAsync());
+
             if (ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
+
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                     var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                     var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
 
-                    var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 10).ToList() : new();
+                    var filteredModel = model?.Count > 0 ? model.Where(e => e.StatusManager == 10 && ProjectList.Any(p => p.Id == e.ProjectId)).ToList() : new List<ExpenseClaimViewModel>();
+
                     return View(filteredModel);
                 }
                 else
                 {
-
                     return View();
                 }
             }

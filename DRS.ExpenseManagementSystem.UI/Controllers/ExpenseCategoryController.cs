@@ -70,6 +70,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewExpenseCategory = await client.PostAsync(client.BaseAddress + $"ExpenseCategory", byteContent);
                 if (createNewExpenseCategory.IsSuccessStatusCode)
                 {
+                    TempData["message"] = "Expense Category Created";
                     return RedirectToAction("Index");
                 }
                 return BadRequest("Please check the credentials and try again!");
