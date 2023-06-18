@@ -56,8 +56,8 @@
         </div>
         <br />
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:80%;padding-top:25px;font-size:16px">
-            <thead style="vertical-align:central">
-                <tr>
+            <thead style="vertical-align:middle">
+                <tr style="align-items:center">
                     <th style="background-color: #404040;">
                         Sl.No
                     </th>
@@ -67,7 +67,7 @@
                     <th style="background-color: #404040;">
                         Department Name
                     </th>
-                    <th style="background-color: #404040;">
+                    <th style="background-color: #404040;" width="23%">
                         Actions
                     </th>
                 </tr>
@@ -77,16 +77,16 @@
                 {
                     <tr style="vertical-align:middle;">
                     
-                        <td style="padding-left:25px;" width="10%">
+                        <td style="text-align:center;padding-left:15px;">
                             &nbsp;
                         </td>
                      @*   <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>*@
-                        <td style="padding-left:30px;">
+                        <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td style="padding-left:30px;">
+                        <td style="padding-left:10px;align-items:center;">
                             <a asp-action="EditDepartment" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                             <a asp-action="DetailsByDepartmentID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                         </td>

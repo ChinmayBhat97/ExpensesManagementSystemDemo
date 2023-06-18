@@ -82,7 +82,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             detailsClaim.FinanceManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
-            detailsClaim.FManager = (string?)firstName;
+            detailsClaim.FinManagerName = (string?)firstName;
 
             //drop down to show project names
             HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
@@ -144,15 +144,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             expenseClaimViewModel.IndividualExpenditures.ForEach(x => x.ClaimId = expenseClaimViewModel.Id);
             var firstName = TempData["FirstName"];
 
-            expenseClaimViewModel.FManager = (string?)@TempData["FirstName"];
+           expenseClaimViewModel.FinManagerName = (string?)@TempData["FirstName"];
 
             // Save ExpenseClaim
             var expenseClaimContent = JsonConvert.SerializeObject(expenseClaimViewModel);
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
+            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
 

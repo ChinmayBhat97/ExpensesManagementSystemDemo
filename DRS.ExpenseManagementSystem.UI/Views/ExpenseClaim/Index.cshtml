@@ -20,8 +20,12 @@
             
         }
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
         tr:nth-child(even) {
-            background-color: #e6f2ff;  
+            background-color: #d9d9d9;
         }
         /* Set the serial number counter to 0 */
         #table {
@@ -40,11 +44,11 @@
 
 
 
-
-<div style="padding-left:220px;">
-  <h4 style="color:navy"> <u> <b> Claims Lists </b>  </u> </h4>
-    <div style="padding-left:770px;">
-        <a asp-action="Create" type="button" class="btn btn-success">Create New</a>
+<body style="overflow:auto;background-color:#e6e6ff">
+    <div style="padding-left:220px;">
+        <h4 style="color:#000066"> <u> <b> Claims List </b>  </u> </h4>
+    <div style="padding-left:750px;">
+            <a asp-action="Create" type="button" class="btn btn-success" style="background-color:#008000;">Make New Claim</a>
     </div>
     <div style="padding-top:10px;">
    
@@ -52,28 +56,28 @@
         <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead style="vertical-align:middle;">
                 <tr>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;vertical-align:central;">
                         Sl.No
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
-                        Employee Code
+                    <th style="background-color: #404040;vertical-align:central;">
+                       @* Employee Code*@ Claim ID
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;vertical-align:central;">
                         Project Title
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;vertical-align:central;">
                         Department
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;vertical-align:central;">
                         Claim Request Date
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color: #404040;vertical-align:central;">
                         Amount (<span>&#8377;</span>)
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">
+                    <th style="background-color:#404040;vertical-align:central;">
                       Claim  Status
                     </th>
-                    <th style="background-color: #0000b3;vertical-align:central;">Actions</th>
+                    <th style="background-color: #404040;vertical-align:central;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +88,8 @@
                             &nbsp;
                         </td>
                         <td style="text-align:center;">
-                            @Html.DisplayFor(modelItem => item.Emp.Emp.EmployeeCode)
+                            @*@Html.DisplayFor(modelItem => item.Emp.Emp.EmployeeCode)*@
+                                @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.Project.Title)
@@ -101,8 +106,8 @@
                         <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
                         <td style="text-align:center;">
-                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                            <a asp-action="DetailsByClaimID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                            @* <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
                         </td>
 
@@ -113,7 +118,7 @@
   </div>
    
 </div>
-
+</body>
 @if (TempData["message"] != null)
 {
     <script>alert('@TempData["message"]');</script>

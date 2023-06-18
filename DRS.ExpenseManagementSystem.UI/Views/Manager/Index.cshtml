@@ -15,70 +15,93 @@
             border: 1px solid #000033;
             text-align: center;
             padding: 2px;
+            
             color: whitesmoke;
         }
 
-        tr:nth-child(even) {
-            background-color: #e6f2ff;
+        tr:nth-child(odd) {
+            background-color: #ffffff;
         }
+
+        tr:nth-child(even) {
+            background-color: #d9d9d9;
+        }
+
+        /* Set the serial number counter to 0 */
+        #table {
+            counter-reset: serial-number;
+        }
+
+            /* Increment the serial number counter */
+            /* Display the counter */
+            #table td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
     </style>
 </head>
 
 
 
-<body>
+<body style="overflow:auto;background-color:#e6e6ff">
 
     <div style="padding-left:200px;">
-        <h4 style="color:navy"> <u> <b> Applied Claims Lists </b>  </u> </h4>
+        <h4 style="color:#000066"> <u> <b> Applied Claims Lists </b>  </u> </h4>
 
         <div style="padding-top:10px;">
-            <table class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
-                <thead>
-                    <tr>
-                        <th style="background-color: #0000b3;">
+            <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
+                <thead style="vertical-align:middle">
+                    <tr style="text-align:center;">
+                        <th style="background-color: #404040;">
+                            Sl.No
+                        </th>
+                        <th style="background-color: #404040;">
                             Employee Code
                         </th>
-                        <th style="background-color: #0000b3;">
+                        <th style="background-color: #404040;">
                             Project
                         </th>
-                        <th style="background-color: #0000b3;">
+                        <th style="background-color: #404040;">
                             Department
                         </th>
-                        <th style="background-color: #0000b3;">
+                        <th style="background-color: #404040;">
                             Claim Request Date
                         </th>
-                        <th style="background-color: #0000b3;">
+                        <th style="background-color: #404040;">
                             Amount
                         </th>
-                        <th style="background-color: #0000b3;">
+                        <th style="background-color: #404040;">
                             Status
                         </th>
-                        <th style="background-color: #0000b3;">Actions</th>
+                        <th style="background-color: #404040;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td style="padding-left:30px;">
+                        <tr style="vertical-align:middle">
+                            <td style="padding-left:25px;">
+                                &nbsp;
+                            </td>
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.Emp.Emp.EmployeeCode)
                             </td>
-                            <td style="padding-left:30px;">
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.Project.Title)
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.Dept.Name)
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.ClaimRequestDate)
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.TotalAmount)
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
-                            <td>
-                                <a asp-action="EditByManager" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <td style="text-align:center;">
+                                <a asp-action="EditByManager" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
                                     @*<a asp-action="DetailsByClaimID" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i></a>*@
                                     @* <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
                             </td>

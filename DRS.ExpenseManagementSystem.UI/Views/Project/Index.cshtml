@@ -41,10 +41,10 @@
 </head>
 
 <body style="overflow:auto;background-color:#e6e6ff">
-    <div style="padding-left:225px;padding-bottom:80px;">
+    <div style="padding-left:200px;padding-bottom:80px;">
         <h4 style="color:#000066"><u> <b>Projects List </b></u></h4>
 
-        <div style="padding-left:745px;">
+        <div style="padding-left:750px;">
             <a asp-action="CreateProject" class="btn btn-success" style="background-color:#008000;">Add New Project</a>
 
         </div>
@@ -70,16 +70,16 @@
                    @* <th style="background-color: #0000b3;vertical-align:central;">
                         Project Description
                     </th>*@
-                    <th style="background-color: #404040;text-align:center;">
+                    <th style="background-color: #404040;text-align:center;" width="12%">
                         Project Start Date
                     </th>
-                    <th style="background-color: #404040;text-align:center;">
+                    <th style="background-color: #404040;text-align:center;" width="12%">
                         Project End Date
                     </th>
                     <th style="background-color: #404040;text-align:center;">
                         Client Name
                     </th>
-                    <th style="background-color: #404040;vtext-align:center;">Actions </th>
+                    <th style="background-color: #404040;text-align:center;">Actions </th>
                 </tr>
             </thead>
             <tbody>
@@ -106,7 +106,15 @@
                             @Html.DisplayFor(modelItem => item.StartDate)
                         </td>
                         <td style="padding-left:10px;text-align:center;">
-                            @Html.DisplayFor(modelItem => item.EndDate)
+                           
+                            @if (item.EndDate==null)
+                            {
+                                <p >  Yet to be Updated </p>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            }
                         </td>
                         <td style="padding-left:10px;text-align:center;">
                             @Html.DisplayFor(modelItem => item.Client)
@@ -125,7 +133,7 @@
     </div>
 </body> 
 
-@if (TempData["message"] != null)
+@*@if (TempData["message"] != null)
 {
     <script>alert('@TempData["message"]');</script>
-}
+}*@

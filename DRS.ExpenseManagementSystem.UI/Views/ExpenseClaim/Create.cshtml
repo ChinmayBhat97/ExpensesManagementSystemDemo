@@ -10,22 +10,30 @@
     <style>
         /* padding: 2px;*/
         /* td {
-                    border: 1px solid #000033;
+            border: 1px solid #0d0d0d;
+            border-bottom: 1px solid #0d0d0d;
+                    border-collapse: collapse;
                     text-align: left;
 
-                }
+                }*/
 
                 th {
-                    border: 1px solid #000033;
+          /*  border: 1px solid #0d0d0d;
+            border-bottom: 1px solid #0d0d0d;
+                  */
                     text-align: center;
 
                     color: whitesmoke;
-                }*/
+                }
         /* padding: 2px;*/
 
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -44,7 +52,8 @@
 
 </head>
 @*enctype="multipart/form-data"*@
-<h4 style="padding-left:200px;"><u><b>Create New Claim</b></u></h4>
+<body style="overflow:auto;background-color:#e6e6ff">
+    <h4 style="padding-left:200px;color:#000066;"><u><b>Create New Claim</b></u></h4>
 <br />
 <div class="row">
     <div class="col-md-12" style="padding-left:220px;">
@@ -54,117 +63,121 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label><b>Employee Code</b></label>
-                        <input class="form-control" placeholder="@TempData["EmployeeCode"]" style="font-weight:700;font-size:18px;color:black" readonly />
+                        <input class="form-control-plaintext" placeholder="@TempData["EmployeeCode"]" style="font-weight:700;font-size:18px;color:black" readonly />
                     </div>
                 </div>
 
                 <div class="col-md-8" style="padding-left:10px;">
-                    <div class="form-group">
+                    <span class="form-group">
                         <label><b>Department</b></label>
-                        <input class="form-control" placeholder="@TempData["Department"]" style="font-weight:700;font-size:18px;color:black" readonly />
-                    </div>
+                        <input class="form-control-plaintext" placeholder="@TempData["Department"]" style="font-weight:700;font-size:18px;color:black" readonly />
+                    </span>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
-                        @{
-                            DateTime maxDate = DateTime.Now;
-                            string maxDateString = maxDate.ToString("yyyy-MM-dd");
-                        }
-                        <input type="date" asp-for="StartDate" class="form-control" id="startDate" max="@maxDateString" required />
-                        <span asp-validation-for="StartDate" class="text-danger"></span>
+
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @*<label asp-for="ProjectId" class="form-label input-lable"><b>Project Detail/ Title</b><span style="color:red;">*</span></label>*@
+                            <label asp-for="ProjectId" class="form-label"><b>Project Detail/ Title</b><span style="color:red;">*</span></label>
+                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
+                                <option value="">-- Select --</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+
+               
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label><b>Expense End Date</b><span style="color:red;">*</span></label>
-                        @{
-                            DateTime maxEndDate = DateTime.Now;
-                            string maxEndDateString = maxDate.ToString("yyyy-MM-dd");
-                        }
-                        <input type="date" asp-for="EndDate" class="form-control" id="endDate" max="@maxEndDateString" required />
-                        <span asp-validation-for="EndDate" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label><b>Claim Request Date</b><span style="color:red;">*</span></label>
+                        <label><b>Claim Request Date</b></label>
                         @*<label asp-for="ClaimRequestDate" class="form-label input-lable"><b>Claim Requested Date</b></label>*@
-                        <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
-                        <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
+                        <input type="date" asp-for="ClaimRequestDate" class="form-control-plaintext" readonly />
                     </div>
                 </div>
             </div>
-            <div class="row">
 
-                <div class="col-md-7">
-                    <div class="form-group">
-                        <label asp-for="ProjectId" class="form-label input-lable"><b>Project Detail/ Title</b><span style="color:red;">*</span></label>
-                        <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" required>
-                            <option value="">-- Select --</option>
-                        </select>
+            <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Expense Start Date</b><span style="color:red;">*</span></label>
+                            @{
+                                DateTime maxDate = DateTime.Now;
+                                string maxDateString = maxDate.ToString("yyyy-MM-dd");
+                            }
+                            <input type="date" asp-for="StartDate" class="form-control" id="startDate" max="@maxDateString" required />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Expense End Date</b><span style="color:red;">*</span></label>
+                            @{
+                                DateTime maxEndDate = DateTime.Now;
+                                string maxEndDateString = maxDate.ToString("yyyy-MM-dd");
+                            }
+                            <input type="date" asp-for="EndDate" class="form-control" id="endDate" max="@maxEndDateString" required />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
 
                  <div class="col-md-3">
-                <div class="form-group">
-                <b> <label>Total Amount (<span>&#8377;</span>) </label> </b>
-                <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
-                @*<span class="form-control" id="ttlamnt"></span>*@
-                 <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                </div>
+                    <div class="form-group">
+                    <b> <label>Total Amount (<span>&#8377;</span>) </label> </b>
+                    <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
+                    @*<span class="form-control" id="ttlamnt"></span>*@
+                     <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <br />
-            <br />
+            <hr />
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <h6> <b>Individual Expenditure  </b> </h6>
+                            <h5 style="color:#000066;"> <b> Expenditure Details </b> </h5>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12">
-                <table class="table table-bordered" id='IndividualExpenditure'>
-                    <thead>
+                    <table class="table table-bordered" id='IndividualExpenditure' style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:25px;font-size:16px">
+                        <thead style="vertical-align:middle">
                         <tr>
-                            <th style="background-color: #339692;"> <label>Sl.No</label> </th>
-                            <th style="background-color: #339692;"> <label>Expenditure Date<span style="color:red;">*</span></label> </th>
-                            <th style="background-color: #339692;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
-                            <th style="background-color: #339692;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
-                            <th style="background-color: #339692;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
-                            <th style="background-color: #339692;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
-                            <th style="background-color: #339692;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
-                            <th style="background-color: #339692;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                            <th style="background-color: #339692;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
-                            <th style="background-color: #339692;"> <label><b>Delete Row</b><span style="color:red;">*</span></label>           </th>
+                                <th style="background-color: #404040;"> <label>Sl.No</label> </th>
+                                <th style="background-color: #404040;"> <label>Expenditure Date</label> </th>
+                                <th style="background-color:#404040;"> <label>Description</label></th>
+                                <th style="background-color: #404040;"> <label>Category</label></th>
+                                <th style="background-color: #404040;"> <label>Expense Category</label> </th>
+                                <th style="background-color: #404040;"> <label>Amount (<span>&#8377;</span>)</label></th>
+                                <th style="background-color: #404040;"> <label>Comments</label></th>
+                                <th style="background-color: #404040;"> <label>Receipt Number</label></th>
+                                <th style="background-color: #404040;"> <label>Attachemnts</label></th>
+                                <th style="background-color: #404040;"> <label>Actions</label></th>
                             @*  <th style="background-color: #0000b3;"> <label><b>Image</b><span style="color:red;">*</span></label>           </th>*@
                         </tr>
                     </thead>
                     <tbody id="individual">
                         @for (int i = 0; i < Model.IndividualExpenditures.Count; i++)
                         {
-                            <tr>
-                                <td>
+                                <tr style="vertical-align:middle;">
+                                    <td style="text-align:center;padding-left:18px;">
                                     &nbsp;
                                 </td>
-                                <td>
+                                    <td style="text-align:center">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenditureDate, new{htmlAttributes= new {@class ="form-control expDate",Type="date"}})
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Description, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>
-                                <td>
+                                    <td style="text-align:center">
                                     @*<input asp-for="@Model.IndividualExpenditures[i].Category" class="form-control" required />*@
                                     <select asp-for="@Model.IndividualExpenditures[i].Category" class="form-control" required>
-                                        <option value="">-- Select --</option>
+                                        <option value="">Select</option>
                                         <option value="Official">Official</option>
                                         <option value="Personal">Personal</option>
                                     </select>
@@ -173,31 +186,31 @@
                                 @*<td>
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Category, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>*@
-                                <td>
+                                    <td style="text-align:center">
                                     <select asp-for="@Model.IndividualExpenditures[i].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" required>
-                                        <option value="">-- Select --</option>
+                                        <option value="">Select</option>
                                     </select>
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Amount, new{htmlAttributes= new {@class ="form-control txt"}})
                                 </td>
 
 
-                                <td>
+                                    <td style="text-align:center">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Comments, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].ReceiptNumber, new{htmlAttributes= new {@class ="form-control"}})
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center">
                                     <input asp-for="@Model.IndividualExpenditures[i].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
                                     <span asp-validation-for="@Model.IndividualExpenditures[i].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[i].AttachmentPath" class="form-control chosenfilename" style="display:none" />
                                     
-                                <td>
+                                    <td style="text-align:center">
 
 
                                     <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger visible"
@@ -218,12 +231,13 @@
 
 
                 <br />
-                <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">
-                    Add
+                    <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" style="background-color:#008000;" onclick="AddItem(this)">
+                    Add Expenditure
                 </button>
-                <div class="form-group" style="padding-left:600px;">
-                    <input type="submit" value="Save" class="btn btn-success" />
+                <div class="form-group" style="padding-left:720px;">
+                   
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" style="background-color:#008000;" />
                 </div>
                 <input type="hidden" id='hdnLastIndex' value="0" />
             </div>
@@ -237,7 +251,7 @@
 
 
 </div>
-
+</body>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

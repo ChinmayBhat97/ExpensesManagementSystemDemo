@@ -24,8 +24,8 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
         public string? FinanceManagerRemarks { get; set; }
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
-        public string? Manager { get; set; }
-        public string? FManager { get; set; }
+        public string? ManagerName { get; set; }
+        public string? FinManagerName { get; set; }
         public virtual Department? Dept { get; set; }
         public virtual Employee? Emp { get; set; }
         public virtual Project? Project { get; set; }
