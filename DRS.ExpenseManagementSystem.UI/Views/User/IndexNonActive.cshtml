@@ -22,6 +22,7 @@
         tr:nth-child(odd) {
             background-color: #ffffff;
         }
+
         tr:nth-child(even) {
             background-color: #d9d9d9;
         }
@@ -48,11 +49,8 @@
         <h4 style="color:#000066"><u> <b>Existing Users List </b></u></h4>
 
         <div style="padding-left:700px;">
-            <a asp-action="Create" class="btn btn-success" style="background-color:#008000;">Add New User</a>
+            <a asp-action="Index" a class="btn btn-warning" style="background-color:#008000;">Active Users</a>
             @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
-        </div>
-        <div style="padding-left:700px;">
-            <a asp-action="IndexNonActive" class="btn btn-info" style="background-color:#E81212;">Non-Active Users</a>
         </div>
         <div style="padding-top:10px;">
             <table class="table" id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;padding-top:25px;font-size:16px;">
@@ -62,7 +60,7 @@
                             Sl.No
                         </th>
                         @*<th style="background-color: #0000b3;">
-                            ID 
+                        ID
                         </th>*@
                         <th style="background-color: #404040;">
                             Employee Code @*@Html.DisplayNameFor(model => model.EmployeeCode)*@
@@ -82,16 +80,16 @@
                         <th style="background-color: #404040;">Action </th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     @foreach (var item in Model)
                     {
                         <tr style="vertical-align:middle;">
-                            <td style="text-align:center;padding-left:15px;" >
+                            <td style="text-align:center;padding-left:15px;">
                                 &nbsp;
                             </td>
-                           @* <td style="padding-left:10px;vertical-align:central; text-align:center;">
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>*@
+                            @* <td style="padding-left:10px;vertical-align:central; text-align:center;">
+                        @Html.DisplayFor(modelItem => item.Id)
+                        </td>*@
                             <td style="text-align:center;">
                                 @Html.DisplayFor(modelItem => item.EmployeeCode)
                             </td>
@@ -99,16 +97,16 @@
                         @Html.DisplayFor(modelItem => item.Password)
                         </td>*@
                             <td style="text-align:center;vertical-align:middle;padding-top:24px;">
-                              @*  @Html.DisplayFor(modelItem => item.Role)*@
-                                @if (item.Role==1)
+                                @*  @Html.DisplayFor(modelItem => item.Role)*@
+                                @if (item.Role == 1)
                                 {
                                     <p>User</p>
                                 }
-                                else if(item.Role==2)
+                                else if (item.Role == 2)
                                 {
                                     <p>Manager</p>
                                 }
-                                 else if(item.Role==3)
+                                else if (item.Role == 3)
                                 {
                                     <p>Finance Manager</p>
 
@@ -120,7 +118,7 @@
                             </td>
                             <td style="text-align:center;padding-top:24px;">
                                 @*@Html.DisplayFor(modelItem => item.IsAccountLocked)*@
-                                @if (item.IsAccountLocked==true)
+                                @if (item.IsAccountLocked == true)
                                 {
                                     <p style="color:red"> <b>Yes </b></p>
                                 }
@@ -131,7 +129,7 @@
                             </td>
                             <td style="text-align:center;padding-top:24px;">
                                 @*@Html.DisplayFor(modelItem => item.IsActive)*@
-                                @if (item.IsActive==true)
+                                @if (item.IsActive == true)
                                 {
                                     <p style="color:darkgreen"> <b>Yes </b></p>
                                 }
@@ -147,15 +145,14 @@
                                 <a asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                                 <a asp-action="DetailsByUserID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                             </td>
-
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        
 
-        </div>
+
+    </div>
 </body>
 
 

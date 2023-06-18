@@ -46,6 +46,24 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             }
         }
 
+        // Get employee where IsActive is false 
+        [HttpGet]
+        public async Task<IActionResult> IndexNonActive()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "User");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<UserViewModel>>(responseContent);
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.IsActive == false).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         // [Authorize(Roles = "4")]
         [HttpGet("User/Create")]
         public async Task<IActionResult> Create()
