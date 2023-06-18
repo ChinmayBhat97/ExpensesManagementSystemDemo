@@ -61,7 +61,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>  <label asp-for="PhoneNumber" class="control-label">Phone Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="PhoneNumber" class="form-control" type="number" pattern="[7-9]{1}[0-9]{9}" required />
+                                <input asp-for="PhoneNumber" class="form-control" type="number" pattern="[7-9]{1}[0-9]{9}" min="7000000000" max="9999999999" required />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <b>   <label asp-for="AccountNumber" class="control-label">Account Number</label><span style="color:red;">*</span></b>
-                                <input asp-for="AccountNumber" class="form-control" type="number"  required />
+                                <input asp-for="AccountNumber" class="form-control" type="number" min="10000000" max="999999999999999" required />
                                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
                             </div>
                         </div>

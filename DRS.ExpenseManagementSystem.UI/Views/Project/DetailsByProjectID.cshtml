@@ -1,4 +1,4 @@
-﻿@model DRS.ExpenseManagementSystem.UI.Models.Project
+﻿@model DRS.ExpenseManagementSystem.UI.Models.ProjectViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -30,13 +30,25 @@
                 </div>
             </div>
 
+            <dt class="col-sm-12" style="padding-top:10px;">
+                Project Manager Name: &nbsp    @Html.DisplayFor(model => model.Emp.FirstName)
+            </dt>
+
         <dt class="col-sm-12" style="padding-top:10px;" >
-            Project Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate);
+            Project Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate)
         </dt>
 
         <dt class="col-sm-12" style="padding-top:10px;">
            
-            Project End Date: &nbsp  @Html.DisplayFor(model => model.EndDate)
+           
+                    @if (Model.EndDate==null)
+                    {
+                    <p> Project End Date: Yet to be Updated </p>
+                    }
+                    else
+                    {
+                    <p> Project End Date: &nbsp @Html.DisplayFor(model => model.EndDate)  </p>
+                    }
         </dt>
 
         <dt class="col-sm-10" style="padding-top:10px;">

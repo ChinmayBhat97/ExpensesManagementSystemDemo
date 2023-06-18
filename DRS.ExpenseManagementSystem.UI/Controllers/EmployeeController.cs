@@ -95,6 +95,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             employee.EmpId = Convert.ToInt32(TempData["EmpId"]);
             employee.CreatedAt = DateTime.Now;
+            employee.FirstName = employee.FirstName.ToUpper();
+            employee.LastName = employee.LastName.ToUpper();
+            employee.Email = employee.Email.ToLower();
             var myContent = JsonConvert.SerializeObject(employee);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
@@ -157,6 +160,9 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                employeeViewModel.FirstName= employeeViewModel.FirstName.ToUpper();
+                employeeViewModel.LastName= employeeViewModel.LastName.ToUpper();
+                employeeViewModel.Email = employeeViewModel.Email.ToLower();
                 var myContent = JsonConvert.SerializeObject(employeeViewModel);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);

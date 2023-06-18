@@ -27,6 +27,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         [Required]
         public string? AttachmentPath { get; set; }
         public int IsDelete { get; set; }
+        [Required]
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
         public virtual ExpenseClaim? Claim { get; set; }

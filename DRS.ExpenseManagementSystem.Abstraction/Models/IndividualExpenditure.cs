@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DRS.ExpenseManagementSystem.Abstraction.Models
 {
@@ -15,6 +16,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
         public string? Comments { get; set; }
         public string? ReceiptNumber { get; set; }
         public string? AttachmentPath { get; set; }
+        [Required]
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
         public int IsDelete { get; set; }

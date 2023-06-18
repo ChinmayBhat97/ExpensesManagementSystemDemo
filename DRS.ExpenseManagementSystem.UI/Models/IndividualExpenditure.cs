@@ -23,6 +23,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
 
         public int IsDelete { get; set; }
         public IFormFile? ExpenseProof { get; set; }
+        [Required]
         public bool? IsApproved { get; set; }
         public string? FinanceManagerRemarks { get; set; }
         public virtual ExpenseClaim? Claim { get; set; }

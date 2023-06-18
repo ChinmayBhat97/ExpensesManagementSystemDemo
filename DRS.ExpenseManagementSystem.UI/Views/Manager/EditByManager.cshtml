@@ -125,7 +125,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label><b>Manager Remarks</b></label>
-                            <input asp-for="ManagerRemarks" class="form-control" />
+                            <input asp-for="ManagerRemarks" class="form-control" required />
                             <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
                         </div>
                     </div>
@@ -133,9 +133,10 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Status</b></label>
-                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" >
+                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" required >
                                 <option value="">-- Select --</option>
                             </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -154,17 +155,17 @@
                     </div>
                 </div>
 
-                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:110%;padding-top:10px;font-size:16px">
                     <thead style="vertical-align:middle;">
-                        <tr>
+                        <tr style="text-align:center;">
                             <th style="background-color: #404040;vertical-align:central;"> <label>Sl.No</label> </th>
-                            <th style="background-color: #404040;vertical-align:central;"> <label>Expenditure Date</label> </th>
+                            <th style="background-color: #404040;vertical-align:central;width:5%;"> <label>Expenditure Date</label> </th>
                             <th style="background-color: #404040;vertical-align:central;"> <label>Description</label>      </th>
                             <th style="background-color: #404040;vertical-align:central;"> <label>Category</label>         </th>
-                            <th style="background-color: #404040;vertical-align:central;">  <label>Expense Category</label> </th>
+                            <th style="background-color: #404040;vertical-align:central;width:20%;">  <label>Expense Category</label> </th>
                             <th style="background-color: #404040;vertical-align:central;"> <label>Amount</label>           </th>
                             <th style="background-color: #404040;vertical-align:central;"> <label>Comments</label>         </th>
-                            <th style="background-color: #404040;vertical-align:central;"> <label>Receipt Number</label>   </th>
+                            <th style="background-color: #404040;vertical-align:central;width:5%;"> <label>Receipt Number</label>   </th>
                             <th style="background-color: #404040;vertical-align:central;"> <label>Attachments</label>         </th>
                         </tr>
                     </thead>
@@ -175,11 +176,11 @@
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
-                            <tr>
+                            <tr style="vertical-align:middle;">
                                 <td style="text-align:center;">
                                     &nbsp;
                                 </td>
-                                <td style="text-align:center;">
+                                <td style="text-align:center;" >
                                     <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control-plaintext" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
@@ -193,7 +194,7 @@
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
                                 </td>
                                 <td style="text-align:center;">
-                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control-plaintext" id="ExpenseCategory" readonly>
+                                    <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control-plaintext" id="ExpenseCategory" style="appearance:none;" readonly>
                                         <option value="">-- Select --</option>
                                     </select>
                                 </td>
@@ -234,6 +235,14 @@
     </div>
 </body>
 </html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
 
 <script>
 

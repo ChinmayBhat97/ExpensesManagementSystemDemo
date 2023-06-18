@@ -152,7 +152,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             ViewBag.userList = userSelectList;
 
             HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
-            var detailsProject = JsonConvert.DeserializeObject<Project>(await responseDetailsProject.Content.ReadAsStringAsync());
+            var detailsProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseDetailsProject.Content.ReadAsStringAsync());
             return View(detailsProject);
         }
     }
