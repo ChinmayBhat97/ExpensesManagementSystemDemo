@@ -90,8 +90,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             if (ProjectList != null)
             {
-                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
-
+               // HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + $"ExpenseClaim", HttpCompletionOption.ResponseHeadersRead);
+                HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
                 if (responseHomePage.IsSuccessStatusCode)
                 {
                   //  var responseContent = await responseHomePage.Content.ReadAsStringAsync();
@@ -131,7 +131,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             detailsClaim.ManagerApprovedOn = DateTime.Now;
             detailsClaim.IndividualExpenditures = individualExpenditures;
-            detailsClaim.ManagerName = (string?)firstName;
+           // detailsClaim.ManagerName = (string?)firstName;
 
             //drop down to show department names
             HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
@@ -210,8 +210,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-            // await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
+             await client.PatchAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
         }

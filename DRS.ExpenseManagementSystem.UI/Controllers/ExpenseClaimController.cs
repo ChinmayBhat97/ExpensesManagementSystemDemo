@@ -53,8 +53,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
                 //// Filter the claims based on matching EmpId
                 //var filteredClaims = model;
-
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 1).ToList() : new();
+                return View(filteredModel);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             //Save Individual Expenditure
             var expenditureContent = JsonConvert.SerializeObject(expenseClaimViewModel.IndividualExpenditures);
@@ -270,11 +270,11 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             expenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage editClaim = await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
 
-            if (editClaim.IsSuccessStatusCode)
-            {
+            //if (editClaim.IsSuccessStatusCode)
+            //{
                 return RedirectToAction("Index");
-            }
-            return BadRequest("Please check the credentials and try again");
+            //}
+            //return BadRequest("Please check the credentials and try again");
 
         }
 

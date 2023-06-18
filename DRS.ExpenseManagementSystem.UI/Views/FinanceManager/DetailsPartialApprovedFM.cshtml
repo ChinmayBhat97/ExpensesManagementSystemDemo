@@ -22,10 +22,14 @@
             color: whitesmoke;
         }
 
-
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
 
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
+        }
+
         }
 
         /* Set the serial number counter to 0 */
@@ -42,8 +46,8 @@
 
     </style>
 </head>
-<body>
-    <h5 style="padding-left:230px;color:navy"><u><b>Partial Approved Claim</b></u></h5>
+<body style="overflow:auto;background-color:#e6e6ff;">
+    <h5 style="padding-left:230px;color:#000066"><u><b>Partial Approved Claim</b></u></h5>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
@@ -59,7 +63,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code:</b></label>
-                            <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Employee" readonly>
+                            <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control Selectinput" id="Employee" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
@@ -68,7 +72,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label asp-for="DeptId" class="form-label input-lable"><b>Department</b></label>
-                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" readonly>
+                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
@@ -105,8 +109,8 @@
 
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b><span style="color:red;">*</span></label>
-                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" readonly>
+                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project</b></label>
+                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
@@ -116,7 +120,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label><b>Total Expenditure</b><span style="color:red;">*</span></label>
+                            <label><b>Total Expenditure</b></label>
                             <input asp-for="TotalAmount" class="form-control" id="ttlamnt" readonly />
                             @*<span class="form-control" id="ttlamnt"></span>*@
                             <span asp-validation-for="TotalAmount" class="text-danger"></span>
@@ -127,7 +131,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label><b>Date of Manager Approval</b><span style="color:red;">*</span></label>
+                            <label><b>Date of Manager Approval</b></label>
                             <input asp-for="ManagerApprovedOn" type="date" class="form-control" readonly />
                             <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
                         </div>
@@ -136,7 +140,7 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label><b>Status</b></label>
-                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
+                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
@@ -173,17 +177,19 @@
                 </div>
 
                 <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
-
-                    <tr>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label>Sl.No</label> </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Expenditure Date</b></label> </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Description</b></label>      </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Category</b></label>         </th>
-                        <th style="background-color: #0000b3;vertical-align:central;">  <label><b>Expense Category</b></label> </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Amount</b></label>           </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Comments</b></label>         </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Receipt Number</b></label>   </th>
-                        <th style="background-color: #0000b3;vertical-align:central;"> <label><b>Attachments</b></label>           </th>
+                    <thead style="vertical-align:middle;">
+                        <tr style="text-align:center;">
+                            <th style="background-color: #404040;"> <label>Sl.No</label> </th>
+                            <th style="background-color: #404040;"> <label>Expenditure Date</label> </th>
+                            <th style="background-color: #404040;"> <label>Description</label>      </th>
+                            <th style="background-color: #404040;"> <label>Category</label>         </th>
+                            <th style="background-color: #404040;">  <label>Expense Category</label> </th>
+                            <th style="background-color: #404040;"> <label>Amount</label>           </th>
+                            <th style="background-color: #404040;"> <label>Comments</label>         </th>
+                            <th style="background-color: #404040;"> <label>Receipt Number</label>   </th>
+                            <th style="background-color: #404040;"> <label>Attachments</label>           </th>
+                            <th style="background-color: #404040;"> <label>Approved (Yes/No)</label>           </th>
+                    </tr>
                     </tr>
                     <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
@@ -192,7 +198,7 @@
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
-                            <tr>
+                            <tr style="vertical-align:middle">
                                 <td style="text-align:center;">
                                     &nbsp;
                                 </td>
@@ -232,6 +238,10 @@
                             </td>*@
                                 <td>
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" disabled />
+                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
                                 </td>
                             </tr>
                         }

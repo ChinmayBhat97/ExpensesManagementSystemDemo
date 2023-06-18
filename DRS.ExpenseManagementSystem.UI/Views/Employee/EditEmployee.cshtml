@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<body style="overflow:hidden;">
+<body style="overflow:hidden;background-color:#e6e6ff;">
 
 
-    <div style="padding-left:250px;background-color:#e6e6ff;">
-    <h5 style="color:#000099"> <u><b>Edit Employee Details</b></u> </h5>
+    <div style="padding-left:200px;">
+    <h4 style="color:#000066"> <u><b>Edit Employee Details</b></u> </h4>
     <br />
 <div class="row">
     <div class="col-md-12">
@@ -102,7 +102,17 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <b>  <label asp-for="Designation" class="control-label"></label><span style="color:red;">*</span></b>
-                                <input asp-for="Designation" class="form-control" required />
+                                <select asp-for="Designation" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Associate">Associate</option>
+                                    <option value="Intern">Intern</option>
+                                    <option value="Junior Engineer">Junior Engineer</option>
+                                    <option value="Accountant">Accountant</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Finance Manager">Finance Manager</option>
+                                    <option value="Super Admin">Super Admin</option>
+                                    <option value="Director">Director</option>
+                                </select>
                                 <span asp-validation-for="Designation" class="text-danger"></span>
                             </div>
                         </div>
@@ -176,6 +186,7 @@
     </div>
 </div>
     </div>
+
 </body>
 
 

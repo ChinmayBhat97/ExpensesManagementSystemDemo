@@ -20,13 +20,14 @@ namespace DRS.ExpenseManagementSystem.Abstraction.ViewModels
         public DateTime? ClaimRequestDate { get; set; }
         public int? Status { get; set; }
         public int? StatusManager { get; set; }
+        public string? ManagerName { get; set; }
+        public string? FinManagerName { get; set; }
         public string? ManagerRemarks { get; set; }
         public string? FinanceManagerRemarks { get; set; }
         public DateTime? ManagerApprovedOn { get; set; }
         public DateTime? FinanceManagerApprovedOn { get; set; }
 
-        public string? ManagerName { get; set; }
-        public string? FinManagerName { get; set; }
+        
         public Department Department { get; set; }
     }
 }

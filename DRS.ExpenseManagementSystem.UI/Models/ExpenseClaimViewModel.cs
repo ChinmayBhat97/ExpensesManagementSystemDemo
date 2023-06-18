@@ -25,7 +25,8 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? ClaimRequestDate { get; set; }
         public int? Status { get; set; }
-
+        public string? ManagerName { get; set; }
+        public string? FinManagerName { get; set; }
         public int? StatusManager { get; set; }
         public string? ManagerRemarks { get; set; }
         public string? FinanceManagerRemarks { get; set; }
@@ -39,7 +40,6 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public Project Project { get; set; }
         public Employee Emp { get; set; }
         public ClaimStatus StatusNavigation { get; set; }
-        public string? ManagerName { get; set; }
-        public string? FinManagerName { get; set; }
+      
     }
 }
