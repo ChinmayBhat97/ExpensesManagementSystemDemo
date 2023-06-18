@@ -77,13 +77,13 @@
                     <th style="background-color:#404040;vertical-align:central;">
                       Claim  Status
                     </th>
-                    <th style="background-color: #404040;vertical-align:central;">Actions</th>
+                    <th style="background-color: #404040;vertical-align:central;" width="20%" >Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                        <tr style="vertical-align:middle;">
                         <td style="text-align:center;padding-left:12px;">
                             &nbsp;
                         </td>
@@ -105,7 +105,7 @@
                         </td>
                         <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
-                        <td style="text-align:center;">
+                        <td style="text-align:center;" >
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                             <a asp-action="DetailsByClaimID" asp-route-id="@item.Id" class="btn btn-info">View</a>
                            @* <a asp-action="AddExpenditures" asp-route-id="@item.Id"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
