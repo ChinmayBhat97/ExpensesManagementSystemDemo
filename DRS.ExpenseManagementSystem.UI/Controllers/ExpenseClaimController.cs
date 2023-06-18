@@ -39,6 +39,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             };
         }
 
+
         [HttpGet("ExpenseClaim/Index")]
         public async Task<IActionResult> Index()
         {
@@ -160,7 +161,6 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
 
             if (createNewClaim.IsSuccessStatusCode)
             {
-                TempData["message"] = "Expense Claim Created";
                 return RedirectToAction("Index");
             }
             return BadRequest("Please check the credentials and try again");

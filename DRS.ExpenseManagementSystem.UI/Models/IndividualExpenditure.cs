@@ -21,7 +21,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
 
         public string? AttachmentPath { get; set; }
 
-        public int IsDelete { get; set; }
+        public int? IsDelete { get; set; }
         public IFormFile? ExpenseProof { get; set; }
         [Required]
         public bool? IsApproved { get; set; }

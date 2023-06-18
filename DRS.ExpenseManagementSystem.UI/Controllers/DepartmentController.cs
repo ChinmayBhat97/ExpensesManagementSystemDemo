@@ -66,10 +66,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage createNewDepartment = await client.PostAsync(client.BaseAddress + $"Department", byteContent);
                 if (createNewDepartment.IsSuccessStatusCode)
                 {
-                    TempData["message"] = "Department Created";
+                    
                     return RedirectToAction("Index");
                 }
-                return BadRequest("DPlease check the credentials and try again");
+                return BadRequest("Department already exists!");
             }
 
             return View(departmentViewModel);

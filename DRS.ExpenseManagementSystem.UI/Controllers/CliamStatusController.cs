@@ -65,7 +65,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                return BadRequest("Please check the credentials and try again");
+                return BadRequest("Claim Status already exist!");
             }
 
             return View(claimStatusViewModel);
@@ -93,7 +93,7 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                 HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"ClaimStatus/{claimStatusViewModel.Id}", byteContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["message"] = "Claim Status Created";
+                    
                     return RedirectToAction("Index");
                 }
             }
