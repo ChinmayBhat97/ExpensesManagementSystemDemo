@@ -25,9 +25,12 @@
         }
 
 
+ tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
 
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -44,8 +47,8 @@
 
     </style>
 </head>
-
-<h5 style="padding-left:225px;color:navy;"><u><b>Edit Claim</b></u></h5>
+<body style="overflow:auto;background-color:#e6e6ff">
+    <h5 style="padding-left:225px;color:#000066;"><u><b>Edit Claim Details</b></u></h5>
 <br />
 <div class="row">
     <div class="col-md-12" style="padding-left:240px;">
@@ -139,7 +142,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <h6 style="color:navy"> <b> <u> Individual Expenditure Details</u> </b> </h6>
+                        <h6 style="color:#000066"> <b> <u> Individual Expenditure Details</u> </b> </h6>
                     </div>
                 </div>
             </div>
@@ -147,33 +150,33 @@
 
             <div class="col-md-12">
                 <table class="table table-bordered indi" id='IndividualExpenditure'>
-                    <thead>
-                        <tr>
-                            <th style="background-color: #339692;"> <label>Sl.No</label> </th>
-                            <th style="background-color: #339692;"> <label>Expenditure Date<span style="color:red;">*</span></label> </th>
-                            <th style="background-color: #339692;"> <label><b>Description</b><span style="color:red;">*</span></label>      </th>
-                            <th style="background-color: #339692;"> <label><b>Category</b><span style="color:red;">*</span></label>         </th>
-                            <th style="background-color: #339692;"> <label><b>Expense Category</b><span style="color:red;">*</span></label> </th>
-                            <th style="background-color: #339692;"> <label><b>Amount</b><span style="color:red;">*</span></label>           </th>
-                            <th style="background-color: #339692;"> <label><b>Comments</b><span style="color:red;">*</span></label>         </th>
-                            <th style="background-color: #339692;"> <label><b>Receipt Number</b><span style="color:red;">*</span></label>   </th>
-                            <th style="background-color: #339692;"> <label><b>Upload</b><span style="color:red;">*</span></label>           </th>
-                            <th style="background-color: #339692;"> <label><b>Delete Row</b><span style="color:red;">*</span></label>           </th>
+                    <thead style="vertical-align:middle;">
+                            <tr style="text-align:center">
+                                <th style="background-color: #404040;"> <label>Sl.No</label> </th>
+                                <th style="background-color: #404040;"> <label>Expenditure Date</label> </th>
+                                <th style="background-color: #404040;"> <label>Description</label>      </th>
+                                <th style="background-color: #404040;"> <label>Category</label>         </th>
+                                <th style="background-color: #404040;"> <label>Expense Category</label> </th>
+                                <th style="background-color: #404040;"> <label>Amount</label>           </th>
+                                <th style="background-color: #404040;"> <label>Comments</label>         </th>
+                                <th style="background-color: #404040;"> <label>Receipt Number</label>   </th>
+                                <th style="background-color: #404040;"> <label>Attachment</label>           </th>
+                                <th style="background-color:#404040;"> <label>Action</label>           </th>
                             @*  <th style="background-color: #0000b3;"> <label><b>Image</b><span style="color:red;">*</span></label>           </th>*@
                         </tr>
                     </thead>
                     <tbody class="individual" id="individual">
                         @for (int i = 0; i < Model.IndividualExpenditures.Count; i++)
                         {
-                            <tr>
+                            <tr style="vertical-align:middle;">
                                 <input asp-for="@Model.IndividualExpenditures[i].Id" class="form-control" style="display:none" />
                                 <input asp-for="@Model.IndividualExpenditures[i].ClaimId" class="form-control" style="display:none" />
                                 <input asp-for="@Model.IndividualExpenditures[i].IsApproved" class="form-control" style="display:none" />
                                  @*<input asp-for="@Model.IndividualExpenditures[i].IsDelete" class="IsDelete" id="IsDelete" style="display:none" />*@
-                                <td>
+                                    <td style="text-align:center;">
                                     &nbsp;
                                 </td>
-                                <td>
+                                    <td style="text-align:center;">
                                     <div class="form-group">
                                         <input type="date" asp-for="@Model.IndividualExpenditures[i].ExpenditureDate" class="form-control" />
                                         <span asp-validation-for="@Model.IndividualExpenditures[i].ExpenditureDate" class="text-danger"></span>
@@ -181,10 +184,10 @@
                                     @*@Html.EditorFor(k =>k.IndividualExpenditures[i].ExpenditureDate, new{htmlAttributes= new {@class ="form-control expDate ",type="date"}})*@
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center;">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Description, new{htmlAttributes= new {@class ="form-control desc "}})
                                 </td>
-                                <td>
+                                    <td style="text-align:center;">
                                     <select asp-for="@Model.IndividualExpenditures[i].Category" class="form-control category" required>
                                         <option value="">-- Select --</option>
                                         <option value="Official">Official</option>
@@ -192,13 +195,13 @@
                                     </select>
                                     <span asp-validation-for="@Model.IndividualExpenditures[i].Category" class="text-danger"></span>
                                 </td>
-                                <td>
+                                    <td style="text-align:center;">
                                     <select asp-for="@Model.IndividualExpenditures[i].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control indicat Selectinput" id="ExpenseCategory" required>
                                         <option value="">-- Select --</option>
                                     </select>
                                 </td>
 
-                                <td>
+                                <td style="text-align:center;">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Amount, new{htmlAttributes= new {@class ="form-control txt", id="txt"}})
                                 </td>
 
@@ -206,22 +209,20 @@
 
 
 
-                                <td>
+                                <td style="text-align:center;">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].Comments, new{htmlAttributes= new {@class ="form-control comment"}})
                                 </td>
 
-                                <td>
+                                <td style="text-align:center;">
                                     @Html.EditorFor(k =>k.IndividualExpenditures[i].ReceiptNumber, new{htmlAttributes= new {@class ="form-control reciept"}})
                                 </td>
 
-                                <td>
+                                    <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[i].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" />
                                     @*<span asp-validation-for="@Model.IndividualExpenditures[i].ExpenseProof" class="text-danger"></span>*@
                                     <input asp-for="@Model.IndividualExpenditures[i].AttachmentPath" class="form-control chosenfilename" style="display:none" />
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[i].AttachmentPath" width="100" height="100" />
-                                <td>
-
-
+                                    <td style="text-align:center;">
                                     <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger visible"
                                             onclick="DeleteItem(this);">
                                         Delete
@@ -260,7 +261,7 @@
 
 
 </div>
-
+</body>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
