@@ -2,7 +2,7 @@
 <html>
 <head>
     @{
-        ViewData["Title"] = "Edit by Finance";
+        ViewData["Title"] = "Details Approved";
     }
 
 
@@ -46,7 +46,7 @@
     </style>
 </head>
 <body style="overflow:auto;background-color:#e6e6ff">
-    <h4 style="padding-left:230px;color:#000066"><u><b>Edit Approved Claim</b></u></h4>
+    <h4 style="padding-left:230px;color:#000066"><u><b>Approved Claim</b></u></h4>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
@@ -56,6 +56,8 @@
                     <input asp-for="Id" class="form-control" style="display:none" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
+
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -65,16 +67,24 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="col-md-8">
                         <div class="form-group">
                             <label asp-for="DeptId" class="form-label input-lable"><b>Department</b></label>
-                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" readonly>
+                            <select asp-for="DeptId" asp-items="ViewBag.departmentList" class="form-control Selectinput" id="Department" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
                     </div>
 
                 </div>
+
+
+
+
+
+
+
 
                 <div class="row">
                     <div class="col-md-4">
@@ -101,16 +111,19 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
 
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label asp-for="ProjectId" class="form-label input-lable"><b>Project Title</b></label>
-                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control Selectinput" id="Project" readonly>
+                            <label asp-for="ProjectId"><b>Project</b></label>
+                            <select asp-for="ProjectId" asp-items="ViewBag.projectList" class="form-control " id="Project" disabled>
                                 <option value="">-- Select --</option>
                             </select>
                         </div>
                     </div>
+
+
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -123,23 +136,17 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <div class="form-group">
-                            <label><b>Date of Approval</b></label>
-                            <input type="date" asp-for="ManagerApprovedOn" class="form-control" readonly />
+                            <label><b>Date of Manager Approval</b></label>
+                            <input asp-for="ManagerApprovedOn" type="date" class="form-control" readonly />
                             <span asp-validation-for="ManagerApprovedOn" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label><b>Status</b></label>
-                            <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
-                                <option value="">-- Select --</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="col-md-4">
+
+
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label><b>Finance Manager Approved On</b></label>
                             <input type="date" asp-for="FinanceManagerApprovedOn" class="form-control" readonly />
@@ -153,15 +160,21 @@
                     <input asp-for="ManagerRemarks" class="form-control" readonly />
                     <span asp-validation-for="ManagerRemarks" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label><b>Finance Manager Remarks</b></label>
-                    <input asp-for="FinanceManagerRemarks" class="form-control" />
-                    <span asp-validation-for="FinanceManagerRemarks" class="text-danger"></span>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label><b>Status</b></label>
+                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status" disabled>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
                 </div>
 
-               @* <div class="form-group">
-                    <input class="form-control" placeholder="@TempData["FirstName"]" readonly />
-                </div>*@
+                <div class="form-group">
+                    <label><b>Finance Manager Remarks</b></label>
+                    <input asp-for="FinanceManagerRemarks" class="form-control" readonly />
+                    <span asp-validation-for="FinanceManagerRemarks" class="text-danger"></span>
+                </div>
                 <br />
                 <hr />
 
@@ -172,99 +185,89 @@
                         </div>
                     </div>
                 </div>
-                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:80%;padding-top:10px;font-size:16px">
+
+                <table id="Expense" class="table" style="font-family: arial, sans-serif;border-collapse:collapse;width:70%;padding-top:10px;font-size:16px">
                     <thead style="vertical-align:middle;">
                         <tr style="text-align:center;">
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Sl.No</label> </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Expenditure Date</label> </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Description</label>      </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Category</label>         </th>
-                        <th style="background-color: #404040;vertical-align:central;">  <label>Expense Category</label> </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Amount</label>           </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Comments</label>         </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Receipt Number</label>   </th>
-                        <th style="background-color: #404040;vertical-align:central;"> <label>Attachments</label>           </th>
-                        <th style="background-color:#404040;vertical-align:central;"> <label> Approved</label>           </th>
-                    </tr>
+                            <th style="background-color: #404040;"> <label>Sl.No</label> </th>
+                            <th style="background-color:#404040;"> <label>Expenditure Date</label> </th>
+                            <th style="background-color: #404040;"> <label>Description</label>      </th>
+                            <th style="background-color: #404040;"> <label>Category</label>         </th>
+                            <th style="background-color: #404040;">  <label>Expense Category</label> </th>
+                            <th style="background-color: #404040;"> <label>Amount</label>           </th>
+                            <th style="background-color:#404040;"> <label>Comments</label>         </th>
+                            <th style="background-color: #404040;"> <label>Receipt Number</label>   </th>
+                            <th style="background-color: #404040;"> <label>Attachments</label>           </th>
+                            <th style="background-color: #404040;"> <label>Approved</label>           </th>
+                        </tr>
                     </thead>
                     <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
 
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
-                            <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
+                            @*  <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />*@
 
-                            <tr style="vertical-align:middle;">
+                            <tr style="vertical-align:middle">
                                 <td style="text-align:center;">
                                     &nbsp;
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
-                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" readonly />
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" readonly>
                                         <option value="">-- Select --</option>
                                     </select>
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
+                                <td>
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                                @*<td>
+                                @*  <td>
                             <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" readonly />
                             <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
                             <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
                             </td>*@
-                                <td style="text-align:center;">
+                                <td>
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
                                 </td>
-                                <td style="text-align:center;">
-                                    <select asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control Selectinput" required id="IsApproved" onchange="calculateSum()">
-                                        <option value="null">- Select -</option>
-                                        <option value="1"> Yes </option>
-                                        <option value="0"> No </option>
-                                    </select>
+                                <td>
+                                    <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" readonly />
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
                 @*<input type="button" id="addRowBtn" value="Add New" name="Add New" />*@
+
                 <br />
                 <div class="form-group" style="padding-left:650px;">
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    <input type="submit" value="Save" class="btn btn-success" />
-
+                    @*   <input type="submit" value="Save" class="btn btn-success" />*@
                 </div>
             </form>
         </div>
     </div>
 </body>
 </html>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
-
 
 <script>
 
@@ -282,11 +285,6 @@
                 $(this).siblings('.chosenfilename').val($(this)[0].files[0].name);
             });
 
-            //$('select[name^="selectedValue"]').change(function () {
-            //    //calculateSum();
-            //    console.log("Working")
-            //});
-
 
         });
 
@@ -300,16 +298,28 @@
             });
         }
 
+        function calculateSum() {
 
+            var sum = 0;
+            //iterate through each textboxes and add the values
+            $(".txt").each(function () {
+
+                //add only if the value is number
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+                }
+            });
+            $("#ttlamnt").val(sum);
+        }
     });
 
     // insert new rows
-    //document.getElementById("addRowBtn").addEventListener("click", function () {
-    //    var tbody = document.getElementById("ExpenseBody");
-    //    tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));
-    //    InitializeKeyUp();
-    //    tablePosition++;
-    //});
+    document.getElementById("addRowBtn").addEventListener("click", function () {
+        var tbody = document.getElementById("ExpenseBody");
+        tbody.insertAdjacentHTML('beforeend', htmlDecode(tableDom));
+        InitializeKeyUp();
+        tablePosition++;
+    });
 
 
     function InitializeKeyUp() {
@@ -323,29 +333,18 @@
     }
 
     function calculateSum() {
-        console.log("Hello");
+
         var sum = 0;
+        //iterate through each textboxes and add the values
         $(".txt").each(function () {
-            var isApproved = $(this).closest("tr").find("select[name$='IsApproved']").val();
-            var value = parseFloat($(this).val());
-            if (isApproved === "1" && !isNaN(value)) {
-                sum += value;
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
             }
         });
-        $("#ttlamnt").val(sum.toFixed(2));
+        $("#ttlamnt").val(sum);
     }
-
-    //function calculateSum() {
-    //    var sum = 0;
-    //    $(".txt").each(function () {
-    //        var isApproved = $(this).closest("tr").find("select[name$='IsApproved']").val();
-    //        var value = parseFloat($(this).val());
-    //        if (isApproved === "1" && !isNaN(value)) {
-    //            sum += value;
-    //        }
-    //    });
-    //    $("#ttlamnt").val(sum.toFixed(2));
-    //}
 
     function htmlDecode(input) {
         var doc = new DOMParser().parseFromString(input, "text/html");

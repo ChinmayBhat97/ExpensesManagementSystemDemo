@@ -462,7 +462,92 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             return View();
         }
 
-       
+        [HttpGet]
+        public async Task<IActionResult> SelfApprovedByFManager()
+        {
+            HttpResponseMessage responseHomePage = await client.GetAsync(client.BaseAddress + "ExpenseClaim");
+            if (responseHomePage.IsSuccessStatusCode)
+            {
+                var responseContent = await responseHomePage.Content.ReadAsStringAsync();
+                var model = JsonConvert.DeserializeObject<List<ExpenseClaimViewModel>>(responseContent);
+
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.Status == 8).ToList() : new();
+
+                //var filteredModel = model?.Count > 0 ? model.Where(e => e.Status ==3 || e.Status == 11).ToList() : new();
+                return View(filteredModel);
+            }
+            else
+            {
+
+                return View();
+            }
+        }
+
+        [HttpGet("ExpenseClaim/SelfApprovedFM/{id}")]
+        public async Task<IActionResult> SelfApprovedFM(int id)
+        {
+            HttpResponseMessage responseDetailsClaim = await client.GetAsync(client.BaseAddress + $"ExpenseClaim/{id}");
+            var detailsClaim = JsonConvert.DeserializeObject<ExpenseClaimViewModel>(await responseDetailsClaim.Content.ReadAsStringAsync());
+
+            // Retrieve IndividualExpenditure data and add it to the ExpenseClaimViewModel
+            HttpResponseMessage responseIndividualExpenditures = await client.GetAsync(client.BaseAddress + $"IndividualExpenditure/{id}");
+            var individualExpenditures = JsonConvert.DeserializeObject<List<IndividualExpenditureViewModel>>(await responseIndividualExpenditures.Content.ReadAsStringAsync());
+
+            detailsClaim.FinanceManagerApprovedOn = DateTime.Now;
+            detailsClaim.IndividualExpenditures = individualExpenditures;
+
+            //drop down to show project names
+            HttpResponseMessage responseProjectList = await client.GetAsync(client.BaseAddress + $"Project");
+            var projectList = JsonConvert.DeserializeObject<List<Project>>(await responseProjectList.Content.ReadAsStringAsync());
+            var projectSelectList = new List<SelectListItem>();
+            foreach (var project in projectList)
+            {
+                projectSelectList.Add(new SelectListItem(project.Title, project.Id.ToString()));
+            }
+            ViewBag.projectList = projectSelectList;
+            //drop down to show department names
+            HttpResponseMessage responseDepartmentList = await client.GetAsync(client.BaseAddress + $"Department");
+            var departmentList = JsonConvert.DeserializeObject<List<Department>>(await responseDepartmentList.Content.ReadAsStringAsync());
+            var departmentSelectList = new List<SelectListItem>();
+            foreach (var department in departmentList)
+            {
+                departmentSelectList.Add(new SelectListItem(department.Name, department.Id.ToString()));
+            }
+            ViewBag.departmentList = departmentSelectList;
+
+            //dropdown to show categories
+            HttpResponseMessage responseCategoryList = await client.GetAsync(client.BaseAddress + $"ExpenseCategory");
+            var categoryList = JsonConvert.DeserializeObject<List<ExpenseCategory>>(await responseCategoryList.Content.ReadAsStringAsync());
+            var categorySelectList = new List<SelectListItem>();
+            foreach (var category in categoryList)
+            {
+                categorySelectList.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+            ViewBag.categoryList = categorySelectList;
+
+            //drop down to show status
+            HttpResponseMessage responseStatusList = await client.GetAsync(client.BaseAddress + $"ClaimStatus");
+            var statusList = JsonConvert.DeserializeObject<List<ClaimStatus>>(await responseStatusList.Content.ReadAsStringAsync());
+            var statusSelectList = new List<SelectListItem>();
+            foreach (var status in statusList)
+            {
+                statusSelectList.Add(new SelectListItem(status.Name, status.Id.ToString()));
+            }
+            ViewBag.statusList = statusSelectList;
+
+            //to show employeecode
+            HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
+            var userSelectList = new List<SelectListItem>();
+            foreach (var user in userList)
+            {
+                userSelectList.Add(new SelectListItem(user.Emp.EmployeeCode, user.Id.ToString()));
+            }
+            ViewBag.userList = userSelectList;
+
+
+            return View(detailsClaim);
+        }
 
     }
 }

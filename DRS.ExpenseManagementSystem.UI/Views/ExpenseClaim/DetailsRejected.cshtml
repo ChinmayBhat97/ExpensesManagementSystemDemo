@@ -5,7 +5,7 @@
         ViewData["Title"] = "Create";
     }
 
-
+    <style>
         th {
             border: 1px solid #000033;
             text-align: center;
@@ -14,9 +14,12 @@
         }
 
 
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
 
         tr:nth-child(even) {
-            background-color: #e6f2ff;
+            background-color: #d9d9d9;
         }
 
         /* Set the serial number counter to 0 */
@@ -35,8 +38,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
-<body>
-    <h5 style="padding-left:230px;"><u><b>Detailed Claim</b></u></h5>
+<body style="overflow:auto;background-color:#e6e6ff">
+    <h4 style="padding-left:230px;color:#000066;"><u><b>Rejected Claim Details</b></u></h4>
     <br />
     <div class="row">
         <div class="col-md-12" style="padding-left:250px;">
@@ -120,26 +123,30 @@
 
                 <br />
                 <hr>
-                <h6 style="color:#000099"> <u> <b>  Individual Expenditures  </b></u></h6>
+                <h6 style="color:#000066"> <u> <b>  Individual Expenditures  </b></u></h6>
+                <br />
                 <table id="Expense" class="Expense" style="font-family: arial, sans-serif;border-collapse:collapse;width:100%;font-size:16px">
-                    <tbody id="ExpenseBody">
-                        <tr>
-                            <th> <label><b>Expenditure Date</b></label> </th>
-                            <th> <label><b>Description</b></label>      </th>
-                            <th> <label><b>Category</b></label>         </th>
-                            <th> <label><b>Expense Category</b></label> </th>
-                            <th> <label><b>Amount</b></label>           </th>
-                            <th> <label><b>Comments</b></label>         </th>
-                            <th> <label><b>Receipt Number</b></label>   </th>
-                            <th> <label><b>Upload</b></label>           </th>
+                    <thead style="vertical-align:middle;">
+                        <tr style="text-align:center;">
+                            <th style="background-color: #404040;"> <label>Sl.No</label> </th>
+                            <th style="background-color: #404040;"> <label>Expenditure Date</label> </th>
+                            <th style="background-color: #404040;"> <label>Description</label>      </th>
+                            <th style="background-color: #404040;"> <label>Category</label>         </th>
+                            <th style="background-color: #404040;"> <label>Expense Category</label> </th>
+                            <th style="background-color: #404040;"> <label>Amount</label>           </th>
+                            <th style="background-color: #404040;"> <label>Comments</label>         </th>
+                            <th style="background-color: #404040;"> <label>Receipt Number</label>   </th>
+                            <th style="background-color: #404040;"> <label>Attachments</label>           </th>
                         </tr>
+                    </thead>
+                    <tbody id="ExpenseBody">
                         @for (var exp = 0; exp < Model.IndividualExpenditures.Count; exp++)
                         {
 
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
-                            <tr>
+                            <tr style="vertical-align:central;">
                                 <td style="padding-left:10px;" width="10%">
                                     &nbsp;
                                 </td>
