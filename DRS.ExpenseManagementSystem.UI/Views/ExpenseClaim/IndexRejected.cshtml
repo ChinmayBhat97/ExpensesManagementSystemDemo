@@ -55,6 +55,7 @@
         <table class="table"  id="table" style="font-family: arial, sans-serif;border-collapse:collapse;width: 100%;">
             <thead style="vertical-align:middle;">
                 <tr style="text-align:center;">
+
                     <th style="background-color: #404040;">
                         Sl.No
                     </th>
@@ -83,6 +84,9 @@
                 @foreach (var item in Model)
                 {
                     <tr style="vertical-align:middle;">
+                            <td style="text-align:center;">
+                                &nbsp;
+                            </td>
                         <td style="text-align:center;">
                             @Html.DisplayFor(modelItem => item.Emp.Emp.EmployeeCode)
                         </td>

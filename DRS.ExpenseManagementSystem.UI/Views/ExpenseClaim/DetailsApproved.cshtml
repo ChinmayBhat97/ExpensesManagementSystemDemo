@@ -142,36 +142,36 @@
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
-                            <tr style="vertical-align:central;">
-                                <td style="padding-left:10px;" width="10%">
+                            <tr style="vertical-align:middle;">
+                                <td style="padding-left:10px;text-align:center;" width="10%">
                                     &nbsp;
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input type="date" asp-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenditureDate" class="text-danger"></span>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].Description" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Description" class="text-danger"></span>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].Category" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Category" class="text-danger"></span>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <select asp-for="@Model.IndividualExpenditures[exp].ExpenseCategoryId" asp-items="ViewBag.categoryList" class="form-control Selectinput" id="ExpenseCategory" disabled>
                                         <option value="">-- Select --</option>
                                     </select>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].Amount" class="form-control txt" id="amnt" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Amount" class="text-danger"></span>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].Comments" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].Comments" class="text-danger"></span>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
@@ -180,7 +180,7 @@
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
                                 </td>*@
-                                <td>
+                                <td style="text-align:center;">
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
                                 </td>
                             </tr>
