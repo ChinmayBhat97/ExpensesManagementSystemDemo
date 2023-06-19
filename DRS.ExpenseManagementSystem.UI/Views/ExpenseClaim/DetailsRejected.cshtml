@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label><b>Employee</b></label>
+                            <label><b>Employee Code:</b></label>
                             @Html.DisplayFor(model => model.Emp.Emp.EmployeeCode, new { @class = "form-control", @readonly = "readonly" })
                             <span asp-validation-for="EmpId" class="text-danger"></span>
                         </div>
@@ -146,8 +146,8 @@
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
                             <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
 
-                            <tr style="vertical-align:central;">
-                                <td style="padding-left:10px;" width="10%">
+                            <tr style="vertical-align:middle;">
+                                <td style="padding-left:10px;text-align:center;" width="10%">
                                     &nbsp;
                                 </td>
                                 <td style="text-align:center;">
