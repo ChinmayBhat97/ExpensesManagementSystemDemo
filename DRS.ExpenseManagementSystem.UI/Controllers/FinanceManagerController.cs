@@ -151,9 +151,15 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            
+            await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
+            //Save Individual Expenditure
+            var expenditureContent = JsonConvert.SerializeObject(expenseClaimViewModel.IndividualExpenditures);
+            var expenditureBuffer = System.Text.Encoding.UTF8.GetBytes(expenditureContent);
+            var expenditureByteContent = new ByteArrayContent(expenditureBuffer);
+            expenditureByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage editClaim = await client.PutAsync(client.BaseAddress + $"IndividualExpenditure/", expenditureByteContent);
             return RedirectToAction("Index");
 
         }

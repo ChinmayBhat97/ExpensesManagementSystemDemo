@@ -218,11 +218,11 @@
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                                <td style="text-align:center;">
+                                @*<td style="text-align:center;">
                                     <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" readonly />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
                                     <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>
+                                </td>*@
                                 <td style="text-align:center;">
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
                                 </td>
