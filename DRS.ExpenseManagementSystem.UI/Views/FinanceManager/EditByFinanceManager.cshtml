@@ -192,7 +192,7 @@
                         {
 
                             <input asp-for="@Model.IndividualExpenditures[exp].Id" class="form-control" style="display:none" />
-                            <input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />
+                            @*<input asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control" style="display:none" />*@
 
                             <tr style="vertical-align:middle;">
                                 <td style="text-align:center;">
@@ -237,9 +237,9 @@
                                 </td>
                                 <td style="text-align:center;">
                                     <select asp-for="@Model.IndividualExpenditures[exp].IsApproved" class="form-control Selectinput" required id="IsApproved" onchange="calculateSum()">
-                                        <option value="null">- Select -</option>
-                                        <option value="1"> Yes </option>
-                                        <option value="0"> No </option>
+                                        <option value="">-- Select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
                                     </select>
                                 </td>
                             </tr>
@@ -328,7 +328,7 @@
         $(".txt").each(function () {
             var isApproved = $(this).closest("tr").find("select[name$='IsApproved']").val();
             var value = parseFloat($(this).val());
-            if (isApproved === "1" && !isNaN(value)) {
+            if (isApproved === "true" && !isNaN(value)) {
                 sum += value;
             }
         });
