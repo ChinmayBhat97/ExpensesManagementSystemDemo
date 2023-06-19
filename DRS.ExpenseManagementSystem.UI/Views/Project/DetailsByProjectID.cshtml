@@ -24,7 +24,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                         <label asp-for="EmpId" class="form-label input-lable"><b>Employee Code:</b></label>
-                    <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control-plaintext" id="Employee" disabled>
+                    <select asp-for="EmpId" asp-items="ViewBag.userList" class="form-control-plaintext" id="Employee" style="appearance:none;" disabled>
                         <option value="">-- Select --</option>
                     </select>
                 </div>
@@ -33,15 +33,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="EmpId" class="form-label input-lable"><b>Manager Name:</b></label>
-                        <select asp-for="EmpId" asp-items="ViewBag.firstNameList" class="form-control-plaintext" id="Employee" disabled>
+                        <select asp-for="EmpId" asp-items="ViewBag.firstNameList" class="form-control-plaintext" style="appearance:none;" id="Employee" disabled>
                             <option value="">-- Select --</option>
                         </select>
                     </div>
                 </div>
             
-            <dt class="col-sm-12" style="padding-top:10px;">
-                Project Manager Name: &nbsp    @Html.DisplayFor(model => model.Emp.FirstName)
-            </dt>
+           
 
         <dt class="col-sm-12" style="padding-top:10px;" >
             Project Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate)
@@ -76,7 +74,7 @@
         </form>
     </dl>
     <br />
-    <div style="padding-left:500px;padding-top:50px;">
+    <div style="padding-left:500px;padding-top:20px;">
         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
         <a asp-action="EditProject" asp-route-id="@Model.Id" class="btn  btn btn-success"> Edit Project Details </a>
     </div>

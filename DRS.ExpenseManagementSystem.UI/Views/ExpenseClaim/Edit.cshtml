@@ -242,12 +242,13 @@
 
 
                 <br />
-                <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">
-                    Add
+                    <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" style="background-color:#008000;" onclick="AddItem(this)">
+                    Add Expenditure
                 </button>
                 <div class="form-group" style="padding-left:600px;">
-                    <input type="submit" value="Save" class="btn btn-success" />
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <input type="submit" value="Save" class="btn btn-success" style="background-color:#008000;" />
+                   
                 </div>
                 <input type="hidden" id='hdnLastIndex' value="0" />
             </div>

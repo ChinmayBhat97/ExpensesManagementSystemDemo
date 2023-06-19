@@ -72,7 +72,7 @@
                     <span class="col-md-5" >
 
                         <b>Claim Status : </b>  @* @Html.DisplayFor(model => model.StatusNavigation.Name)*@
-                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" id="Status">
+                        <select asp-for="Status" asp-items="ViewBag.statusList" class="form-control Selectinput" disabled id="Status">
                             <option value="">-- Select --</option>
                         </select>
                     </span>
