@@ -33,9 +33,7 @@
                 Project Manager Name: &nbsp    
                 <input class="form-control-plaintext" placeholder="@TempData["FirstName"]" style="font-weight:700;font-size:18px;color:black" readonly />
             </dt>
-            <dt class="col-sm-12" style="padding-top:10px;">
-                Project Manager Name: &nbsp    @Html.DisplayFor(model => model.Emp.FirstName)
-            </dt>
+          
 
         <dt class="col-sm-12" style="padding-top:10px;" >
             Project Start Date: &nbsp    @Html.DisplayFor(model => model.StartDate)
@@ -69,7 +67,7 @@
        
         </form>
     </dl>
-    <br />
+
     <div style="padding-left:500px;padding-top:50px;">
         <a asp-action="Index" class="btn  btn btn-secondary">Back to List</a>
         <a asp-action="EditProject" asp-route-id="@Model.Id" class="btn  btn btn-success"> Edit Project Details </a>
