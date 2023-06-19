@@ -210,8 +210,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             var expenseClaimBuffer = System.Text.Encoding.UTF8.GetBytes(expenseClaimContent);
             var expenseClaimByteContent = new ByteArrayContent(expenseClaimBuffer);
             expenseClaimByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            await client.PatchAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
-             await client.PatchAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
+            await client.PutAsync(client.BaseAddress + $"ExpenseClaim", expenseClaimByteContent);
+             await client.PutAsync(client.BaseAddress + $"ExpenseClaim/", expenseClaimByteContent);
 
             return RedirectToAction("Index");
         }
