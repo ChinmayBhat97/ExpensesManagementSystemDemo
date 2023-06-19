@@ -145,11 +145,23 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseUserList = await client.GetAsync(client.BaseAddress + $"Employee");
             var userList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
             var userSelectList = new List<SelectListItem>();
+            
             foreach (var user in userList)
             {
                 userSelectList.Add(new SelectListItem(user.Emp.EmployeeCode, user.Id.ToString()));
             }
             ViewBag.userList = userSelectList;
+
+            //to show employeefirstname
+            HttpResponseMessage responseFirstNameList = await client.GetAsync(client.BaseAddress + $"Employee");
+            var firstNameList = JsonConvert.DeserializeObject<List<Employee>>(await responseUserList.Content.ReadAsStringAsync());
+            var firstNameSelectList = new List<SelectListItem>();
+
+            foreach (var firstName in firstNameList)
+            {
+                firstNameSelectList.Add(new SelectListItem(firstName.FirstName, firstName.Id.ToString()));
+            }
+            ViewBag.firstNameList = firstNameSelectList;
 
             HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
             var detailsProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseDetailsProject.Content.ReadAsStringAsync());
