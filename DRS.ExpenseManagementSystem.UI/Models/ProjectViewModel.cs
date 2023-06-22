@@ -15,7 +15,8 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         public string? Client { get; set; }
         public Employee Emp { get; set; }
         public User User { get; set; }
+        public int IsDelete { get; set; }
 
-     //  public Department? Dept { get; set; }
+        //  public Department? Dept { get; set; }
     }
 }

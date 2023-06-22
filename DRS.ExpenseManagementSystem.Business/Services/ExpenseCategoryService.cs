@@ -20,6 +20,11 @@ namespace DRS.ExpenseManagementSystem.Business.Services
                 this.expensesCategoryRepository = repository;
         }
 
+        public async Task<bool> DeleteById(int Id)
+        {
+            return await expensesCategoryRepository.DeleteById(Id);
+        }
+
         public  ExpenseCategoryViewModel GetByTitle(string title)
         {
             var checkByTitle = expensesCategoryRepository.GetByTitleName(title);

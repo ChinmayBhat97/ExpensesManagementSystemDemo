@@ -50,7 +50,7 @@
         <div style="padding-left:275px;">
         <h4 style="color:#000066"><u> <b>Department List </b></u></h4>
 
-        <div style="padding-left:475px;">
+        <div style="padding-left:620px;">
             <a asp-action="CreateDepartment" class="btn btn-success" style="background-color:#008000;">Create New Department</a>
           @*  <button class="btn btn-primary" data-target="#CreateDepartment" data-toggle="modal">Add Department</button>*@
         </div>
@@ -86,9 +86,10 @@
                         <td style="padding-left:20px;">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td style="padding-left:10px;align-items:center;">
+                        <td style="padding-left:10px;align-items:center;" width="29%">
                             <a asp-action="EditDepartment" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                             <a asp-action="DetailsByDepartmentID" asp-route-id="@item.Id" class="btn btn-info">View</a>
+                            <a asp-action="Delete"  asp-route-id="@item.Id" type="button" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }

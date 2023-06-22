@@ -17,5 +17,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
         public Task<List<Project>> GetAllDetails();
 
         public  Task<List<Project>> GetByEmpId(int EmpId);
+
+        public Task<bool> DeleteById(int id);
     }
 }

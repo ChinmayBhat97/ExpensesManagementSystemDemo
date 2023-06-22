@@ -46,5 +46,21 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
         {
             return await _dbContext.Projects.AsQueryable().Where(p => p.EmpId == EmpId).ToListAsync();
         }
+
+        public async Task<bool> DeleteById(int id)
+        {
+            var project = await _dbContext.Projects.FindAsync(id);
+
+            if (project == null)
+            {
+                return false;
+            }
+
+            project.IsDelete = 1;
+
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

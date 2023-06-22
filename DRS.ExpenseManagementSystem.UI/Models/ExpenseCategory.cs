@@ -15,7 +15,7 @@ namespace DRS.ExpenseManagementSystem.UI.Models
 
         [Required(ErrorMessage="Name is required")]
         public string? Name { get; set; }
-
+        public int IsDelete { get; set; }
         public virtual ICollection<IndividualExpenditure> IndividualExpenditures { get; set; }
     }
 }

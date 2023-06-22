@@ -34,5 +34,21 @@ namespace DRS.ExpenseManagementSystem.Repository.Repository
 
             // return await _dbContext.ExpenseClaims.AsQueryable().Where(k => k.Status== claimStatus).ToListAsync();
         }
+
+        public async Task<bool> DeleteById(int Id)
+        {
+            var category = await _dbContext.ExpenseCategories.FindAsync(Id);
+
+            if (category == null)
+            {
+                return false;
+            }
+
+            category.IsDelete = 1;
+
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

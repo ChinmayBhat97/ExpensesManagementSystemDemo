@@ -81,9 +81,10 @@
                     <td style="padding-left:10px;">
                         @Html.DisplayFor(modelItem => item.Name)
                     </td >
-                    <td style="padding-left:20px;">
+                    <td style="padding-left:20px;" width="35%">
                             <a asp-action="EditExpenseCategory" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit </a>
                             <a asp-action="DetailsByExpenseCategoryID" asp-route-id="@item.Id" type="button" class="btn btn-info" >View</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }

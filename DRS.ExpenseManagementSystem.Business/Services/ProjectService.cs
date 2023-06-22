@@ -43,6 +43,9 @@ namespace DRS.ExpenseManagementSystem.Business.Services
            return await projectRepository.GetByEmpId(EmpId);
         }
 
-       
+        public async Task<bool> DeleteById(int id)
+        {
+            return await projectRepository.DeleteById(id);
+        }
     }
 }

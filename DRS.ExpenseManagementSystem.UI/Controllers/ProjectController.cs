@@ -33,7 +33,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ProjectViewModel>>(responseContent);
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(x =>x.IsDelete == 0 ).ToList() : new();
+                return View(filteredModel);
             }
             else
             {
@@ -166,6 +167,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseDetailsProject = await client.GetAsync(client.BaseAddress + $"Project/{id}");
             var detailsProject = JsonConvert.DeserializeObject<ProjectViewModel>(await responseDetailsProject.Content.ReadAsStringAsync());
             return View(detailsProject);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"Project/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
     }
 }

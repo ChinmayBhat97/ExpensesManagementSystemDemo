@@ -92,6 +92,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
            
         }
 
+        // DELETE api/<LocationController>/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await projectService.DeleteById(id);
+        }
     }
 }
 

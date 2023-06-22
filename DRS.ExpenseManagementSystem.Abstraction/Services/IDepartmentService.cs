@@ -9,5 +9,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
 {
     public interface IDepartmentService:IBaseService<Department>
     {
+        public Task<bool> DeleteById(int Id);
     }
 }

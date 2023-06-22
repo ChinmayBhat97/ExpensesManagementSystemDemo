@@ -13,5 +13,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Repository
      //   ExpenseCategoryViewModel CheckTitle(string name);
 
         public ExpenseCheckViewModel GetByTitleName(string title);
+        public Task<bool> DeleteById(int Id);
     }
 }

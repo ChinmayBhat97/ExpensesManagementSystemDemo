@@ -31,7 +31,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<ClaimStatusViewModel>>(responseContent);
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(e => e.IsDelete == 0).ToList() : new();
+                return View(filteredModel);
             }
             else
             {
@@ -108,6 +109,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseDetailsClaimStatus = await client.GetAsync(client.BaseAddress + $"ClaimStatus/{id}");
             var detailsClaimStatus = JsonConvert.DeserializeObject<ClaimStatusViewModel>(await responseDetailsClaimStatus.Content.ReadAsStringAsync());
             return View(detailsClaimStatus);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"ClaimStatus/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
     }
 }

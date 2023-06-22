@@ -30,6 +30,12 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
         {
             return await claimStatusService.GetByIdAsync(id);
         }
+        // DELETE api/<LocationController>/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await claimStatusService.DeleteStatusById(id);
+        }
 
 
         // POST api/<Claim status Controller>

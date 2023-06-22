@@ -20,6 +20,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
 
         //public virtual Department? Dept { get; set; }
         public virtual Employee? Emp { get; set; }
+        public int IsDelete { get; set; }
         public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }
 
      //   public virtual ICollection<Department> Departments { get; set; }

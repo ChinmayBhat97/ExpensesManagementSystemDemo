@@ -32,7 +32,8 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             {
                 var responseContent = await responseHomePage.Content.ReadAsStringAsync();
                 var model = JsonConvert.DeserializeObject<List<DepartmentViewModel>>(responseContent);
-                return View(model);
+                var filteredModel = model?.Count > 0 ? model.Where(x => x.IsDelete == 0) : null;
+                return View(filteredModel);
             }
             else
             {
@@ -112,6 +113,16 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
             HttpResponseMessage responseDetailsDepartment = await client.GetAsync(client.BaseAddress + $"Department/{id}");
             var detailsDepartment = JsonConvert.DeserializeObject<Department>(await responseDetailsDepartment.Content.ReadAsStringAsync());
             return View(detailsDepartment);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"Department/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
     }
 }

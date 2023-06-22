@@ -20,7 +20,8 @@ namespace DRS.ExpenseManagementSystem.UI.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? EndDate { get; set; }
         public string? Client { get; set; }
-       
+        public int IsDelete { get; set; }
+
         public virtual Employee? Emp { get; set; }
 
       //  public virtual Department? Dept { get; set; }

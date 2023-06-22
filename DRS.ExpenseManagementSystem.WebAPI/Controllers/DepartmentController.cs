@@ -31,6 +31,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             return await departmentService.GetByIdAsync(id);
         }
 
+        // DELETE api/<LocationController>/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await departmentService.DeleteById(id);
+        }
+
         // POST api/<DepartmentController>
         [HttpPost]
         public async Task Post(Department department)

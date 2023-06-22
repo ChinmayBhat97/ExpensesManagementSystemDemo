@@ -13,6 +13,7 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Models
 
         public int Id { get; set; }
         public string? Name { get; set; }
+        public int IsDelete { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<ExpenseClaim> ExpenseClaims { get; set; }

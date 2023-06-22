@@ -46,6 +46,13 @@ namespace DRS.ExpenseManagementSystem.WebAPI.Controllers
             await expensesCategoryServices.UpdateAsync(expensesCategory);
         }
 
+        // DELETE api/<LocationController>/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await expensesCategoryServices.DeleteById(id);
+        }
+
 
         //[HttpPost]
         //public ExpenseCategoryViewModel CheckByTitle(string title)

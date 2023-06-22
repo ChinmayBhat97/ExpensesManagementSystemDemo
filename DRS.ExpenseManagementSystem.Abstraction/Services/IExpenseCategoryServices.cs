@@ -11,5 +11,6 @@ namespace DRS.ExpenseManagementSystem.Abstraction.Services
     public interface IExpenseCategoryServices : IBaseService<ExpenseCategory>
     {
         ExpenseCategoryViewModel GetByTitle(string title);
+        public Task<bool> DeleteById(int Id);
     }
 }
