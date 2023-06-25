@@ -2,7 +2,7 @@
 
 <head>
     @{
-        ViewData["Title"] = "Index";
+        ViewData["Title"] = "Approved";
     }
 
     <style>
@@ -106,7 +106,7 @@
                             @Html.DisplayFor(modelItem => item.StatusNavigation.Name)
 
                         <td style="text-align:center;">
-                            <a asp-action="DetailsApproved" asp-route-id="@item.Id" class="btn btn-info">View</a>
+                                <a asp-action="DetailsApproved" asp-route-id="@item.Id" class="btn btn-info">View</a>
                         </td>
                     </tr>
                 }

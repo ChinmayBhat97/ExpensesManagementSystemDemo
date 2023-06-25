@@ -76,17 +76,14 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
                             // TempData["projectID"]=authResponse.userDetails.pID.ToString();
                             TempData.Keep();
 
-                            
+                            TempData["OnLogin"]="You have successfully logged in to application.";
 
-                            // HttpContext.Session.SetInt32("Roles",authResponse.userDetails.Role);
-                           // TempData["Success"]=$"{authResponse.userDetails.EmployeeCode} You have successfully logged in to application.";
-                           
                             return RedirectToAction("Index", "Home");
                         }
                         else
                         {
                             
-                            TempData["Message"]="Your are not active User or you dont have access to this application.";
+                            TempData["Message"]="Your are not active User or you don't have access to this application.";
                             TempData["MessageInst"]="Kindly contact Admin or HR Manager for further information.";
                             return RedirectToAction("Index", "Login");
                         }
@@ -123,10 +120,10 @@ namespace DRS.ExpenseManagementSystem.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             
-            TempData.Clear();
+            //TempData.Clear();
             
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            
+            TempData["OnLogout"]="You have successfully logged out from application.";
             return RedirectToAction("Index", "Login");
            
         }

@@ -2,10 +2,10 @@
 <html>
 <head>
     @{
-        ViewData["Title"] = "Approved";
+        ViewData["Title"] = "Partial Approved";
     }
 
-<style>
+    <style>
         th {
             border: 1px solid #000033;
             text-align: center;
@@ -69,15 +69,15 @@
                         </div>
                     </div>
                 </div>
-               
-               <div class="row">
-                   <div class="col-md-3">
+
+                <div class="row">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label><b>Claim Date</b></label>
                             <input type="date" asp-for="ClaimRequestDate" class="form-control" readonly />
                             <span asp-validation-for="ClaimRequestDate" class="text-danger"></span>
                         </div>
-                   </div>
+                    </div>
 
                     <div class="col-md-8">
                         <div class="col-md-8">
@@ -87,9 +87,9 @@
                             </select>
                         </div>
                     </div>
-               </div>
-               
-               
+                </div>
+
+
                 <br />
                 <div>
                     <div class="row">
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
                 <br />
                 <hr>
@@ -175,11 +175,11 @@
                                     <input asp-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="form-control" disabled />
                                     <span asp-validation-for="@Model.IndividualExpenditures[exp].ReceiptNumber" class="text-danger"></span>
                                 </td>
-                               @* <td>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" disabled />
-                                    <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
-                                    <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
-                                </td>*@
+                                @* <td>
+                            <input asp-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="form-control expenseproof" type="file" name="ExpenseProof" accept="image/*" disabled />
+                            <span asp-validation-for="@Model.IndividualExpenditures[exp].ExpenseProof" class="text-danger"></span>
+                            <input asp-for="@Model.IndividualExpenditures[exp].AttachmentPath" class="form-control chosenfilename" style="display:none" />
+                            </td>*@
                                 <td style="text-align:center;">
                                     <img src="/ExpenseProof/@Model.IndividualExpenditures[exp].AttachmentPath" width="100" height="100" />
                                 </td>

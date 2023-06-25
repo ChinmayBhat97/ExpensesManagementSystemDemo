@@ -19,9 +19,9 @@
 </head>
 <body>
    @* <partial name="_SideBar" />*@
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+    <header style="overflow:hidden;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="overflow:hidden;">
+            <div class="container-fluid" style="overflow:hidden;">
                 <h5 style="color:#000066"> <b>Expense Management System </b> </h5>
                 <div>
                     <p style="color:#000066;padding-right:25px;">  @TempData["LoggedFirstName"] </p>
@@ -188,6 +188,7 @@
             &copy; 2023 - DRS.ExpenseManagementSystem.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>*@
+    <script src="~/js/customjs.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
